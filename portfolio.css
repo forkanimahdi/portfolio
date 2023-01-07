@@ -2,7 +2,7 @@ body{
     width: 100%;
     height: fit-content;
     margin: 0;
-    background-color:   #080d10;
+    background-color:   rgb(8, 13, 16);
 }
 .header{
     background-color:   #080D10;
@@ -780,6 +780,26 @@ border: 2px solid #ffffff;
     left: 1%;
     border-radius: 15px;  
 }
+.work5{
+    width: 30%;
+    height: 45vh;
+    overflow: hidden;
+    border: 2px dashed #fcc403;
+    position: absolute;
+    top: 70%;
+    left: 34%;
+    border-radius: 15px;  
+}
+.work6{
+    width: 30%;
+    height: 45vh;
+    overflow: hidden;
+    border: 2px dashed #fcc403;
+    position: absolute;
+    top: 70%;
+    left: 67%;
+    border-radius: 15px;  
+}
 #contactme{
     background-color: #080d10;
     width: 21%;
@@ -1109,6 +1129,11 @@ line-height: 4.3vh;
 }
 .work3{
     top: 55%;
+    left: 1%;
+    width: 97%;
+}
+.work4{
+    top: 80%;
     left: 1%;
     width: 97%;
 }
