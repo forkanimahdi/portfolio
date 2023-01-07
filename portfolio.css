@@ -1027,7 +1027,7 @@ border-right: none;
         top: 200%;  
     }
     #myportfolio{
-        height: 200%;
+        height: 220vh;
         top: 400%;  
     }
    .homelogo{
@@ -1119,21 +1119,21 @@ line-height: 4.3vh;
     text-align: center;
 }
 .work1{
-    top: 5%;
+    top: 10vh;
     width: 97%;
 }
 .work2{
-    top: 30%;
+    top: 60vh;
     left: 1%;
     width: 97%;
 }
 .work3{
-    top: 55%;
+    top: 110vh;
     left: 1%;
     width: 97%;
 }
 .work4{
-    top: 80%;
+    top: 160vh;
     left: 1%;
     width: 97%;
 }
