@@ -229,6 +229,7 @@ home.style.borderBottomColor = ''
 headerlinks.forEach((headerlink) =>{
     headerlink.style.color = ''
     headerlink.style.fontWeight = ''
+    headerlink .style.borderColor = ''
 
 })
 homeicones.forEach((homeicone) =>{
