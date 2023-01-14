@@ -2,7 +2,8 @@ body{
     width: 100%;
     height: fit-content;
     margin: 0;
-    background-color:   rgb(8, 13, 16);
+    background-color:   #080d10;
+    
 }
 .header{
     background-color:   #080D10;
@@ -16,6 +17,14 @@ width: 5%;
 position: absolute;
 right: 1%;
 border-radius: 10%;
+}
+.black-img_logo{
+    top: 10%;
+    width: 5%;
+position: absolute;
+right: 1%;
+border-radius: 10%;
+display: none;
 }
 .text_logo{
     color: #fcc403;
@@ -40,7 +49,6 @@ width: 50%;
     text-decoration: none;
     margin-left:10% ;
     padding-bottom: 26px;
-    
 }
 .menu a:hover{
 border-bottom: 3px solid #fcc403;
@@ -48,7 +56,34 @@ border-bottom: 3px solid #fcc403;
 .menu a:focus{
     border-bottom: 3px solid #fcc403;
     }
+    #darkmode{
+        position: absolute;
+        left: 75%;
+        top: 30%;
+        width: 25px;
+        height: 25px;
+        user-select: none;
+        cursor: pointer;
+        appearance: none;
+    }
+    .fa-sun{
+        position: absolute;
+        left: 75%;
+        top: 30%;
+        color: #fcc403;  
+font-size: 25px;
+    }
+    .fa-moon{
+        position: absolute;
+        left: 75%;
+        top: 30%;
+        color: #580202;  
+font-size: 25px;
+display: none;
+    }
+    
 #home{
+    color: #ffffff;
     width: 100%;
     position: absolute;
     top: 15vh;
@@ -60,6 +95,14 @@ border-bottom: 3px solid #fcc403;
     position: absolute;
     left: 60%;
     animation: myfirst 7s infinite;
+}
+.blackhomelogo{
+    top: 10%;
+    width: 35%;
+    position: absolute;
+    left: 60%;
+    animation: myfirst 7s infinite;
+    display: none;
 }
 @keyframes myfirst{
     0%{
@@ -74,14 +117,12 @@ border-bottom: 3px solid #fcc403;
     height: 98%;
 }
 .welcome_msg{
-    color: #ffffff;
     position: absolute;
     top: 8%;
     left: 10%;
     font-size: 50px;
 }
 .introducing{
-    color: #ffffff;
     position: absolute;
     top: 30%;
     left: 10%;
@@ -96,7 +137,6 @@ border-bottom: 3px solid #fcc403;
   }
 .introdetaills{
     width: 32%;
-    color: #ffffff;
     position: absolute;
     top: 42%;
     left: 10%;
@@ -144,7 +184,7 @@ border-bottom: 3px solid #fcc403;
 }
 .cv:hover{
     background-color: red;  
-    color: whit;
+    color: white;
 }
 #aboutme{
     width: 100%;
@@ -152,6 +192,8 @@ border-bottom: 3px solid #fcc403;
     top: 100%;
     height: 84vh;
     border-bottom: 1px solid #ffffff ;
+    color: #ffffff;
+
 }
 .abmtittle{
     position: absolute;
@@ -171,7 +213,6 @@ border-bottom: 3px solid #fcc403;
     font-size: 35px; 
 }
 .aboutmetext{
-    color: #ffffff;
     position: absolute;
     top: 35%;
     left: 5%;
@@ -693,16 +734,16 @@ width: 7%;
         background-color: rgb(8, 13, 16,1);
         position: absolute;
         top: -100%;
+        color: #ffffff;
+
     }
     #work:hover  .detaills{
         top: 0;
     }
     .worktittle{
-        color: #ffffff;
         text-align: center;
     }
     .worktext{
-        color: #ffffff;
         font-size: 17px;
         line-height: 5vh;
         width: 80%;
@@ -749,6 +790,7 @@ border: 2px solid #ffffff;
     top: 20%;
     left: 1%;
     border-radius: 15px;  
+    background-color: #080d10;
 }
 .work2{
     width: 30%;
@@ -759,6 +801,7 @@ border: 2px solid #ffffff;
     top: 20%;
     left: 34%;
     border-radius: 15px;  
+    background-color: #080d10;
 }
 .work3{
     width: 30%;
@@ -769,6 +812,7 @@ border: 2px solid #ffffff;
     top: 20%;
     left: 67%;
     border-radius: 15px;  
+    background-color: #080d10;
 }
 .work4{
     width: 30%;
@@ -779,6 +823,7 @@ border: 2px solid #ffffff;
     top: 70%;
     left: 1%;
     border-radius: 15px;  
+    background-color: #080d10;
 }
 .work5{
     width: 30%;
@@ -789,6 +834,7 @@ border: 2px solid #ffffff;
     top: 70%;
     left: 34%;
     border-radius: 15px;  
+    background-color: #080d10;
 }
 .work6{
     width: 30%;
@@ -799,6 +845,7 @@ border: 2px solid #ffffff;
     top: 70%;
     left: 67%;
     border-radius: 15px;  
+    background-color: #080d10;
 }
 #contactme{
     background-color: #080d10;
@@ -814,7 +861,7 @@ border: 2px solid #ffffff;
 .fa-square-facebook{
 position: absolute;
 top:25%;
-left: 1%;
+left: 5%;
     font-size: 30px;
     color:gray;
 }
@@ -822,28 +869,28 @@ left: 1%;
 position: absolute;
 top:25%;
 font-size: 30px;
-    left: 16.66%;
+    left: 21%;
     color:gray;
 }
 .fa-square-whatsapp{
 position: absolute;
 top:25%;
     font-size: 30px;
-    left: 33.33%;
+    left: 38%;
     color: gray;
 }
 .fa-square-twitter{
 position: absolute;
 top:25%;
     font-size: 30px;
-    left: 50%;
+    left: 55%;
     color:gray;
 }
 .fa-telegram{
 position: absolute;
 top:25%;
     font-size: 30px;
-    left: 66.66%;
+    left: 71%;
     color:gray;
 }
 .fa-envelope{
@@ -851,7 +898,7 @@ position: absolute;
 top:25%;
 
     font-size: 30px;
-    left: 83.33%;
+    left: 88%;
     color:gray;
 }
 #contactme i:hover{
@@ -1003,12 +1050,15 @@ cursor: pointer;
     display: none;
    }
    .fa-bars{
-    display: none;
+    visibility: hidden;
    }
    .fa-xmark{
     display: none;
    }
 @media(max-width:425px){
+    .fa-bars{
+visibility: visible;
+    }
     #contactme{
 width: 100%;
 border-left: none;
@@ -1034,6 +1084,12 @@ border-right: none;
     width: 40%;
     left: 30%;
     top: 0%;
+   }
+   .blackhomelogo{
+    width: 40%;
+    left: 30%;
+    top: 0%;
+    top: 3%;
    }
    .welcomeside{
 width: 100%;
@@ -1150,7 +1206,11 @@ line-height: 4.3vh;
 }
 .img_logo{
     width: 10%;
-    top: 15%;
+    top: 18%;
+}
+.black-img_logo{
+    width: 10%;
+    top: 22%;
 }
 .text_logo{
 left: 30%;
@@ -1206,5 +1266,7 @@ font-size: 22px;
     top: 3%;
     display: none;
 }
-
+#darkmode{
+    cursor: none;
+}
 }
