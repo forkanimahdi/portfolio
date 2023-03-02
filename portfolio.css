@@ -81,7 +81,10 @@ font-size: 25px;
 font-size: 25px;
 display: none;
     }
-    
+    .goog-te-banner-frame {
+        display: none !important;
+      }
+       
 #home{
     color: #ffffff;
     width: 100%;
@@ -836,6 +839,9 @@ border: 2px solid #ffffff;
     border-radius: 15px;  
     background-color: #080d10;
 }
+.work5 .livecode{
+    left: 30%;
+}
 .work6{
     width: 30%;
     height: 45vh;
@@ -1077,7 +1083,7 @@ border-right: none;
         top: 200%;  
     }
     #myportfolio{
-        height: 220vh;
+        height: 270vh;
         top: 400%;  
     }
    .homelogo{
@@ -1190,6 +1196,11 @@ line-height: 4.3vh;
 }
 .work4{
     top: 160vh;
+    left: 1%;
+    width: 97%;
+}
+.work5{
+    top: 210vh;
     left: 1%;
     width: 97%;
 }
