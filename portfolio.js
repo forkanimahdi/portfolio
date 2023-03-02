@@ -52,9 +52,15 @@ const detaillslinklive = myportfolio.querySelectorAll(".livecode")
 
 let verification = 2000
 
-darkmode.checked = true
 closemenu.style.display = 'none' 
+function localdark(){
+let darkmodechecker = window.localStorage.getItem("darkmode")
 
+
+thedarkmode()
+}
+localdark()
+// whatsapp checker
 whatsapp.addEventListener("click",() =>{
     whatsapparea.style.display = "initial"
 })
@@ -95,7 +101,7 @@ closemenu.style.display = 'initial'
     }
 })
 function thedarkmode(){
-   if(darkmode.checked == false){
+   if(darkmode.checked){
 sun.style.display = 'none'
 moon.style.display = 'initial'
 body.style.backgroundColor = 'rgb(230, 230, 230)'
@@ -207,9 +213,12 @@ myportfolio.style.borderBottomColor = '#580202'
 portfoliotitle.style.borderColor = '#580202'
 portfoliotitle.style.color = '#580202'
 
+window.localStorage.setItem("darkmode",true)
 } 
 
-else if(darkmode.checked){
+// other case
+
+else if(darkmode.checked == false){
     sun.style.display = 'initial'
     moon.style.display = 'none'
 body.style.backgroundColor = ''
@@ -230,6 +239,7 @@ headerlinks.forEach((headerlink) =>{
     headerlink.style.color = ''
     headerlink.style.fontWeight = ''
     headerlink .style.borderColor = ''
+
 
 })
 homeicones.forEach((homeicone) =>{
@@ -318,9 +328,13 @@ myportfolio.style.borderBottomColor = ''
 portfoliotitle.style.borderColor = ''
 portfoliotitle.style.color = ''
 
+window.localStorage.setItem("darkmode",false)
 }
 }
-
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'auto', includedLanguages: 'en,es,fr,de,ar', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+  }
+  
 
 const mql = window.matchMedia('(max-width: 425px)'); 
 if (mql.matches) { 
