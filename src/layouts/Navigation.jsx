@@ -54,7 +54,7 @@ export const Navigation = () => {
                         naviger.map((e, i) =>
 
                             <div key={i}
-                                className="text-[#bdbdbd] nav cursor-pointer lg:border-none  border-b lg:w-fit w-full lg:py-0 py-2  font lg:text-lg no-underline"
+                                className="text-[#bdbdbd] nav cursor-pointer lg:border-none  border-b lg:w-fit w-full lg:py-0 py-7  font lg:text-lg no-underline"
                                 onClick={() => {
                                     const section = document.getElementById(e);
                                     console.log(section)

@@ -1,20 +1,11 @@
 import React, { useState } from "react";
 import { fadeIn } from "../../../utils/motion";
 import { motion } from "framer-motion";
-import mlg from "../../../assets/images/projects/mylionsgeek.gif"
-import lionsgeek from "../../../assets/images/projects/lionsgeek.png"
-import yes from "../../../assets/images/projects/yes-africa.png"
-import casatourat_backend from "../../../assets/images/projects/casatourat_backend.gif"
+import { useAppContext } from "../../../context/AppContext";
 
 export const Projects = () => {
 
-    const projects = [
-        { name: "My LionsGeek", link: "https://mylionsgeek.ma/", description: "My Lionsgeek is a web app streamlining reservations, admin tasks, computer assignments, and training programs.", image: mlg, technologies: ["Laravel"] },
-        { name: "LionsGeek", link: "https://lionsgeek.vercel.app/", description: "LionsGeek is a Moroccan initiative aimed at empowering young people through digital and audiovisual training and incubation..", image: lionsgeek, technologies: ["React"] },
-        { name: "YES Africa", link: "https://youthempowermentsummit.africa/", description: "Yes-africa Purpose is to empower underserved youth by providing them with the skills, resources, and opportunities necessary to build a brighter future..", image: yes, technologies: ["React"] },
-        { name: "Casatourat Backend", link: "https://casatourat.ma/", description: "The Casatourat backend platform empowers the Casatourat mobile application, enabling efficient management of circuits, real-time tracking, user achievements, events, and user profiles.", image: casatourat_backend, technologies: ["laravel"] },
-    ]
-
+    const { projects } = useAppContext()
 
 
     return (
@@ -28,7 +19,7 @@ export const Projects = () => {
                 <div className="w-4/5 flex  flex-wrap gap-10">
 
                     {
-                        projects.map((ele, idx) =>
+                        projects.slice(0,4).map((ele, idx) =>
 
                             <div key={idx} className=" lg:w-[47%] w-full poppin  py-3 flex flex-col gap-y-6 border-t border-white/50">
                                 <div className="py-4 selection:bg-white selection:text-black text-white text-xl flex justify-between">
@@ -58,9 +49,9 @@ export const Projects = () => {
                 </div>
 
 
-                <div className="lg:w-1/3 w-11/12 lg:font-semibold lg:text-lg  text-white/80 text-center relative py-3 rounded-full">
+                <div className="lg:w-1/3 cursor-pointer w-11/12 lg:font-semibold lg:text-lg  text-white/80 text-center relative py-3 rounded-full">
                     <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute rounded-full"></div>
-                    <h1 className="static z-20 selection:bg-white selection:text-black poppin">Trusted By Over 100 Clients .</h1>
+                    <h1 className="static z-20 selection:bg-white selection:text-black poppin">+ Discover More Projects.</h1>
                 </div>
 
             </div>

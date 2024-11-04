@@ -5,6 +5,8 @@ import { Error } from './layouts/Error';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './pages/home/Home';
 import logo from "./assets/images/myLogo.png"
+import { Projects } from './pages/projects/projects';
+import { AppProvider } from './context/AppContext';
 
 
 function App() {
@@ -21,13 +23,17 @@ function App() {
   return (
     !isLoading ?
       <>
-        <Navigation />
-        <ScrollBar />
+        <AppProvider>
 
-        <Routes>
-          <Route path="/*" element={<Error />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
+          <Navigation />
+          <ScrollBar />
+
+          <Routes>
+            <Route path="/*" element={<Error />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+        </AppProvider>
       </>
       :
       <div className="h-screen bg-black flex flex-col gap-y-5 items-center justify-center transition-all">
