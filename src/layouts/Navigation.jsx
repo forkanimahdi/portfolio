@@ -18,6 +18,7 @@ export const Navigation = () => {
     const [nav, setNav] = useState(false)
     return (
         <>
+        <div className="lg:block hidden">
 
             <AnimatedCursor
                 innerSize={10}
@@ -37,6 +38,9 @@ export const Navigation = () => {
                     mixBlendMode: "difference",
                 }}
             />
+
+        </div>
+
             <div className="lg:h-[10vh] lg:py-0 py-2 h-fit select-none fixed w-full uppercase z-10  bg-[#010101] flex lg:flex-row flex-col items-center lg:justify-between px-8  lg:px-16 ">
 
                 <div className="lg:w-fit w-full flex items-center justify-between flex-row-reverse">
