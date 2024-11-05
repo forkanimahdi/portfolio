@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { fadeIn } from "../../../utils/motion";
 import { motion } from "framer-motion";
 import { useAppContext } from "../../../context/AppContext";
+import { Link } from "react-router-dom";
 
 export const Projects = () => {
 
@@ -22,11 +23,11 @@ export const Projects = () => {
                         projects.slice(0,4).map((ele, idx) =>
 
                             <div key={idx} className=" lg:w-[47%] w-full poppin  py-3 flex flex-col gap-y-6 border-t border-white/50">
-                                <div className="py-4 selection:bg-white selection:text-black text-white text-xl flex justify-between">
+                                <div className="py-4 selection:bg-white selection:text-black text-white text-xl flex items-center justify-between">
                                     <p>{ele.name}</p>
                                     {
                                         ele.technologies.map((e, i) =>
-                                            <p key={i}>{e}</p>
+                                            <p className="text-base bg-white/40 px-2 rounded mb-0" key={i}>{e}</p>
                                         )
                                     }
                                 </div>
@@ -49,10 +50,10 @@ export const Projects = () => {
                 </div>
 
 
-                <div className="lg:w-1/3 cursor-pointer w-11/12 lg:font-semibold lg:text-lg  text-white/80 text-center relative py-3 rounded-full">
+                <Link to={"/projects"} className="lg:w-1/3 cursor-pointer w-11/12 lg:font-semibold lg:text-lg  text-white/80 text-center relative py-3 rounded-full">
                     <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute rounded-full"></div>
                     <h1 className="static z-20 selection:bg-white selection:text-black poppin">+ Discover More Projects.</h1>
-                </div>
+                </Link>
 
             </div>
         </>
