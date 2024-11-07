@@ -11,14 +11,14 @@ import { AppProvider } from './context/AppContext';
 
 function App() {
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //     setTimeout(() => {
-  //       setIsLoading(false);    
+  useEffect(() => {
+      setTimeout(() => {
+        setIsLoading(false);    
 
-  //     }, 2000);
-  // }, []);
+      }, 2000);
+  }, []);
 
   return (
     !isLoading ?
