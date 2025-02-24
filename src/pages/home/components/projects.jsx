@@ -20,7 +20,7 @@ export const Projects = () => {
                 <div className="w-4/5 flex  flex-wrap gap-10">
 
                     {
-                        projects.slice(0,4).map((ele, idx) =>
+                        projects.map((ele, idx) =>
 
                             <div key={idx} className=" lg:w-[47%] w-full poppin  py-3 flex flex-col gap-y-6 border-t border-white/50">
                                 <div className="py-4 selection:bg-white selection:text-black text-white text-xl flex items-center justify-between">
@@ -50,10 +50,10 @@ export const Projects = () => {
                 </div>
 
 
-                <Link to={"/projects"} className="lg:w-1/3 cursor-pointer w-11/12 lg:font-semibold lg:text-lg  text-white/80 text-center relative py-3 rounded-full">
+                <div className="lg:w-1/3 cursor-pointer w-11/12 lg:font-semibold lg:text-lg  text-white/80 text-center relative py-3 rounded-full">
                     <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute rounded-full"></div>
-                    <h1 className="static z-20 selection:bg-white selection:text-black poppin">+ Discover More Projects.</h1>
-                </Link>
+                    <h1 className="static z-20 selection:bg-white selection:text-black poppin">Trusted by countless partners worldwide.</h1>
+                </div>
 
             </div>
         </>
