@@ -18,30 +18,30 @@ export const Navigation = () => {
     const [nav, setNav] = useState(false)
     return (
         <>
-        <div className="lg:block hidden">
+            <div className="lg:block hidden">
 
-            <AnimatedCursor
-                innerSize={10}
-                outerSize={80}
-                color="256, 256, 256"
-                outerAlpha={1}
-                innerScale={0.7}
-                outerScale={0.5}
-                clickables={[
-                    "a",
-                    "button",
-                    ".nav"
-                ]}
-                hasBlendMode={true}
-                outerStyle={{
-                    border: "1px solid black",
-                    mixBlendMode: "difference",
-                }}
-            />
+                <AnimatedCursor
+                    innerSize={10}
+                    outerSize={80}
+                    color="256, 256, 256"
+                    outerAlpha={1}
+                    innerScale={0.7}
+                    outerScale={0.5}
+                    clickables={[
+                        "a",
+                        "button",
+                        ".nav"
+                    ]}
+                    hasBlendMode={true}
+                    outerStyle={{
+                        border: "1px solid black",
+                        mixBlendMode: "difference",
+                    }}
+                />
 
-        </div>
+            </div>
 
-            <div className="lg:h-[10vh] lg:py-0 py-2 h-fit select-none fixed w-full uppercase z-10  bg-[#010101] flex lg:flex-row flex-col items-center lg:justify-between px-8  lg:px-16 ">
+            <div className="lg:h-[10vh] lg:py-0 py-2 h-fit select-none fixed w-full uppercase z-50  bg-[#010101] flex lg:flex-row flex-col items-center lg:justify-between px-8  lg:px-16 ">
 
                 <div className="lg:w-fit w-full flex items-center justify-between flex-row-reverse">
                     <RiMenu3Line onClick={() => setNav(!nav)} className="text-3xl text-white lg:hidden" />
@@ -60,12 +60,16 @@ export const Navigation = () => {
                             <div key={i}
                                 className="text-[#bdbdbd] nav cursor-pointer lg:border-none  border-b lg:w-fit w-full lg:py-0 py-7  font lg:text-lg no-underline"
                                 onClick={() => {
-                                    const section = document.getElementById(e);
-                                    console.log(section)
-                                    if (section) {
-                                        section.scrollIntoView({ behavior: "smooth" });
+                                    if (window.location.pathname !== "/") {
+                                        window.location.href = `/#${e}`;
+                                    } else {
+                                        const section = document.getElementById(e);
+                                        if (section) {
+                                            section.scrollIntoView({ behavior: "smooth" });
+                                        }
                                     }
                                 }}
+
                             >
                                 {e}
                             </div>

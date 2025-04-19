@@ -3,7 +3,7 @@ import { fadeIn } from "../../../utils/motion";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaGitAlt, FaInstagram, FaLaravel, FaLinkedinIn, FaReact, FaGithub } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
-import { SiExpo } from "react-icons/si";
+import { SiExpo, SiInertia } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
 import me from "../../../assets/images/me.png";
 
@@ -12,6 +12,7 @@ const techno = [
     { icon: <FaReact />, name: "React" },
     { icon: <RiTailwindCssFill />, name: "Tailwind" },
     { icon: <FaLaravel />, name: "Laravel" },
+    { icon: <SiInertia />, name: "Inertia" },
     { icon: <FaGitAlt />, name: "Git" },
     { icon: <SiExpo />, name: "React Native" },
 ];
@@ -83,13 +84,13 @@ export const About = () => {
 
             <motion.div
                 id="skills"
-                className="flex lg:gap-x-7 lg:justify-normal justify-between px-8 gap-3 flex-wrap items-center"
+                className=" px-8 grid  lg:grid-cols-7 grid-cols-2 gap-6"
                 variants={fadeIn('up', 0.2)}
                 initial="hidden"
                 whileInView="show"
             >
                 {techno.map((tech, idx) => (
-                    <div key={idx} className="lg:w-[10rem] w-[45%] select-none hover:bg-slate-500/30 p-6 flex flex-col items-center gap-y-4 bg-white/5 border border-[#ffffff1a] rounded-lg">
+                    <div key={idx} className=" select-none hover:bg-slate-500/30 p-6 flex flex-col items-center gap-y-4 bg-white/5 border border-[#ffffff1a] rounded-lg">
                         <div className="text-6xl text-white">{tech.icon}</div>
                         <h5 className="poppin text-white">{tech.name}</h5>
                     </div>
