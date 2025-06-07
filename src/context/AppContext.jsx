@@ -26,7 +26,7 @@ let projects = [
   },
   {
     name: "Casatourat",
-    link: "https://play.google.com/store/apps/details?id=com.casatourat.casaguide&hl=en",
+    link: "https://casatourat.ma/",
     description: "Mobile app for circuit navigation, events, and user tracking.",
     image: casatourat,
     technologies: ["React Native"]
