@@ -36,14 +36,14 @@ let projects = [
     link: "https://app.youthempowermentsummit.africa/",
     description: "Mobile app for youth empowerment and event access.",
     image: yes_mobile,
-    technologies: ["Laravel"]
+    technologies: ["React Native"]
   },
   {
     name: "Yes Learning",
     link: "https://learning.youthempowermentsummit.africa/",
     description: "Learning platform with workshops, courses, and tracking.",
     image: yes_learning,
-    technologies: ["Laravel"]
+    technologies: ["Laravel - Inertia"]
   },
   {
     name: "LionsGeek",
