@@ -84,7 +84,7 @@ export const About = () => {
 
             <motion.div
                 id="skills"
-                className=" px-6 grid  lg:grid-cols-7 grid-cols-2 gap-6"
+                className=" px-6 grid  lg:grid-cols-7 md:grid-cols-4 grid-cols-2 gap-6"
                 variants={fadeIn('up', 0.2)}
                 initial="hidden"
                 whileInView="show"
@@ -96,7 +96,7 @@ export const About = () => {
                     </div>
                 ))}
             </motion.div>
-            
+
             <div className="flex items-center justify-center w-full px-5 lg:px-0">
                 <div className="lg:w-1/3  w-full mt-8 text-white/80 text-center relative py-3 lg:rounded-full rounded-xl">
                     <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute lg:rounded-full rounded-xl"></div>

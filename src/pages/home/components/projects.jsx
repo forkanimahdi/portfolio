@@ -21,7 +21,7 @@ export const Projects = () => {
                     Together with my clients, we bring innovative visions to reality.
                 </motion.p>
 
-                <div className="w-4/5 grid lg:grid-cols-2 grid-cols-1 gap-6">
+                <div className="lg:w-4/5 px-5 lg:p-0 grid lg:grid-cols-2 grid-cols-1 gap-6">
                     {projects.sort((a, b) => a * Math.random()).slice(0, 4).map((ele, idx) => (
                         <div key={idx} onClick={() => setSelectedProject(ele)} className="cursor-pointer w-full poppin py-3 flex flex-col gap-y-6 border-t border-white/50">
                             <div className="py-4 selection:bg-white selection:text-black text-white text-xl flex items-center justify-between">
