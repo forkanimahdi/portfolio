@@ -2,11 +2,12 @@ import React from "react";
 import { useAppContext } from "../../context/AppContext";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/motion";
+import ShowModalProject from "./components/showModalProject";
 
 
 export const Projects = () => {
 
-    const { projects } = useAppContext()
+    const { projects, selectedProject, setSelectedProject } = useAppContext();
     return (
         <>
             <div className=" bg-black text-white ">
@@ -20,32 +21,25 @@ export const Projects = () => {
                 </div>
 
 
-                <div className=" flex pt-[10vh] px-10 flex-wrap gap-16">
+                <div className="  pt-[10vh] px-10 grid grid-cols-1 lg:grid-cols-3 gap-16">
 
                     {
                         projects.map((ele, idx) =>
 
-                            <div key={idx} className=" lg:w-[30%] w-full poppin  py-3 flex flex-col gap-y-6 border-t border-white/50">
-                                <div className="py-4 selection:bg-white selection:text-black text-white text-xl flex justify-between">
+                            <div key={idx} onClick={() => setSelectedProject(ele)} className="cursor-pointer w-full poppin py-3 flex flex-col gap-y-6 border-t border-white/50">
+                                <div className="py-4 selection:bg-white selection:text-black text-white text-xl flex items-center justify-between">
                                     <p>{ele.name}</p>
-                                    {
-                                        ele.technologies.map((e, i) =>
-                                            <p key={i}>{e}</p>
-                                        )
-                                    }
+                                    {ele.technologies.map((e, i) => (
+                                        <p className="text-base bg-white/40 px-2 rounded mb-0" key={i}>{e}</p>
+                                    ))}
                                 </div>
-
-                                <div className="rounded-xl relative overflow-hidden parent  ">
+                                <div className="rounded-xl relative overflow-hidden parent">
                                     <motion.img
-                                        whileTap={{ scale: 0.8 }}
-                                        className="rounded-xl select-non hover:filter grayscale-100 hover:scale-110 transition-all" src={ele.image} alt="" />
-
-                                    <div style={{ transition: "0.5s" }} className="w-full rounded-xl h-full W z-20 border backdrop-blur-sm justify-around p-4 lg:p-8 flex flex-col items-start  bg-black/75 absolute top-full">
-                                        <h1 className="text-white boldPoppin lg:text-2xl">{ele.name}</h1>
-                                        <p className="text-white text-sm lg:text-base leading-loose lg:w-5/6">{ele.description}</p>
-                                        <a className="w-full border rounded-xl py-2 lg:py-3 text-white hover:bg-white hover:text-black text-center poppin lg:text-lg" rel="noreferrer" target="_blank" href={ele.link}>View Project</a>
-                                    </div>
-
+                                        whileTap={{ scale: 0.95 }}
+                                        className="rounded-xl select-none hover:scale-110 transition-all duration-300"
+                                        src={ele.image}
+                                        alt=""
+                                    />
                                 </div>
                             </div>
                         )
@@ -53,6 +47,9 @@ export const Projects = () => {
 
                 </div>
             </div>
+
+            {selectedProject && <ShowModalProject />}
+
 
         </>
     );
