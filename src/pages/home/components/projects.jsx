@@ -11,7 +11,9 @@ export const Projects = () => {
         <>
             <div id="projects" className="py-3 flex flex-col gap-y-8 items-center justify-start">
 
-                <motion.h1 variants={fadeIn('up', 0.2)} initial='hidden' whileInView={'show'} className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[3rem] boldPoppin">
+                <motion.h1
+                    variants={fadeIn('up', 0.2)} initial='hidden' whileInView={'show'} className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2.5rem] boldPoppin"
+                >
                     Projects
                 </motion.h1>
 

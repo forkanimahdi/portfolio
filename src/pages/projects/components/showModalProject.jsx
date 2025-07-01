@@ -28,7 +28,7 @@ const ShowModalProject = () => {
                         animate={{ y: 0, scale: 1, opacity: 1 }}
                         exit={{ y: 50, scale: 0.9, opacity: 0 }}
                         transition={{ duration: 0.6, ease: 'easeInOut' }}
-                        className="relative bg-black border border-white/70 rounded-2xl max-w-6xl w-full h-[80vh] md:h-auto flex flex-col md:flex-row gap-10 p-6 md:p-10 text-white shadow-2xl overflow-hidden"
+                        className="relative bg-black border border-white/70 rounded-2xl max-w-6xl w-full max-h-[80vh] min-h-fit md:h-auto flex flex-col md:flex-row gap-10 p-6 md:p-10 text-white shadow-2xl overflow-hidden"
                     >
                         <motion.img
                             src={selectedProject.image}
