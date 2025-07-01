@@ -69,9 +69,16 @@ export const Navigation = () => {
                         <div key={i}
                             className="text-[#bdbdbd] uppercase nav cursor-pointer font-medium lg:text-lg hover:text-white transition"
                             onClick={() => {
-                                const section = document.getElementById(e);
-                                if (section) section.scrollIntoView({ behavior: "smooth" });
-                            }}>
+                                if (window.location.pathname !== "/") {
+                                    window.location.href = `/#${e}`;
+                                } else {
+                                    const section = document.getElementById(e);
+                                    if (section) {
+                                        section.scrollIntoView({ behavior: "smooth" });
+                                    }
+                                }
+                            }}
+                        >
                             {e}
                         </div>
                     ))}
@@ -109,12 +116,16 @@ export const Navigation = () => {
                                 <div key={i}
                                     className="cursor-pointer uppercase hover:opacity-80 transition"
                                     onClick={() => {
-                                        const section = document.getElementById(e);
-                                        if (section) {
-                                            section.scrollIntoView({ behavior: "smooth" });
-                                            setNav(false);
+                                        if (window.location.pathname !== "/") {
+                                            window.location.href = `/#${e}`;
+                                        } else {
+                                            const section = document.getElementById(e);
+                                            if (section) {
+                                                section.scrollIntoView({ behavior: "smooth" });
+                                            }
                                         }
-                                    }}>
+                                    }}
+                                >
                                     {e}
                                 </div>
                             ))}
