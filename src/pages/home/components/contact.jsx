@@ -41,7 +41,7 @@ export const Contact = () => {
     return (
         <div
             id="contact"
-            className="flex flex-col items-center justify-center gap-y-10 px-6 bg-black min-h-screen text-white"
+            className="flex flex-col items- justify-center gap-y-10 px-6 bg-black min-h-screen text-white"
         >
             <motion.h1
                 variants={fadeIn("up", 0.2)}
@@ -139,7 +139,7 @@ export const Contact = () => {
                 </form>
 
                 {/* Socials */}
-                <div className="lg:w-1/2 flex flex-wrap justify-center gap-4">
+                <div className="grid lg:grid-cols-2 gap-5 lg:w-1/2 lg:px-5">
                     {[
                         {
                             href: "https://www.linkedin.com/in/forkanimahdi/",
@@ -163,7 +163,7 @@ export const Contact = () => {
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-[45%] p-5 flex flex-col justify-between items-start border border-white/35 rounded-2xl hover:bg-white hover:text-black transition text-white"
+                            className="w-full p-5 flex flex-col justify-between items-start border border-white/35 rounded-2xl hover:bg-white hover:text-black transition text-white"
                         >
                             {icon}
                             <div className="flex justify-between w-full items-center mt-2 text-lg">
