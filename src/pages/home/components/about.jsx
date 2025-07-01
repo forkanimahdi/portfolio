@@ -19,7 +19,7 @@ const techno = [
 
 export const About = () => {
     return (
-        <div id="about" className="pt-[13vh] py-3 flex flex-col gap-y-8 items-center">
+        <div id="about" className="pt-[13vh] py-3 flex flex-col gap-y-8 lg:items-center ">
             <div className="flex lg:flex-row flex-col justify-between px-10 lg:gap-x-8 gap-y-5">
 
                 <motion.img
@@ -65,7 +65,7 @@ export const About = () => {
             </div>
 
             <motion.h1
-                className="uppercase pt-[15vh] selection:bg-white selection:text-black text-white lg:text-3xl text-2xl boldPoppin"
+                className="uppercase pt-[15vh] text-center selection:bg-white selection:text-black text-white lg:text-3xl text-2xl boldPoppin"
                 variants={fadeIn('up', 0.2)}
                 initial="hidden"
                 whileInView="show"
@@ -84,7 +84,7 @@ export const About = () => {
 
             <motion.div
                 id="skills"
-                className=" px-8 grid  lg:grid-cols-7 md:grid-cols-4 grid-cols-2 gap-6"
+                className=" px-6 grid  lg:grid-cols-7 grid-cols-2 gap-6"
                 variants={fadeIn('up', 0.2)}
                 initial="hidden"
                 whileInView="show"
@@ -96,10 +96,12 @@ export const About = () => {
                     </div>
                 ))}
             </motion.div>
+            <div className="flex items-center justify-center w-full px-5 lg:px-0">
 
-            <div className="lg:w-1/3 w-11/12 mt-8 text-white/80 text-center relative py-3 rounded-full">
-                <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute rounded-full"></div>
-                <h1 className="z-20 poppin">Learning & Growing Every Day</h1>
+                <div className="lg:w-1/3  w-full mt-8 text-white/80 text-center relative py-3 lg:rounded-full rounded-xl">
+                    <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute lg:rounded-full rounded-xl"></div>
+                    <h1 className="z-20 poppin">Learning & Growing Every Day</h1>
+                </div>
             </div>
         </div>
     );

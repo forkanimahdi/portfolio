@@ -40,12 +40,13 @@ export const Projects = () => {
                             </div>
                         </div>
                     ))}
+                    <Link to="/projects"
+                        className="lg:col-span-2 justify-self-center cursor-pointer w-full lg:w-1/2 lg:font-semibold lg:text-lg bg-white/70 text-black animate-pulse text-center relative py-3 lg:rounded-full rounded-xl">
+                        <div className="w-full h-full inset-0 bg-white opacity-25 absolute lg:rounded-full rounded-xl"></div>
+                        <h1 className="static z-20 selection:bg-white selection:text-black poppin">Discover all projects.</h1>
+                    </Link>
                 </div>
 
-                <Link to="/projects" className="lg:w-1/3 cursor-pointer w-11/12 lg:font-semibold lg:text-lg text-white/80 text-center relative py-3 rounded-full">
-                    <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute rounded-full"></div>
-                    <h1 className="static z-20 selection:bg-white selection:text-black poppin">Discover all projects.</h1>
-                </Link>
             </div>
 
             {selectedProject && <ShowModalProject />}
