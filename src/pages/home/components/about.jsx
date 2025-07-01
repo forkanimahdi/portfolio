@@ -96,8 +96,8 @@ export const About = () => {
                     </div>
                 ))}
             </motion.div>
+            
             <div className="flex items-center justify-center w-full px-5 lg:px-0">
-
                 <div className="lg:w-1/3  w-full mt-8 text-white/80 text-center relative py-3 lg:rounded-full rounded-xl">
                     <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute lg:rounded-full rounded-xl"></div>
                     <h1 className="z-20 poppin">Learning & Growing Every Day</h1>

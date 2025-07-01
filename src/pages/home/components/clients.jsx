@@ -28,7 +28,7 @@ export const Clients = () => {
                 <div className="w-4/5 flex items-center justify-center gap-x-8 ">
                     {clients.map((client, idx) => (
                         <div title={client.name} key={idx} className=" w-32 h-3w-32 flex items-center justify-center select-none hover:bg-slate-500/30 p-6  bg-white/5 border border-[#ffffff1a] rounded-lg">
-                            <img  className="invert brightness-0" src={client.logo} alt="" />
+                            <img className="invert brightness-0" src={client.logo} alt="" />
 
                         </div>
                     ))}
@@ -37,9 +37,11 @@ export const Clients = () => {
                 </div>
 
 
-                <div className="lg:w-1/3 cursor-pointer w-11/12 lg:font-semibold lg:text-lg  text-white/80 text-center relative py-3 rounded-full">
-                    <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute rounded-full"></div>
-                    <h1 className="static z-20 selection:bg-white selection:text-black poppin">Trusted by countless partners worldwide.</h1>
+                <div className="flex items-center justify-center w-full px-5 lg:px-0">
+                    <div className="lg:w-1/3  w-full mt-8 text-white/80 text-center relative py-3 lg:rounded-full rounded-xl">
+                        <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute lg:rounded-full rounded-xl"></div>
+                        <h1 className="z-20 poppin">Trusted by countless partners worldwide.</h1>
+                    </div>
                 </div>
 
 

@@ -40,12 +40,16 @@ export const Projects = () => {
                             </div>
                         </div>
                     ))}
-                    <Link to="/projects"
-                        className="lg:col-span-2 justify-self-center cursor-pointer w-full lg:w-1/2 lg:font-semibold lg:text-lg bg-white/70 text-black animate-pulse text-center relative py-3 lg:rounded-full rounded-xl">
-                        <div className="w-full h-full inset-0 bg-white opacity-25 absolute lg:rounded-full rounded-xl"></div>
-                        <h1 className="static z-20 selection:bg-white selection:text-black poppin">Discover all projects.</h1>
-                    </Link>
+
+
                 </div>
+
+                <Link to={"/projects"} className="flex items-center justify-center w-full px-5 lg:px-0">
+                    <div className="lg:w-1/3  w-full mt-8 text-white/80 animate-pulse hover:bg-white hover:text-black hover:animate-none text-center relative py-3 lg:rounded-full rounded-xl">
+                        <div className="w-full h-full inset-0 bg-white opacity-25 absolute lg:rounded-full rounded-xl"></div>
+                        <h1 className="z-20 poppin">Discover All Projects</h1>
+                    </div>
+                </Link>
 
             </div>
 
