@@ -43,7 +43,7 @@ export const About = () => {
 
 
                     <motion.p
-                        className="text-white/90 mt-6 poppin selection:bg-white selection:text-black lg:w-4/5 text-xl leading-loose"
+                        className="text-white/90 mt-6 poppin selection:bg-white selection:text-black lg:w-5/6 text-lg leading-loose"
                         variants={fadeIn('up', 0.2)}
                         initial="hidden"
                         whileInView="show"
@@ -61,7 +61,7 @@ export const About = () => {
                             { href: "mailto:forkanimahdi@gmail.com", icon: <FaEnvelope /> },
                             { href: "https://instagram.com/forkanimahdi", icon: <FaInstagram /> },
                         ].map((social, idx) => (
-                            <a key={idx} href={social.href} target="_blank" rel="noreferrer" className="text-white text-2xl">
+                            <a key={idx} href={social.href} target="_blank" rel="noreferrer" className="text-white text-3xl">
                                 {social.icon}
                             </a>
                         ))}
