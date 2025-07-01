@@ -1,25 +1,32 @@
-
-import logo from "../assets/images/myLogo.png"
+import logo from "../assets/images/myLogo.png";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
-import { RiMenu3Line } from "react-icons/ri";
-import { useState } from "react";
+import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
+import { useState, useEffect } from "react";
 import AnimatedCursor from "react-animated-cursor";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const Navigation = () => {
+    const naviger = ["home", "about", "projects", "contact"];
+    const [nav, setNav] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
-    const naviger = [
-        "home",
-        "about",
-        "projects",
-        "contact",
-    ]
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > window.innerHeight * 0.9);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-    const [nav, setNav] = useState(false)
+    const handleNavClick = (e) => {
+        if (e.target.id === "backdrop") setNav(false);
+    };
+
     return (
         <>
+            {/* Custom Cursor */}
             <div className="lg:block hidden">
-
                 <AnimatedCursor
                     innerSize={10}
                     outerSize={80}
@@ -27,61 +34,99 @@ export const Navigation = () => {
                     outerAlpha={1}
                     innerScale={0.7}
                     outerScale={0.5}
-                    clickables={[
-                        "a",
-                        "button",
-                        ".nav"
-                    ]}
+                    clickables={["a", "button", ".nav"]}
                     hasBlendMode={true}
                     outerStyle={{
                         border: "1px solid black",
                         mixBlendMode: "difference",
                     }}
                 />
-
             </div>
 
-            <div className="lg:h-[10vh] lg:py-0 py-2 h-fit select-none fixed w-full uppercase z-50  bg-[#010101] flex lg:flex-row flex-col items-center lg:justify-between px-8  lg:px-16 ">
-
-                <div className="lg:w-fit w-full flex items-center justify-between flex-row-reverse">
-                    <RiMenu3Line onClick={() => setNav(!nav)} className="text-3xl text-white lg:hidden" />
+            {/* Main Navbar */}
+            <div className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "bg-black" : "bg-transparent"} lg:h-[10vh] py-2 lg:py-0 h-fit flex lg:flex-row flex-col lg:justify-between items-center px-6 lg:px-16`}>
+                {/* Logo + Mobile Toggle */}
+                <div className="w-full lg:w-auto flex items-center justify-between">
                     <a href="/">
-                        <img className="w-14" src={logo} alt="" />
+                        <img src={logo} className="w-14" alt="logo" />
                     </a>
-                </div>
-
-
-
-                <div style={{ transition: "0.5s" }} className={`flex lg:w-fit lg:static fixed poppin   ${nav ? "top-[12vh]" : "top-[-100vh]"} bg-black px-8 w-full gap-x-16 h-fit  lg:h-full lg:flex-row items-center flex-col`}>
-
                     {
-                        naviger.map((e, i) =>
-
-                            <div key={i}
-                                className="text-[#bdbdbd] nav cursor-pointer lg:border-none  border-b lg:w-fit w-full lg:py-0 py-7  font lg:text-lg no-underline"
-                                onClick={() => {
-                                    if (window.location.pathname !== "/") {
-                                        window.location.href = `/#${e}`;
-                                    } else {
-                                        const section = document.getElementById(e);
-                                        if (section) {
-                                            section.scrollIntoView({ behavior: "smooth" });
-                                        }
-                                    }
-                                }}
-
-                            >
-                                {e}
+                        nav ?
+                            <div className="absolute top-6 right-6 text-white text-3xl cursor-pointer">
+                                <RiCloseLine onClick={() => setNav(false)} />
                             </div>
-                        )
+                            :
+                            <div onClick={() => setNav(true)} className="text-white text-3xl lg:hidden cursor-pointer transition">
+                                <RiMenu3Line />
+                            </div>
+
                     }
                 </div>
 
-                <div className="lg:flex hidden gap-x-4">
-                    <a className="text-[#fff] font text-2xl no-underline " target="_blank" href="https://www.linkedin.com/in/forkanimahdi/"><FaLinkedinIn /></a>
-                    <a className="text-[#fff] font text-2xl no-underline " target="_blank" href="https://github.com/forkanimahdi"><FaGithub /></a>
+                {/* Desktop Nav */}
+                <div className="hidden lg:flex gap-x-16 items-center">
+                    {naviger.map((e, i) => (
+                        <div key={i}
+                            className="text-[#bdbdbd] nav cursor-pointer font-medium lg:text-lg hover:text-white transition"
+                            onClick={() => {
+                                const section = document.getElementById(e);
+                                if (section) section.scrollIntoView({ behavior: "smooth" });
+                            }}>
+                            {e}
+                        </div>
+                    ))}
+                </div>
+
+                {/* Desktop Social */}
+                <div className="hidden lg:flex gap-x-4">
+                    <a className="text-white text-2xl" target="_blank" href="https://www.linkedin.com/in/forkanimahdi/"><FaLinkedinIn /></a>
+                    <a className="text-white text-2xl" target="_blank" href="https://github.com/forkanimahdi"><FaGithub /></a>
                 </div>
             </div>
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {nav && (
+                    <motion.div
+                        id="backdrop"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="fixed top-0 left-0 h-screen w-full bg-black/80 backdrop-blur-lg z-40 flex justify-center items-center"
+                        onClick={handleNavClick}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.95, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.95, opacity: 0 }}
+                            transition={{ duration: 0.4 }}
+                            className="relative w-full text-center text-white flex flex-col gap-10 text-xl font-semibold poppin"
+                        >
+
+
+                            {naviger.map((e, i) => (
+                                <div key={i}
+                                    className="cursor-pointer uppercase hover:opacity-80 transition"
+                                    onClick={() => {
+                                        const section = document.getElementById(e);
+                                        if (section) {
+                                            section.scrollIntoView({ behavior: "smooth" });
+                                            setNav(false);
+                                        }
+                                    }}>
+                                    {e}
+                                </div>
+                            ))}
+
+                            <div className="flex gap-6 justify-center pt-4">
+                                <a className="text-white text-2xl" target="_blank" href="https://www.linkedin.com/in/forkanimahdi/"><FaLinkedinIn /></a>
+                                <a className="text-white text-2xl" target="_blank" href="https://github.com/forkanimahdi"><FaGithub /></a>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </>
-    )
-}
+    );
+};

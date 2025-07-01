@@ -1,6 +1,7 @@
 import React from "react";
 import { fadeIn } from "../../../utils/motion";
 import { motion } from "framer-motion";
+import heroImage from "../../../assets/images/hero.png"
 
 const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -14,7 +15,7 @@ const texts = [
 ];
 
 export const Hero = () => (
-    <div id="home" className="pt-[10vh] h-[90vh] flex flex-col items-center lg:justify-evenly justify-center lg:gap-0 gap-y-10">
+    <div id="home" className="pt-[10vh]  h-[90vh] flex flex-col items-center lg:justify-evenly justify-center lg:gap-0 gap-y-10">
         <div className="uppercase selection:bg-white selection:text-black text-white lg:text-[4rem] text-[2rem] lg:leading-normal leading-loose font-extrabold text-center selectable">
             {texts.map((text, index) => (
                 <motion.div key={index} variants={fadeIn("up", text.delay)} initial="hidden" whileInView="show">
@@ -22,7 +23,11 @@ export const Hero = () => (
                 </motion.div>
             ))}
         </div>
-
+        {/* Background section */}
+        <div className="w-full h-full  absolute top-0  ">
+            <div className="bg-gradient-to-b from-black/0 to-black bottom-0 absolute z-10 w-full  h-[30vh]"></div>
+            <img className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-10" src={heroImage} alt="" />
+        </div>
         <motion.div
             variants={fadeIn("up", 1.8)}
             initial="hidden"
