@@ -15,7 +15,7 @@ const texts = [
 ];
 
 export const Hero = () => (
-    <div id="home" className="pt-[10vh]  h-[90vh] flex flex-col items-center lg:justify-evenly justify-center lg:gap-0 gap-y-10">
+    <div id="home" className="pt-[10vh] h-[90vh] flex flex-col items-center lg:justify-evenly justify-center lg:gap-0 gap-y-10">
         <div className="uppercase selection:bg-white selection:text-black text-white lg:text-[4rem] text-[2rem] lg:leading-normal leading-loose font-extrabold text-center selectable">
             {texts.map((text, index) => (
                 <motion.div key={index} variants={fadeIn("up", text.delay)} initial="hidden" whileInView="show">
@@ -23,22 +23,24 @@ export const Hero = () => (
                 </motion.div>
             ))}
         </div>
-        {/* Background section */}
+
+             {/* Background section */}
         <div className="w-full h-full  absolute top-0  ">
             <div className="bg-gradient-to-b from-black/0 to-black bottom-0 absolute z-10 w-full  h-[30vh]"></div>
             <img className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-10" src={heroImage} alt="" />
         </div>
+
         <motion.div
             variants={fadeIn("up", 1.8)}
             initial="hidden"
             whileInView="show"
-            className="uppercase cursor-pointer select-none no-underline text-white border rounded-xl p-3 px-5 hover:bg-white/95 hover:text-black poppin"
+            className="uppercase cursor-pointer z-20 select-none no-underline text-white border rounded-xl p-3 px-5 hover:bg-white/95 hover:text-black poppin"
             onClick={() => scrollToSection("projects")}
         >
             Want to bet?
         </motion.div>
 
-        <div className="flex flex-col gap-y-1 items-center" onClick={() => scrollToSection("about")}>
+        <div className="flex flex-col gap-y-1 items-center  z-20" onClick={() => scrollToSection("about")}>
             <svg className="animate-bounce nav bi bi-mouse" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#bdbdbd" viewBox="0 0 16 16">
                 <path d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m4 8a4 4 0 0 1-8 0V5a4 4 0 1 1 8 0zM8 0a5 5 0 0 0-5 5v6a5 5 0 0 0 10 0V5a5 5 0 0 0-5-5" />
             </svg>
