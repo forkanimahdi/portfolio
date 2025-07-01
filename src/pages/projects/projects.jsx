@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppContext } from "../../context/AppContext";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/motion";
@@ -6,6 +6,11 @@ import ShowModalProject from "./components/showModalProject";
 
 
 export const Projects = () => {
+
+useEffect(() => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}, []);
+    
 
     const { projects, selectedProject, setSelectedProject } = useAppContext();
     return (

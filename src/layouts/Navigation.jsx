@@ -67,7 +67,7 @@ export const Navigation = () => {
                 <div className="hidden lg:flex gap-x-16 items-center">
                     {naviger.map((e, i) => (
                         <div key={i}
-                            className="text-[#bdbdbd] nav cursor-pointer font-medium lg:text-lg hover:text-white transition"
+                            className="text-[#bdbdbd] uppercase nav cursor-pointer font-medium lg:text-lg hover:text-white transition"
                             onClick={() => {
                                 const section = document.getElementById(e);
                                 if (section) section.scrollIntoView({ behavior: "smooth" });
