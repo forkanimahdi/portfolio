@@ -20,10 +20,10 @@ const techno = [
 export const About = () => {
     return (
         <div id="about" className="pt-[13vh] py-3 flex flex-col gap-y-8 lg:items-center ">
-            <div className="flex lg:flex-row flex-col justify-between px-10 lg:gap-x-8 gap-y-5">
+            <div className="flex lg:flex-row flex-col justify-between px-5 lg:gap-x-8 gap-y-8">
 
                 <motion.img
-                    className="lg:w-1/2 rounded-2xl select-none"
+                    className="lg:w-1/2 rounded-2xl object-cover select-none"
                     variants={fadeIn('up', 0.4)}
                     initial="hidden"
                     whileInView="show"
@@ -40,14 +40,19 @@ export const About = () => {
                     >
                         Who am I?
                     </motion.h1>
+
+
                     <motion.p
-                        className="text-white mt-6 poppin selection:bg-white selection:text-black lg:w-4/5 text-xl leading-loose"
+                        className="text-white/90 mt-6 poppin selection:bg-white selection:text-black lg:w-4/5 text-xl leading-loose"
                         variants={fadeIn('up', 0.2)}
                         initial="hidden"
                         whileInView="show"
                     >
-                        Hey! I’m Mehdi, a Moroccan developer passionate about creating seamless web and mobile apps. Whether it's backend, frontend, or anything in between, I’m here to bring tech that people love. Let’s build something awesome together!
+                        Hey there! I’m Mehdi, a full-stack developer from Morocco who builds powerful web and mobile apps that actually make a difference. I work with startups, big names, and growing talents.
+                        <br />
+                        From backend systems to frontend experiences. I also coach youth to rise in tech because I believe in lifting others as we grow. Tech is more than code for me , it’s about creating impact, solving real problems, and pushing ideas into the world. If it’s bold, let’s build it.
                     </motion.p>
+
 
                     <motion.div className="flex mt-5 gap-x-4" variants={fadeIn('up', 0.2)} initial="hidden" whileInView="show">
                         {[
