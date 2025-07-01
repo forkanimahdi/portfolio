@@ -84,7 +84,7 @@ export const About = () => {
 
             <motion.div
                 id="skills"
-                className=" px-8 grid  lg:grid-cols-7 grid-cols-2 gap-6"
+                className=" px-8 grid  lg:grid-cols-7 md:grid-cols-4 grid-cols-2 gap-6"
                 variants={fadeIn('up', 0.2)}
                 initial="hidden"
                 whileInView="show"

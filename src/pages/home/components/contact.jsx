@@ -41,13 +41,13 @@ export const Contact = () => {
     return (
         <div
             id="contact"
-            className="flex flex-col items- justify-center gap-y-10 px-6 bg-black min-h-screen text-white"
+            className="flex flex-col lg:items-center justify-center gap-y-10 px-6 bg-black min-h-screen text-white"
         >
             <motion.h1
                 variants={fadeIn("up", 0.2)}
                 initial="hidden"
                 whileInView="show"
-                className="uppercase pt-[10vh] selection:bg-white selection:text-black text-[3rem] font-bold"
+                className="uppercase pt-[10vh] text-center selection:bg-white selection:text-black text-[3rem] font-bold"
             >
                 Let's Talk
             </motion.h1>
@@ -130,7 +130,7 @@ export const Contact = () => {
 
                     <button
                         type="submit"
-                        className="w-full py-3 border text-center border-white text-white hover:bg-white hover:text-black rounded-xl transition"
+                        className="w-full py-3 text-black lg:bg-transparent bg-white border text-center border-white lg:text-white hover:bg-white hover:text-black rounded-xl transition"
                     >
                         Send
                     </button>
@@ -139,7 +139,7 @@ export const Contact = () => {
                 </form>
 
                 {/* Socials */}
-                <div className="grid lg:grid-cols-2 gap-5 lg:w-1/2 lg:px-5">
+                <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-5 lg:w-1/2 lg:px-5">
                     {[
                         {
                             href: "https://www.linkedin.com/in/forkanimahdi/",
