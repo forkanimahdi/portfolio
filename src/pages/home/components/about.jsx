@@ -20,7 +20,7 @@ const techno = [
 export const About = () => {
     return (
         <div id="about" className="pt-[13vh] py-3 flex flex-col gap-y-8 lg:items-center ">
-            <div className="flex lg:flex-row flex-col justify-between px-5 lg:gap-x-8 gap-y-8">
+            <div className="flex lg:flex-row flex-col justify-between px-5 lg:px-24 lg:gap-x-8 gap-y-8">
 
                 <motion.img
                     className="lg:w-1/2 rounded-2xl object-cover select-none"
