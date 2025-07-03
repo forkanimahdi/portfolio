@@ -2,6 +2,7 @@ import React from "react";
 import { fadeIn } from "../../../utils/motion";
 import { motion } from "framer-motion";
 import heroImage from "../../../assets/images/hero.png"
+import heroImageMobile from "../../../assets/images/heroMobile.png"
 
 const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -25,9 +26,10 @@ export const Hero = () => (
         </div>
 
              {/* Background section */}
-        <div className="w-full h-full  absolute top-0  lg:block hidden ">
+        <div className="w-full h-full  absolute top-0   ">
             <div className="bg-gradient-to-b from-black/0 to-black bottom-0 absolute z-10 w-full  h-[30vh]"></div>
-            <img className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-10" src={heroImage} alt="" />
+            <img className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-10 lg:block hidden" src={heroImage} alt="" />
+            <img className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-20 w-full lg:hidden block" src={heroImageMobile} alt="" />
         </div>
 
         <motion.div
