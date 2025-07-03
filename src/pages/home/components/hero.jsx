@@ -25,11 +25,11 @@ export const Hero = () => (
             ))}
         </div>
 
-             {/* Background section */}
+        {/* Background section */}
         <div className="w-full h-full  absolute top-0   ">
             <div className="bg-gradient-to-b from-black/0 to-black bottom-0 absolute z-10 w-full  h-[30vh]"></div>
-            <img className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-10 lg:block hidden" src={heroImage} alt="" />
-            <img className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-20 w-full lg:hidden block" src={heroImageMobile} alt="" />
+            <img loading="lazy" className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-10 lg:block hidden" src={heroImage} alt="" />
+            <img loading="lazy" className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-20 w-full lg:hidden block" src={heroImageMobile} alt="" />
         </div>
 
         <motion.div

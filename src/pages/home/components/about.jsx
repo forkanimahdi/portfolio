@@ -27,6 +27,7 @@ export const About = () => {
                     variants={fadeIn('up', 0.4)}
                     initial="hidden"
                     whileInView="show"
+                    loading="lazy"
                     src={me}
                     alt="Mehdi's profile"
                 />

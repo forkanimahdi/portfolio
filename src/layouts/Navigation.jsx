@@ -48,7 +48,7 @@ export const Navigation = () => {
                 {/* Logo + Mobile Toggle */}
                 <div className="w-full lg:w-auto flex items-center justify-between">
                     <a href="/">
-                        <img src={logo} className="w-14" alt="logo" />
+                        <img loading="lazy" src={logo} className="w-14" alt="logo" />
                     </a>
                     {
                         nav ?
