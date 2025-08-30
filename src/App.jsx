@@ -4,42 +4,52 @@ import { ScrollBar } from './layouts/scrollBar';
 import { Error } from './layouts/Error';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './pages/home/Home';
-import logo from "./assets/images/myLogo.png"
 import { Projects } from './pages/projects/projects';
 import { AppProvider } from './context/AppContext';
+import AdvancedLoader from './components/AdvancedLoader';
+import CustomCursor from './components/CustomCursor';
+import MouseTrail from './components/MouseTrail';
+import { gsap } from 'gsap';
 
 
 function App() {
-
   const [isLoading, setIsLoading] = useState(true);
+  const [showContent, setShowContent] = useState(false);
 
-  useEffect(() => {
-      setTimeout(() => {
-        setIsLoading(false);    
-
-      }, 2000);
-  }, []);
+  const handleLoadComplete = () => {
+    setIsLoading(false);
+    // Small delay to ensure smooth transition
+    setTimeout(() => {
+      setShowContent(true);
+      // Animate main content entrance
+      gsap.fromTo('.main-content',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+      );
+    }, 100);
+  };
 
   return (
-    !isLoading ?
-      <>
-        <AppProvider>
+    <>
+      {isLoading && <AdvancedLoader onLoadComplete={handleLoadComplete} />}
 
-          <Navigation />
-          <ScrollBar />
+      {showContent && (
+        <div className="main-content">
+          <CustomCursor />
+          <MouseTrail />
+          <AppProvider>
+            <Navigation />
+            <ScrollBar />
 
-          <Routes>
-            <Route path="/*" element={<Error />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
-          </Routes>
-        </AppProvider>
-      </>
-      :
-      <div className="h-screen bg-black flex flex-col gap-y-5 items-center justify-center transition-all">
-        <img className="w-72 animate-pulse" loading='lazy' src={logo} alt="" />
-        <h1 className="text-white boldPoppin animate-pulse text-4xl uppercase">Loading ... </h1>
-      </div>
+            <Routes>
+              <Route path="/*" element={<Error />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/projects" element={<Projects />} />
+            </Routes>
+          </AppProvider>
+        </div>
+      )}
+    </>
   )
 }
 

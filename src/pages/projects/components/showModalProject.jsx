@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useAppContext } from '../../../context/AppContext';
 import { AnimatePresence, motion } from 'framer-motion';
+import { gsap } from 'gsap';
+import { FiExternalLink, FiGithub, FiX, FiCode, FiCalendar, FiUsers } from 'react-icons/fi';
 
 const ShowModalProject = () => {
     const { selectedProject, setSelectedProject } = useAppContext();

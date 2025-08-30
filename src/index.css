@@ -49,3 +49,117 @@
 .parent:hover > div {
     top: 0;
 }
+
+/* Smooth scrolling and custom cursor */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    cursor: none !important;
+}
+
+/* Show default cursor on mobile */
+@media (max-width: 768px) {
+    * {
+        cursor: auto !important;
+    }
+}
+
+/* Custom animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
+    50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.3); }
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+.glow-animation {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Enhanced project card hover effects */
+.project-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* Backdrop blur support */
+.backdrop-blur-custom {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Custom gradient text */
+.gradient-text {
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Loading particles */
+.particle {
+    animation: particleFloat 4s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) scale(1);
+        opacity: 0.6;
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px) scale(1.2);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-40px) translateX(-5px) scale(0.8);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateY(-20px) translateX(-10px) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+/* Dynamic background pattern */
+.dynamic-bg {
+    background-image:
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% {
+        background-position: 0% 0%, 100% 100%, 50% 50%;
+    }
+    50% {
+        background-position: 100% 100%, 0% 0%, 25% 75%;
+    }
+}
+
+/* Cool text effects */
+.text-glow {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.border-glow {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth transitions for all elements */
+* {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
