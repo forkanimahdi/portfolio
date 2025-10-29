@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { fadeIn } from "../../../utils/motion";
+import blackLogo from "../../../assets/images/blackLogo.png";
 import {
     FaInstagram,
     FaLinkedinIn,
@@ -57,9 +58,9 @@ export const Contact = () => {
                     variants={fadeIn("up", 0.4)}
                     initial="hidden"
                     whileInView="show"
-                    className="text-3xl font-semibold"
+                    className="text-3xl font-semibold flex items-center"
                 >
-                    Let's Work Together
+                    Let's Work T <img src={blackLogo} className="w-9 h-9" alt="" /> gether
                 </motion.h1>
                 <motion.p
                     variants={fadeIn("up", 0.5)}
