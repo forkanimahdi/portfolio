@@ -6,6 +6,7 @@ import jadara from "../../../assets/images/clients/jadara.png"
 import lionsgeek from "../../../assets/images/clients/lionsgeek.png"
 import casamemoire from "../../../assets/images/clients/casamemoire.png"
 import tililab from "../../../assets/images/clients/tililab.png"
+import mhijir from "../../../assets/images/clients/mhijir.png"
 // import tm from "../../../assets/images/clients/2m.png"
 
 export const Clients = () => {
@@ -15,6 +16,7 @@ export const Clients = () => {
         { logo: lionsgeek, name: "LionsGeek" },
         { logo: casamemoire, name: "Casamemoire" },
         { logo: tililab, name: "Tililab" },
+        { logo: mhijir, name: "Oumaima Mhijir" },
         // { logo: tm, name: "2M" },
 
     ];
