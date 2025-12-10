@@ -7,7 +7,7 @@ import AnimatedCursor from "react-animated-cursor";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const Navigation = () => {
-    const naviger = ["home", "about", "projects", "contact"];
+    const naviger = ["home", "about", "projects", "clients", "contact"];
     const [nav, setNav] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
