@@ -54,7 +54,7 @@ const AppProvider = ({ children }) => {
     },
     {
       name: "Atelier A1",
-      link: "https://learning.youthempowermentsummit.africa/",
+      link: "https://ateliera1.com/",
       description: "A Laravel-Inertia web platform offering workshops, e-learning content, and progress tracking. It supports both synchronous and asynchronous learning for African youth in professional and soft skill areas.",
       image: a1,
       technologies: ["Laravel - Inertia"],
