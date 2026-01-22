@@ -54,19 +54,19 @@ const AppProvider = ({ children }) => {
       repo: null
     },
     {
-      name: "Atelier A1",
-      link: "https://ateliera1.com/",
-      description: "Official website of Atelier A1, a Moroccan architecture and urban design agency founded by Abderrahim Kassou and Mustapha Chakib. The site presents the agency’s philosophy, multidisciplinary expertise, and a diverse portfolio of architectural, urban planning, and landscape projects developed across various scales.",
-      image: a1,
-      technologies: ["Laravel", "Inertia.js"],
-      repo: null
-    },
-    {
       name: "LionsGeek",
       link: "https://lionsgeek.vercel.app/",
       description: "An engaging React platform showcasing the LionsGeek initiative, highlighting youth empowerment through digital upskilling, project incubation, and leadership coaching across Africa.",
       image: lionsgeek,
       technologies: ["React"],
+      repo: null
+    },
+    {
+      name: "Atelier A1",
+      link: "https://ateliera1.com/",
+      description: "Official website of Atelier A1, a Moroccan architecture and urban design agency founded by Abderrahim Kassou and Mustapha Chakib. The site presents the agency’s philosophy, multidisciplinary expertise, and a diverse portfolio of architectural, urban planning, and landscape projects developed across various scales.",
+      image: a1,
+      technologies: ["Laravel - Inertia"],
       repo: null
     },
     {
@@ -77,6 +77,15 @@ const AppProvider = ({ children }) => {
       technologies: ["React"],
       repo: null
     },
+    {
+      name: "Écoles Belges au Maroc",
+      link: "https://ecolebelgue.mylionsgeek.ma",
+      description: "Official admissions and information platform for the Établissements scolaires Belges au Maroc, operating under the educational program of the Fédération Wallonie-Bruxelles. The website provides families with structured guidance on the admission process, academic vision, and essential school information through an online application system.",
+      image: ecb,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+
     {
       name: "Her Day for Her",
       link: "https://herdayforher.ma/",
