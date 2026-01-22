@@ -7,6 +7,7 @@ import lionsgeek from "../../../assets/images/clients/lionsgeek.png"
 import casamemoire from "../../../assets/images/clients/casamemoire.png"
 import tililab from "../../../assets/images/clients/tililab.png"
 import mhijir from "../../../assets/images/clients/mhijir.png"
+import a1 from "../../../assets/images/clients/a1.png"
 // import tm from "../../../assets/images/clients/2m.png"
 
 export const Clients = () => {
@@ -17,6 +18,7 @@ export const Clients = () => {
         { logo: casamemoire, name: "Casamemoire" },
         { logo: tililab, name: "Tililab" },
         { logo: mhijir, name: "Oumaima Mhijir" },
+        { logo: a1, name: "Atelier A1" },
         // { logo: tm, name: "2M" },
 
     ];
@@ -29,7 +31,7 @@ export const Clients = () => {
                 <motion.h1 variants={fadeIn('up', 0.2)} initial='hidden' whileInView={'show'} className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin  ">Trusted By</motion.h1>
                 {/* <motion.p variants={fadeIn('up', 0.4)} initial="hidden" whileInView="show" className="text-[#bdbdbd] selection:bg-white text-center px-3 lg:text-start selection:text-black poppin lg:text-lg ">Together with my clients, we bring innovative visions to reality. </motion.p> */}
 
-                <div className="w-4/5 grid lg:grid-cols-5 items-center grid-cols-2 gap-8 ">
+                <div className="w-4/5 grid lg:grid-cols-6 items-center grid-cols-2 gap-8 ">
                     {clients.map((client, idx) => (
                         <motion.div
                             key={idx}
