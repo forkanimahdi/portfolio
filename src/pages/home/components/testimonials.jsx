@@ -66,12 +66,12 @@ export const Testimonials = () => {
     if (testimonials.length === 1) {
         const testimonial = testimonials[0];
         return (
-            <div id="testimonials" className="py-3 flex flex-col gap-y-8 items-center justify-start">
+            <div id="testimonials" className="py-3 flex flex-col  items-center justify-start">
                 <motion.h1
                     variants={fadeIn('up', 0.2)}
                     initial='hidden'
                     whileInView={'show'}
-                    className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin"
+                    className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin mb-4"
                 >
                     Testimonials
                 </motion.h1>
@@ -80,7 +80,7 @@ export const Testimonials = () => {
                     variants={fadeIn('up', 0.3)}
                     initial='hidden'
                     whileInView={'show'}
-                    className="text-[#bdbdbd] selection:bg-white text-center px-6 selection:text-black poppin lg:text-base text-sm"
+                    className="text-[#bdbdbd] selection:bg-white text-center px-6 selection:text-black poppin lg:text-base text-sm mb-8"
                 >
                     What clients say about working with me.
                 </motion.p>
@@ -89,10 +89,10 @@ export const Testimonials = () => {
                     variants={fadeIn('up', 0.4)}
                     initial='hidden'
                     whileInView={'show'}
-                    className="w-full lg:w-2/3 px-6 lg:px-0"
+                    className="w-full lg:w-2/3 px-6 lg:px-0 my-8"
                 >
-                    <div className="bg-white/5 border border-[#ffffff1a] rounded-2xl p-8 lg:p-12">
-                        <div className="flex flex-col lg:flex-row gap-8 items-center">
+                    <div className="bg-white/5 border border-[#ffffff1a] rounded-2xl p-10 lg:p-16">
+                        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center">
                             {/* Reviewer Image */}
                             <div className="flex-shrink-0">
                                 {testimonial.image ? (
@@ -111,15 +111,15 @@ export const Testimonials = () => {
                             </div>
 
                             {/* Quote and Info */}
-                            <div className="flex-1 text-center lg:text-left">
-                                <p className="text-white/90 text-base lg:text-lg leading-relaxed poppin mb-6">
-                                    "{testimonial.quote}"
+                            <div className="flex-1 text-center lg:text-left space-y-6">
+                                <p className="text-white/90 text-sm lg:text-base leading-relaxed poppin">
+                                    " {testimonial.quote} "
                                 </p>
-                                <div>
-                                    <h3 className="text-white text-lg font-semibold poppin mb-1">
+                                <div className="pt-4">
+                                    <h3 className="text-white text-base lg:text-lg font-semibold poppin mb-2">
                                         {testimonial.name}
                                     </h3>
-                                    <p className="text-white/70 text-sm poppin">
+                                    <p className="text-white/70 text-xs lg:text-sm poppin">
                                         {testimonial.role}
                                     </p>
                                 </div>
@@ -133,12 +133,12 @@ export const Testimonials = () => {
 
     // Multiple testimonials - simple carousel view
     return (
-        <div id="testimonials" className="py-3 flex flex-col gap-y-8 items-center justify-start">
+        <div id="testimonials" className="py-3 flex flex-col items-center justify-start">
             <motion.h1
                 variants={fadeIn('up', 0.2)}
                 initial='hidden'
                 whileInView={'show'}
-                className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin"
+                className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin mb-4"
             >
                 Testimonials
             </motion.h1>
@@ -147,12 +147,12 @@ export const Testimonials = () => {
                 variants={fadeIn('up', 0.3)}
                 initial='hidden'
                 whileInView={'show'}
-                className="text-[#bdbdbd] selection:bg-white text-center px-6 selection:text-black poppin lg:text-base text-sm"
+                className="text-[#bdbdbd] selection:bg-white text-center px-6 selection:text-black poppin lg:text-base text-sm mb-8"
             >
                 What clients say about working with me.
             </motion.p>
 
-            <div className="w-full lg:w-2/3 px-6 lg:px-0 relative">
+            <div className="w-full lg:w-2/3 px-6 lg:px-0 relative my-8">
                 {/* Carousel Container */}
                 <div className="relative">
                     <AnimatePresence mode="wait">
@@ -162,9 +162,9 @@ export const Testimonials = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.4 }}
-                            className="bg-white/5 border border-[#ffffff1a] rounded-2xl p-8 lg:p-12"
+                            className="bg-white/5 border border-[#ffffff1a] rounded-2xl p-10 lg:p-16"
                         >
-                            <div className="flex flex-col lg:flex-row gap-8 items-center">
+                            <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center">
                                 {/* Reviewer Image */}
                                 <div className="flex-shrink-0">
                                     {testimonials[currentIndex].image ? (
@@ -183,15 +183,15 @@ export const Testimonials = () => {
                                 </div>
 
                                 {/* Quote and Info */}
-                                <div className="flex-1 text-center lg:text-left">
-                                    <p className="text-white/90 text-base lg:text-lg leading-relaxed poppin mb-6">
-                                        "{testimonials[currentIndex].quote}"
+                                <div className="flex-1 text-center lg:text-left space-y-6">
+                                    <p className="text-white/90 text-sm lg:text-base leading-relaxed poppin">
+                                        " {testimonials[currentIndex].quote} "
                                     </p>
-                                    <div>
-                                        <h3 className="text-white text-lg font-semibold poppin mb-1">
+                                    <div className="pt-4">
+                                        <h3 className="text-white text-base lg:text-lg font-semibold poppin mb-2">
                                             {testimonials[currentIndex].name}
                                         </h3>
-                                        <p className="text-white/70 text-sm poppin">
+                                        <p className="text-white/70 text-xs lg:text-sm poppin">
                                             {testimonials[currentIndex].role}
                                         </p>
                                     </div>
@@ -224,7 +224,7 @@ export const Testimonials = () => {
 
                     {/* Simple Dots Indicator */}
                     {testimonials.length > 1 && (
-                        <div className="flex justify-center gap-2 mt-6">
+                        <div className="flex justify-center gap-2 mt-10">
                             {testimonials.map((_, index) => (
                                 <button
                                     key={index}
@@ -244,8 +244,8 @@ export const Testimonials = () => {
             </div>
 
             {/* Decorative bottom element */}
-            <div className="flex items-center justify-center w-full px-5 lg:px-0">
-                <div className="lg:w-1/3 w-full mt-8 text-white/80 text-center relative py-3 lg:rounded-full rounded-xl">
+            <div className="flex items-center justify-center w-full px-5 lg:px-0 mt-12">
+                <div className="lg:w-1/3 w-full text-white/80 text-center relative py-3 lg:rounded-full rounded-xl">
                     <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute lg:rounded-full rounded-xl"></div>
                     <h1 className="z-20 poppin">Real feedback from real clients .</h1>
                 </div>

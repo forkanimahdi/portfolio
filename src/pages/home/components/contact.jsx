@@ -60,7 +60,7 @@ export const Contact = () => {
                     whileInView="show"
                     className="text-3xl font-semibold flex items-center"
                 >
-                    Let's Work T <img src={blackLogo} className="w-9 h-9" alt="" /> gether
+                    Let's Work T <img src={blackLogo} className="w-15 h-9" alt="" /> gether
                 </motion.h1>
                 <motion.p
                     variants={fadeIn("up", 0.5)}

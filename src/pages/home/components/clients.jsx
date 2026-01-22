@@ -29,25 +29,28 @@ export const Clients = () => {
                 <motion.h1 variants={fadeIn('up', 0.2)} initial='hidden' whileInView={'show'} className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin  ">Trusted By</motion.h1>
                 {/* <motion.p variants={fadeIn('up', 0.4)} initial="hidden" whileInView="show" className="text-[#bdbdbd] selection:bg-white text-center px-3 lg:text-start selection:text-black poppin lg:text-lg ">Together with my clients, we bring innovative visions to reality. </motion.p> */}
 
-                <div className="w-4/5 grid lg:grid-cols-8 items-center grid-cols-2 gap-8 ">
+                <div className="w-4/5 grid lg:grid-cols-5 items-center grid-cols-2 gap-8 ">
                     {clients.map((client, idx) => (
-                        <>
-
-                        <div
-                            title={client.name}
+                        <motion.div
                             key={idx}
-                            className=" flex-col gap-y-2 brightness-0 invert flex items-center justify-center select-none hover:bg-slate-500/30 p-5 bg-white/5 border border-[#ffffff1a] rounded-lg"
+                            variants={fadeIn('up', 0.1 * idx)}
+                            initial='hidden'
+                            whileInView={'show'}
+                            viewport={{ once: true }}
                         >
-                            <img
-                                className="object-contain w-24 h-24 max-w-full max-h-full"
-                                src={client.logo}
-                                alt={client.name}
-                            />
+                            <div
+                                title={client.name}
+                                className=" flex-col gap-y-2 brightness-0 invert flex items-center justify-center select-none hover:bg-slate-500/30 p-5 bg-white/5 border border-[#ffffff1a] rounded-lg"
+                            >
+                                <img
+                                    className="object-contain w-24 h-24 max-w-full max-h-full"
+                                    src={client.logo}
+                                    alt={client.name}
+                                />
 
-                            {/* <h1 className="font-bold text-sm">{client.name}</h1> */}
-                        </div>
-
-                        </>
+                                {/* <h1 className="font-bold text-sm">{client.name}</h1> */}
+                            </div>
+                        </motion.div>
                     ))}
 
 
