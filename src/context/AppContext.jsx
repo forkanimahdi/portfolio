@@ -11,6 +11,7 @@ import yes_learning from "../assets/images/projects/yes_learning.gif"
 import yes_mobile from "../assets/images/projects/yes_mobile.png"
 import hd4h from "../assets/images/projects/hd4h.gif"
 import tililab_judge from "../assets/images/projects/tililab_judge.jpg"
+import a1 from "../assets/images/projects/a1.gif"
 
 
 const AppContext = createContext();
@@ -52,6 +53,14 @@ const AppProvider = ({ children }) => {
       repo: null
     },
     {
+      name: "Atelier A1",
+      link: "https://learning.youthempowermentsummit.africa/",
+      description: "A Laravel-Inertia web platform offering workshops, e-learning content, and progress tracking. It supports both synchronous and asynchronous learning for African youth in professional and soft skill areas.",
+      image: a1,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+    {
       name: "LionsGeek",
       link: "https://lionsgeek.vercel.app/",
       description: "An engaging React platform showcasing the LionsGeek initiative, highlighting youth empowerment through digital upskilling, project incubation, and leadership coaching across Africa.",
@@ -72,7 +81,7 @@ const AppProvider = ({ children }) => {
       link: "https://herdayforher.ma/",
       description: "An interactive web platform built using Inertia, focused on showcasing MasterClass events and empowering women through leadership talks, workshops, and networking programs.",
       image: hd4h,
-      technologies: ["Inertia"],
+      technologies: ["Laravel - Inertia"],
       repo: null
     },
     // {
@@ -104,7 +113,7 @@ const AppProvider = ({ children }) => {
       link: "https://tililab.mylionsgeek.africa/",
       description: "Tililab - Evaluation Platform is a web application built with Laravel-Inertia . designed to manage candidate assessments by a panel of judges. The platform allows adding judges, registering candidates, and making final decisions.",
       image: tililab_judge,
-      technologies: ["Inertia"],
+      technologies: ["Laravel - Inertia"],
       repo: "https://github.com/forkanimahdi/tililab_judge.git"
     },
 
