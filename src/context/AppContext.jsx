@@ -11,6 +11,7 @@ import yes_learning from "../assets/images/projects/yes_learning.gif"
 import yes_mobile from "../assets/images/projects/yes_mobile.png"
 import hd4h from "../assets/images/projects/hd4h.gif"
 import tililab_judge from "../assets/images/projects/tililab_judge.jpg"
+import ecb from "../assets/images/projects/ecb.jpg"
 import a1 from "../assets/images/projects/a1.gif"
 
 
@@ -55,9 +56,9 @@ const AppProvider = ({ children }) => {
     {
       name: "Atelier A1",
       link: "https://ateliera1.com/",
-      description: "A Laravel-Inertia web platform offering workshops, e-learning content, and progress tracking. It supports both synchronous and asynchronous learning for African youth in professional and soft skill areas.",
+      description: "Official website of Atelier A1, a Moroccan architecture and urban design agency founded by Abderrahim Kassou and Mustapha Chakib. The site presents the agency’s philosophy, multidisciplinary expertise, and a diverse portfolio of architectural, urban planning, and landscape projects developed across various scales.",
       image: a1,
-      technologies: ["Laravel - Inertia"],
+      technologies: ["Laravel", "Inertia.js"],
       repo: null
     },
     {
