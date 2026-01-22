@@ -75,16 +75,16 @@ const AppProvider = ({ children }) => {
       technologies: ["Inertia"],
       repo: null
     },
+    // {
+    //   name: "Yes Backend",
+    //   link: "https://management.youthempowermentsummit.africa/",
+    //   description: "A Laravel admin dashboard used to manage the YES platform’s users, event schedules, speaker profiles, and access control. It supports detailed analytics and multi-role user permissions.",
+    //   image: yes_backend,
+    //   technologies: ["Laravel"],
+    //   repo: null
+    // },
     {
-      name: "Yes Backend",
-      link: "https://management.youthempowermentsummit.africa/",
-      description: "A Laravel admin dashboard used to manage the YES platform’s users, event schedules, speaker profiles, and access control. It supports detailed analytics and multi-role user permissions.",
-      image: yes_backend,
-      technologies: ["Laravel"],
-      repo: null
-    },
-    {
-      name: "Casatourat Backend",
+      name: "Casatourat Dashboard",
       link: "https://casatourat.ma/",
       description: "A Laravel-based dashboard built to manage the Casatourat mobile app content including cultural circuits, real-time data, user behavior, and event content management.",
       image: casatourat_backend,
@@ -92,7 +92,7 @@ const AppProvider = ({ children }) => {
       repo: null
     },
     {
-      name: "Yes Mobile Backend",
+      name: "Yes Mobile Dashboard",
       link: "https://app.youthempowermentsummit.africa/",
       description: "Backend system for Yes Mobile app, developed with Laravel to manage users, programs, notifications, and mobile app content with security-first admin access.",
       image: yesMobile_backend,
