@@ -1,8 +1,8 @@
 import React from "react";
 import { fadeIn } from "../../../utils/motion";
 import { motion } from "framer-motion";
-import heroImage from "../../../assets/images/hero.png"
-import heroImageMobile from "../../../assets/images/heroMobile.png"
+import heroImage from "../../../assets/images/hero.webp"
+import heroImageMobile from "../../../assets/images/heroMobile.webp"
 
 const scrollToSection = (id) => {
     const section = document.getElementById(id);

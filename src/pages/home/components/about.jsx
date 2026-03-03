@@ -5,7 +5,7 @@ import { FaEnvelope, FaGitAlt, FaInstagram, FaLaravel, FaLinkedinIn, FaReact, Fa
 import { IoLogoJavascript } from "react-icons/io";
 import { SiExpo, SiInertia } from "react-icons/si";
 import { RiTailwindCssFill } from "react-icons/ri";
-import me from "../../../assets/images/me.png";
+import me from "../../../assets/images/me.jpg";
 
 const techno = [
     { icon: <IoLogoJavascript />, name: "JavaScript" },

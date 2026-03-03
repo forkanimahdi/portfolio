@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fadeIn } from "../../../utils/motion";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import Mhijir from "../../../assets/images/testimonials/mhijir.webp"
 
 export const Testimonials = () => {
     // Sample testimonials data - replace with your actual testimonials
@@ -9,11 +10,11 @@ export const Testimonials = () => {
     const testimonials = [
         {
             id: 1,
-            name: "Client Name",
-            role: "CEO, Company Name",
-            company: "Company Name",
-            quote: "Mehdi delivered exceptional work on our project. His technical expertise and attention to detail made all the difference. Highly recommended!",
-            image: null // Replace with: import reviewer1 from "../../../assets/images/testimonials/reviewer1.jpg"
+            name: "Oumaima Mhijir",
+            role: "CEO, Jadara Foundation",
+            company: "Jadara Foundation",
+            quote: "I am really impressed by you, not only by your technical Skills but also by your ability to transform a more or less clear vision into a tangible project  Your reactivity and professionalism just wawed be  Thank you sidi ",
+            image:  Mhijir
         },
         {
             id: 2,
@@ -99,7 +100,7 @@ export const Testimonials = () => {
                                     <img
                                         src={testimonial.image}
                                         alt={testimonial.name}
-                                        className="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover border-2 border-white/20"
+                                        className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-cover bg-top border-2 border-white/20"
                                     />
                                 ) : (
                                     <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center">
