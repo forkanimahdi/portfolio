@@ -7,6 +7,7 @@ import { Projects } from "./components/projects";
 import { Contact } from "./components/contact";
 import { Clients } from "./components/clients";
 import { Testimonials } from "./components/testimonials";
+import { Footer } from "../../layouts/Footer";
 
 export const Home = () => {
 
@@ -37,8 +38,7 @@ export const Home = () => {
         <Clients />
         <Testimonials />
         <Contact />
-
-
+        <Footer />
 
       </div>
     </>

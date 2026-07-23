@@ -163,3 +163,89 @@ html {
 * {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
+/* ============================================================
+   PREMIUM REDESIGN UTILITIES
+   ============================================================ */
+
+/* --- Infinite logo marquee --- */
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* fade edges so logos slide in/out smoothly */
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 40s linear infinite;
+    will-change: transform;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+}
+
+/* --- Premium glass surface --- */
+.premium-glass {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease;
+}
+
+.premium-glass:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* --- Animated gradient headline text --- */
+.gradient-heading {
+    background: linear-gradient(120deg, #ffffff 0%, #9a9a9a 45%, #ffffff 90%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-text 6s linear infinite;
+}
+
+@keyframes shimmer-text {
+    to { background-position: 200% center; }
+}
+
+/* --- Section eyebrow label --- */
+.eyebrow {
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+/* --- Hide scrollbar for horizontal carousels --- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

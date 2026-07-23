@@ -68,11 +68,20 @@ export const Testimonials = () => {
         const testimonial = testimonials[0];
         return (
             <div id="testimonials" className="py-3 flex flex-col  items-center justify-start">
+                <motion.p
+                    variants={fadeIn('up', 0.1)}
+                    initial='hidden'
+                    whileInView={'show'}
+                    className="eyebrow pt-[10vh] mb-4"
+                >
+                    Kind words
+                </motion.p>
+
                 <motion.h1
                     variants={fadeIn('up', 0.2)}
                     initial='hidden'
                     whileInView={'show'}
-                    className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin mb-4"
+                    className="uppercase selection:bg-white selection:text-black text-white text-[2rem] boldPoppin mb-4"
                 >
                     Testimonials
                 </motion.h1>
@@ -92,8 +101,9 @@ export const Testimonials = () => {
                     whileInView={'show'}
                     className="w-full lg:w-2/3 px-6 lg:px-0 my-8"
                 >
-                    <div className="bg-white/5 border border-[#ffffff1a] rounded-2xl p-10 lg:p-16">
-                        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center">
+                    <div className="premium-glass rounded-2xl p-10 lg:p-16 relative">
+                        <span className="absolute top-4 left-6 text-white/10 text-8xl leading-none font-serif select-none">&ldquo;</span>
+                        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center relative">
                             {/* Reviewer Image */}
                             <div className="flex-shrink-0">
                                 {testimonial.image ? (
@@ -135,11 +145,20 @@ export const Testimonials = () => {
     // Multiple testimonials - simple carousel view
     return (
         <div id="testimonials" className="py-3 flex flex-col items-center justify-start">
+            <motion.p
+                variants={fadeIn('up', 0.1)}
+                initial='hidden'
+                whileInView={'show'}
+                className="eyebrow pt-[10vh] mb-4"
+            >
+                Kind words
+            </motion.p>
+
             <motion.h1
                 variants={fadeIn('up', 0.2)}
                 initial='hidden'
                 whileInView={'show'}
-                className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin mb-4"
+                className="uppercase selection:bg-white selection:text-black text-white text-[2rem] boldPoppin mb-4"
             >
                 Testimonials
             </motion.h1>
@@ -163,9 +182,10 @@ export const Testimonials = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.4 }}
-                            className="bg-white/5 border border-[#ffffff1a] rounded-2xl p-10 lg:p-16"
+                            className="premium-glass rounded-2xl p-10 lg:p-16 relative"
                         >
-                            <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center">
+                            <span className="absolute top-4 left-6 text-white/10 text-8xl leading-none font-serif select-none">&ldquo;</span>
+                            <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center relative">
                                 {/* Reviewer Image */}
                                 <div className="flex-shrink-0">
                                     {testimonials[currentIndex].image ? (
