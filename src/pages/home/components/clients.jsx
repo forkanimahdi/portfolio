@@ -33,7 +33,7 @@ export const Clients = () => {
                 <motion.h1 variants={fadeIn('up', 0.2)} initial='hidden' whileInView={'show'} className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin  ">Trusted By</motion.h1>
                 {/* <motion.p variants={fadeIn('up', 0.4)} initial="hidden" whileInView="show" className="text-[#bdbdbd] selection:bg-white text-center px-3 lg:text-start selection:text-black poppin lg:text-lg ">Together with my clients, we bring innovative visions to reality. </motion.p> */}
 
-                <div className="w-4/5 grid lg:grid-cols-6 items-center grid-cols-2 gap-8 ">
+                <div className="w-5/6 grid lg:grid-cols-7 items-center grid-cols-2 gap-8 ">
                     {clients.map((client, idx) => (
                         <motion.div
                             key={idx}
