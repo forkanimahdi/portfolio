@@ -19,7 +19,7 @@ export const Clients = () => {
         { logo: casamemoire, name: "Casamemoire" },
         { logo: tilila, name: "Tilila" },
         { logo: mhijir, name: "Oumaima Mhijir" },
-        { logo: tihadazemmour, name: "Tihada Zemmour" },
+        { logo: tihadazemmour, name: "Tihada Zemmour" , preserveColor: true},
         { logo: a1, name: "Atelier A1" },
         // { logo: tm, name: "2M" },
 
@@ -44,7 +44,9 @@ export const Clients = () => {
                         >
                             <div
                                 title={client.name}
-                                className=" flex-col gap-y-2 brightness-0 invert flex items-center justify-center select-none hover:bg-slate-500/30 p-5 bg-white/5 border border-[#ffffff1a] rounded-lg"
+                                className={`flex-col gap-y-2 flex items-center justify-center select-none hover:bg-slate-500/30 p-5 bg-white/5 border border-[#ffffff1a] rounded-lg ${
+                                    client.preserveColor ? "" : "brightness-0 invert"
+                                }`}
                             >
                                 <img
                                     className="object-contain w-24 h-24 max-w-full max-h-full"
