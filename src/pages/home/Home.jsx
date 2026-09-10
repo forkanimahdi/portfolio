@@ -3,7 +3,9 @@ import React from "react";
 import { Hero } from "./components/hero";
 import { motion, useTransform } from "framer-motion";
 import { About } from "./components/about";
+import { Achievements } from "./components/achievements";
 import { Projects } from "./components/projects";
+import { Technologies } from "./components/technologies";
 import { Contact } from "./components/contact";
 import { Clients } from "./components/clients";
 import { Testimonials } from "./components/testimonials";
@@ -34,8 +36,10 @@ export const Home = () => {
 
         <Hero />
         <About />
-        <Projects />
         <Clients />
+        <Achievements />
+        <Projects />
+        <Technologies />
         <Testimonials />
         <Contact />
         <Footer />
