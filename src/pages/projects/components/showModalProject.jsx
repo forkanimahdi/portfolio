@@ -6,6 +6,7 @@ import { FiExternalLink, FiGithub, FiX, FiCode, FiCalendar, FiUsers } from 'reac
 
 const ShowModalProject = () => {
     const { selectedProject, setSelectedProject } = useAppContext();
+    const isMobileApp = selectedProject?.technologies?.includes("React Native");
 
     useEffect(() => {
         const onKey = (e) => {
@@ -37,7 +38,7 @@ const ShowModalProject = () => {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.6, ease: 'easeInOut' }}
                     onClick={handleBackdropClick}
-                    className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center px-4"
+                    className="fixed inset-0 z-[200] bg-black/70 backdrop-blur-md flex items-center justify-center px-4"
                 >
                     <motion.div
                         initial={{ y: 100, scale: 0.9, opacity: 0 }}
@@ -127,7 +128,7 @@ const ShowModalProject = () => {
                                     rel="noreferrer"
                                     className="flex-1 py-3 text-center bg-white text-black rounded-xl hover:bg-gray-200 transition font-semibold border border-white/10"
                                 >
-                                    Live Website
+                                    {isMobileApp ? "Download App" : "Live Website"}
                                 </a>
                                 {selectedProject.repo && (
                                     <a

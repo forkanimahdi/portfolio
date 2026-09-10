@@ -3,6 +3,7 @@ import { FaLinkedinIn } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import AnimatedCursor from "react-animated-cursor";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -10,14 +11,18 @@ export const Navigation = () => {
     const naviger = ["home", "about", "projects", "clients", "contact"];
     const [nav, setNav] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const location = useLocation();
+    const isProjectsPage = location.pathname === "/projects";
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > window.innerHeight * 0.9);
+            const threshold = isProjectsPage ? 10 : window.innerHeight * 0.9;
+            setScrolled(window.scrollY > threshold);
         };
+        handleScroll();
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [isProjectsPage]);
 
     const handleNavClick = (e) => {
         if (e.target.id === "backdrop") setNav(false);
@@ -44,7 +49,7 @@ export const Navigation = () => {
             </div>
 
             {/* Main Navbar */}
-            <div className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "bg-black" : "bg-transparent"} lg:h-[10vh] py-2 lg:py-0 h-fit flex lg:flex-row flex-col lg:justify-between items-center px-6 lg:px-16`}>
+            <div className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${scrolled ? "bg-black/80 backdrop-blur-md border-b border-white/10" : "bg-transparent"} lg:h-[10vh] py-2 lg:py-0 h-fit flex lg:flex-row flex-col lg:justify-between items-center px-6 lg:px-16`}>
                 {/* Logo + Mobile Toggle */}
                 <div className="w-full lg:w-auto flex items-center justify-between">
                     <a href="/">
@@ -100,7 +105,7 @@ export const Navigation = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.4 }}
-                        className="fixed top-0 left-0 h-screen w-full bg-black/80 backdrop-blur-lg z-40 flex justify-center items-center"
+                        className="fixed top-0 left-0 h-screen w-full bg-black/80 backdrop-blur-lg z-[90] flex justify-center items-center"
                         onClick={handleNavClick}
                     >
                         <motion.div

@@ -13,6 +13,10 @@ import hd4h from "../assets/images/projects/hd4h.gif"
 import tililab_judge from "../assets/images/projects/tililab_judge.jpg"
 import ecb from "../assets/images/projects/ecb.jpg"
 import a1 from "../assets/images/projects/a1.gif"
+import tihadazemmour from "../assets/images/projects/taw.gif"
+import tilila from "../assets/images/projects/tilila.gif"
+import biggred from "../assets/images/projects/biggred.gif"
+import lionsgeek_mobile from "../assets/images/projects/lg-mobile.png"
 
 
 const AppContext = createContext();
@@ -22,11 +26,11 @@ const AppProvider = ({ children }) => {
 
   let projects = [
     {
-      name: "My LionsGeek",
-      link: "https://mylionsgeek.ma/",
-      description: "A robust Laravel-based platform for managing training center operations, including reservations, session planning, admin tasks, and user roles. It helps streamline coordination between trainers, learners, and administrators.",
-      image: mlg,
-      technologies: ["Laravel"],
+      name: "LionsGeek",
+      link: "https://lionsgeek.vercel.app/",
+      description: "An engaging React platform showcasing the LionsGeek initiative, highlighting youth empowerment through digital upskilling, project incubation, and leadership coaching across Africa.",
+      image: lionsgeek,
+      technologies: ["React"],
       repo: null
     },
     {
@@ -35,6 +39,62 @@ const AppProvider = ({ children }) => {
       description: "A React Native mobile app providing users with circuit-based navigation, cultural events, and user activity tracking around Casablanca. It aims to elevate local tourism by combining interactive experiences and guided tours.",
       image: casatourat,
       technologies: ["React Native"],
+      repo: null
+    },
+    {
+      name: "Tihad Azemmour Women",
+      link: "https://tihadazemmourwomen.ma/",
+      description: "Official website of Club Union Sportive Azemmour Féminin – Tihad Azemmour, a women’s football club based in Azemmour, Morocco. The platform features a shop and an admin backoffice for managing line-ups, team convocations, finances, and the store. It presents the club’s sporting, educational, and social mission, highlighting youth development across Senior, U17, and U15 categories and its Sport for Development initiatives for young girls in the region.",
+      image: tihadazemmour,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+    {
+      name: "Atelier A1",
+      link: "https://ateliera1.com/",
+      description: "Official website of Atelier A1, a Moroccan architecture and urban design agency founded by Abderrahim Kassou and Mustapha Chakib. The site presents the agency’s philosophy, multidisciplinary expertise, and a diverse portfolio of architectural, urban planning, and landscape projects developed across various scales.",
+      image: a1,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+    {
+      name: "Écoles Belges au Maroc",
+      link: "https://ecolebelgue.mylionsgeek.ma",
+      description: "Official admissions and information platform for the Établissements scolaires Belges au Maroc, operating under the educational program of the Fédération Wallonie-Bruxelles. The website provides families with structured guidance on the admission process, academic vision, and essential school information through an online application system.",
+      image: ecb,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+    {
+      name: "YES Africa",
+      link: "https://youthempowermentsummit.africa/",
+      description: "The official React-powered web presence of the YES Africa movement. It presents the summit’s mission, past editions, partnerships, and call-to-action for youth-driven impact across the continent.",
+      image: yes,
+      technologies: ["React"],
+      repo: null
+    },
+    {
+      name: "Bigg Red",
+      link: "https://beta.biggred.com/",
+      description: "A premium e-commerce platform for elite tech and consumer electronics, featuring product catalogs, flash sales with countdown timers, curated new arrivals, and custom accessory personalization. Built to deliver a polished shopping experience with exclusive offers and early-access memberships.",
+      image: biggred,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+    {
+      name: "My LionsGeek",
+      link: "https://mylionsgeek.ma/",
+      description: "A robust Laravel-based platform for managing training center operations, including reservations, session planning, admin tasks, and user roles. It helps streamline coordination between trainers, learners, and administrators.",
+      image: mlg,
+      technologies: ["Laravel"],
+      repo: null
+    },
+    {
+      name: "Casatourat Dashboard",
+      link: "https://casatourat.ma/",
+      description: "A Laravel-based dashboard built to manage the Casatourat mobile app content including cultural circuits, real-time data, user behavior, and event content management.",
+      image: casatourat_backend,
+      technologies: ["Laravel"],
       repo: null
     },
     {
@@ -54,38 +114,13 @@ const AppProvider = ({ children }) => {
       repo: null
     },
     {
-      name: "LionsGeek",
-      link: "https://lionsgeek.vercel.app/",
-      description: "An engaging React platform showcasing the LionsGeek initiative, highlighting youth empowerment through digital upskilling, project incubation, and leadership coaching across Africa.",
-      image: lionsgeek,
-      technologies: ["React"],
+      name: "LionsGeek Mobile",
+      link: "https://play.google.com/store/apps/details?id=com.lionsgeek_pro.lionsgeek&hl=en",
+      description: "Official companion app for the LionsGeek community, helping students, coaches, and admins stay connected and organized. It supports workspace booking, training tracking, community updates, event reservations with capacity checks, and QR or manual check-in for participants.",
+      image: lionsgeek_mobile,
+      technologies: ["React Native"],
       repo: null
     },
-    {
-      name: "Atelier A1",
-      link: "https://ateliera1.com/",
-      description: "Official website of Atelier A1, a Moroccan architecture and urban design agency founded by Abderrahim Kassou and Mustapha Chakib. The site presents the agency’s philosophy, multidisciplinary expertise, and a diverse portfolio of architectural, urban planning, and landscape projects developed across various scales.",
-      image: a1,
-      technologies: ["Laravel - Inertia"],
-      repo: null
-    },
-    {
-      name: "YES Africa",
-      link: "https://youthempowermentsummit.africa/",
-      description: "The official React-powered web presence of the YES Africa movement. It presents the summit’s mission, past editions, partnerships, and call-to-action for youth-driven impact across the continent.",
-      image: yes,
-      technologies: ["React"],
-      repo: null
-    },
-    {
-      name: "Écoles Belges au Maroc",
-      link: "https://ecolebelgue.mylionsgeek.ma",
-      description: "Official admissions and information platform for the Établissements scolaires Belges au Maroc, operating under the educational program of the Fédération Wallonie-Bruxelles. The website provides families with structured guidance on the admission process, academic vision, and essential school information through an online application system.",
-      image: ecb,
-      technologies: ["Laravel - Inertia"],
-      repo: null
-    },
-
     {
       name: "Her Day for Her",
       link: "https://herdayforher.ma/",
@@ -94,28 +129,12 @@ const AppProvider = ({ children }) => {
       technologies: ["Laravel - Inertia"],
       repo: null
     },
-    // {
-    //   name: "Yes Backend",
-    //   link: "https://management.youthempowermentsummit.africa/",
-    //   description: "A Laravel admin dashboard used to manage the YES platform’s users, event schedules, speaker profiles, and access control. It supports detailed analytics and multi-role user permissions.",
-    //   image: yes_backend,
-    //   technologies: ["Laravel"],
-    //   repo: null
-    // },
     {
-      name: "Casatourat Dashboard",
-      link: "https://casatourat.ma/",
-      description: "A Laravel-based dashboard built to manage the Casatourat mobile app content including cultural circuits, real-time data, user behavior, and event content management.",
-      image: casatourat_backend,
-      technologies: ["Laravel"],
-      repo: null
-    },
-    {
-      name: "Yes Mobile Dashboard",
-      link: "https://app.youthempowermentsummit.africa/",
-      description: "Backend system for Yes Mobile app, developed with Laravel to manage users, programs, notifications, and mobile app content with security-first admin access.",
-      image: yesMobile_backend,
-      technologies: ["Laravel"],
+      name: "Tilila",
+      link: "https://tilila.org/",
+      description: "Official platform of SOREAD-2M’s Tilila program for equity, diversity, and inclusion in Morocco. It hosts Tilila Awards applications for inclusive advertising campaigns and Tililab, a creative incubator supporting agencies and advertisers committed to more equitable representation in the media.",
+      image: tilila,
+      technologies: ["Laravel - Inertia"],
       repo: null
     },
     {
@@ -126,7 +145,22 @@ const AppProvider = ({ children }) => {
       technologies: ["Laravel - Inertia"],
       repo: "https://github.com/forkanimahdi/tililab_judge.git"
     },
-
+    // {
+    //   name: "Yes Backend",
+    //   link: "https://management.youthempowermentsummit.africa/",
+    //   description: "A Laravel admin dashboard used to manage the YES platform’s users, event schedules, speaker profiles, and access control. It supports detailed analytics and multi-role user permissions.",
+    //   image: yes_backend,
+    //   technologies: ["Laravel"],
+    //   repo: null
+    // },
+    {
+      name: "Yes Mobile Dashboard",
+      link: "https://app.youthempowermentsummit.africa/",
+      description: "Backend system for Yes Mobile app, developed with Laravel to manage users, programs, notifications, and mobile app content with security-first admin access.",
+      image: yesMobile_backend,
+      technologies: ["Laravel"],
+      repo: null
+    },
   ];
 
 

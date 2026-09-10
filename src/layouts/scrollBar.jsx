@@ -34,7 +34,7 @@ export const ScrollBar = () => {
 
     return (
         <>
-            <div className="w-full h-1 z-50 fixed top-0">
+            <div className="w-full h-1 z-[110] fixed top-0">
                 <div style={{ width: `${scrollPercent}%`, transition: "0.7s ease" }} className="h-full bg-white scrollNav"></div>
             </div>
 
