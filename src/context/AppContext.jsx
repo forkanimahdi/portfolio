@@ -17,6 +17,8 @@ import tihadazemmour from "../assets/images/projects/taw.gif"
 import tilila from "../assets/images/projects/tilila.gif"
 import biggred from "../assets/images/projects/biggred.gif"
 import lionsgeek_mobile from "../assets/images/projects/lg-mobile.png"
+import clb from "../assets/images/projects/clb_klb.png"
+import glovantis from "../assets/images/projects/glovantis.gif"
 
 
 const AppContext = createContext();
@@ -62,6 +64,22 @@ const AppProvider = ({ children }) => {
       link: "https://ecolebelgue.mylionsgeek.ma",
       description: "Official admissions and information platform for the Établissements scolaires Belges au Maroc, operating under the educational program of the Fédération Wallonie-Bruxelles. The website provides families with structured guidance on the admission process, academic vision, and essential school information through an online application system.",
       image: ecb,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+    {
+      name: "CLB-KLB",
+      link: "https://new.clb-klb.com/",
+      description: "Official platform of the Cercle des Lauréats de Belgique – Kring van laureaten van België (CLB-KLB), a Moroccan association that connects graduates of Belgian institutions and promotes Belgian higher education and training opportunities in Morocco. The site presents the network’s mission, events, and Belgium–Morocco partnerships.",
+      image: clb,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+    {
+      name: "Glovantis Group",
+      link: "https://glovantisgroup.com/",
+      description: "Corporate website for Glovantis Group, a strategic advisory firm specialized in international expansion. The platform presents their expertise in market entry, public affairs, institutional relations, and partnership structuring across Europe, Morocco, and the Gulf.",
+      image: glovantis,
       technologies: ["Laravel - Inertia"],
       repo: null
     },
