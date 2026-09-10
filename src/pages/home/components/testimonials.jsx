@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fadeIn } from "../../../utils/motion";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import Mhijir from "../../../assets/images/testimonials/mhijir.webp"
+import Mhijir from "../../../assets/images/testimonials/mhijir.png"
 
 export const Testimonials = () => {
     // Sample testimonials data - replace with your actual testimonials
