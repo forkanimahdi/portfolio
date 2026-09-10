@@ -19,6 +19,7 @@ import biggred from "../assets/images/projects/biggred.gif"
 import lionsgeek_mobile from "../assets/images/projects/lg-mobile.png"
 import clb from "../assets/images/projects/clb_klb.png"
 import glovantis from "../assets/images/projects/glovantis.gif"
+import israr from "../assets/images/projects/israr.gif"
 
 
 const AppContext = createContext();
@@ -80,6 +81,14 @@ const AppProvider = ({ children }) => {
       link: "https://glovantisgroup.com/",
       description: "Corporate website for Glovantis Group, a strategic advisory firm specialized in international expansion. The platform presents their expertise in market entry, public affairs, institutional relations, and partnership structuring across Europe, Morocco, and the Gulf.",
       image: glovantis,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+    {
+      name: "ISRAR",
+      link: "https://israr.ma/",
+      description: "Official digital platform of the Coalition ISRAR pour l’Égalité et l’Empowerment, a Moroccan alliance of local associations advancing gender equality and women’s human rights. The site provides bilingual (French–Arabic) access to legal and support services aimed at combating violence against women and strengthening empowerment across the Maghreb.",
+      image: israr,
       technologies: ["Laravel - Inertia"],
       repo: null
     },
