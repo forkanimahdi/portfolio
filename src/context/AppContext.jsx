@@ -27,7 +27,7 @@ const AppProvider = ({ children }) => {
   let projects = [
     {
       name: "LionsGeek",
-      link: "https://lionsgeek.vercel.app/",
+      link: "https://lionsgeek.ma/",
       description: "An engaging React platform showcasing the LionsGeek initiative, highlighting youth empowerment through digital upskilling, project incubation, and leadership coaching across Africa.",
       image: lionsgeek,
       technologies: ["React"],
