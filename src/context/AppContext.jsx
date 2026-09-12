@@ -20,6 +20,7 @@ import lionsgeek_mobile from "../assets/images/projects/lg-mobile.png"
 import clb from "../assets/images/projects/clb_klb.png"
 import glovantis from "../assets/images/projects/glovantis.gif"
 import israr from "../assets/images/projects/israr.gif"
+import ms2030 from "../assets/images/projects/ms2030.png"
 
 
 const AppContext = createContext();
@@ -89,6 +90,14 @@ const AppProvider = ({ children }) => {
       link: "https://israr.ma/",
       description: "Official digital platform of the Coalition ISRAR pour l’Égalité et l’Empowerment, a Moroccan alliance of local associations advancing gender equality and women’s human rights. The site provides bilingual (French–Arabic) access to legal and support services aimed at combating violence against women and strengthening empowerment across the Maghreb.",
       image: israr,
+      technologies: ["Laravel - Inertia"],
+      repo: null
+    },
+    {
+      name: "Le Maroc Social 2030",
+      link: "https://ms2030.org/",
+      description: "Digital platform for Le Maroc Social 2030, a Think & Do Tank led by The Social Observatory. It translates a national social vision into an accessible web experience — connecting analysis, citizen engagement, and working groups focused on cohesion, equity, and dignity by the 2030 horizon.",
+      image: ms2030,
       technologies: ["Laravel - Inertia"],
       repo: null
     },
