@@ -36,11 +36,11 @@ export const About = () => {
                         initial="hidden"
                         whileInView="show"
                     >
-                        Hi, I’m Mehdi — a freelance Software Developer from Morocco. Most of my projects start with a simple client question: “Do you think we can…?”
+                        Hi, I’m Mehdi, a Software Developer from Morocco. Most of my work starts with a simple question: <span className="font-bold italic">“Do you think we can…?”</span>
                         <br /><br />
-                        I work with startups, NGOs, authors, and leaders to turn ideas into real web and mobile products — platforms, apps, dashboards, and tools that people actually use. From the first conversation to a live product, I stay involved so the result matches what you need, not just what looks good on a slide.
+                        I’ve worked with startups, NGOs, authors, and leaders, turning ideas and real-world problems into digital products: platforms, apps, dashboards, and tools people use every day. From the first conversation to a live product, I stay involved so the result is clear, useful, and built to last.
                         <br /><br />
-                        I also coach young people finding their way into tech. If you have an idea, let’s turn that question into something real.
+                        I also coach young people finding their way into tech. Then I try to turn that question into something real.
                     </motion.p>
 
 

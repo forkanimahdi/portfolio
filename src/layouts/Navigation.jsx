@@ -1,6 +1,6 @@
 import logo from "../assets/images/myLogo.png";
 import { FaLinkedinIn } from "react-icons/fa6";
-import { FaGithub } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -92,7 +92,7 @@ export const Navigation = () => {
                 {/* Desktop Social */}
                 <div className="hidden lg:flex gap-x-4">
                     <a className="text-white text-2xl" target="_blank" href="https://www.linkedin.com/in/forkanimahdi/"><FaLinkedinIn /></a>
-                    <a className="text-white text-2xl" target="_blank" href="https://github.com/forkanimahdi"><FaGithub /></a>
+                    <a className="text-white text-2xl" target="_blank" href="https://instagram.com/forkanimahdi"><FaInstagram /></a>
                 </div>
             </div>
 
@@ -137,7 +137,7 @@ export const Navigation = () => {
 
                             <div className="flex gap-6 justify-center pt-4">
                                 <a className="text-white text-2xl" target="_blank" href="https://www.linkedin.com/in/forkanimahdi/"><FaLinkedinIn /></a>
-                                <a className="text-white text-2xl" target="_blank" href="https://github.com/forkanimahdi"><FaGithub /></a>
+                                <a className="text-white text-2xl" target="_blank" href="https://instagram.com/forkanimahdi"><FaInstagram /></a>
                             </div>
                         </motion.div>
                     </motion.div>
