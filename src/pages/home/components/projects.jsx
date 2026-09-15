@@ -83,11 +83,14 @@ export const Projects = () => {
                     ))}
                 </div>
 
-                <Link to={"/projects"} className="flex items-center justify-center w-full px-5 lg:px-0">
-                    <div className="lg:w-1/3  w-full mt-8 text-white/80 animate-pulse hover:bg-white hover:text-black hover:animate-none text-center relative py-3 lg:rounded-full rounded-xl">
-                        <div className="w-full h-full inset-0 bg-white opacity-25 absolute lg:rounded-full rounded-xl"></div>
-                        <h1 className="z-20 poppin">Discover All Projects</h1>
-                    </div>
+                <Link
+                    to={"/projects"}
+                    className="group mt-8 z-20 uppercase select-none text-white border border-white/60 rounded-xl py-3 px-8 hover:bg-white hover:text-black hover:border-white poppin flex items-center gap-x-3 transition-colors"
+                >
+                    Discover All Projects
+                    <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden>
+                        &rarr;
+                    </span>
                 </Link>
 
             </div>
