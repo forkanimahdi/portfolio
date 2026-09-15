@@ -10,6 +10,7 @@ import mhijir from "../../../assets/images/clients/mhijir.png"
 import a1 from "../../../assets/images/clients/a1.png"
 import tihadazemmour from "../../../assets/images/clients/tihadazemmour.png"
 import tm from "../../../assets/images/clients/2m.png"
+import israr from "../../../assets/images/clients/israr.png"
 
 export const Clients = () => {
 
@@ -22,6 +23,7 @@ export const Clients = () => {
         { logo: mhijir, name: "Oumaima Mhijir" },
         { logo: tihadazemmour, name: "Tihada Zemmour" , preserveColor: true},
         { logo: a1, name: "Atelier A1" },
+        { logo: israr, name: "ISRAR", preserveColor: true },
 
     ];
 
@@ -33,7 +35,7 @@ export const Clients = () => {
                 <motion.h1 variants={fadeIn('up', 0.2)} initial='hidden' whileInView={'show'} className="uppercase pt-[10vh] selection:bg-white selection:text-black text-white text-[2rem] boldPoppin  ">Trusted By</motion.h1>
                 {/* <motion.p variants={fadeIn('up', 0.4)} initial="hidden" whileInView="show" className="text-[#bdbdbd] selection:bg-white text-center px-3 lg:text-start selection:text-black poppin lg:text-lg ">Together with my clients, we bring innovative visions to reality. </motion.p> */}
 
-                <div className="w-5/6 grid lg:grid-cols-7 items-center grid-cols-2 gap-8 ">
+                <div className="w-5/6 grid lg:grid-cols-8 items-center grid-cols-2 gap-8 ">
                     {clients.map((client, idx) => (
                         <motion.div
                             key={idx}
