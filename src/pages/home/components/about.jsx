@@ -36,9 +36,11 @@ export const About = () => {
                         initial="hidden"
                         whileInView="show"
                     >
-                        Hey there! I’m Mehdi, a full-stack developer from Morocco who builds powerful web and mobile apps that actually make a difference. I work with startups, big names, and growing talents.
-                        <br />
-                        From backend systems to frontend experiences. I also coach youth to rise in tech because I believe in lifting others as we grow. Tech is more than code for me , it’s about creating impact, solving real problems, and pushing ideas into the world. If it’s bold, let’s build it.
+                        Hi, I’m Mehdi. I’m a Software Developer from Morocco, and most of my work starts with a simple question: “Do you think we can…?”
+                        <br /><br />
+                        I’ve worked with startups, NGOs, authors, and leaders, turning ideas and real-world problems into digital products. I also coach young people finding their way into tech — helping them turn curiosity into something they can build.
+                        <br /><br />
+                        Then I try to turn that question into something real.
                     </motion.p>
 
 
