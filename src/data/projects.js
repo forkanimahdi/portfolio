@@ -1,7 +1,7 @@
 import mlg from "../assets/images/projects/mylionsgeek.gif";
 import lionsgeek from "../assets/images/projects/lionsgeek.png";
 import yes from "../assets/images/projects/yes-africa.png";
-import casatourat_backend from "../assets/images/projects/casatourat_backend.gif";
+import casatourat_backend from "../assets/images/projects/casatourat_backend.png";
 import yesMobile_backend from "../assets/images/projects/yesMobile_backend.gif";
 import casatourat from "../assets/images/projects/casatourat.png";
 import yes_learning from "../assets/images/projects/yes_learning.gif";
@@ -9,7 +9,7 @@ import yes_mobile from "../assets/images/projects/yes_mobile.png";
 import hd4h from "../assets/images/projects/hd4h.gif";
 import tililab_judge from "../assets/images/projects/tililab_judge.jpg";
 import ecb from "../assets/images/projects/ecb.jpg";
-import a1 from "../assets/images/projects/a1.gif";
+import a1 from "../assets/images/clients/a1.png";
 import tihadazemmour from "../assets/images/projects/taw.gif";
 import tilila from "../assets/images/projects/tilila.gif";
 import biggred from "../assets/images/projects/biggred.gif";

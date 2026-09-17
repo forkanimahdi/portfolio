@@ -9,12 +9,12 @@ export const Projects = () => {
     const { projects } = useAppContext();
     const openProject = useOpenProject();
 
-    // Curated featured set — prefer lighter still images (no 10MB+ GIFs) for PageSpeed
+    // Curated featured set on the home Projects section
     const featuredSlugs = [
         "lionsgeek",
         "casatourat",
-        "yes-africa",
-        "lionsgeek-mobile",
+        "tihad-azemmour-women",
+        "ecoles-belges-maroc",
     ];
     const featured = featuredSlugs
         .map((slug) => projects.find((p) => p.slug === slug))
