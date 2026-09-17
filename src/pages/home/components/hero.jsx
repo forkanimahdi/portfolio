@@ -18,13 +18,18 @@ const texts = [
 export const Hero = () => (
     <div id="home" className="pt-[10vh] h-[90vh] flex flex-col items-center lg:justify-evenly justify-center lg:gap-0 gap-y-10">
 
+        {/* Semantic H1 for search engines & AI (visually hidden, keeps the creative design intact) */}
+        <h1 className="sr-only">
+            Mehdi Forkani — Mobile &amp; Web App Developer in Morocco (Laravel, React, React Native)
+        </h1>
+
         <motion.p
             variants={fadeIn("up", 0.2)}
             initial="hidden"
             whileInView="show"
             className="eyebrow z-20"
         >
-            Full-Stack Developer · Morocco
+            Mobile &amp; Web App Developer · Morocco
         </motion.p>
 
         <div className="uppercase selection:bg-white selection:text-black text-white lg:text-[4rem] text-[2rem] lg:leading-normal leading-loose font-extrabold text-center selectable">

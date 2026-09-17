@@ -10,6 +10,7 @@ import { Contact } from "./components/contact";
 import { Clients } from "./components/clients";
 import { Testimonials } from "./components/testimonials";
 import { Footer } from "../../layouts/Footer";
+import Seo from "../../utils/Seo";
 
 export const Home = () => {
 
@@ -32,6 +33,11 @@ export const Home = () => {
 
   return (
     <>
+      <Seo
+        title="Mehdi Forkani | Mobile & Web App Developer (Laravel, React, React Native)"
+        description="Mehdi Forkani is a mobile & web app developer based in Casablanca, Morocco. I build production web platforms and mobile apps with Laravel, React, Inertia.js, and React Native for startups, NGOs, and organizations."
+        path="/"
+      />
       <div className="bg-[#010101] ">
 
         <Hero />

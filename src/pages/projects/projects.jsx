@@ -3,6 +3,7 @@ import { useAppContext } from "../../context/AppContext";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/motion";
 import ShowModalProject from "./components/showModalProject";
+import Seo from "../../utils/Seo";
 
 
 export const Projects = () => {
@@ -15,6 +16,11 @@ useEffect(() => {
     const { projects, selectedProject, setSelectedProject } = useAppContext();
     return (
         <>
+            <Seo
+                title="Projects | Mehdi Forkani — Mobile & Web App Developer"
+                description="Selected web and mobile app projects by Mehdi Forkani: Laravel, React, Inertia.js and React Native platforms, dashboards, and apps built for startups, NGOs, and organizations across Morocco and Africa."
+                path="/projects"
+            />
             <div className=" bg-black text-white ">
 
                 <div id="projects" className="  py-3 pt-[15vh] flex flex-col gap-y-8 items-center justify-start">
@@ -43,7 +49,7 @@ useEffect(() => {
                                         whileTap={{ scale: 0.95 }}
                                         className="rounded-xl select-none hover:scale-110 transition-all duration-300"
                                         src={ele.image}
-                                        alt=""
+                                        alt={`${ele.name} — ${ele.technologies.join(", ")} project by Mehdi Forkani`}
                                     />
                                 </div>
                             </div>
