@@ -9,8 +9,16 @@ export const Projects = () => {
     const { projects } = useAppContext();
     const openProject = useOpenProject();
 
-    // Show the first 4 projects as a curated "featured" selection (stable order)
-    const featured = projects.slice(0, 4);
+    // Curated featured set — prefer lighter still images (no 10MB+ GIFs) for PageSpeed
+    const featuredSlugs = [
+        "lionsgeek",
+        "casatourat",
+        "yes-africa",
+        "lionsgeek-mobile",
+    ];
+    const featured = featuredSlugs
+        .map((slug) => projects.find((p) => p.slug === slug))
+        .filter(Boolean);
 
     return (
         <>

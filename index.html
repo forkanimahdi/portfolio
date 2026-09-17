@@ -140,60 +140,76 @@
       ]
     }
     </script>
+    <!-- Instant dark paint so humans never see a white flash -->
+    <style>
+      html, body {
+        margin: 0;
+        background: #010101;
+        color: #fff;
+      }
+      #root:empty {
+        min-height: 100vh;
+        background: #010101;
+      }
+      /* Crawlable copy for bots — not visible to humans */
+      #seo-crawl {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
 
     <!--
-      No-JavaScript / crawler fallback.
-      Search engines and AI crawlers that do not execute JavaScript read this
-      content. It mirrors the live site so the portfolio is fully indexable.
+      Hidden crawlable summary (same facts as the live site).
+      Humans never see this flash; React always mounts the real UI.
+      No-JS agents also get the <noscript> block below.
     -->
+    <div id="seo-crawl">
+      <h1>Mehdi Forkani — Mobile &amp; Web App Developer</h1>
+      <p>
+        Mehdi Forkani is a mobile and web app developer based in Casablanca, Morocco.
+        He builds production web platforms and mobile apps with Laravel, React, Inertia.js,
+        and React Native for startups, NGOs, and organizations.
+      </p>
+      <ul>
+        <li><a href="/projects/my-lionsgeek">My LionsGeek</a> — Laravel operations platform</li>
+        <li><a href="/projects/casatourat">Casatourat</a> — React Native tourism app</li>
+        <li><a href="/projects/yes-africa">YES Africa</a> — React / React Native / Laravel</li>
+        <li><a href="/projects/tilila">Tilila</a> — Laravel Inertia EDI platform</li>
+        <li><a href="/projects/lionsgeek-mobile">LionsGeek Mobile</a> — React Native app</li>
+        <li><a href="/projects/israr">ISRAR</a> — bilingual NGO platform</li>
+      </ul>
+      <p>
+        Contact: <a href="mailto:forkanimahdi@gmail.com">forkanimahdi@gmail.com</a> ·
+        <a href="https://www.linkedin.com/in/forkanimahdi/">LinkedIn</a> ·
+        <a href="https://github.com/forkanimahdi">GitHub</a>
+      </p>
+    </div>
+
     <noscript>
-      <main>
+      <main style="max-width:40rem;margin:2rem auto;padding:1rem;color:#fff;font-family:system-ui,sans-serif">
         <h1>Mehdi Forkani — Mobile &amp; Web App Developer</h1>
         <p>
-          I'm Mehdi Forkani, a mobile &amp; web app developer based in Casablanca,
-          Morocco. I design and build production web platforms and mobile apps with
-          Laravel, React, Inertia.js, and React Native for startups, NGOs, authors,
-          and organizations — from architecture to launch.
+          I'm Mehdi Forkani, a mobile &amp; web app developer based in Casablanca, Morocco.
+          I design and build production web platforms and mobile apps with Laravel, React,
+          Inertia.js, and React Native.
         </p>
-
-        <h2>Services</h2>
-        <ul>
-          <li>Mobile app development (React Native, iOS &amp; Android)</li>
-          <li>Web application development (Laravel, React, Inertia.js)</li>
-          <li>Admin dashboards, internal tools &amp; management platforms</li>
-          <li>REST APIs and backend systems</li>
-          <li>Full-stack product delivery and project management</li>
-        </ul>
-
-        <h2>Core Technologies</h2>
-        <p>Laravel, Inertia.js, React, React Native, JavaScript, PHP, Tailwind CSS, Git, MySQL, REST APIs.</p>
-
-        <h2>Selected Projects</h2>
-        <ul>
-          <li><strong>My LionsGeek</strong> (Laravel) — Training-center operations platform: reservations, session planning, roles, and admin workflows. <a href="https://mylionsgeek.ma/">mylionsgeek.ma</a></li>
-          <li><strong>Casatourat</strong> (React Native + Laravel) — Tourism mobile app with circuits, events, and tracking, plus a Laravel content dashboard. <a href="https://casatourat.ma/">casatourat.ma</a></li>
-          <li><strong>YES Africa Ecosystem</strong> (React, React Native, Laravel) — Summit website, e-learning platform, event mobile app with QR badges, and admin backends.</li>
-          <li><strong>Tilila / Tililab Judge</strong> (Laravel + Inertia) — SOREAD-2M equity, diversity &amp; inclusion program platform and real-time jury evaluation system.</li>
-          <li><strong>LionsGeek Mobile</strong> (React Native) — Companion app with workspace booking, event reservations, capacity checks, and QR / manual check-in.</li>
-          <li><strong>Tihad Azemmour Women</strong> (Laravel + Inertia) — Women's football club site with shop and admin back office.</li>
-          <li><strong>ISRAR</strong> (Laravel + Inertia) — Bilingual (French–Arabic) platform for a gender-equality coalition.</li>
-          <li><strong>Bigg Red</strong> (Laravel + Inertia) — Premium electronics e-commerce platform.</li>
-        </ul>
-
-        <h2>Selected Clients &amp; Partners</h2>
-        <p>2M / Tilila, Jadara Foundation, LionsGeek, Casamémoire, ISRAR, Tihad Azemmour, Atelier A1, Écoles Belges au Maroc, CLB-KLB, Glovantis, Le Maroc Social 2030.</p>
-
-        <h2>Contact</h2>
         <p>
-          Email: <a href="mailto:forkanimahdi@gmail.com">forkanimahdi@gmail.com</a> ·
-          LinkedIn: <a href="https://www.linkedin.com/in/forkanimahdi/">linkedin.com/in/forkanimahdi</a> ·
-          GitHub: <a href="https://github.com/forkanimahdi">github.com/forkanimahdi</a>
+          <a href="/projects" style="color:#fff">View projects</a> ·
+          <a href="mailto:forkanimahdi@gmail.com" style="color:#fff">Email</a>
         </p>
       </main>
     </noscript>
+
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

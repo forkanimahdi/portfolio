@@ -1,58 +1,58 @@
-import { useEffect, useState } from 'react'
-import { Navigation } from './layouts/Navigation';
-import { ScrollBar } from './layouts/scrollBar';
-import { Error } from './layouts/Error';
-import { Route, Routes } from 'react-router-dom';
-import { Home } from './pages/home/Home';
-import { Projects } from './pages/projects/projects';
-import ProjectDetails from './pages/projects/ProjectDetails';
-import { AppProvider } from './context/AppContext';
-import AdvancedLoader from './components/AdvancedLoader';
-import CustomCursor from './components/CustomCursor';
-import MouseTrail from './components/MouseTrail';
-import { gsap } from 'gsap';
-
+import { useEffect, useState } from "react";
+import { Navigation } from "./layouts/Navigation";
+import { ScrollBar } from "./layouts/scrollBar";
+import { Error } from "./layouts/Error";
+import { Route, Routes } from "react-router-dom";
+import { Home } from "./pages/home/Home";
+import { Projects } from "./pages/projects/projects";
+import ProjectDetails from "./pages/projects/ProjectDetails";
+import { AppProvider } from "./context/AppContext";
+import AdvancedLoader from "./components/AdvancedLoader";
+import CustomCursor from "./components/CustomCursor";
+import MouseTrail from "./components/MouseTrail";
+import { isCrawlerBot, prefersReducedMotion } from "./utils/botDetect";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [showContent, setShowContent] = useState(false);
+  // Content always mounts. Loader is an overlay for humans only —
+  // bots / reduced-motion users get immediate crawlable first paint.
+  const [showLoader, setShowLoader] = useState(() => {
+    if (isCrawlerBot() || prefersReducedMotion()) return false;
+    return true;
+  });
 
-  const handleLoadComplete = () => {
-    setIsLoading(false);
-    // Small delay to ensure smooth transition
-    setTimeout(() => {
-      setShowContent(true);
-      // Animate main content entrance
-      gsap.fromTo('.main-content',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
-      );
-    }, 100);
-  };
+  useEffect(() => {
+    if (showLoader) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showLoader]);
 
   return (
-    <>
-      {isLoading && <AdvancedLoader onLoadComplete={handleLoadComplete} />}
-
-      {showContent && (
-        <div className="main-content">
-          <CustomCursor />
-          <MouseTrail />
-          <AppProvider>
-            <Navigation />
-            <ScrollBar />
-
-            <Routes>
-              <Route path="/*" element={<Error />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/projects/:slug" element={<ProjectDetails />} />
-            </Routes>
-          </AppProvider>
-        </div>
+    <AppProvider>
+      {showLoader && (
+        <AdvancedLoader onLoadComplete={() => setShowLoader(false)} />
       )}
-    </>
-  )
+
+      {/* Always in the DOM so crawlers / AI see real routes & text */}
+      <div className="main-content">
+        <CustomCursor />
+        <MouseTrail />
+        <Navigation />
+        <ScrollBar />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:slug" element={<ProjectDetails />} />
+          <Route path="/*" element={<Error />} />
+        </Routes>
+      </div>
+    </AppProvider>
+  );
 }
 
-export default App
+export default App;
