@@ -5,6 +5,7 @@ import { Error } from './layouts/Error';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './pages/home/Home';
 import { Projects } from './pages/projects/projects';
+import ProjectDetails from './pages/projects/ProjectDetails';
 import { AppProvider } from './context/AppContext';
 import AdvancedLoader from './components/AdvancedLoader';
 import CustomCursor from './components/CustomCursor';
@@ -45,6 +46,7 @@ function App() {
               <Route path="/*" element={<Error />} />
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:slug" element={<ProjectDetails />} />
             </Routes>
           </AppProvider>
         </div>

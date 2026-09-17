@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useAppContext } from "../../context/AppContext";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/motion";
-import ShowModalProject from "./components/showModalProject";
 import Seo from "../../utils/Seo";
+import { useOpenProject } from "../../hooks/useOpenProject";
+import { GoArrowUpRight } from "react-icons/go";
 
 
 export const Projects = () => {
@@ -13,7 +14,8 @@ useEffect(() => {
 }, []);
     
 
-    const { projects, selectedProject, setSelectedProject } = useAppContext();
+    const { projects } = useAppContext();
+    const openProject = useOpenProject();
     return (
         <>
             <Seo
@@ -37,9 +39,9 @@ useEffect(() => {
                     {
                         projects.map((ele, idx) =>
 
-                            <div key={idx} onClick={() => setSelectedProject(ele)} className="cursor-pointer w-full poppin py-3 flex flex-col gap-y-6 border-t border-white/50">
+                            <div key={idx} onClick={(e) => openProject(ele, e)} className="group cursor-pointer w-full poppin py-3 flex flex-col gap-y-6 border-t border-white/50">
                                 <div className="py-4 selection:bg-white selection:text-black text-white text-xl flex items-center justify-between">
-                                    <p>{ele.name}</p>
+                                    <p className="group-hover:text-white/90 transition-colors">{ele.name}</p>
                                     {ele.technologies.map((e, i) => (
                                         <p className="text-base bg-white/40 px-2 rounded mb-0" key={i}>{e}</p>
                                     ))}
@@ -51,6 +53,9 @@ useEffect(() => {
                                         src={ele.image}
                                         alt={`${ele.name} — ${ele.technologies.join(", ")} project by Mehdi Forkani`}
                                     />
+                                    <div className="absolute top-3 right-3 h-10 w-10 rounded-full bg-white text-black flex items-center justify-center opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                                        <GoArrowUpRight className="text-lg" />
+                                    </div>
                                 </div>
                             </div>
                         )
@@ -58,10 +63,6 @@ useEffect(() => {
 
                 </div>
             </div>
-
-            {selectedProject && <ShowModalProject />}
-
-
         </>
     );
 };

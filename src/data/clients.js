@@ -8,13 +8,13 @@ import tm from "../assets/images/clients/2m.png";
 import israr from "../assets/images/clients/israr.png";
 
 export const clients = [
-  { logo: jadara, name: "Jadara" },
-  { logo: lionsgeek, name: "LionsGeek" },
-  { logo: casamemoire, name: "Casamemoire" },
-  // { logo: tilila, name: "Tilila" }, // import from ../assets/images/clients/tilila.png
-  { logo: tm, name: "2M", preserveColor: true },
+  { logo: jadara, name: "Jadara Foundation", url: "https://www.jadarafoundation.org/" },
+  { logo: lionsgeek, name: "LionsGeek", url: "https://lionsgeek.ma/" },
+  { logo: casamemoire, name: "Casamémoire", url: "https://www.casamemoire.org/" },
+  // { logo: tilila, name: "Tilila", url: "https://tilila.org/" }, // import from ../assets/images/clients/tilila.png
+  { logo: tm, name: "2M", url: "https://2m.ma/", preserveColor: true },
   { logo: mhijir, name: "Oumaima Mhijir" },
-  { logo: tihadazemmour, name: "Tihada Zemmour", preserveColor: true },
-  { logo: a1, name: "Atelier A1" },
-  { logo: israr, name: "ISRAR", preserveColor: true },
+  { logo: tihadazemmour, name: "Tihad Azemmour", url: "https://tihadazemmourwomen.ma/", preserveColor: true },
+  { logo: a1, name: "Atelier A1", url: "https://ateliera1.com/" },
+  { logo: israr, name: "ISRAR", url: "https://israr.ma/", preserveColor: true },
 ];

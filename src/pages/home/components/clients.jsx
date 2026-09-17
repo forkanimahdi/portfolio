@@ -17,28 +17,41 @@ export const Clients = () => {
         </motion.h1>
 
         <div className="w-5/6 grid lg:grid-cols-8 items-center grid-cols-2 gap-8">
-          {clients.map((client, idx) => (
-            <motion.div
-              key={idx}
-              variants={fadeIn("up", 0.1 * idx)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: true }}
-            >
-              <div
-                title={client.name}
-                className={`flex-col gap-y-2 flex items-center justify-center select-none hover:bg-slate-500/30 p-5 bg-white/5 border border-[#ffffff1a] rounded-lg ${
-                  client.preserveColor ? "" : "brightness-0 invert"
-                }`}
+          {clients.map((client, idx) => {
+            const Wrapper = client.url ? "a" : "div";
+            const wrapperProps = client.url
+              ? {
+                  href: client.url,
+                  target: "_blank",
+                  rel: "noreferrer",
+                  "aria-label": `Visit ${client.name}`,
+                }
+              : {};
+            return (
+              <motion.div
+                key={idx}
+                variants={fadeIn("up", 0.1 * idx)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: true }}
               >
-                <img
-                  className="object-contain w-24 h-24 max-w-full max-h-full"
-                  src={client.logo}
-                  alt={client.name}
-                />
-              </div>
-            </motion.div>
-          ))}
+                <Wrapper
+                  {...wrapperProps}
+                  title={client.name}
+                  className={`group relative flex-col gap-y-2 flex items-center justify-center select-none hover:bg-slate-500/30 p-5 bg-white/5 border border-[#ffffff1a] rounded-lg transition-all duration-300 ${
+                    client.url ? "cursor-pointer hover:-translate-y-1 hover:border-white/40" : ""
+                  } ${client.preserveColor ? "" : "brightness-0 invert"}`}
+                >
+                  <img
+                    className="object-contain w-24 h-24 max-w-full max-h-full transition-transform duration-300 group-hover:scale-105"
+                    src={client.logo}
+                    alt={`${client.name} logo`}
+                    loading="lazy"
+                  />
+                </Wrapper>
+              </motion.div>
+            );
+          })}
         </div>
 
         <div className="flex items-center justify-center w-full px-5 lg:px-0">

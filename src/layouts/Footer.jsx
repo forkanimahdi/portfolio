@@ -54,7 +54,7 @@ export const Footer = () => {
                         <span className="poppin text-lg">Mehdi Forkani</span>
                     </Link>
                     <p className="text-white/50 poppin text-sm leading-relaxed">
-                        Full-stack developer building powerful web & mobile experiences from Morocco.
+                        Mobile & web app developer building fast, reliable web & mobile products from Morocco.
                     </p>
                 </div>
 

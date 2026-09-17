@@ -42,11 +42,14 @@ const setLink = (rel, href) => {
   el.setAttribute("href", href);
 };
 
+const ROUTE_JSONLD_ID = "route-jsonld";
+
 const Seo = ({
   title,
   description,
   path = "/",
   image = DEFAULT_IMAGE,
+  jsonLd = null,
 }) => {
   useEffect(() => {
     const url = `${SITE_URL}${path}`;
@@ -64,7 +67,31 @@ const Seo = ({
     setLink("canonical", url);
   }, [title, description, path, image]);
 
+  // Inject / update per-route structured data (e.g. CreativeWork for a case study).
+  useEffect(() => {
+    const existing = document.getElementById(ROUTE_JSONLD_ID);
+    if (!jsonLd) {
+      if (existing) existing.remove();
+      return;
+    }
+    let el = existing;
+    if (!el) {
+      el = document.createElement("script");
+      el.type = "application/ld+json";
+      el.id = ROUTE_JSONLD_ID;
+      document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(jsonLd);
+
+    return () => {
+      const node = document.getElementById(ROUTE_JSONLD_ID);
+      if (node) node.remove();
+    };
+  }, [jsonLd]);
+
   return null;
 };
+
+export const SITE_ORIGIN = SITE_URL;
 
 export default Seo;

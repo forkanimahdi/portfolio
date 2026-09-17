@@ -3,10 +3,11 @@ import { motion } from "framer-motion";
 import { useAppContext } from "../../../context/AppContext";
 import { Link } from "react-router-dom";
 import { GoArrowUpRight } from "react-icons/go";
-import ShowModalProject from "../../projects/components/showModalProject";
+import { useOpenProject } from "../../../hooks/useOpenProject";
 
 export const Projects = () => {
-    const { projects, selectedProject, setSelectedProject } = useAppContext();
+    const { projects } = useAppContext();
+    const openProject = useOpenProject();
 
     // Show the first 4 projects as a curated "featured" selection (stable order)
     const featured = projects.slice(0, 4);
@@ -44,7 +45,7 @@ export const Projects = () => {
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true }}
-                            onClick={() => setSelectedProject(ele)}
+                            onClick={(e) => openProject(ele, e)}
                             className="group cursor-pointer poppin rounded-2xl overflow-hidden premium-glass"
                         >
                             {/* Image with gradient + hover zoom */}
@@ -94,9 +95,6 @@ export const Projects = () => {
                 </Link>
 
             </div>
-
-            {selectedProject && <ShowModalProject />}
-
         </>
     );
 };

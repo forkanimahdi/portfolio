@@ -36,11 +36,11 @@ export const About = () => {
                         initial="hidden"
                         whileInView="show"
                     >
-                        Hi, I’m Mehdi, a Software Developer from Morocco. Most of my work starts with a simple question: <span className="font-bold italic">“Do you think we can…?”</span>
+                        Hi, I’m Mehdi, a mobile &amp; web app developer based in Morocco. Most of my work starts with a simple question: <span className="font-bold italic">“Do you think we can…?”</span>
                         <br /><br />
-                        I’ve worked with startups, NGOs, authors, and leaders, turning ideas and real-world problems into digital products: platforms, apps, dashboards, and tools people use every day. From the first conversation to a live product, I stay involved so the result is clear, useful, and built to last.
+                        I design and build production-ready web platforms and mobile apps, from polished React and React Native front-ends to robust Laravel back-ends and admin dashboards. I’ve partnered with startups, NGOs, institutions, and leaders to turn ideas and real-world problems into products people rely on every day.
                         <br /><br />
-                        I also coach young people finding their way into tech. Then I try to turn that question into something real.
+                        From the first conversation to launch and beyond, I stay hands-on so the result is clear, reliable, and built to scale. I also coach young developers finding their way into tech.
                     </motion.p>
 
 
