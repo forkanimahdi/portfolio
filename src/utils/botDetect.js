@@ -1,7 +1,3 @@
-/**
- * Detect common search / social / AI crawlers.
- * Used to skip the intro loader so first paint exposes real page content.
- */
 export const isCrawlerBot = () => {
   if (typeof navigator === "undefined") return true;
   const ua = navigator.userAgent || "";

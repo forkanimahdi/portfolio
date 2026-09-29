@@ -6,7 +6,6 @@ const CustomCursor = () => {
     const followerRef = useRef(null);
 
     useEffect(() => {
-        // Only show custom cursor on desktop
         const isMobile = window.innerWidth <= 768;
         if (isMobile) return;
 
@@ -68,17 +67,14 @@ const CustomCursor = () => {
             });
         };
 
-        // Event listeners
         document.addEventListener('mousemove', moveCursor);
-        
-        // Add hover effects for interactive elements
+
         const interactiveElements = document.querySelectorAll('a, button, .cursor-hover');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', handleLinkHover);
             el.addEventListener('mouseleave', handleLinkLeave);
         });
 
-        // Add hover effects for project cards
         const projectCards = document.querySelectorAll('.project-card');
         projectCards.forEach(card => {
             card.addEventListener('mouseenter', handleMouseEnter);
@@ -98,7 +94,6 @@ const CustomCursor = () => {
         };
     }, []);
 
-    // Only render on desktop
     const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
     if (isMobile) return null;
 

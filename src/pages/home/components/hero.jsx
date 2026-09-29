@@ -1,74 +1,100 @@
-import React from "react";
-import { fadeIn } from "../../../utils/motion";
 import { motion } from "framer-motion";
-import heroImage from "../../../assets/images/hero.webp"
-import heroImageMobile from "../../../assets/images/heroMobile.webp"
+import { GoArrowRight } from "react-icons/go";
 
-const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (section) section.scrollIntoView({ behavior: "smooth" });
-};
+const ease = [0.22, 1, 0.36, 1];
 
-const texts = [
-    { content: "The future ?", delay: 0.5, accent: false },
-    { content: "They just see it coming!", delay: 1, accent: false },
-    { content: "I code it.", delay: 1.5, accent: true },
-];
+const slideUp = (delay) => ({
+    hidden: { y: "110%" },
+    show: { y: 0, transition: { duration: 1, delay, ease } },
+});
 
-export const Hero = () => (
-    <div id="home" className="pt-[10vh] h-[90vh] flex flex-col items-center lg:justify-evenly justify-center lg:gap-0 gap-y-10">
+const fadeUp = (delay) => ({
+    hidden: { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, delay, ease } },
+});
 
-        {/* Semantic H1 for search engines & AI (visually hidden, keeps the creative design intact) */}
-        <h1 className="sr-only">
-            Mehdi Forkani — Mobile &amp; Web App Developer in Morocco (Laravel, React, React Native)
-        </h1>
+export const Hero = ({ ready = true }) => {
+    const animate = ready ? "show" : "hidden";
 
-        <motion.p
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            className="eyebrow z-20"
-        >
-            Mobile &amp; Web App Developer · Morocco
-        </motion.p>
+    const scrollTo = (id) => {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    };
 
-        <div className="uppercase selection:bg-white selection:text-black text-white lg:text-[4rem] text-[2rem] lg:leading-normal leading-loose font-extrabold text-center selectable">
-            {texts.map((text, index) => (
-                <motion.div
-                    key={index}
-                    variants={fadeIn("up", text.delay)}
-                    initial="hidden"
-                    whileInView="show"
-                    className={text.accent ? "gradient-heading" : ""}
+    return (
+        <section id="home" className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-black pb-32 pt-28">
+            <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[36rem] w-[56rem] max-w-[160vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-alpha/35 blur-[140px]"></div>
+            <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-alpha/60 to-transparent"></div>
+
+            <div className="container flex flex-col items-center text-center">
+                <motion.p
+                    variants={fadeUp(0.1)} initial="hidden" animate={animate}
+                    className="flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs text-white/70 backdrop-blur"
                 >
-                    {text.content}
+                    <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-alpha opacity-75"></span>
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-alpha"></span>
+                    </span>
+                    Mobile &amp; Web App Developer · Morocco
+                </motion.p>
+
+                <h1 className="mt-10 font-display text-[clamp(2.25rem,5.6vw,5rem)] font-bold leading-[1.05] tracking-tight">
+                    <span className="sr-only">Mehdi Forkani — Mobile &amp; Web App Developer in Morocco (Laravel, React, React Native). </span>
+                    <span className="block overflow-hidden pb-1">
+                        <motion.span variants={slideUp(0.2)} initial="hidden" animate={animate} className="block text-white/35">
+                            The future?
+                        </motion.span>
+                    </span>
+                    <span className="block overflow-hidden pb-1">
+                        <motion.span variants={slideUp(0.35)} initial="hidden" animate={animate} className="block text-white/35">
+                            They just see it coming!
+                        </motion.span>
+                    </span>
+                    <span className="block overflow-hidden pb-2">
+                        <motion.span variants={slideUp(0.5)} initial="hidden" animate={animate} className="block text-white">
+                            I <span className="text-alpha">code</span> it.
+                        </motion.span>
+                    </span>
+                </h1>
+
+                <motion.p
+                    variants={fadeUp(0.8)} initial="hidden" animate={animate}
+                    className="mt-8 max-w-md text-[15px] leading-7 text-white/55 lg:text-base"
+                >
+                    I&apos;m Mehdi Forkani, building web platforms and mobile apps with Laravel, React and React Native.
+                </motion.p>
+
+                <motion.div
+                    variants={fadeUp(0.95)} initial="hidden" animate={animate}
+                    className="mt-10 flex flex-wrap items-center justify-center gap-3"
+                >
+                    <button
+                        onClick={() => scrollTo("projects")}
+                        className="group flex items-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:brightness-125"
+                    >
+                        Want to bet?
+                        <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </button>
+                    <button
+                        onClick={() => scrollTo("contact")}
+                        className="rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white/80 transition duration-300 hover:border-white/40 hover:text-white"
+                    >
+                        Get in touch
+                    </button>
                 </motion.div>
-            ))}
-        </div>
+            </div>
 
-        {/* Background section */}
-        <div className="w-full h-full  absolute top-0   ">
-            <div className="bg-gradient-to-b from-black/0 to-black bottom-0 absolute z-10 w-full  h-[30vh]"></div>
-            <img loading="lazy" className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-10 lg:block hidden" src={heroImage} alt="" />
-            <img loading="lazy" className="h-[100vh] lg:h-fit lg:bg-center bg-right object-cover opacity-20 w-full lg:hidden block" src={heroImageMobile} alt="" />
-        </div>
-
-        <motion.div
-            variants={fadeIn("up", 1.8)}
-            initial="hidden"
-            whileInView="show"
-            className="group uppercase cursor-pointer z-20 select-none no-underline text-white border border-white/60 rounded-xl p-3 px-6 hover:bg-white hover:text-black hover:border-white poppin flex items-center gap-x-3 transition-colors"
-            onClick={() => scrollToSection("projects")}
-        >
-            Want to bet?
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-        </motion.div>
-
-        <div className="flex flex-col gap-y-1 items-center cursor-pointer z-20" onClick={() => scrollToSection("about")}>
-            <svg className="animate-bounce nav bi bi-mouse" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#bdbdbd" viewBox="0 0 16 16">
-                <path d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m4 8a4 4 0 0 1-8 0V5a4 4 0 1 1 8 0zM8 0a5 5 0 0 0-5 5v6a5 5 0 0 0 10 0V5a5 5 0 0 0-5-5" />
-            </svg>
-            <p className="text-white/80 text-sm animate-pulse">Scroll Now</p>
-        </div>
-    </div>
-);
+            <motion.div variants={fadeUp(1.2)} initial="hidden" animate={animate} className="absolute inset-x-0 bottom-0">
+                <div className="container flex items-center justify-center border-t border-white/[0.06] py-6 text-[0.7rem] uppercase tracking-[0.25em] text-white/40 sm:justify-between">
+                    <span className="hidden sm:block">Based in Casablanca</span>
+                    <button onClick={() => scrollTo("about")} className="flex items-center gap-3 transition-colors hover:text-white/80">
+                        Scroll
+                        <span className="relative h-8 w-px overflow-hidden bg-white/15">
+                            <span className="absolute inset-x-0 top-0 h-1/2 animate-scroll-hint bg-alpha"></span>
+                        </span>
+                    </button>
+                    <span className="hidden sm:block">Laravel · React · React Native</span>
+                </div>
+            </motion.div>
+        </section>
+    );
+};

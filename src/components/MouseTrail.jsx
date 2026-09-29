@@ -6,11 +6,9 @@ const MouseTrail = () => {
     const mousePos = useRef({ x: 0, y: 0 });
 
     useEffect(() => {
-        // Only show on desktop
         const isMobile = window.innerWidth <= 768;
         if (isMobile) return;
 
-        // Create trail elements
         const trailCount = 20;
         const trails = [];
 
@@ -38,7 +36,6 @@ const MouseTrail = () => {
             mousePos.current = { x: e.clientX, y: e.clientY };
         };
 
-        // Animate trail
         const animateTrail = () => {
             trails.forEach((trail, index) => {
                 const delay = index * 0.02;
@@ -52,7 +49,6 @@ const MouseTrail = () => {
             });
         };
 
-        // Animation loop
         const animate = () => {
             animateTrail();
             requestAnimationFrame(animate);
@@ -67,7 +63,7 @@ const MouseTrail = () => {
         };
     }, []);
 
-    return null; // This component doesn't render anything directly
+    return null;
 };
 
 export default MouseTrail;

@@ -1,19 +1,6 @@
 import { useEffect } from "react";
 
-/**
- * Dependency-free SEO helper.
- * Updates <title>, meta description/keywords, canonical, and the Open Graph /
- * Twitter tags on route change so each page has correct, shareable metadata.
- *
- * Usage:
- *   <Seo
- *     title="Projects | Mehdi Forkani — Mobile & Web App Developer"
- *     description="..."
- *     path="/projects"
- *   />
- */
-
-const SITE_URL = "https://forkanimahdi.vercel.app"; // update if you connect a custom domain
+const SITE_URL = "https://forkanimahdi.vercel.app";
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 const setMeta = (selector, attr, value) => {
@@ -67,7 +54,6 @@ const Seo = ({
     setLink("canonical", url);
   }, [title, description, path, image]);
 
-  // Inject / update per-route structured data (e.g. CreativeWork for a case study).
   useEffect(() => {
     const existing = document.getElementById(ROUTE_JSONLD_ID);
     if (!jsonLd) {

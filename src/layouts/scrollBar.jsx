@@ -3,41 +3,46 @@ import { useEffect, useState } from "react";
 export const ScrollBar = () => {
     const [scrollPercent, setScrollPercent] = useState(0);
 
+    useEffect(() => {
+        let pageTitle = document.title;
 
-    let e = document.title;
-    window.addEventListener("blur", () => {
-        document.title = "Im Here ! ​ "
-    })
-        window.addEventListener("focus", () => {
-            document.title = e
-        })
+        const handleBlur = () => {
+            pageTitle = document.title;
+            document.title = "Im Here ! ";
+        };
+
+        const handleFocus = () => {
+            document.title = pageTitle;
+        };
+
+        window.addEventListener("blur", handleBlur);
+        window.addEventListener("focus", handleFocus);
+
+        return () => {
+            window.removeEventListener("blur", handleBlur);
+            window.removeEventListener("focus", handleFocus);
+        };
+    }, []);
+
     useEffect(() => {
         const handleScroll = () => {
-            const windowHeight = window.innerHeight;
-            const scrollTop = window.scrollY;
-            const documentHeight = document.documentElement.scrollHeight;
-
-            const scrollableDistance = documentHeight - windowHeight;
+            const scrollableDistance = document.documentElement.scrollHeight - window.innerHeight;
 
             if (scrollableDistance === 0) {
                 setScrollPercent(0);
             } else {
-                const newScrollPercent = (scrollTop / scrollableDistance) * 100;
-                setScrollPercent(Math.round(Math.min(100, Math.max(0, newScrollPercent))));
+                setScrollPercent(Math.min(100, (window.scrollY / scrollableDistance) * 100));
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
 
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return (
-        <>
-            <div className="w-full h-1 z-[110] fixed top-0">
-                <div style={{ width: `${scrollPercent}%`, transition: "0.7s ease" }} className="h-full bg-white scrollNav"></div>
-            </div>
-
-        </>
-    )
+        <div className="fixed top-0 z-[110] h-[2px] w-full">
+            <div style={{ width: `${scrollPercent}%` }} className="h-full bg-alpha transition-[width] duration-700 ease-out"></div>
+        </div>
+    );
 };

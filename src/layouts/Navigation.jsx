@@ -1,37 +1,47 @@
-import logo from "../assets/images/myLogo.png";
-import { FaLinkedinIn } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa";
-import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { RiCloseLine, RiMenu3Line } from "react-icons/ri";
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import AnimatedCursor from "react-animated-cursor";
-import { motion, AnimatePresence } from "framer-motion";
+import logo from "../assets/images/myLogo.png";
+
+const links = ["about", "projects", "clients", "contact"];
+
+const socials = [
+    { icon: <FaLinkedinIn />, name: "LinkedIn", link: "https://www.linkedin.com/in/forkanimahdi/" },
+    { icon: <FaInstagram />, name: "Instagram", link: "https://www.instagram.com/forkanimahdi" },
+];
 
 export const Navigation = () => {
-    const naviger = ["home", "about", "projects", "clients", "contact"];
     const [nav, setNav] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
-    const isProjectsPage = location.pathname === "/projects";
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const handleScroll = () => {
-            const threshold = isProjectsPage ? 10 : window.innerHeight * 0.9;
-            setScrolled(window.scrollY > threshold);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 40);
         handleScroll();
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [isProjectsPage]);
+    }, []);
 
-    const handleNavClick = (e) => {
-        if (e.target.id === "backdrop") setNav(false);
+    useEffect(() => {
+        document.body.style.overflow = nav ? "hidden" : "";
+    }, [nav]);
+
+    const goTo = (id) => {
+        setNav(false);
+        if (location.pathname !== "/") {
+            navigate(`/#${id}`);
+        } else {
+            document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+        }
     };
 
     return (
         <>
-            {/* Custom Cursor */}
-            <div className="lg:block hidden">
+            <div className="hidden lg:block">
                 <AnimatedCursor
                     innerSize={10}
                     outerSize={80}
@@ -48,98 +58,90 @@ export const Navigation = () => {
                 />
             </div>
 
-            {/* Main Navbar */}
-            <div className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${scrolled ? "bg-black/80 backdrop-blur-md border-b border-white/10" : "bg-transparent"} lg:h-[10vh] py-2 lg:py-0 h-fit flex lg:flex-row flex-col lg:justify-between items-center px-6 lg:px-16`}>
-                {/* Logo + Mobile Toggle */}
-                <div className="w-full lg:w-auto flex items-center justify-between">
-                    <a href="/">
-                        <img loading="lazy" src={logo} className="w-14" alt="logo" />
-                    </a>
-                    {
-                        nav ?
-                            <div className="absolute top-6 right-6 text-white text-3xl cursor-pointer">
-                                <RiCloseLine onClick={() => setNav(false)} />
-                            </div>
-                            :
-                            <div onClick={() => setNav(true)} className="text-white text-3xl lg:hidden cursor-pointer transition">
-                                <RiMenu3Line />
-                            </div>
+            <header
+                className={`fixed inset-x-0 top-0 z-[100] border-b transition-colors duration-500 ${scrolled || nav ? "border-white/[0.06] bg-black/80 backdrop-blur-md" : "border-transparent"}`}
+            >
+                <nav className="container flex h-20 items-center justify-between">
+                    <Link to="/" onClick={() => setNav(false)}>
+                        <img src={logo} alt="Mehdi Forkani logo" className="h-[4.5rem] w-[4.5rem] object-contain" />
+                    </Link>
 
-                    }
-                </div>
+                    <div className="hidden items-center gap-12 lg:flex">
+                        <ul className="flex items-center gap-8 text-sm text-white/60">
+                            {links.map((link) => (
+                                <li key={link}>
+                                    <button onClick={() => goTo(link)} className="capitalize transition-colors hover:text-white">
+                                        {link}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
 
-                {/* Desktop Nav */}
-                <div className="hidden lg:flex gap-x-16 items-center">
-                    {naviger.map((e, i) => (
-                        <div key={i}
-                            className="text-[#bdbdbd] uppercase nav cursor-pointer font-medium lg:text-lg hover:text-white transition"
-                            onClick={() => {
-                                if (window.location.pathname !== "/") {
-                                    window.location.href = `/#${e}`;
-                                } else {
-                                    const section = document.getElementById(e);
-                                    if (section) {
-                                        section.scrollIntoView({ behavior: "smooth" });
-                                    }
-                                }
-                            }}
-                        >
-                            {e}
+                        <span className="h-6 w-px bg-white/15"></span>
+
+                        <div className="flex items-center gap-3 text-lg">
+                            {socials.map((social) => (
+                                <a
+                                    key={social.name}
+                                    href={social.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label={social.name}
+                                    className="flex h-10 w-10 items-center justify-center text-white/70 transition-colors duration-300 hover:text-white"
+                                >
+                                    {social.icon}
+                                </a>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </div>
 
-                {/* Desktop Social */}
-                <div className="hidden lg:flex gap-x-4">
-                    <a className="text-white text-2xl" target="_blank" href="https://www.linkedin.com/in/forkanimahdi/"><FaLinkedinIn /></a>
-                    <a className="text-white text-2xl" target="_blank" href="https://instagram.com/forkanimahdi"><FaInstagram /></a>
-                </div>
-            </div>
+                    <button onClick={() => setNav(!nav)} aria-label="Toggle menu" className="text-2xl text-white lg:hidden">
+                        {nav ? <RiCloseLine /> : <RiMenu3Line />}
+                    </button>
+                </nav>
+            </header>
 
-            {/* Mobile Menu */}
             <AnimatePresence>
                 {nav && (
                     <motion.div
-                        id="backdrop"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="fixed top-0 left-0 h-screen w-full bg-black/80 backdrop-blur-lg z-[90] flex justify-center items-center"
-                        onClick={handleNavClick}
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 z-[90] flex flex-col overflow-hidden bg-black pt-20 lg:hidden"
                     >
-                        <motion.div
-                            initial={{ scale: 0.95, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.95, opacity: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="relative w-full text-center text-white flex flex-col gap-10 text-xl font-semibold poppin"
+                        <div className="pointer-events-none absolute -left-32 top-10 h-80 w-80 rounded-full bg-alpha/25 blur-[100px]"></div>
+
+                        <motion.ul
+                            initial={{ y: 16, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ duration: 0.4, delay: 0.05 }}
+                            className="container relative mt-10 flex flex-col"
                         >
-
-
-                            {naviger.map((e, i) => (
-                                <div key={i}
-                                    className="cursor-pointer uppercase hover:opacity-80 transition"
-                                    onClick={() => {
-                                        if (window.location.pathname !== "/") {
-                                            window.location.href = `/#${e}`;
-                                        } else {
-                                            const section = document.getElementById(e);
-                                            if (section) {
-                                                section.scrollIntoView({ behavior: "smooth" });
-                                            }
-                                        }
-                                    }}
-                                >
-                                    {e}
-                                </div>
+                            {links.map((link, idx) => (
+                                <li key={link} className="border-b border-white/[0.06]">
+                                    <button onClick={() => goTo(link)} className="flex w-full items-center justify-between py-5 text-left">
+                                        <span className="font-display text-3xl font-bold capitalize tracking-tight text-white">{link}</span>
+                                        <span className="text-xs text-white/30">0{idx + 1}</span>
+                                    </button>
+                                </li>
                             ))}
+                        </motion.ul>
 
-                            <div className="flex gap-6 justify-center pt-4">
-                                <a className="text-white text-2xl" target="_blank" href="https://www.linkedin.com/in/forkanimahdi/"><FaLinkedinIn /></a>
-                                <a className="text-white text-2xl" target="_blank" href="https://instagram.com/forkanimahdi"><FaInstagram /></a>
-                            </div>
-                        </motion.div>
+                        <div className="container relative mt-auto flex gap-2 pb-10">
+                            {socials.map((social) => (
+                                <a
+                                    key={social.name}
+                                    href={social.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label={social.name}
+                                    className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 text-lg text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-white"
+                                >
+                                    {social.icon}
+                                </a>
+                            ))}
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

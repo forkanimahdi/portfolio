@@ -1,23 +1,73 @@
-import React, { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { fadeIn } from "../../../utils/motion";
-import blackLogo from "../../../assets/images/blackLogo.png";
-import {
-    FaInstagram,
-    FaLinkedinIn,
-    FaXTwitter,
-} from "react-icons/fa6";
-import { GoArrowUpRight } from "react-icons/go";
+import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
+import { FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
+import { fadeIn } from "../../../utils/motion";
+
+const socials = [
+    { icon: <FaLinkedinIn />, name: "LinkedIn", link: "https://www.linkedin.com/in/forkanimahdi/" },
+    { icon: <FaInstagram />, name: "Instagram", link: "https://www.instagram.com/forkanimahdi" },
+    { icon: <FaXTwitter />, name: "X", link: "https://twitter.com/forkanimahdi" },
+    { icon: <SiGmail />, name: "Email", link: "mailto:forkanimahdi@gmail.com" },
+];
+
+const captchaSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || (import.meta.env.DEV ? "1x00000000000000000000AA" : "");
+
+const inputClass =
+    "w-full rounded-lg border border-white/10 bg-white/[0.03] px-5 py-3.5 text-sm text-white placeholder-white/35 outline-none transition-colors duration-300 focus:border-alpha focus:bg-white/[0.05]";
 
 export const Contact = () => {
-    const form = useRef();
-    const [status, setStatus] = useState("");
+    const form = useRef(null);
+    const captchaBox = useRef(null);
+    const captchaId = useRef(null);
+    const [captchaToken, setCaptchaToken] = useState(null);
+    const [sending, setSending] = useState(false);
+    const [message, setMessage] = useState({ text: "", error: false });
+
+    useEffect(() => {
+        if (!captchaSiteKey) return;
+
+        const renderCaptcha = () => {
+            if (!captchaBox.current) return;
+            captchaId.current = window.turnstile.render(captchaBox.current, {
+                sitekey: captchaSiteKey,
+                theme: "dark",
+                size: "flexible",
+                callback: (token) => setCaptchaToken(token),
+                "expired-callback": () => setCaptchaToken(null),
+                "error-callback": () => setCaptchaToken(null),
+            });
+        };
+
+        if (window.turnstile) {
+            renderCaptcha();
+        } else {
+            const script = document.createElement("script");
+            script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+            script.async = true;
+            script.onload = renderCaptcha;
+            document.head.appendChild(script);
+        }
+
+        return () => {
+            if (window.turnstile && captchaId.current !== null) {
+                window.turnstile.remove(captchaId.current);
+            }
+        };
+    }, []);
 
     const sendEmail = (e) => {
         e.preventDefault();
-        setStatus("Sending...");
+
+        if (!captchaToken) {
+            setMessage({ text: "Please confirm you're human before sending.", error: true });
+            return;
+        }
+
+        setSending(true);
+        setMessage({ text: "", error: false });
 
         emailjs
             .sendForm(
@@ -27,154 +77,107 @@ export const Contact = () => {
                 import.meta.env.VITE_EMAILJS_USER_ID
             )
             .then(
-                (result) => {
-                    console.log(result.text);
-                    setStatus("Message sent successfully!");
+                () => {
+                    setMessage({ text: "Message sent successfully!", error: false });
                     form.current.reset();
                 },
-                (error) => {
-                    console.error(error.text);
-                    setStatus("Failed to send. Try again.");
+                () => {
+                    setMessage({ text: "Failed to send. Try again.", error: true });
                 }
-            );
+            )
+            .finally(() => {
+                setSending(false);
+                setCaptchaToken(null);
+                window.turnstile?.reset(captchaId.current);
+            });
     };
 
     return (
-        <div
-            id="contact"
-            className="flex flex-col lg:items-center justify-center gap-y-10 px-6 bg-black min-h-screen text-white"
-        >
-            <motion.h1
-                variants={fadeIn("up", 0.2)}
-                initial="hidden"
-                whileInView="show"
-                className="uppercase pt-[10vh] text-center selection:bg-white selection:text-black text-[3rem] font-bold"
-            >
-                Let's Talk
-            </motion.h1>
-
-            <div className="lg:w-3/4 py-8 px-4 lg:px-0 flex flex-col items-center gap-y-8 bg-white text-black rounded-3xl">
-                <motion.h1
-                    variants={fadeIn("up", 0.4)}
-                    initial="hidden"
-                    whileInView="show"
-                    className="text-3xl font-semibold flex items-center"
+        <section id="contact" className="bg-dark py-24 lg:py-32">
+            <div className="container">
+                <motion.div
+                    variants={fadeIn("up", 0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                    className="relative isolate overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02]"
                 >
-                    Let's Work T <img src={blackLogo} className="w-15 h-9" alt="" /> gether
-                </motion.h1>
-                <motion.p
-                    variants={fadeIn("up", 0.5)}
-                    initial="hidden"
-                    whileInView="show"
-                    className="lg:w-1/2 text-center"
-                >
-                    Unlock your potential with personalized solutions tailored just for
-                    you. Let’s embark on a journey of growth and success together!
-                </motion.p>
-                <motion.a
-                    variants={fadeIn("up", 0.6)}
-                    initial="hidden"
-                    whileInView="show"
-                    className="py-2 w-1/3 lg:w-1/6 text-center border border-black rounded-xl hover:bg-black hover:text-white transition"
-                    href="#form"
-                >
-                    Contact
-                </motion.a>
-            </div>
+                    <div className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[28rem] w-[28rem] rounded-full bg-alpha/25 blur-[100px]"></div>
 
-            <div className="lg:w-3/4 flex flex-col lg:flex-row gap-6 py-6">
-                {/* Contact Form */}
-                <form
-                    ref={form}
-                    onSubmit={sendEmail}
-                    id="form"
-                    className="lg:w-1/2 flex flex-col gap-y-6 border border-white/70 rounded-3xl p-5"
-                >
-                    <div className="flex flex-col lg:flex-row gap-5">
-                        <input
-                            name="user_name"
-                            placeholder="Name"
-                            className="flex-1 px-6 py-4 bg-transparent border border-white/60 text-white placeholder-white/50 rounded-2xl"
-                            type="text"
-                            required
-                        />
-                        <input
-                            name="user_email"
-                            placeholder="Email"
-                            className="flex-1 px-6 py-4 bg-transparent border border-white/60 text-white placeholder-white/50 rounded-2xl"
-                            type="email"
-                            required
-                        />
-                    </div>
+                    <div className="grid gap-14 p-8 sm:p-12 lg:grid-cols-2 lg:gap-16 lg:p-16">
+                        <div className="flex flex-col">
+                            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
+                                <span className="h-px w-8 bg-alpha"></span>
+                                Contact
+                            </p>
 
-                    <div className="flex flex-col lg:flex-row gap-5">
-                        <input
-                            name="phone"
-                            placeholder="Phone Number"
-                            className="flex-1 px-6 py-4 bg-transparent border border-white/60 text-white placeholder-white/50 rounded-2xl"
-                            type="text"
-                        />
-                        <input
-                            name="subject"
-                            placeholder="Subject"
-                            className="flex-1 px-6 py-4 bg-transparent border border-white/60 text-white placeholder-white/50 rounded-2xl"
-                            type="text"
-                        />
-                    </div>
+                            <h2 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                                Let&apos;s build
+                                <br />
+                                something
+                                <br />
+                                <span className="text-alpha">together.</span>
+                            </h2>
 
-                    <textarea
-                        name="message"
-                        placeholder="Message"
-                        className="px-6 py-4 h-40 bg-transparent border border-white/60 text-white placeholder-white/50 rounded-2xl"
-                        required
-                    />
+                            <p className="mt-6 max-w-md text-base leading-relaxed text-white/60">
+                                Whether it&apos;s a product idea, a platform to rebuild, or just a conversation, my inbox is open.
+                            </p>
 
-                    <button
-                        type="submit"
-                        className="w-full py-3 text-black lg:bg-transparent bg-white border text-center border-white lg:text-white hover:bg-white hover:text-black rounded-xl transition"
-                    >
-                        Send
-                    </button>
-
-                    {status && <p className="text-sm text-center text-white mt-2">{status}</p>}
-                </form>
-
-                {/* Socials */}
-                <div className="grid lg:grid-cols-2 md:grid-cols-2 gap-5 lg:w-1/2 lg:px-5">
-                    {[
-                        {
-                            href: "https://www.linkedin.com/in/forkanimahdi/",
-                            icon: <FaLinkedinIn className="text-2xl" />,
-                        },
-                        {
-                            href: "https://www.instagram.com/forkanimahdi",
-                            icon: <FaInstagram className="text-2xl" />,
-                        },
-                        {
-                            href: "https://twitter.com/forkanimahdi",
-                            icon: <FaXTwitter className="text-2xl" />,
-                        },
-                        {
-                            href: "mailto:forkanimahdi@gmail.com",
-                            icon: <SiGmail className="text-2xl" />,
-                        },
-                    ].map(({ href, icon }, idx) => (
-                        <a
-                            key={idx}
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full p-5 flex flex-col justify-between items-start border border-white/35 rounded-2xl hover:bg-white hover:text-black transition text-white"
-                        >
-                            {icon}
-                            <div className="flex justify-between w-full items-center mt-2 text-lg">
-                                <GoArrowUpRight />
-                                <span>@forkanimahdi</span>
+                            <div className="mt-10 grid grid-cols-2 gap-4 lg:mt-auto lg:pt-10">
+                                {socials.map((social) => (
+                                    <a
+                                        key={social.name}
+                                        href={social.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={social.name}
+                                        className="group flex h-36 flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-colors duration-300 hover:border-alpha hover:bg-alpha sm:h-40 lg:aspect-[5/4] lg:h-auto"
+                                    >
+                                        <span className="text-2xl">{social.icon}</span>
+                                        <span className="flex items-center justify-between gap-2 text-sm sm:text-base">
+                                            <GoArrowUpRight className="shrink-0 text-white/60 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
+                                            <span className="truncate text-white/85 group-hover:text-white">@forkanimahdi</span>
+                                        </span>
+                                    </a>
+                                ))}
                             </div>
-                        </a>
-                    ))}
-                </div>
+                        </div>
+
+                        <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                <input className={inputClass} placeholder="Name" name="user_name" autoComplete="name" required />
+                                <input className={inputClass} placeholder="Email" name="user_email" type="email" autoComplete="email" required />
+                            </div>
+                            <div className="grid gap-4 sm:grid-cols-2">
+                                <input className={inputClass} placeholder="Phone number" name="phone" type="tel" autoComplete="tel" />
+                                <input className={inputClass} placeholder="Subject" name="subject" />
+                            </div>
+                            <textarea
+                                className={`${inputClass} min-h-[12rem] flex-1 resize-none`}
+                                placeholder="Tell me about your project"
+                                name="message"
+                                required
+                            />
+
+                            {captchaSiteKey ? (
+                                <div ref={captchaBox} className="h-[65px] w-full overflow-hidden rounded-lg"></div>
+                            ) : (
+                                <p className="text-sm text-error">Spam protection isn&apos;t configured, so the form is disabled.</p>
+                            )}
+
+                            {message.text && (
+                                <p className={`text-center text-sm ${message.error ? "text-error" : "text-white/70"}`}>{message.text}</p>
+                            )}
+
+                            <button
+                                type="submit"
+                                disabled={sending || !captchaToken}
+                                className="group flex w-full items-center justify-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:brightness-125 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:brightness-100"
+                            >
+                                {sending ? "Sending..." : "Send message"}
+                                {!sending && <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />}
+                            </button>
+                        </form>
+                    </div>
+                </motion.div>
             </div>
-        </div>
+        </section>
     );
 };

@@ -1,21 +1,28 @@
-import React, { useEffect } from "react";
-import { useAppContext } from "../../context/AppContext";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { fadeIn } from "../../utils/motion";
-import Seo from "../../utils/Seo";
-import { useOpenProject } from "../../hooks/useOpenProject";
 import { GoArrowUpRight } from "react-icons/go";
+import { fadeIn } from "../../utils/motion";
+import { useAppContext } from "../../context/AppContext";
+import { useOpenProject } from "../../hooks/useOpenProject";
+import { Footer } from "../../layouts/Footer";
+import Seo from "../../utils/Seo";
 
+const gridStyle = {
+    backgroundImage:
+        "linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px)",
+    backgroundSize: "64px 64px",
+    maskImage: "radial-gradient(ellipse 80% 70% at 30% 20%, black 30%, transparent 100%)",
+    WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 30% 20%, black 30%, transparent 100%)",
+};
 
 export const Projects = () => {
-
-useEffect(() => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}, []);
-    
-
     const { projects } = useAppContext();
     const openProject = useOpenProject();
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+
     return (
         <>
             <Seo
@@ -23,46 +30,77 @@ useEffect(() => {
                 description="Selected web and mobile app projects by Mehdi Forkani: Laravel, React, Inertia.js and React Native platforms, dashboards, and apps built for startups, NGOs, and organizations across Morocco and Africa."
                 path="/projects"
             />
-            <div className=" bg-black text-white ">
 
-                <div id="projects" className="  py-3 pt-[15vh] flex flex-col gap-y-8 items-center justify-start">
-                    <div className="lg:w-1/3 cursor-pointer w-11/12  lg:font-semibold lg:text-lg  text-white/80 text-center relative py-4 rounded-full">
-                        <div className="w-full inset-0 bg-white/50 opacity-25 absolute rounded-full"></div>
-                        <h1 className="static z-20 selection:bg-white selection:text-black poppin">Trusted By Over 100 Clients .</h1>
+            <section className="relative isolate overflow-hidden">
+                <div style={gridStyle} className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem]"></div>
+                <div className="pointer-events-none absolute -left-40 -top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-alpha/25 blur-[100px]"></div>
+
+                <div className="container pb-24 pt-40 lg:pb-32">
+                    <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                        <div className="max-w-2xl">
+                            <motion.p
+                                variants={fadeIn("up", 0.1)} initial="hidden" animate="show"
+                                className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60"
+                            >
+                                <span className="h-px w-8 bg-alpha"></span>
+                                Portfolio
+                            </motion.p>
+
+                            <motion.h1
+                                variants={fadeIn("up", 0.2)} initial="hidden" animate="show"
+                                className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl"
+                            >
+                                All <span className="text-alpha">projects</span>
+                            </motion.h1>
+
+                            <motion.p
+                                variants={fadeIn("up", 0.3)} initial="hidden" animate="show"
+                                className="mt-5 text-base leading-relaxed text-white/60 lg:text-lg"
+                            >
+                                Together with my clients, we bring innovative visions to reality: web platforms, dashboards and mobile apps.
+                            </motion.p>
+                        </div>
+
+                        <p className="text-sm text-white/40">{projects.length} projects</p>
                     </div>
-                    <motion.p variants={fadeIn('up', 0.4)} initial="hidden" whileInView="show" className="text-[#bdbdbd] selection:bg-white text-center px-3 lg:text-start selection:text-black poppin lg:text-lg ">Together with my clients, we bring innovative visions to reality. </motion.p>
-                </div>
 
-
-                <div className="  pt-[10vh] px-10 grid grid-cols-1 lg:grid-cols-3 gap-16">
-
-                    {
-                        projects.map((ele, idx) =>
-
-                            <div key={idx} onClick={(e) => openProject(ele, e)} className="group cursor-pointer w-full poppin py-3 flex flex-col gap-y-6 border-t border-white/50">
-                                <div className="py-4 selection:bg-white selection:text-black text-white text-xl flex items-center justify-between">
-                                    <p className="group-hover:text-white/90 transition-colors">{ele.name}</p>
-                                    {ele.technologies.map((e, i) => (
-                                        <p className="text-base bg-white/40 px-2 rounded mb-0" key={i}>{e}</p>
-                                    ))}
-                                </div>
-                                <div className="rounded-xl relative overflow-hidden parent">
-                                    <motion.img
-                                        whileTap={{ scale: 0.95 }}
-                                        className="rounded-xl select-none hover:scale-110 transition-all duration-300"
-                                        src={ele.image}
-                                        alt={`${ele.name} — ${ele.technologies.join(", ")} project by Mehdi Forkani`}
+                    <div className="mt-16 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+                        {projects.map((project, idx) => (
+                            <motion.div
+                                key={project.slug}
+                                variants={fadeIn("up", 0.1 * (idx % 3))} initial="hidden" whileInView="show" viewport={{ once: true }}
+                                onClick={(e) => openProject(project, e)}
+                                className="group cursor-pointer"
+                            >
+                                <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-dark">
+                                    <img
+                                        className="aspect-[16/10] w-full select-none object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                                        src={project.image}
+                                        alt={`${project.name} — ${project.technologies.join(", ")} project by Mehdi Forkani`}
+                                        loading="lazy"
                                     />
-                                    <div className="absolute top-3 right-3 h-10 w-10 rounded-full bg-white text-black flex items-center justify-center opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                        <GoArrowUpRight className="text-lg" />
-                                    </div>
+                                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                                    <span className="absolute right-4 top-4 flex h-10 w-10 -translate-y-1 items-center justify-center rounded-full bg-alpha text-lg text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                        <GoArrowUpRight />
+                                    </span>
                                 </div>
-                            </div>
-                        )
-                    }
 
+                                <div className="mt-5 flex items-start justify-between gap-4">
+                                    <div>
+                                        <h3 className="font-display text-xl font-bold tracking-tight text-white">{project.name}</h3>
+                                        <p className="mt-1 text-sm text-white/50">
+                                            {project.category} · {project.technologies.join(", ")}
+                                        </p>
+                                    </div>
+                                    <span className="shrink-0 pt-1 text-xs tracking-wider text-white/40">{project.year}</span>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            </section>
+
+            <Footer />
         </>
     );
 };

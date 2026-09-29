@@ -1,108 +1,85 @@
-import { fadeIn } from "../../../utils/motion";
 import { motion } from "framer-motion";
-import { useAppContext } from "../../../context/AppContext";
 import { Link } from "react-router-dom";
-import { GoArrowUpRight } from "react-icons/go";
+import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
+import { fadeIn } from "../../../utils/motion";
+import { useAppContext } from "../../../context/AppContext";
 import { useOpenProject } from "../../../hooks/useOpenProject";
 
 export const Projects = () => {
     const { projects } = useAppContext();
     const openProject = useOpenProject();
 
-    // Curated featured set on the home Projects section
-    const featuredSlugs = [
-        "lionsgeek",
-        "casatourat",
-        "tihad-azemmour-women",
-        "ecoles-belges-maroc",
-    ];
-    const featured = featuredSlugs
-        .map((slug) => projects.find((p) => p.slug === slug))
-        .filter(Boolean);
+    const featuredSlugs = ["lionsgeek", "casatourat", "tihad-azemmour-women", "ecoles-belges-maroc"];
+    const featured = featuredSlugs.map((slug) => projects.find((p) => p.slug === slug)).filter(Boolean);
 
     return (
-        <>
-            <div id="projects" className="py-3 flex flex-col gap-y-8 items-center justify-start">
-
-                <motion.p
-                    variants={fadeIn('up', 0.1)} initial='hidden' whileInView={'show'} viewport={{ once: true }}
-                    className="eyebrow pt-[10vh]"
-                >
-                    Selected work
-                </motion.p>
-
-                <motion.h1
-                    variants={fadeIn('up', 0.2)} initial='hidden' whileInView={'show'} viewport={{ once: true }}
-                    className="uppercase selection:bg-white selection:text-black text-white text-[2.5rem] boldPoppin"
-                >
-                    Projects
-                </motion.h1>
-
-                <motion.p
-                    variants={fadeIn('up', 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
-                    className="text-[#bdbdbd] selection:bg-white text-center px-3 lg:text-start selection:text-black poppin lg:text-lg"
-                >
-                    Together with my clients, we bring innovative visions to reality.
-                </motion.p>
-
-                <div className="lg:w-4/5 px-5 lg:p-0 grid lg:grid-cols-2 grid-cols-1 gap-6">
-                    {featured.map((ele, idx) => (
-                        <motion.div
-                            key={idx}
-                            variants={fadeIn('up', 0.15 * (idx % 2))}
-                            initial="hidden"
-                            whileInView="show"
-                            viewport={{ once: true }}
-                            onClick={(e) => openProject(ele, e)}
-                            className="group cursor-pointer poppin rounded-2xl overflow-hidden premium-glass"
+        <section id="projects" className="bg-black py-24 lg:py-32">
+            <div className="container">
+                <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                    <div className="max-w-2xl">
+                        <motion.p
+                            variants={fadeIn("up", 0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                            className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60"
                         >
-                            {/* Image with gradient + hover zoom */}
-                            <div className="relative overflow-hidden">
+                            <span className="h-px w-8 bg-alpha"></span>
+                            Selected work
+                        </motion.p>
+
+                        <motion.h2
+                            variants={fadeIn("up", 0.2)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                            className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl"
+                        >
+                            Featured <span className="text-alpha">projects</span>
+                        </motion.h2>
+
+                        <motion.p
+                            variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                            className="mt-5 text-base leading-relaxed text-white/60 lg:text-lg"
+                        >
+                            Together with my clients, we bring innovative visions to reality.
+                        </motion.p>
+                    </div>
+
+                    <Link to="/projects" className="group flex items-center gap-2 text-sm font-medium text-white/60 transition-colors duration-300 hover:text-white">
+                        All projects
+                        <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                </div>
+
+                <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2">
+                    {featured.map((project, idx) => (
+                        <motion.div
+                            key={project.slug}
+                            variants={fadeIn("up", 0.1 * (idx % 2))} initial="hidden" whileInView="show" viewport={{ once: true }}
+                            onClick={(e) => openProject(project, e)}
+                            className="group cursor-pointer"
+                        >
+                            <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-dark">
                                 <img
-                                    className="w-full aspect-video object-cover select-none transition-transform duration-700 group-hover:scale-105"
-                                    src={ele.image}
-                                    alt={ele.name}
+                                    className="aspect-[16/10] w-full select-none object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                                    src={project.image}
+                                    alt={`${project.name} — ${project.technologies.join(", ")} project by Mehdi Forkani`}
                                     loading="lazy"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                                <span className="absolute right-4 top-4 flex h-10 w-10 -translate-y-1 items-center justify-center rounded-full bg-alpha text-lg text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <GoArrowUpRight />
+                                </span>
+                            </div>
 
-                                {/* View hint */}
-                                <div className="absolute top-4 right-4 h-10 w-10 rounded-full bg-white text-black flex items-center justify-center opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                    <GoArrowUpRight className="text-lg" />
+                            <div className="mt-5 flex items-start justify-between gap-4">
+                                <div>
+                                    <h3 className="font-display text-xl font-bold tracking-tight text-white">{project.name}</h3>
+                                    <p className="mt-1 text-sm text-white/50">
+                                        {project.category} · {project.technologies.join(", ")}
+                                    </p>
                                 </div>
-
-                                {/* Title + tech overlay */}
-                                <div className="absolute bottom-0 left-0 right-0 p-5 flex flex-col gap-y-3">
-                                    <h3 className="text-white text-xl font-semibold selection:bg-white selection:text-black">
-                                        {ele.name}
-                                    </h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {ele.technologies.map((e, i) => (
-                                            <span
-                                                className="text-xs bg-white/15 backdrop-blur-sm border border-white/10 text-white/90 px-2.5 py-1 rounded-full"
-                                                key={i}
-                                            >
-                                                {e}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
+                                <span className="shrink-0 pt-1 text-xs tracking-wider text-white/40">{project.year}</span>
                             </div>
                         </motion.div>
                     ))}
                 </div>
-
-                <Link
-                    to={"/projects"}
-                    className="group mt-8 z-20 uppercase select-none text-white border border-white/60 rounded-xl py-3 px-8 hover:bg-white hover:text-black hover:border-white poppin flex items-center gap-x-3 transition-colors"
-                >
-                    Discover All Projects
-                    <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden>
-                        &rarr;
-                    </span>
-                </Link>
-
             </div>
-        </>
+        </section>
     );
 };

@@ -1,161 +1,108 @@
-import React from "react";
-import { fadeIn } from "../../../utils/motion";
 import { motion } from "framer-motion";
-import awardPhoto from "../../../assets/images/achievments/xr4heritage.jpg";
+import { fadeIn } from "../../../utils/motion";
+import xr4heritage from "../../../assets/images/achievments/xr4heritage.jpg";
+
+const achievements = [
+    {
+        image: xr4heritage,
+        alt: "LionsGeek team from Morocco receiving the Coup de Cœur du Jury award at [IN]VISIBLE Festival 2026, Brussels, Belgium",
+        place: "Royal Library of Belgium · KBR",
+        year: "2026",
+        badge: "Jury favorite",
+        title: "Coup de",
+        highlight: "Cœur",
+        description: (
+            <>
+                Representing <span className="font-medium text-white">Morocco</span> in{" "}
+                <span className="font-medium text-white">Belgium</span>, I won it on stage with the LionsGeek team for{" "}
+                <span className="text-white">Ada Lovelace</span>, an XR &amp; AI avatar that brought the first
+                programmer&apos;s voice back to life at [IN]VISIBLE Festival through XR4Heritage.
+            </>
+        ),
+        details: [
+            { label: "Award", value: "Coup de Cœur du Jury" },
+            { label: "Program", value: "Héroïnes de la Science" },
+            { label: "Venue", value: "KBR · Brussels" },
+            { label: "Project", value: "Ada Lovelace · Concours AVATARS" },
+        ],
+    },
+];
 
 export const Achievements = () => {
     return (
-        <section
-            id="achievements"
-            className="relative overflow-hidden py-3 flex flex-col items-center px-5 lg:px-24"
-        >
-            {/* Soft stage glow */}
-            <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0"
-                style={{
-                    background:
-                        "radial-gradient(ellipse 55% 45% at 70% 55%, rgba(232, 145, 42, 0.1) 0%, transparent 65%)",
-                }}
-            />
+        <section id="achievements" className="relative isolate overflow-hidden bg-dark py-24 lg:py-32">
+            <div className="pointer-events-none absolute -right-40 top-1/3 -z-10 h-[30rem] w-[30rem] rounded-full bg-alpha/20 blur-[100px]"></div>
 
-            <motion.p
-                variants={fadeIn("up", 0.1)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="eyebrow pt-[10vh] relative z-10"
-            >
-                Recognition
-            </motion.p>
-
-            <motion.h1
-                variants={fadeIn("up", 0.2)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="uppercase selection:bg-white selection:text-black text-white text-[2.5rem] boldPoppin relative z-10"
-            >
-                Achievements
-            </motion.h1>
-
-            <motion.p
-                variants={fadeIn("up", 0.3)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="text-[#bdbdbd] selection:bg-white text-center px-3 selection:text-black poppin lg:text-lg mt-2 relative z-10 max-w-xl"
-            >
-                Representing Morocco on the international stage in Belgium.
-            </motion.p>
-
-            {/* Award composition */}
-            <div className="relative z-10 mt-14 lg:mt-16 w-full max-w-6xl grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-                {/* Photo */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true }}
-                    className="lg:col-span-7 relative group"
+            <div className="container">
+                <motion.p
+                    variants={fadeIn("up", 0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                    className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60"
                 >
-                    <div className="absolute -inset-px bg-gradient-to-br from-[#e8912a]/40 via-white/10 to-transparent opacity-60 pointer-events-none" />
-                    <div className="relative overflow-hidden">
-                        <motion.img
-                            whileHover={{ scale: 1.03 }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
-                            src={awardPhoto}
-                            alt="LionsGeek team from Morocco receiving the Coup de Cœur du Jury award at [IN]VISIBLE Festival 2026, Brussels, Belgium"
-                            className="w-full max-h-[420px] lg:max-h-[480px] object-cover object-center select-none"
-                            loading="lazy"
-                        />
-                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                    <span className="h-px w-8 bg-alpha"></span>
+                    Recognition
+                </motion.p>
 
-                        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
-                            <p className="poppin text-white/90 text-sm lg:text-base">
-                                Royal Library of Belgium · KBR
-                            </p>
-                            <span className="poppin text-[#e8912a] text-xs tracking-[0.2em] uppercase shrink-0">
-                                2026
-                            </span>
-                        </div>
-                    </div>
-                </motion.div>
+                <motion.h2
+                    variants={fadeIn("up", 0.2)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                    className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl"
+                >
+                    Achievements<span className="text-alpha">.</span>
+                </motion.h2>
 
-                {/* Story */}
-                <div className="lg:col-span-5 flex flex-col gap-5 lg:pb-2">
-                    <motion.div
-                        variants={fadeIn("up", 0.25)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true }}
-                        className="flex items-center gap-3"
-                    >
-                        <span className="h-px w-8 bg-[#e8912a]" />
-                        <span className="uppercase tracking-[0.25em] text-[#e8912a] text-xs poppin">
-                            Jury favorite
-                        </span>
-                    </motion.div>
+                <motion.p
+                    variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                    className="mt-5 max-w-2xl text-base leading-relaxed text-white/60 lg:text-lg"
+                >
+                    Awards and recognition earned along the way, on stage and beyond.
+                </motion.p>
 
-                    <motion.h2
-                        variants={fadeIn("up", 0.3)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true }}
-                        className="uppercase boldPoppin text-white leading-[1.05] text-3xl lg:text-5xl selection:bg-white selection:text-black"
-                    >
-                        Coup de
-                        <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f0b15a] to-white">
-                            Cœur
-                        </span>
-                    </motion.h2>
-
-                    <motion.p
-                        variants={fadeIn("up", 0.35)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true }}
-                        className="text-white/80 poppin text-base lg:text-lg leading-relaxed selection:bg-white selection:text-black"
-                    >
-                        Representing{" "}
-                        <span className="text-white font-medium">Morocco</span> in{" "}
-                        <span className="text-white font-medium">Belgium</span>, I won it
-                        on stage with the LionsGeek team for{" "}
-                        <span className="text-white">Ada Lovelace</span> — an XR &amp; AI
-                        avatar that brought the first programmer&apos;s voice back to life
-                        at [IN]VISIBLE Festival through XR4Heritage.
-                    </motion.p>
-
-                    <motion.ul
-                        variants={fadeIn("up", 0.4)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true }}
-                        className="mt-2 grid grid-cols-1 gap-3 border-t border-white/10 pt-5"
-                    >
-                        {[
-                            { label: "From", value: "Morocco → Belgium" },
-                            { label: "Award", value: "Coup de Cœur du Jury" },
-                            { label: "Program", value: "Héroïnes de la Science" },
-                            { label: "Venue", value: "KBR · Brussels" },
-                            { label: "Project", value: "Ada Lovelace · Concours AVATARS" },
-                        ].map((row) => (
-                            <li
-                                key={row.label}
-                                className="flex justify-between gap-4 poppin text-sm"
+                <div className="mt-14 flex flex-col gap-24">
+                    {achievements.map((achievement, idx) => (
+                        <div key={idx} className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+                            <motion.figure
+                                variants={fadeIn("up", 0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                                className={`group relative overflow-hidden rounded-2xl border border-white/[0.06] lg:col-span-7 ${idx % 2 === 1 ? "lg:order-2" : ""}`}
                             >
-                                <span className="text-white/40 uppercase tracking-wider">
-                                    {row.label}
+                                <img
+                                    src={achievement.image}
+                                    alt={achievement.alt}
+                                    className="aspect-[4/3] w-full select-none object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+                                    loading="lazy"
+                                />
+                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"></div>
+                                <figcaption className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3">
+                                    <span className="text-sm text-white/90 lg:text-base">{achievement.place}</span>
+                                    <span className="shrink-0 text-xs uppercase tracking-[0.2em] text-white/80">{achievement.year}</span>
+                                </figcaption>
+                            </motion.figure>
+
+                            <motion.div
+                                variants={fadeIn("up", 0.2)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                                className="flex flex-col gap-6 lg:col-span-5"
+                            >
+                                <span className="w-fit rounded-full border border-alpha/50 bg-alpha/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
+                                    {achievement.badge}
                                 </span>
-                                <span className="text-white/90 text-right">{row.value}</span>
-                            </li>
-                        ))}
-                    </motion.ul>
+
+                                <h3 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl">
+                                    {achievement.title} <span className="text-alpha">{achievement.highlight}</span>
+                                </h3>
+
+                                <p className="text-base leading-8 text-white/65 lg:text-lg lg:leading-9">{achievement.description}</p>
+
+                                <div className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
+                                    {achievement.details.map((detail) => (
+                                        <div key={detail.label} className="flex items-center justify-between gap-6 py-4 text-sm">
+                                            <p className="uppercase tracking-[0.2em] text-white/40">{detail.label}</p>
+                                            <p className="text-right text-white/90">{detail.value}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        </div>
+                    ))}
                 </div>
             </div>
-
-            <div className="h-16 lg:h-24" />
         </section>
     );
 };

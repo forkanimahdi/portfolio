@@ -1,276 +1,185 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+import { RiDoubleQuotesL } from "react-icons/ri";
 import { fadeIn } from "../../../utils/motion";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import Mhijir from "../../../assets/images/testimonials/mhijir.png"
+import mhijir from "../../../assets/images/testimonials/mhijir.png";
+
+const testimonials = [
+    {
+        name: "Oumaima Mhijir",
+        role: "CEO, Jadara Foundation",
+        quote: "I am really impressed by you, not only by your technical Skills but also by your ability to transform a more or less clear vision into a tangible project  Your reactivity and professionalism just wawed be  Thank you sidi",
+        image: mhijir,
+    },
+    {
+        name: "Another Client",
+        role: "CTO, Tech Startup",
+        quote: "Working with Mehdi was a game-changer. He understood our vision and brought it to life with precision and creativity. The final product exceeded our expectations.",
+        image: null,
+    },
+    {
+        name: "Third Client",
+        role: "Project Manager",
+        quote: "Professional, reliable, and incredibly talented. Mehdi's work speaks for itself, and his communication throughout the project was excellent.",
+        image: null,
+    },
+];
 
 export const Testimonials = () => {
-    // Sample testimonials data - replace with your actual testimonials
-    // Add image property for reviewer photos (import them like other images)
-    const testimonials = [
-        {
-            id: 1,
-            name: "Oumaima Mhijir",
-            role: "CEO, Jadara Foundation",
-            company: "Jadara Foundation",
-            quote: "I am really impressed by you, not only by your technical Skills but also by your ability to transform a more or less clear vision into a tangible project  Your reactivity and professionalism just wawed be  Thank you sidi ",
-            image:  Mhijir
-        },
-        {
-            id: 2,
-            name: "Another Client",
-            role: "CTO, Tech Startup",
-            company: "Tech Startup",
-            quote: "Working with Mehdi was a game-changer. He understood our vision and brought it to life with precision and creativity. The final product exceeded our expectations.",
-            image: null // Replace with: import reviewer2 from "../../../assets/images/testimonials/reviewer2.jpg"
-        },
-        {
-            id: 3,
-            name: "Third Client",
-            role: "Project Manager",
-            company: "Digital Agency",
-            quote: "Professional, reliable, and incredibly talented. Mehdi's work speaks for itself, and his communication throughout the project was excellent.",
-            image: null // Replace with: import reviewer3 from "../../../assets/images/testimonials/reviewer3.jpg"
-        }
-    ];
+    const [current, setCurrent] = useState(0);
+    const [paused, setPaused] = useState(false);
 
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-    // Auto-play carousel (only if more than 1 testimonial)
     useEffect(() => {
-        if (testimonials.length <= 1 || !isAutoPlaying) return;
+        if (paused) return;
+        const timer = setTimeout(() => {
+            setCurrent((prev) => (prev + 1) % testimonials.length);
+        }, 7000);
+        return () => clearTimeout(timer);
+    }, [current, paused]);
 
-        const interval = setInterval(() => {
-            setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, [testimonials.length, isAutoPlaying]);
-
-    const goToNext = () => {
-        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-        setIsAutoPlaying(false);
+    const goTo = (index) => {
+        setCurrent((index + testimonials.length) % testimonials.length);
+        setPaused(true);
     };
 
-    const goToPrevious = () => {
-        setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-        setIsAutoPlaying(false);
-    };
+    const testimonial = testimonials[current];
 
-    const goToSlide = (index) => {
-        setCurrentIndex(index);
-        setIsAutoPlaying(false);
-    };
+    return (
+        <section id="testimonials" className="bg-black py-24 lg:py-32">
+            <div className="container grid gap-12 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-16 lg:gap-y-10">
+                <div className="lg:col-span-5">
+                    <motion.p
+                        variants={fadeIn("up", 0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                        className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60"
+                    >
+                        <span className="h-px w-8 bg-alpha"></span>
+                        Kind words
+                    </motion.p>
 
-    // If only one testimonial, display it simply without carousel
-    if (testimonials.length === 1) {
-        const testimonial = testimonials[0];
-        return (
-            <div id="testimonials" className="py-3 flex flex-col  items-center justify-start">
-                <motion.p
-                    variants={fadeIn('up', 0.1)}
-                    initial='hidden'
-                    whileInView={'show'}
-                    className="eyebrow pt-[10vh] mb-4"
-                >
-                    Kind words
-                </motion.p>
+                    <motion.h2
+                        variants={fadeIn("up", 0.2)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                        className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl"
+                    >
+                        What clients <span className="text-alpha">say</span>
+                    </motion.h2>
 
-                <motion.h1
-                    variants={fadeIn('up', 0.2)}
-                    initial='hidden'
-                    whileInView={'show'}
-                    className="uppercase selection:bg-white selection:text-black text-white text-[2rem] boldPoppin mb-4"
-                >
-                    Testimonials
-                </motion.h1>
-
-                <motion.p
-                    variants={fadeIn('up', 0.3)}
-                    initial='hidden'
-                    whileInView={'show'}
-                    className="text-[#bdbdbd] selection:bg-white text-center px-6 selection:text-black poppin lg:text-base text-sm mb-8"
-                >
-                    What clients say about working with me.
-                </motion.p>
+                    <motion.p
+                        variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                        className="mt-5 text-base leading-relaxed text-white/60 lg:text-lg"
+                    >
+                        Real feedback from the people I&apos;ve built with.
+                    </motion.p>
+                </div>
 
                 <motion.div
-                    variants={fadeIn('up', 0.4)}
-                    initial='hidden'
-                    whileInView={'show'}
-                    className="w-full lg:w-2/3 px-6 lg:px-0 my-8"
+                    variants={fadeIn("up", 0.2)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                    className="relative isolate flex flex-col overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 sm:p-10 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:min-h-[30rem] lg:p-12"
                 >
-                    <div className="premium-glass rounded-2xl p-10 lg:p-16 relative">
-                        <span className="absolute top-4 left-6 text-white/10 text-8xl leading-none font-serif select-none">&ldquo;</span>
-                        <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center relative">
-                            {/* Reviewer Image */}
-                            <div className="flex-shrink-0">
-                                {testimonial.image ? (
-                                    <img
-                                        src={testimonial.image}
-                                        alt={testimonial.name}
-                                        className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-cover bg-top border-2 border-white/20"
-                                    />
-                                ) : (
-                                    <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center">
-                                        <span className="text-white text-3xl lg:text-4xl font-semibold">
-                                            {testimonial.name.charAt(0).toUpperCase()}
-                                        </span>
-                                    </div>
-                                )}
-                            </div>
+                    <div className="pointer-events-none absolute -bottom-40 -right-40 -z-10 h-[26rem] w-[26rem] rounded-full bg-alpha/25 blur-[100px]"></div>
 
-                            {/* Quote and Info */}
-                            <div className="flex-1 text-center lg:text-left space-y-6">
-                                <p className="text-white/90 text-sm lg:text-base leading-relaxed poppin">
-                                    " {testimonial.quote} "
-                                </p>
-                                <div className="pt-4">
-                                    <h3 className="text-white text-base lg:text-lg font-semibold poppin mb-2">
-                                        {testimonial.name}
-                                    </h3>
-                                    <p className="text-white/70 text-xs lg:text-sm poppin">
-                                        {testimonial.role}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="flex items-start justify-between gap-6">
+                        <RiDoubleQuotesL className="text-5xl text-alpha" />
+                        <p className="pt-2 text-sm text-white/40">
+                            <span className="text-white">0{current + 1}</span> / 0{testimonials.length}
+                        </p>
                     </div>
-                </motion.div>
-            </div>
-        );
-    }
 
-    // Multiple testimonials - simple carousel view
-    return (
-        <div id="testimonials" className="py-3 flex flex-col items-center justify-start">
-            <motion.p
-                variants={fadeIn('up', 0.1)}
-                initial='hidden'
-                whileInView={'show'}
-                className="eyebrow pt-[10vh] mb-4"
-            >
-                Kind words
-            </motion.p>
-
-            <motion.h1
-                variants={fadeIn('up', 0.2)}
-                initial='hidden'
-                whileInView={'show'}
-                className="uppercase selection:bg-white selection:text-black text-white text-[2rem] boldPoppin mb-4"
-            >
-                Testimonials
-            </motion.h1>
-
-            <motion.p
-                variants={fadeIn('up', 0.3)}
-                initial='hidden'
-                whileInView={'show'}
-                className="text-[#bdbdbd] selection:bg-white text-center px-6 selection:text-black poppin lg:text-base text-sm mb-8"
-            >
-                What clients say about working with me.
-            </motion.p>
-
-            <div className="w-full lg:w-2/3 px-6 lg:px-0 relative my-8">
-                {/* Carousel Container */}
-                <div className="relative">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={currentIndex}
-                            initial={{ opacity: 0, y: 20 }}
+                            key={current}
+                            initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.4 }}
-                            className="premium-glass rounded-2xl p-10 lg:p-16 relative"
+                            exit={{ opacity: 0, y: -16 }}
+                            transition={{ duration: 0.45 }}
+                            className="mt-8 flex flex-1 flex-col justify-between gap-10"
                         >
-                            <span className="absolute top-4 left-6 text-white/10 text-8xl leading-none font-serif select-none">&ldquo;</span>
-                            <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center relative">
-                                {/* Reviewer Image */}
-                                <div className="flex-shrink-0">
-                                    {testimonials[currentIndex].image ? (
-                                        <img
-                                            src={testimonials[currentIndex].image}
-                                            alt={testimonials[currentIndex].name}
-                                            className="w-24 h-24 lg:w-32 lg:h-32 rounded-full object-cover border-2 border-white/20"
-                                        />
+                            <p className="font-display text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl lg:text-[1.9rem] lg:leading-[1.3]">
+                                {testimonial.quote}
+                            </p>
+
+                            <div className="flex items-center justify-between gap-4 border-t border-white/[0.06] pt-6">
+                                <div className="flex items-center gap-4">
+                                    {testimonial.image ? (
+                                        <img src={testimonial.image} alt={testimonial.name} className="h-12 w-12 rounded-full border border-alpha object-cover" />
                                     ) : (
-                                        <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center">
-                                            <span className="text-white text-3xl lg:text-4xl font-semibold">
-                                                {testimonials[currentIndex].name.charAt(0).toUpperCase()}
-                                            </span>
-                                        </div>
+                                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-alpha font-display text-sm font-bold text-white">
+                                            {testimonial.name.charAt(0)}
+                                        </span>
                                     )}
+                                    <div>
+                                        <p className="font-semibold text-white">{testimonial.name}</p>
+                                        <p className="text-sm text-white/50">{testimonial.role}</p>
+                                    </div>
                                 </div>
 
-                                {/* Quote and Info */}
-                                <div className="flex-1 text-center lg:text-left space-y-6">
-                                    <p className="text-white/90 text-sm lg:text-base leading-relaxed poppin">
-                                        " {testimonials[currentIndex].quote} "
-                                    </p>
-                                    <div className="pt-4">
-                                        <h3 className="text-white text-base lg:text-lg font-semibold poppin mb-2">
-                                            {testimonials[currentIndex].name}
-                                        </h3>
-                                        <p className="text-white/70 text-xs lg:text-sm poppin">
-                                            {testimonials[currentIndex].role}
-                                        </p>
-                                    </div>
+                                <div className="flex gap-2">
+                                    <button
+                                        onClick={() => goTo(current - 1)}
+                                        aria-label="Previous testimonial"
+                                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-white"
+                                    >
+                                        <GoArrowLeft />
+                                    </button>
+                                    <button
+                                        onClick={() => goTo(current + 1)}
+                                        aria-label="Next testimonial"
+                                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-white"
+                                    >
+                                        <GoArrowRight />
+                                    </button>
                                 </div>
                             </div>
                         </motion.div>
                     </AnimatePresence>
+                </motion.div>
 
-                    {/* Navigation Arrows */}
-                    {testimonials.length > 1 && (
-                        <>
-                            <button
-                                onClick={goToPrevious}
-                                onMouseEnter={() => setIsAutoPlaying(false)}
-                                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full p-2 lg:p-3 text-white transition z-10"
-                                aria-label="Previous testimonial"
-                            >
-                                <FaChevronLeft className="text-sm lg:text-base" />
-                            </button>
-                            <button
-                                onClick={goToNext}
-                                onMouseEnter={() => setIsAutoPlaying(false)}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full p-2 lg:p-3 text-white transition z-10"
-                                aria-label="Next testimonial"
-                            >
-                                <FaChevronRight className="text-sm lg:text-base" />
-                            </button>
-                        </>
-                    )}
-
-                    {/* Simple Dots Indicator */}
-                    {testimonials.length > 1 && (
-                        <div className="flex justify-center gap-2 mt-10">
-                            {testimonials.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => goToSlide(index)}
-                                    onMouseEnter={() => setIsAutoPlaying(false)}
-                                    className={`h-2 rounded-full transition-all ${
-                                        index === currentIndex
-                                            ? 'bg-white w-8'
-                                            : 'bg-white/30 w-2 hover:bg-white/50'
-                                    }`}
-                                    aria-label={`Go to testimonial ${index + 1}`}
+                <motion.div
+                    variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                    className="self-start border-t border-white/[0.06] lg:col-span-5 lg:mt-4"
+                >
+                    {testimonials.map((person, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => goTo(idx)}
+                            className="group relative flex w-full items-center gap-4 border-b border-white/[0.06] py-4 text-left"
+                        >
+                            {person.image ? (
+                                <img
+                                    src={person.image}
+                                    alt={person.name}
+                                    className={`h-10 w-10 rounded-full border object-cover ${idx === current ? "border-alpha" : "border-white/10"}`}
                                 />
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </div>
+                            ) : (
+                                <span
+                                    className={`flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-bold ${idx === current ? "bg-alpha text-white" : "bg-white/[0.06] text-white/60"}`}
+                                >
+                                    {person.name.charAt(0)}
+                                </span>
+                            )}
 
-            {/* Decorative bottom element */}
-            <div className="flex items-center justify-center w-full px-5 lg:px-0 mt-12">
-                <div className="lg:w-1/3 w-full text-white/80 text-center relative py-3 lg:rounded-full rounded-xl">
-                    <div className="w-full h-full inset-0 bg-white/50 opacity-25 absolute lg:rounded-full rounded-xl"></div>
-                    <h1 className="z-20 poppin">Real feedback from real clients .</h1>
-                </div>
+                            <span className="flex-1">
+                                <span className={`block text-sm font-semibold transition-colors duration-300 ${idx === current ? "text-white" : "text-white/50 group-hover:text-white/80"}`}>
+                                    {person.name}
+                                </span>
+                                <span className="block text-xs text-white/40">{person.role}</span>
+                            </span>
+
+                            <span className={`text-xs ${idx === current ? "text-white" : "text-white/30"}`}>0{idx + 1}</span>
+
+                            {idx === current && (
+                                <motion.span
+                                    key={`${current}-${paused}`}
+                                    className="absolute -bottom-px left-0 h-px w-full origin-left bg-alpha"
+                                    initial={{ scaleX: paused ? 1 : 0 }}
+                                    animate={{ scaleX: 1 }}
+                                    transition={{ duration: paused ? 0 : 7, ease: "linear" }}
+                                />
+                            )}
+                        </button>
+                    ))}
+                </motion.div>
             </div>
-        </div>
+        </section>
     );
 };

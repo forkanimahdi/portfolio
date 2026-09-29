@@ -13,8 +13,6 @@ import MouseTrail from "./components/MouseTrail";
 import { isCrawlerBot, prefersReducedMotion } from "./utils/botDetect";
 
 function App() {
-  // Content always mounts. Loader is an overlay for humans only —
-  // bots / reduced-motion users get immediate crawlable first paint.
   const [showLoader, setShowLoader] = useState(() => {
     if (isCrawlerBot() || prefersReducedMotion()) return false;
     return true;
@@ -37,7 +35,6 @@ function App() {
         <AdvancedLoader onLoadComplete={() => setShowLoader(false)} />
       )}
 
-      {/* Always in the DOM so crawlers / AI see real routes & text */}
       <div className="main-content">
         <CustomCursor />
         <MouseTrail />
@@ -45,7 +42,7 @@ function App() {
         <ScrollBar />
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home ready={!showLoader} />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetails />} />
           <Route path="/*" element={<Error />} />

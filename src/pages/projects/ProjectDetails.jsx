@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { gsap } from "gsap";
 import {
@@ -21,8 +21,7 @@ const ProjectDetails = () => {
   const index = projects.findIndex((p) => p.slug === slug);
   const project = index >= 0 ? projects[index] : null;
   const prev = index > 0 ? projects[index - 1] : projects[projects.length - 1];
-  const next =
-    index >= 0 && index < projects.length - 1 ? projects[index + 1] : projects[0];
+  const next = index >= 0 && index < projects.length - 1 ? projects[index + 1] : projects[0];
 
   const isMobileApp = project?.technologies?.includes("React Native");
 
@@ -30,7 +29,6 @@ const ProjectDetails = () => {
   const imageWrapRef = useRef(null);
   const contentRef = useRef(null);
 
-  // Redirect unknown slugs back to the projects list.
   useEffect(() => {
     if (!project) navigate("/projects", { replace: true });
   }, [project, navigate]);
@@ -40,31 +38,24 @@ const ProjectDetails = () => {
     window.scrollTo(0, 0);
 
     const wrap = imageWrapRef.current;
-    const contentEls = contentRef.current
-      ? Array.from(contentRef.current.children)
-      : [];
+    const contentEls = contentRef.current ? Array.from(contentRef.current.children) : [];
 
     const ctx = gsap.context(() => {
       gsap.set(contentEls, { opacity: 0, y: 26 });
       const tl = gsap.timeline();
 
-      const hasFlip =
-        transition && transition.slug === slug && wrap && transition.rect;
+      const hasFlip = transition && transition.slug === slug && wrap && transition.rect;
 
       if (hasFlip) {
         const src = transition.rect;
         const final = wrap.getBoundingClientRect();
-        const dx = src.left - final.left;
-        const dy = src.top - final.top;
-        const sx = final.width ? src.width / final.width : 1;
-        const sy = final.height ? src.height / final.height : 1;
 
         gsap.set(wrap, {
           transformOrigin: "top left",
-          x: dx,
-          y: dy,
-          scaleX: sx,
-          scaleY: sy,
+          x: src.left - final.left,
+          y: src.top - final.top,
+          scaleX: final.width ? src.width / final.width : 1,
+          scaleY: final.height ? src.height / final.height : 1,
           zIndex: 60,
         });
         tl.to(wrap, {
@@ -76,28 +67,12 @@ const ProjectDetails = () => {
           ease: "power3.inOut",
           clearProps: "transform,zIndex",
         });
-        tl.to(
-          contentEls,
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, ease: "power2.out" },
-          "-=0.55"
-        );
+        tl.to(contentEls, { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, ease: "power2.out" }, "-=0.55");
       } else {
         if (wrap) {
-          gsap.from(wrap, {
-            opacity: 0,
-            y: 36,
-            duration: 0.85,
-            ease: "power3.out",
-          });
+          gsap.from(wrap, { opacity: 0, y: 36, duration: 0.85, ease: "power3.out" });
         }
-        tl.to(contentEls, {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.07,
-          ease: "power2.out",
-          delay: 0.1,
-        });
+        tl.to(contentEls, { opacity: 1, y: 0, duration: 0.6, stagger: 0.07, ease: "power2.out", delay: 0.1 });
       }
     }, containerRef);
 
@@ -106,7 +81,6 @@ const ProjectDetails = () => {
       clearTimeout(clear);
       ctx.revert();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, project]);
 
   const jsonLd = useMemo(() => {
@@ -140,24 +114,9 @@ const ProjectDetails = () => {
         {
           "@type": "BreadcrumbList",
           itemListElement: [
-            {
-              "@type": "ListItem",
-              position: 1,
-              name: "Home",
-              item: `${SITE_ORIGIN}/`,
-            },
-            {
-              "@type": "ListItem",
-              position: 2,
-              name: "Projects",
-              item: `${SITE_ORIGIN}/projects`,
-            },
-            {
-              "@type": "ListItem",
-              position: 3,
-              name: project.name,
-              item: url,
-            },
+            { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_ORIGIN}/` },
+            { "@type": "ListItem", position: 2, name: "Projects", item: `${SITE_ORIGIN}/projects` },
+            { "@type": "ListItem", position: 3, name: project.name, item: url },
           ],
         },
       ],
@@ -166,15 +125,15 @@ const ProjectDetails = () => {
 
   if (!project) return null;
 
-  const metaRows = [
+  const details = [
     { label: "Role", value: project.role },
     { label: "Client", value: project.client },
     { label: "Year", value: project.year },
     { label: "Category", value: project.category },
-  ].filter((r) => r.value);
+  ].filter((detail) => detail.value);
 
   return (
-    <div ref={containerRef} className="bg-[#010101] text-white min-h-screen">
+    <div ref={containerRef} className="relative isolate min-h-screen">
       <Seo
         title={`${project.name} — ${project.category} | Mehdi Forkani`}
         description={`${project.name}: ${project.description}`}
@@ -182,86 +141,72 @@ const ProjectDetails = () => {
         jsonLd={jsonLd}
       />
 
-      <div className="max-w-6xl mx-auto px-5 lg:px-8 pt-[16vh] pb-16">
-        {/* Back */}
+      <div className="pointer-events-none absolute -left-40 -top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-alpha/25 blur-[100px]"></div>
+
+      <div className="container pb-24 pt-32 lg:pt-36">
         <Link
           to="/projects"
-          className="group inline-flex items-center gap-x-2 text-white/60 hover:text-white poppin text-sm uppercase tracking-widest transition-colors"
+          className="group inline-flex items-center gap-x-3 text-xs uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-white"
         >
-          <span className="premium-glass w-9 h-9 rounded-full grid place-items-center group-hover:bg-white group-hover:text-black transition-colors">
+          <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 group-hover:border-alpha group-hover:bg-alpha group-hover:text-white">
             <FiArrowLeft />
           </span>
           All projects
         </Link>
 
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 mt-10">
-          {/* Content column */}
-          <div ref={contentRef} className="lg:col-span-6 order-2 lg:order-1">
-            <p className="eyebrow">
+        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div ref={contentRef} className="order-2 lg:order-1 lg:col-span-6">
+            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
+              <span className="h-px w-8 bg-alpha"></span>
               {project.category} · {project.year}
             </p>
 
-            <h1 className="uppercase boldPoppin text-white text-4xl lg:text-6xl leading-[1.05] mt-3">
+            <h1 className="mt-5 font-display text-4xl font-bold leading-[1.02] tracking-tight text-white lg:text-6xl">
               {project.name}
             </h1>
 
-            <p className="text-white/80 poppin text-base lg:text-lg leading-relaxed mt-6">
-              {project.description}
-            </p>
+            <p className="mt-6 text-base leading-relaxed text-white/65 lg:text-lg">{project.description}</p>
 
-            {/* Meta grid */}
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-5 mt-8 border-t border-white/10 pt-8">
-              {metaRows.map((row) => (
-                <div key={row.label}>
-                  <dt className="text-white/40 uppercase tracking-wider text-xs poppin">
-                    {row.label}
-                  </dt>
-                  <dd className="text-white/90 poppin mt-1">{row.value}</dd>
+            <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/[0.06] pt-8">
+              {details.map((detail) => (
+                <div key={detail.label}>
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/40">{detail.label}</p>
+                  <p className="mt-1 text-white/90">{detail.value}</p>
                 </div>
               ))}
-            </dl>
+            </div>
 
-            {/* Stack */}
             <div className="mt-8">
-              <p className="text-white/40 uppercase tracking-wider text-xs poppin">
-                Stack
-              </p>
-              <div className="flex flex-wrap gap-2 mt-3">
+              <p className="text-xs uppercase tracking-[0.2em] text-white/40">Stack</p>
+              <div className="mt-3 flex flex-wrap gap-2">
                 {project.technologies.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 rounded-full bg-white/10 border border-white/10 text-white/90 text-sm tracking-wide"
-                  >
+                  <span key={i} className="rounded-full border border-alpha/40 bg-alpha/15 px-3 py-1 text-sm tracking-wide text-white/90">
                     {tech}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Highlights */}
             {project.highlights?.length > 0 && (
               <div className="mt-8">
-                <h2 className="uppercase boldPoppin text-white text-lg">
-                  What I built
-                </h2>
+                <h2 className="font-display text-xl font-bold tracking-tight text-white">What I built</h2>
                 <ul className="mt-4 flex flex-col gap-y-3">
-                  {project.highlights.map((h, i) => (
-                    <li key={i} className="flex gap-x-3 text-white/80 poppin">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#e8912a] shrink-0" />
-                      <span className="leading-relaxed">{h}</span>
+                  {project.highlights.map((highlight, i) => (
+                    <li key={i} className="flex gap-x-3 text-white/70">
+                      <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-alpha"></span>
+                      <span className="leading-relaxed">{highlight}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             )}
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 mt-10">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="group flex-1 py-3 px-6 text-center bg-white text-black rounded-xl hover:bg-gray-200 transition font-semibold inline-flex items-center justify-center gap-x-2"
+                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:brightness-125"
               >
                 {isMobileApp ? <FiDownload /> : <FiExternalLink />}
                 {isMobileApp ? "Download App" : "Live Website"}
@@ -271,7 +216,7 @@ const ProjectDetails = () => {
                   href={project.repo}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 py-3 px-6 text-center border border-white/20 text-white rounded-xl hover:bg-white hover:text-black transition font-semibold inline-flex items-center justify-center gap-x-2"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:border-white/40 hover:bg-white/[0.04]"
                 >
                   <FiGithub />
                   GitHub Repo
@@ -280,59 +225,51 @@ const ProjectDetails = () => {
             </div>
           </div>
 
-          {/* Image column (slides to top-right) */}
-          <div className="lg:col-span-6 order-1 lg:order-2">
+          <div className="order-1 lg:order-2 lg:col-span-6">
             <div className="lg:sticky lg:top-[16vh]">
-              <div
-                ref={imageWrapRef}
-                className="relative rounded-2xl overflow-hidden premium-glass border border-white/10 will-change-transform"
-              >
+              <div ref={imageWrapRef} className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-dark will-change-transform">
                 <img
                   src={project.image}
                   alt={`${project.name} — ${project.technologies.join(", ")} ${project.category} by Mehdi Forkani`}
-                  className="w-full aspect-video object-cover select-none"
+                  className="aspect-video w-full select-none object-cover"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
               </div>
 
               <a
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="group mt-4 inline-flex items-center gap-x-2 text-white/70 hover:text-white poppin text-sm transition-colors"
+                className="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/60 transition-colors duration-300 hover:text-white"
               >
                 {isMobileApp ? "Open on the store" : "Open the live site"}
-                <FiArrowUpRight className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <FiArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Prev / Next */}
-        <div className="grid sm:grid-cols-2 gap-4 mt-20 border-t border-white/10 pt-10">
+        <div className="mt-20 grid gap-4 border-t border-white/[0.06] pt-10 sm:grid-cols-2">
           <Link
             to={`/projects/${prev.slug}`}
-            className="group premium-glass rounded-2xl p-5 flex items-center gap-x-4 hover:border-white/40 border border-transparent transition-colors"
+            className="group flex items-center gap-x-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-colors duration-300 hover:border-alpha/40 hover:bg-white/[0.05]"
           >
-            <FiArrowLeft className="text-xl text-white/60 group-hover:text-white transition-colors shrink-0" />
-            <div className="min-w-0">
-              <p className="text-white/40 uppercase tracking-wider text-xs poppin">
-                Previous
-              </p>
-              <p className="text-white poppin truncate">{prev.name}</p>
+            <FiArrowLeft className="shrink-0 text-xl text-white/60 transition-colors group-hover:text-white" />
+            <div className="min-w-0 flex-1">
+              <p className="text-xs uppercase tracking-wider text-white/40">Previous</p>
+              <p className="truncate text-white">{prev.name}</p>
             </div>
           </Link>
+
           <Link
             to={`/projects/${next.slug}`}
-            className="group premium-glass rounded-2xl p-5 flex items-center justify-end gap-x-4 text-right hover:border-white/40 border border-transparent transition-colors"
+            className="group flex flex-row-reverse items-center gap-x-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 text-right transition-colors duration-300 hover:border-alpha/40 hover:bg-white/[0.05]"
           >
-            <div className="min-w-0">
-              <p className="text-white/40 uppercase tracking-wider text-xs poppin">
-                Next
-              </p>
-              <p className="text-white poppin truncate">{next.name}</p>
+            <FiArrowRight className="shrink-0 text-xl text-white/60 transition-colors group-hover:text-white" />
+            <div className="min-w-0 flex-1">
+              <p className="text-xs uppercase tracking-wider text-white/40">Next</p>
+              <p className="truncate text-white">{next.name}</p>
             </div>
-            <FiArrowRight className="text-xl text-white/60 group-hover:text-white transition-colors shrink-0" />
           </Link>
         </div>
       </div>
