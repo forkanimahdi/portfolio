@@ -69,10 +69,10 @@ export const Achievements = () => {
                                     className="aspect-[4/3] w-full select-none object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
                                     loading="lazy"
                                 />
-                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent"></div>
+                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-pure-black/75 via-pure-black/10 to-transparent"></div>
                                 <figcaption className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3">
-                                    <span className="text-sm text-white/90 lg:text-base">{achievement.place}</span>
-                                    <span className="shrink-0 text-xs uppercase tracking-[0.2em] text-white/80">{achievement.year}</span>
+                                    <span className="text-sm text-pure-white/90 lg:text-base">{achievement.place}</span>
+                                    <span className="shrink-0 text-xs uppercase tracking-[0.2em] text-pure-white/80">{achievement.year}</span>
                                 </figcaption>
                             </motion.figure>
 

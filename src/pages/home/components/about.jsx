@@ -90,7 +90,7 @@ export const About = () => {
                                 target="_blank"
                                 rel="noreferrer"
                                 aria-label={social.name}
-                                className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 text-lg text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-white"
+                                className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/10 text-lg text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-pure-white"
                             >
                                 {social.icon}
                             </a>

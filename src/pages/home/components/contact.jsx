@@ -33,7 +33,7 @@ export const Contact = () => {
             if (!captchaBox.current) return;
             captchaId.current = window.turnstile.render(captchaBox.current, {
                 sitekey: captchaSiteKey,
-                theme: "dark",
+                theme: document.documentElement.classList.contains("light") ? "light" : "dark",
                 size: "flexible",
                 callback: (token) => setCaptchaToken(token),
                 "expired-callback": () => setCaptchaToken(null),
@@ -128,12 +128,12 @@ export const Contact = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={social.name}
-                                        className="group flex h-36 flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-colors duration-300 hover:border-alpha hover:bg-alpha sm:h-40 lg:aspect-[5/4] lg:h-auto"
+                                        className="group flex h-36 flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-pure-white sm:h-40 lg:aspect-[5/4] lg:h-auto"
                                     >
                                         <span className="text-2xl">{social.icon}</span>
                                         <span className="flex items-center justify-between gap-2 text-sm sm:text-base">
-                                            <GoArrowUpRight className="shrink-0 text-white/60 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
-                                            <span className="truncate text-white/85 group-hover:text-white">@forkanimahdi</span>
+                                            <GoArrowUpRight className="shrink-0 text-white/60 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-pure-white" />
+                                            <span className="truncate text-white/85 group-hover:text-pure-white">@forkanimahdi</span>
                                         </span>
                                     </a>
                                 ))}
@@ -169,7 +169,7 @@ export const Contact = () => {
                             <button
                                 type="submit"
                                 disabled={sending || !captchaToken}
-                                className="group flex w-full items-center justify-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:brightness-125 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:brightness-100"
+                                className="group flex w-full items-center justify-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:brightness-100"
                             >
                                 {sending ? "Sending..." : "Send message"}
                                 {!sending && <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />}

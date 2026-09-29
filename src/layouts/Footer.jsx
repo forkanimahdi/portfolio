@@ -3,6 +3,7 @@ import { GoArrowUp } from "react-icons/go";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import logo from "../assets/images/myLogo.png";
+import blackLogo from "../assets/images/blackLogo.png";
 
 const pages = ["home", "about", "projects", "clients", "contact"];
 
@@ -34,7 +35,8 @@ export const Footer = () => {
             <div className="container grid gap-12 py-16 md:grid-cols-12">
                 <div className="md:col-span-6">
                     <Link to="/" onClick={scrollToTop} className="inline-flex items-center gap-3">
-                        <img src={logo} alt="Mehdi Forkani logo" className="h-9 w-9 object-contain" />
+                        <img src={logo} alt="Mehdi Forkani logo" className="h-9 w-9 object-contain light:hidden" />
+                        <img src={blackLogo} alt="Mehdi Forkani logo" className="hidden h-9 w-9 object-contain light:block" />
                         <span className="font-display text-lg font-bold uppercase tracking-wide">
                             Forkani<span className="text-alpha">.</span>
                         </span>
@@ -52,7 +54,7 @@ export const Footer = () => {
                                 target="_blank"
                                 rel="noreferrer"
                                 aria-label={social.name}
-                                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-white"
+                                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-pure-white"
                             >
                                 {social.icon}
                             </a>
@@ -101,7 +103,7 @@ export const Footer = () => {
                         className="group flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-white"
                     >
                         Back to top
-                        <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-sm text-white/70 transition-colors duration-300 group-hover:border-alpha group-hover:bg-alpha group-hover:text-white">
+                        <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 text-sm text-white/70 transition-colors duration-300 group-hover:border-alpha group-hover:bg-alpha group-hover:text-pure-white">
                             <GoArrowUp />
                         </span>
                     </button>

@@ -9,7 +9,7 @@ import Seo from "../../utils/Seo";
 
 const gridStyle = {
     backgroundImage:
-        "linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px)",
+        "linear-gradient(to right, color-mix(in srgb, var(--color-white) 4%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, var(--color-white) 4%, transparent) 1px, transparent 1px)",
     backgroundSize: "64px 64px",
     maskImage: "radial-gradient(ellipse 80% 70% at 30% 20%, black 30%, transparent 100%)",
     WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 30% 20%, black 30%, transparent 100%)",
@@ -79,8 +79,8 @@ export const Projects = () => {
                                         alt={`${project.name} — ${project.technologies.join(", ")} project by Mehdi Forkani`}
                                         loading="lazy"
                                     />
-                                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                                    <span className="absolute right-4 top-4 flex h-10 w-10 -translate-y-1 items-center justify-center rounded-full bg-alpha text-lg text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-pure-black/50 via-transparent to-transparent"></div>
+                                    <span className="absolute right-4 top-4 flex h-10 w-10 -translate-y-1 items-center justify-center rounded-full bg-alpha text-lg text-pure-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                                         <GoArrowUpRight />
                                     </span>
                                 </div>

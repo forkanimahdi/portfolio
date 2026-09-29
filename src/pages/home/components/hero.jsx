@@ -22,7 +22,7 @@ export const Hero = ({ ready = true }) => {
 
     return (
         <section id="home" className="relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden bg-black pb-32 pt-28">
-            <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[36rem] w-[56rem] max-w-[160vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-alpha/35 blur-[140px]"></div>
+            <div className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[36rem] w-[56rem] max-w-[160vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-alpha/35 blur-[140px] light:bg-alpha/15"></div>
             <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-alpha/60 to-transparent"></div>
 
             <div className="container flex flex-col items-center text-center">
@@ -69,7 +69,7 @@ export const Hero = ({ ready = true }) => {
                 >
                     <button
                         onClick={() => scrollTo("projects")}
-                        className="group flex items-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:brightness-125"
+                        className="group flex items-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
                     >
                         Want to bet?
                         <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />

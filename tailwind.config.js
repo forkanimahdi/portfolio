@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import plugin from "tailwindcss/plugin";
 
 const color = (name) => `color-mix(in srgb, var(--color-${name}) calc(<alpha-value> * 100%), transparent)`;
 
@@ -13,9 +14,12 @@ export default {
     extend: {
       colors: {
         alpha: color("alpha"),
+        white: color("white"),
         black: color("black"),
         dark: color("dark"),
         error: color("error"),
+        "pure-white": "#ffffff",
+        "pure-black": "#000000",
       },
       fontFamily: {
         display: ["Syne", "system-ui", "sans-serif"],
@@ -32,5 +36,9 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addVariant }) => {
+      addVariant("light", "html.light &");
+    }),
+  ],
 };

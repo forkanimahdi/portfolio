@@ -148,7 +148,7 @@ const ProjectDetails = () => {
           to="/projects"
           className="group inline-flex items-center gap-x-3 text-xs uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-white"
         >
-          <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 group-hover:border-alpha group-hover:bg-alpha group-hover:text-white">
+          <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 group-hover:border-alpha group-hover:bg-alpha group-hover:text-pure-white">
             <FiArrowLeft />
           </span>
           All projects
@@ -206,7 +206,7 @@ const ProjectDetails = () => {
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:brightness-125"
+                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
               >
                 {isMobileApp ? <FiDownload /> : <FiExternalLink />}
                 {isMobileApp ? "Download App" : "Live Website"}
@@ -233,7 +233,7 @@ const ProjectDetails = () => {
                   alt={`${project.name} — ${project.technologies.join(", ")} ${project.category} by Mehdi Forkani`}
                   className="aspect-video w-full select-none object-cover"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-pure-black/40 via-transparent to-transparent"></div>
               </div>
 
               <a

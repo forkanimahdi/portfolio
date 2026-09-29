@@ -5,9 +5,17 @@
 @layer base {
     :root {
         --color-alpha: #800020;
+        --color-white: #ffffff;
         --color-black: #0c0c0c;
         --color-dark: #141414;
         --color-error: #ff7376;
+    }
+
+    html.light {
+        --color-white: #0c0c0c;
+        --color-black: #ffffff;
+        --color-dark: #f4f4f5;
+        --color-error: #d92d3a;
     }
 
     html {
@@ -21,7 +29,7 @@
     }
 
     ::selection {
-        @apply bg-alpha text-white;
+        @apply bg-alpha text-pure-white;
     }
 
     ::-webkit-scrollbar {
@@ -30,7 +38,7 @@
     }
 
     ::-webkit-scrollbar-thumb {
-        background: rgb(255 255 255 / 0.12);
+        background: color-mix(in srgb, var(--color-white) 12%, transparent);
         border-radius: 20px;
     }
 

@@ -5,7 +5,7 @@ import { fadeIn } from "../utils/motion";
 
 const gridStyle = {
     backgroundImage:
-        "linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px), linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px)",
+        "linear-gradient(to right, color-mix(in srgb, var(--color-white) 4%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, var(--color-white) 4%, transparent) 1px, transparent 1px)",
     backgroundSize: "64px 64px",
     maskImage: "radial-gradient(ellipse 80% 70% at 30% 20%, black 30%, transparent 100%)",
     WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 30% 20%, black 30%, transparent 100%)",
@@ -45,7 +45,7 @@ export const Error = () => {
             >
                 <Link
                     to="/"
-                    className="group flex items-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:brightness-125"
+                    className="group flex items-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
                 >
                     Back home
                     <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />

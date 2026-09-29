@@ -103,7 +103,7 @@ export const Testimonials = () => {
                                     {testimonial.image ? (
                                         <img src={testimonial.image} alt={testimonial.name} className="h-12 w-12 rounded-full border border-alpha object-cover" />
                                     ) : (
-                                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-alpha font-display text-sm font-bold text-white">
+                                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-alpha font-display text-sm font-bold text-pure-white">
                                             {testimonial.name.charAt(0)}
                                         </span>
                                     )}
@@ -117,14 +117,14 @@ export const Testimonials = () => {
                                     <button
                                         onClick={() => goTo(current - 1)}
                                         aria-label="Previous testimonial"
-                                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-white"
+                                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-pure-white"
                                     >
                                         <GoArrowLeft />
                                     </button>
                                     <button
                                         onClick={() => goTo(current + 1)}
                                         aria-label="Next testimonial"
-                                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-white"
+                                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white/70 transition-colors duration-300 hover:border-alpha hover:bg-alpha hover:text-pure-white"
                                     >
                                         <GoArrowRight />
                                     </button>
@@ -152,7 +152,7 @@ export const Testimonials = () => {
                                 />
                             ) : (
                                 <span
-                                    className={`flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-bold ${idx === current ? "bg-alpha text-white" : "bg-white/[0.06] text-white/60"}`}
+                                    className={`flex h-10 w-10 items-center justify-center rounded-full font-display text-sm font-bold ${idx === current ? "bg-alpha text-pure-white" : "bg-white/[0.06] text-white/60"}`}
                                 >
                                     {person.name.charAt(0)}
                                 </span>

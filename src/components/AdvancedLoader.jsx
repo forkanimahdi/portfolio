@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import logo from "../assets/images/myLogo.png";
+import blackLogo from "../assets/images/blackLogo.png";
 
 const DURATION_MS = 1400;
 const PARTICLES = Array.from({ length: 28 });
@@ -80,7 +81,10 @@ const AdvancedLoader = ({ onLoadComplete }) => {
             <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-alpha/20 blur-[100px]"></div>
 
             <div className="flex flex-col items-center gap-8">
-                <img data-logo src={logo} alt="" className="h-32 w-32 object-contain drop-shadow-2xl lg:h-40 lg:w-40" />
+                <div data-logo>
+                    <img src={logo} alt="" className="h-32 w-32 object-contain drop-shadow-2xl light:hidden lg:h-40 lg:w-40" />
+                    <img src={blackLogo} alt="" className="hidden h-32 w-32 object-contain light:block lg:h-40 lg:w-40" />
+                </div>
 
                 <div data-text className="space-y-4 text-center">
                     <p className="font-display font-bold tracking-tight text-2xl tracking-wider lg:text-4xl">LOADING PORTFOLIO</p>

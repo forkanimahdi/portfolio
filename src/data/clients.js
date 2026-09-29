@@ -16,5 +16,5 @@ export const clients = [
   { logo: mhijir, name: "Oumaima Mhijir" },
   { logo: tihadazemmour, name: "Tihad Azemmour", url: "https://tihadazemmourwomen.ma/", preserveColor: true },
   { logo: a1, name: "Atelier A1", url: "https://ateliera1.com/" },
-  { logo: israr, name: "ISRAR", url: "https://israr.ma/", preserveColor: true },
+  { logo: israr, name: "ISRAR", url: "https://israr.ma/" },
 ];

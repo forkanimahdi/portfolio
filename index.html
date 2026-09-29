@@ -144,6 +144,9 @@
       ]
     }
     </script>
+    <script>
+      if (localStorage.getItem("theme") === "light") document.documentElement.classList.add("light");
+    </script>
     <!-- Instant dark paint so humans never see a white flash -->
     <style>
       html, body {
@@ -154,6 +157,10 @@
       #root:empty {
         min-height: 100vh;
         background: #0c0c0c;
+      }
+      html.light, html.light body, html.light #root:empty {
+        background: #ffffff;
+        color: #0c0c0c;
       }
       /* Crawlable copy for bots — not visible to humans */
       #seo-crawl {

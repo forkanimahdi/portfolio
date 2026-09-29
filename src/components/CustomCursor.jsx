@@ -101,7 +101,7 @@ const CustomCursor = () => {
         <>
             <div
                 ref={cursorRef}
-                className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[9998] mix-blend-difference hidden lg:block"
+                className="fixed top-0 left-0 w-4 h-4 bg-pure-white rounded-full pointer-events-none z-[9998] mix-blend-difference hidden lg:block"
                 style={{
                     transform: 'translate(-50%, -50%)',
                 }}
