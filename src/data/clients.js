@@ -12,9 +12,9 @@ export const clients = [
   { logo: lionsgeek, name: "LionsGeek", url: "https://lionsgeek.ma/" },
   { logo: casamemoire, name: "Casamémoire", url: "https://www.casamemoire.org/" },
   // { logo: tilila, name: "Tilila", url: "https://tilila.org/" }, // import from ../assets/images/clients/tilila.png
-  { logo: tm, name: "2M", url: "https://2m.ma/", preserveColor: true },
+  { logo: tm, name: "2M", url: "https://2m.ma/", preserveColor: true, size: "scale-75" },
   { logo: mhijir, name: "Oumaima Mhijir" },
   { logo: tihadazemmour, name: "Tihad Azemmour", url: "https://tihadazemmourwomen.ma/", preserveColor: true },
   { logo: a1, name: "Atelier A1", url: "https://ateliera1.com/" },
-  { logo: israr, name: "ISRAR", url: "https://israr.ma/" },
+  { logo: israr, name: "ISRAR", url: "https://israr.ma/", size: "scale-[1.8]" },
 ];

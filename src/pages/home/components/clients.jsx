@@ -44,7 +44,7 @@ export const Clients = () => {
                                 src={client.logo}
                                 alt={`${client.name} logo`}
                                 loading="lazy"
-                                className={`h-16 w-full max-w-[8rem] object-contain opacity-60 transition-all duration-300 group-hover:opacity-100 lg:h-20 ${client.preserveColor ? "grayscale group-hover:grayscale-0" : "brightness-0 invert light:invert-0"}`}
+                                className={`h-16 w-full max-w-[8rem] object-contain opacity-80 transition-all duration-300 group-hover:opacity-100 lg:h-20 ${client.size || ""} ${client.preserveColor ? "grayscale group-hover:grayscale-0" : "brightness-0 invert light:invert-0"}`}
                             />
                             {client.url && (
                                 <GoArrowUpRight className="absolute right-4 top-4 text-transparent transition-colors duration-300 group-hover:text-alpha" />
