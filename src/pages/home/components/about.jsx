@@ -72,9 +72,10 @@ export const About = () => {
                         className="mt-12 divide-y divide-white/[0.06] border-y border-white/[0.06]"
                     >
                         {facts.map((fact) => (
-                            <div key={fact.label} className="flex items-center justify-between gap-6 py-4 text-sm">
-                                <p className="uppercase tracking-[0.2em] text-white/40">{fact.label}</p>
-                                <p className="text-right text-white/90">{fact.value}</p>
+                            <div key={fact.label} className="group relative isolate flex items-center justify-between gap-6 py-4 text-sm">
+                                <span className="absolute inset-y-0 -inset-x-4 -z-10 origin-center scale-y-0 bg-alpha transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100"></span>
+                                <p className="uppercase tracking-[0.2em] text-white/40 transition-colors duration-300 group-hover:text-pure-white/70">{fact.label}</p>
+                                <p className="text-right text-white/90 transition-colors duration-300 group-hover:text-pure-white">{fact.value}</p>
                             </div>
                         ))}
                     </motion.div>
