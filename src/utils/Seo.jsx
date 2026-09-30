@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const SITE_URL = "https://forkanimahdi.vercel.app";
+const SITE_URL = "https://forkanimahdi.com";
 const DEFAULT_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 const setMeta = (selector, attr, value) => {
