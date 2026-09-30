@@ -17,7 +17,7 @@ export const Hero = ({ ready = true }) => {
     const animate = ready ? "show" : "hidden";
 
     return (
-        <section id="home" className="relative isolate flex h-screen min-h-[640px] items-end overflow-hidden lg:items-center">
+        <section id="home" className="relative isolate flex h-svh min-h-[640px] items-center overflow-hidden lg:h-screen">
             <h1 className="sr-only">
                 Mehdi Forkani — Mobile &amp; Web App Developer in Morocco (Laravel, React, React Native)
             </h1>
@@ -33,10 +33,11 @@ export const Hero = ({ ready = true }) => {
             </motion.div>
 
             <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-black via-black/75 to-black/10 lg:block"></div>
-            <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black via-black/60 to-transparent lg:h-1/3"></div>
+            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black/30 via-black/60 to-black lg:hidden"></div>
+            <div className="absolute inset-x-0 bottom-0 -z-10 hidden h-1/3 bg-gradient-to-t from-black via-black/60 to-transparent lg:block"></div>
             <div className="absolute -left-40 top-1/3 -z-10 h-[28rem] w-[28rem] rounded-full bg-alpha/20 blur-[120px]"></div>
 
-            <div className="container pb-28 lg:pb-0 lg:pt-20">
+            <div className="container pt-20">
                 <motion.div
                     variants={reveal(0.1)}
                     initial="hidden"
