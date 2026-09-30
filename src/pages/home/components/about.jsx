@@ -19,8 +19,8 @@ const facts = [
 export const About = () => {
     return (
         <section id="about" className="bg-dark py-24 lg:py-32">
-            <div className="container grid gap-14 lg:grid-cols-12 lg:gap-16">
-                <div className="lg:col-span-5">
+            <div className="container grid gap-y-10 lg:grid-cols-12 lg:gap-x-16">
+                <div className="lg:col-span-12">
                     <motion.p
                         variants={fadeIn("up", 0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}
                         className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60"
@@ -37,19 +37,19 @@ export const About = () => {
                         <br />
                         <span className="text-alpha">App Developer.</span>
                     </motion.h2>
-
-                    <motion.div
-                        variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
-                        className="mt-10 max-w-md overflow-hidden rounded-2xl border border-white/[0.06] lg:max-w-none"
-                    >
-                        <img className="aspect-[4/5] w-full select-none object-cover" loading="lazy" src={me} alt="Portrait of Mehdi Forkani" />
-                    </motion.div>
                 </div>
 
-                <div className="lg:col-span-7 lg:pt-16">
+                <motion.div
+                    variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
+                    className="relative max-w-md overflow-hidden rounded-2xl border border-white/[0.06] lg:col-span-5 lg:max-w-none"
+                >
+                    <img className="aspect-[4/5] w-full select-none object-cover object-top lg:absolute lg:inset-0 lg:aspect-auto lg:h-full" loading="lazy" src={me} alt="Portrait of Mehdi Forkani" />
+                </motion.div>
+
+                <div className="flex flex-col justify-between gap-10 lg:col-span-7">
                     <motion.div
                         variants={fadeIn("up", 0.2)} initial="hidden" whileInView="show" viewport={{ once: true }}
-                        className="space-y-6 text-[15px] leading-7 text-white/65 lg:text-[17px] lg:leading-8"
+                        className="space-y-6 text-[15px] leading-7 text-white/65 lg:space-y-7 lg:text-[17px] lg:leading-[2.125rem]"
                     >
                         <p>
                             Hi, I&apos;m Mehdi, a mobile &amp; web app developer based in Morocco. Most of my work starts with a
@@ -58,18 +58,25 @@ export const About = () => {
                         <p>
                             I ship web platforms and mobile apps that are secure, well designed, and ready for real users, from
                             polished React and React Native front-ends to solid Laravel back-ends and admin dashboards. Startups,
-                            NGOs, institutions, and leaders trust me to turn their ideas into products people rely on every day.
+                            NGOs, institutions, and leaders{" "}
+                            <button
+                                onClick={() => document.getElementById("clients").scrollIntoView({ behavior: "smooth" })}
+                                className="font-semibold text-alpha underline decoration-alpha/40 underline-offset-4 transition-colors duration-300 hover:decoration-alpha"
+                            >
+                                trusted me
+                            </button>{" "}
+                            to turn their ideas into products people rely on every day.
                         </p>
                         <p>
-                            I also coach young developers on the side, but my clients always come first. From the first draft to
-                            the final delivery, I stay involved at every step, so what you get is clear, reliable, and built to
-                            scale.
+                            Coaching young developers taught me to explain every decision and keep things simple. I bring that to
+                            every project: from the first draft to the final delivery, I stay involved at every step, so what you
+                            get is clear, reliable, and built to scale.
                         </p>
                     </motion.div>
 
                     <motion.div
                         variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
-                        className="mt-12 divide-y divide-white/[0.06] border-y border-white/[0.06]"
+                        className="divide-y divide-white/[0.06] border-y border-white/[0.06]"
                     >
                         {facts.map((fact) => (
                             <div key={fact.label} className="group relative isolate flex items-center justify-between gap-6 py-4 text-sm">
@@ -82,7 +89,7 @@ export const About = () => {
 
                     <motion.div
                         variants={fadeIn("up", 0.4)} initial="hidden" whileInView="show" viewport={{ once: true }}
-                        className="mt-10 flex flex-wrap gap-3"
+                        className="flex flex-wrap gap-3"
                     >
                         {socials.map((social) => (
                             <a
