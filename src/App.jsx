@@ -45,7 +45,7 @@ function App() {
           <Route path="/" element={<Home ready={!showLoader} />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetails />} />
-          <Route path="/*" element={<Error />} />
+          <Route path="/*" element={<Error ready={!showLoader} />} />
         </Routes>
       </div>
     </AppProvider>
