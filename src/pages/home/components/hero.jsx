@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { fadeIn } from "../../../utils/motion";
-import heroImage from "../../../assets/images/t.png";
+import { GoArrowRight } from "react-icons/go";
+import heroImage from "../../../assets/images/t.webp";
 import heroImageMobile from "../../../assets/images/heroMobile.webp";
 
 const scrollToSection = (id) => {
@@ -8,68 +8,116 @@ const scrollToSection = (id) => {
     if (section) section.scrollIntoView({ behavior: "smooth" });
 };
 
-const texts = [
-    { content: "The future ?", delay: 0.5, accent: false },
-    { content: "They just see it coming!", delay: 1, accent: false },
-    { content: "I code it.", delay: 1.5, accent: true },
-];
+const reveal = (delay) => ({
+    hidden: { opacity: 0, y: 24, filter: "blur(10px)" },
+    show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] } },
+});
 
 export const Hero = ({ ready = true }) => {
     const animate = ready ? "show" : "hidden";
 
     return (
-        <div id="home" className="relative pt-[10vh] h-screen flex flex-col items-center lg:justify-evenly justify-center lg:gap-0 gap-y-10">
+        <section id="home" className="relative isolate flex h-screen min-h-[640px] items-end overflow-hidden lg:items-center">
             <h1 className="sr-only">
                 Mehdi Forkani — Mobile &amp; Web App Developer in Morocco (Laravel, React, React Native)
             </h1>
 
-            <motion.p
-                variants={fadeIn("up", 0.2)}
-                initial="hidden"
-                animate={animate}
-                className="z-20 text-[0.7rem] uppercase tracking-[0.35em] text-white/45"
-            >
-                Mobile &amp; Web App Developer · Morocco
-            </motion.p>
-
-            <div className="uppercase selection:bg-white selection:text-black text-white font-display lg:text-[3.25rem] text-[1.75rem] lg:leading-[1.35] leading-loose font-bold tracking-tight text-center z-20">
-                {texts.map((text, index) => (
-                    <motion.div
-                        key={index}
-                        variants={fadeIn("up", text.delay)}
-                        initial="hidden"
-                        animate={animate}
-                        className={text.accent ? "bg-[linear-gradient(120deg,var(--color-white)_0%,#9a9a9a_45%,var(--color-white)_90%)] bg-[length:200%_auto] bg-clip-text text-transparent animate-shimmer" : ""}
-                    >
-                        {text.content}
-                    </motion.div>
-                ))}
-            </div>
-
-            <div className="w-full h-screen absolute top-0 overflow-hidden">
-                <div className="absolute inset-0 z-[5] bg-alpha/10 light:bg-alpha/5"></div>
-                <div className="bg-gradient-to-b from-dark/0 to-dark bottom-0 absolute z-10 w-full h-[30vh]"></div>
-                <img loading="lazy" className="h-full w-full object-cover opacity-10 lg:block hidden" src={heroImage} alt="" />
-                <img loading="lazy" className="h-full w-full object-cover opacity-20 lg:hidden block" src={heroImageMobile} alt="" />
-            </div>
-
             <motion.div
-                variants={fadeIn("up", 1.8)}
-                initial="hidden"
-                animate={animate}
-                className="group uppercase cursor-pointer z-20 select-none text-sm font-semibold tracking-wide text-white border border-white/60 rounded-lg py-3 px-6 hover:bg-white hover:text-black hover:border-white flex items-center gap-x-3 transition-colors"
-                onClick={() => scrollToSection("projects")}
+                initial={{ scale: 1.12, opacity: 0 }}
+                animate={ready ? { scale: 1, opacity: 1 } : { scale: 1.12, opacity: 0 }}
+                transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 -z-10"
             >
-                Want to bet?
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                <img className="hidden h-full w-full object-cover object-right opacity-60 saturate-[0.8] light:opacity-40 lg:block" src={heroImage} alt="" />
+                <img className="block h-full w-full object-cover opacity-40 lg:hidden" src={heroImageMobile} alt="" />
             </motion.div>
 
-            <div className="flex flex-col gap-y-1 items-center cursor-pointer z-20" onClick={() => scrollToSection("about")}>
-                <svg className="animate-bounce" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#bdbdbd" viewBox="0 0 16 16">
-                    <path d="M8 3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 3m4 8a4 4 0 0 1-8 0V5a4 4 0 1 1 8 0zM8 0a5 5 0 0 0-5 5v6a5 5 0 0 0 10 0V5a5 5 0 0 0-5-5" />
-                </svg>
-                <p className="text-white/80 text-sm animate-pulse">Scroll Now</p>
+            <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-black via-black/75 to-black/10 lg:block"></div>
+            <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-black via-black/60 to-transparent lg:h-1/3"></div>
+            <div className="absolute -left-40 top-1/3 -z-10 h-[28rem] w-[28rem] rounded-full bg-alpha/20 blur-[120px]"></div>
+
+            <div className="container pb-28 lg:pb-0 lg:pt-20">
+                <motion.div
+                    variants={reveal(0.1)}
+                    initial="hidden"
+                    animate={animate}
+                    className="inline-flex items-center gap-2.5 rounded-lg border border-alpha/40 bg-alpha/10 px-3.5 py-2 text-xs text-white/80 backdrop-blur-md"
+                >
+                    <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-alpha opacity-75"></span>
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-alpha"></span>
+                    </span>
+                    Available for new projects
+                </motion.div>
+
+                <motion.p
+                    variants={reveal(0.3)}
+                    initial="hidden"
+                    animate={animate}
+                    className="mt-8 font-display text-xl font-medium tracking-tight text-white/55 lg:text-3xl"
+                >
+                    The future? They just see it coming.
+                </motion.p>
+
+                <motion.h2
+                    variants={reveal(0.5)}
+                    initial="hidden"
+                    animate={animate}
+                    className="mt-2 font-display text-[4.25rem] font-bold leading-[0.95] tracking-tight text-white sm:text-8xl lg:text-[8.5rem]"
+                >
+                    I{" "}
+                    <span className="bg-[linear-gradient(120deg,var(--color-white)_0%,#d4567a_50%,var(--color-white)_100%)] bg-[length:200%_auto] bg-clip-text text-transparent animate-shimmer">
+                        code
+                    </span>{" "}
+                    it.
+                </motion.h2>
+
+                <motion.p
+                    variants={reveal(0.7)}
+                    initial="hidden"
+                    animate={animate}
+                    className="mt-8 max-w-md text-base leading-relaxed text-white/60 lg:text-lg"
+                >
+                    I&apos;m Mehdi Forkani, a mobile &amp; web app developer in Morocco turning bold ideas into products people rely on every day.
+                </motion.p>
+
+                <motion.div
+                    variants={reveal(0.9)}
+                    initial="hidden"
+                    animate={animate}
+                    className="mt-10 flex flex-wrap items-center gap-3"
+                >
+                    <button
+                        onClick={() => scrollToSection("projects")}
+                        className="group flex h-12 items-center gap-2 rounded-lg bg-alpha px-6 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
+                    >
+                        Want to bet?
+                        <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </button>
+                    <button
+                        onClick={() => scrollToSection("contact")}
+                        className="flex h-12 items-center rounded-lg border border-white/15 bg-white/[0.04] px-6 text-sm font-semibold text-white backdrop-blur-md transition-colors duration-300 hover:border-white/40"
+                    >
+                        Let&apos;s talk
+                    </button>
+                </motion.div>
             </div>
-        </div>
+
+            <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 lg:block">
+                <motion.button
+                    variants={reveal(1.2)}
+                    initial="hidden"
+                    animate={animate}
+                    onClick={() => scrollToSection("about")}
+                    aria-label="Scroll to about"
+                    className="flex flex-col items-center gap-3"
+                >
+                    <span className="text-[0.65rem] uppercase tracking-[0.3em] text-white/40">Scroll</span>
+                    <span className="relative h-12 w-px overflow-hidden bg-white/10">
+                        <span className="absolute inset-x-0 top-0 h-1/2 bg-white/60 animate-scroll-hint"></span>
+                    </span>
+                </motion.button>
+            </div>
+        </section>
     );
 };

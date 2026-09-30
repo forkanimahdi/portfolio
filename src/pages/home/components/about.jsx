@@ -56,14 +56,14 @@ export const About = () => {
                             simple question: <span className="font-semibold italic text-white">&ldquo;Do you think we can…?&rdquo;</span>
                         </p>
                         <p>
-                            I design and build production-ready web platforms and mobile apps, from polished React and React
-                            Native front-ends to robust Laravel back-ends and admin dashboards. I&apos;ve partnered with startups,
-                            NGOs, institutions, and leaders to turn ideas and real-world problems into products people rely on
-                            every day.
+                            I ship web platforms and mobile apps that are secure, well designed, and ready for real users, from
+                            polished React and React Native front-ends to solid Laravel back-ends and admin dashboards. Startups,
+                            NGOs, institutions, and leaders trust me to turn their ideas into products people rely on every day.
                         </p>
                         <p>
-                            From the first conversation to launch and beyond, I stay hands-on so the result is clear, reliable,
-                            and built to scale. I also coach young developers finding their way into tech.
+                            I also coach young developers on the side, but my clients always come first. From the first draft to
+                            the final delivery, I stay involved at every step, so what you get is clear, reliable, and built to
+                            scale.
                         </p>
                     </motion.div>
 
