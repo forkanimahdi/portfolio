@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/home/Home";
 import { Projects } from "./pages/projects/projects";
 import ProjectDetails from "./pages/projects/ProjectDetails";
+import { Rating } from "./pages/rating/Rating";
 import { AppProvider } from "./context/AppContext";
 import AdvancedLoader from "./components/AdvancedLoader";
 import CustomCursor from "./components/CustomCursor";
@@ -45,6 +46,7 @@ function App() {
           <Route path="/" element={<Home ready={!showLoader} />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetails />} />
+          <Route path="/rating" element={<Rating />} />
           <Route path="/*" element={<Error ready={!showLoader} />} />
         </Routes>
       </div>
