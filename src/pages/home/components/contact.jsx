@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
+import { GoAlertFill, GoArrowRight, GoArrowUpRight, GoCheckCircleFill } from "react-icons/go";
 import { FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import { fadeIn } from "../../../utils/motion";
@@ -78,12 +78,12 @@ export const Contact = () => {
             )
             .then(
                 () => {
-                    setMessage({ text: "Message sent successfully!", error: false });
+                    setMessage({ text: "Thanks for reaching out. I'll get back to you very soon.", error: false });
                     form.current.reset();
                 },
                 (error) => {
                     console.error("EmailJS error:", error?.status, error?.text || error);
-                    setMessage({ text: "Failed to send. Try again.", error: true });
+                    setMessage({ text: "Something went wrong. Please try again, or email me directly.", error: true });
                 }
             )
             .finally(() => {
@@ -163,9 +163,28 @@ export const Contact = () => {
                                 <p className="text-sm text-error">Spam protection isn&apos;t configured, so the form is disabled.</p>
                             )}
 
-                            {message.text && (
-                                <p className={`text-center text-sm ${message.error ? "text-error" : "text-white/70"}`}>{message.text}</p>
-                            )}
+                            <AnimatePresence>
+                                {message.text && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        transition={{ duration: 0.3 }}
+                                        role="status"
+                                        className={`flex items-start gap-3 rounded-lg border px-4 py-3.5 ${message.error ? "border-error/30 bg-error/10" : "border-emerald-500/30 bg-emerald-500/10"}`}
+                                    >
+                                        {message.error ? (
+                                            <GoAlertFill className="mt-0.5 shrink-0 text-lg text-error" />
+                                        ) : (
+                                            <GoCheckCircleFill className="mt-0.5 shrink-0 text-lg text-emerald-500" />
+                                        )}
+                                        <div>
+                                            <p className="text-sm font-semibold text-white">{message.error ? "Message not sent" : "Message sent!"}</p>
+                                            <p className="mt-0.5 text-sm text-white/65">{message.text}</p>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
 
                             <button
                                 type="submit"
