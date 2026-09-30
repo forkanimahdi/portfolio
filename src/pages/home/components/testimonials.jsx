@@ -4,25 +4,20 @@ import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { fadeIn } from "../../../utils/motion";
 import mhijir from "../../../assets/images/testimonials/mhijir.png";
+import tihadazemmour from "../../../assets/images/testimonials/tihadazemmour.png";
 
 const testimonials = [
+    {
+        name: "Mahdi Bouziane",
+        role: "President, Tihad Azemmour",
+        quote: "As President of Tihad Azemmour Women, I'm grateful to Mahdi for developing tihadazemmourwomen.ma, our club's website and management platform.\n\nA women's football club with more than 60 players across U15, U17 and Seniors needs solid tools, and Mahdi built one to fit us. He took the time to understand how an amateur club really runs, and he turned our needs into a clear, reliable platform that fully carries our identity as the Dragonnes.\n\nHe was always available and attentive, and he never lost sight of the purpose: giving young women athletes a club that is professional on and off the pitch.\n\nTechnical skill, listening and commitment make Mahdi a partner I recommend without hesitation.\n\nديما اتحاد 🐉",
+        image: tihadazemmour,
+    },
     {
         name: "Oumaima Mhijir",
         role: "CEO, Jadara Foundation",
         quote: "I am really impressed by you, not only by your technical Skills but also by your ability to transform a more or less clear vision into a tangible project  Your reactivity and professionalism just wawed be  Thank you sidi",
         image: mhijir,
-    },
-    {
-        name: "Another Client",
-        role: "CTO, Tech Startup",
-        quote: "Working with Mehdi was a game-changer. He understood our vision and brought it to life with precision and creativity. The final product exceeded our expectations.",
-        image: null,
-    },
-    {
-        name: "Third Client",
-        role: "Project Manager",
-        quote: "Professional, reliable, and incredibly talented. Mehdi's work speaks for itself, and his communication throughout the project was excellent.",
-        image: null,
     },
 ];
 
@@ -30,20 +25,22 @@ export const Testimonials = () => {
     const [current, setCurrent] = useState(0);
     const [paused, setPaused] = useState(false);
 
+    const testimonial = testimonials[current];
+    const isLong = testimonial.quote.length > 240;
+    const duration = Math.max(7, Math.round(testimonial.quote.length / 20));
+
     useEffect(() => {
         if (paused) return;
         const timer = setTimeout(() => {
             setCurrent((prev) => (prev + 1) % testimonials.length);
-        }, 7000);
+        }, duration * 1000);
         return () => clearTimeout(timer);
-    }, [current, paused]);
+    }, [current, paused, duration]);
 
     const goTo = (index) => {
         setCurrent((index + testimonials.length) % testimonials.length);
         setPaused(true);
     };
-
-    const testimonial = testimonials[current];
 
     return (
         <section id="testimonials" className="bg-black py-24 lg:py-32">
@@ -94,7 +91,9 @@ export const Testimonials = () => {
                             transition={{ duration: 0.45 }}
                             className="mt-8 flex flex-1 flex-col justify-between gap-10"
                         >
-                            <p className="font-display text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl lg:text-[1.9rem] lg:leading-[1.3]">
+                            <p
+                                className={`whitespace-pre-line font-display font-semibold tracking-tight text-white ${isLong ? "text-base leading-relaxed sm:text-lg lg:text-xl lg:leading-relaxed" : "text-xl leading-snug sm:text-2xl lg:text-[1.9rem] lg:leading-[1.3]"}`}
+                            >
                                 {testimonial.quote}
                             </p>
 
@@ -173,7 +172,7 @@ export const Testimonials = () => {
                                     className="absolute -bottom-px left-0 h-px w-full origin-left bg-alpha"
                                     initial={{ scaleX: paused ? 1 : 0 }}
                                     animate={{ scaleX: 1 }}
-                                    transition={{ duration: paused ? 0 : 7, ease: "linear" }}
+                                    transition={{ duration: paused ? 0 : duration, ease: "linear" }}
                                 />
                             )}
                         </button>
