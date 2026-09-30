@@ -81,7 +81,8 @@ export const Contact = () => {
                     setMessage({ text: "Message sent successfully!", error: false });
                     form.current.reset();
                 },
-                () => {
+                (error) => {
+                    console.error("EmailJS error:", error?.status, error?.text || error);
                     setMessage({ text: "Failed to send. Try again.", error: true });
                 }
             )
