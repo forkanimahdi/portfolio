@@ -30,9 +30,13 @@ export default {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(200%)" },
         },
+        shimmer: {
+          to: { backgroundPosition: "200% center" },
+        },
       },
       animation: {
         "scroll-hint": "scroll-hint 2s ease-in-out infinite",
+        shimmer: "shimmer 6s linear infinite",
       },
     },
   },

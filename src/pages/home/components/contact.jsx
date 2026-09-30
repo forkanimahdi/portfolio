@@ -99,7 +99,7 @@ export const Contact = () => {
                     variants={fadeIn("up", 0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}
                     className="relative isolate overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02]"
                 >
-                    <div className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[28rem] w-[28rem] rounded-full bg-alpha/25 blur-[100px]"></div>
+                    <div className="pointer-events-none absolute -left-32 -top-32 -z-10 h-[28rem] w-[28rem] rounded-full bg-alpha/25 blur-[100px] light:bg-alpha/15"></div>
 
                     <div className="grid gap-14 p-8 sm:p-12 lg:grid-cols-2 lg:gap-16 lg:p-16">
                         <div className="flex flex-col">
