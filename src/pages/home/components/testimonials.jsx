@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+import { GoArrowLeft, GoArrowRight, GoChevronDown } from "react-icons/go";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { fadeIn } from "../../../utils/motion";
 import mhijir from "../../../assets/images/testimonials/mhijir.png";
@@ -24,10 +24,15 @@ const testimonials = [
 export const Testimonials = () => {
     const [current, setCurrent] = useState(0);
     const [paused, setPaused] = useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     const testimonial = testimonials[current];
-    const isLong = testimonial.quote.length > 240;
-    const duration = Math.max(7, Math.round(testimonial.quote.length / 20));
+    const paragraphs = testimonial.quote.split("\n\n");
+    const duration = Math.max(7, Math.round(paragraphs[0].length / 20));
+
+    useEffect(() => {
+        setExpanded(false);
+    }, [current]);
 
     useEffect(() => {
         if (paused) return;
@@ -91,11 +96,46 @@ export const Testimonials = () => {
                             transition={{ duration: 0.45 }}
                             className="mt-8 flex flex-1 flex-col justify-between gap-10"
                         >
-                            <p
-                                className={`whitespace-pre-line font-display font-semibold tracking-tight text-white ${isLong ? "text-base leading-relaxed sm:text-lg lg:text-xl lg:leading-relaxed" : "text-xl leading-snug sm:text-2xl lg:text-[1.9rem] lg:leading-[1.3]"}`}
-                            >
-                                {testimonial.quote}
-                            </p>
+                            <div>
+                                <p className="text-xl font-normal leading-relaxed text-white/90 sm:text-2xl sm:leading-relaxed lg:text-[1.65rem] lg:leading-[1.55]">
+                                    {paragraphs[0]}
+                                </p>
+
+                                {paragraphs.length > 1 && (
+                                    <>
+                                        <AnimatePresence initial={false}>
+                                            {expanded && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: "auto", opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                                    className="overflow-hidden"
+                                                >
+                                                    <div className="pt-6">
+                                                        <div className="space-y-4 border-l border-alpha/50 pl-5 text-base leading-relaxed text-white/60 lg:text-[17px] lg:leading-8">
+                                                            {paragraphs.slice(1).map((paragraph, idx) => (
+                                                                <p key={idx}>{paragraph}</p>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+
+                                        <button
+                                            onClick={() => {
+                                                setExpanded(!expanded);
+                                                setPaused(true);
+                                            }}
+                                            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-alpha transition-colors duration-300 hover:text-white"
+                                        >
+                                            {expanded ? "Show less" : "Read full testimonial"}
+                                            <GoChevronDown className={`transition-transform duration-300 ${expanded ? "rotate-180" : ""}`} />
+                                        </button>
+                                    </>
+                                )}
+                            </div>
 
                             <div className="flex items-center justify-between gap-4 border-t border-white/[0.06] pt-6">
                                 <div className="flex items-center gap-4">
