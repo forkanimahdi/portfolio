@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../utils/motion";
-import xr4heritage from "../../../assets/images/achievments/xr4heritage.jpg";
+import xr4heritage from "../../../assets/images/achievments/xr4heritage.png";
 
 const achievements = [
     {
