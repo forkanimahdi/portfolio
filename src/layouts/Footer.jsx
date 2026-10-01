@@ -21,6 +21,8 @@ export const Footer = () => {
     const goTo = (id) => {
         if (id === "about") {
             navigate("/about");
+        } else if (id === "projects" && location.pathname !== "/") {
+            navigate("/projects");
         } else if (location.pathname !== "/") {
             navigate(`/#${id}`);
         } else {

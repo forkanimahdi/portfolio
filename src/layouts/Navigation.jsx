@@ -45,6 +45,8 @@ export const Navigation = () => {
         setNav(false);
         if (id === "about") {
             navigate("/about");
+        } else if (id === "projects" && location.pathname !== "/") {
+            navigate("/projects");
         } else if (location.pathname !== "/") {
             navigate(`/#${id}`);
         } else {

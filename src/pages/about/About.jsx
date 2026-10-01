@@ -109,13 +109,6 @@ export const About = () => {
                         <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
                             <img className="aspect-[4/5] w-full select-none object-cover object-top" src={me} alt="Mehdi Forkani, freelance web and mobile app developer based in Casablanca, working worldwide" />
                         </div>
-                        <div className="absolute -bottom-5 left-5 flex items-center gap-3 rounded-lg border border-alpha/40 bg-black/90 px-4 py-3 text-sm text-white backdrop-blur-md">
-                            <span className="relative flex h-2 w-2">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-alpha opacity-75"></span>
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-alpha"></span>
-                            </span>
-                            Casablanca · Working worldwide
-                        </div>
                     </motion.div>
                 </div>
 
