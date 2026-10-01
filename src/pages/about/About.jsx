@@ -157,7 +157,7 @@ export const About = () => {
                         </div>
                     </div>
 
-                    <ol className="relative space-y-8 border-l border-white/10 pl-6 lg:col-span-8 lg:pl-10">
+                    <ol className="relative min-w-0 space-y-8 border-l border-white/10 pl-6 lg:col-span-8 lg:pl-10">
                         {journey.map((step, idx) => (
                             <motion.li
                                 key={step.title}
