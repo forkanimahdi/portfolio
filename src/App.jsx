@@ -7,6 +7,7 @@ import { Home } from "./pages/home/Home";
 import { Projects } from "./pages/projects/projects";
 import ProjectDetails from "./pages/projects/ProjectDetails";
 import { Rating } from "./pages/rating/Rating";
+import { About } from "./pages/about/About";
 import { AppProvider } from "./context/AppContext";
 import AdvancedLoader from "./components/AdvancedLoader";
 import CustomCursor from "./components/CustomCursor";
@@ -44,6 +45,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home ready={!showLoader} />} />
+          <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:slug" element={<ProjectDetails />} />
           <Route path="/rating" element={<Rating />} />

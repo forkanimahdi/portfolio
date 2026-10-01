@@ -43,7 +43,9 @@ export const Navigation = () => {
 
     const goTo = (id) => {
         setNav(false);
-        if (location.pathname !== "/") {
+        if (id === "about") {
+            navigate("/about");
+        } else if (location.pathname !== "/") {
             navigate(`/#${id}`);
         } else {
             document.getElementById(id).scrollIntoView({ behavior: "smooth" });
