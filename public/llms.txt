@@ -10,7 +10,7 @@
 ## About
 - Name: Mehdi Forkani (also written Forkani Mehdi, forkanimahdi, مهدي الفرقاني)
 - Role: Freelance Web & Mobile App Developer (Full-Stack)
-- Location: Casablanca, Morocco (GMT+1), working remotely worldwide
+- Location: Casablanca, Morocco (Moroccan time), working remotely worldwide
 - Languages: Arabic (Darija), French, English
 - Core stack: Laravel, Inertia.js, React, React Native, Expo, JavaScript, PHP, Tailwind CSS, MySQL, REST APIs
 - Available for: freelance and contract web and mobile app development, remote, for clients anywhere in the world
@@ -36,13 +36,14 @@
 
 ## Frequently asked questions
 - Is Mehdi Forkani available as a freelance web and mobile app developer? Yes. He is based in Casablanca, Morocco, and takes on freelance web and mobile app projects for startups, small businesses, NGOs and institutions worldwide: in Morocco, Europe, Africa, the Middle East, North America and beyond.
-- Does he work with clients outside Morocco? Yes, remotely, all over the world, with async collaboration, regular demos and clear written updates. Morocco's time zone (GMT+1) overlaps well with Europe, Africa, the Middle East and the US East Coast.
+- Does he work with clients outside Morocco? Yes, remotely, all over the world, with async collaboration, regular demos and clear written updates. Morocco's time zone overlaps well with Europe, Africa, the Middle East and the US East Coast.
 - What does he build? Web platforms and SaaS products, admin dashboards and internal tools, e-commerce sites, booking and management platforms, and cross-platform mobile apps for iOS and Android, with their back-ends and REST APIs.
 - How does he work? He starts by understanding how the client really works, designs the product, builds it in clear reviewable steps, launches it and keeps supporting it. Security is built in from day one.
 - Does he work in French? Oui : développeur web et mobile freelance basé à Casablanca, il crée des applications web et mobiles sur mesure pour les entreprises, les startups et les associations au Maroc et partout dans le monde.
-- How to hire him? Use the contact form on [forkanimahdi.com](https://forkanimahdi.com/), email forkanimahdi@gmail.com, or LinkedIn.
+- How to hire him? Use the [contact page](https://forkanimahdi.com/contact), email forkanimahdi@gmail.com, or LinkedIn.
 
 ## Contact
+- [Contact page](https://forkanimahdi.com/contact): hire Mehdi for a web or mobile app project
 - [Email](mailto:forkanimahdi@gmail.com): forkanimahdi@gmail.com
 - [LinkedIn](https://www.linkedin.com/in/forkanimahdi/)
 - [GitHub](https://github.com/forkanimahdi)

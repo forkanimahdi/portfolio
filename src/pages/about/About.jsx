@@ -86,7 +86,7 @@ export const About = () => {
                             className="mt-10 flex flex-wrap gap-3"
                         >
                             <Link
-                                to="/#contact"
+                                to="/contact"
                                 className="group flex items-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
                             >
                                 Let&apos;s talk

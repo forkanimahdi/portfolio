@@ -18,7 +18,7 @@ const captchaSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || (import.meta.e
 const inputClass =
     "w-full rounded-lg border border-white/10 bg-white/[0.03] px-5 py-3.5 text-sm text-white placeholder-white/35 outline-none transition-colors duration-300 focus:border-alpha focus:bg-white/[0.05]";
 
-export const Contact = () => {
+export const Contact = ({ full = false }) => {
     const form = useRef(null);
     const captchaBox = useRef(null);
     const captchaId = useRef(null);
@@ -113,10 +113,10 @@ export const Contact = () => {
                     variants={fadeIn("up", 0.1)} initial="hidden" whileInView="show" viewport={{ once: true }}
                     className="relative isolate overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02]"
                 >
-                    <div className="pointer-events-none absolute -left-32 -top-32 -z-10 h-[28rem] w-[28rem] rounded-full bg-alpha/25 blur-[100px] light:bg-alpha/15"></div>
+                    {!full && <div className="pointer-events-none absolute -left-32 -top-32 -z-10 h-[28rem] w-[28rem] rounded-full bg-alpha/25 blur-[100px] light:bg-alpha/15"></div>}
 
-                    <div className="grid gap-14 p-8 sm:p-12 lg:grid-cols-2 lg:gap-16 lg:p-16">
-                        <div className="flex flex-col">
+                    <div className={`grid gap-14 p-8 sm:p-12 lg:gap-16 lg:p-16 ${full ? "" : "lg:grid-cols-2"}`}>
+                        {!full && <div className="flex flex-col">
                             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
                                 <span className="h-px w-8 bg-alpha"></span>
                                 Contact
@@ -152,7 +152,7 @@ export const Contact = () => {
                                     </a>
                                 ))}
                             </div>
-                        </div>
+                        </div>}
 
                         <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
                             <div className="grid gap-4 sm:grid-cols-2">
@@ -171,7 +171,9 @@ export const Contact = () => {
                             />
 
                             {captchaSiteKey ? (
-                                <div ref={captchaBox} className="h-[65px] w-full overflow-hidden rounded-lg"></div>
+                                <div className="h-[63px] w-full overflow-hidden rounded-lg">
+                                    <div ref={captchaBox} className="-m-px h-[65px] w-[calc(100%+2px)]"></div>
+                                </div>
                             ) : (
                                 <p className="text-sm text-error">Spam protection isn&apos;t configured, so the form is disabled.</p>
                             )}
@@ -207,6 +209,27 @@ export const Contact = () => {
                                 {sending ? "Sending..." : "Send message"}
                                 {!sending && <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />}
                             </button>
+
+                            {full && (
+                                <>
+                                    <div className="flex items-center gap-4 pt-2 text-xs uppercase tracking-[0.3em] text-white/40">
+                                        <span className="h-px flex-1 bg-white/10"></span>
+                                        or
+                                        <span className="h-px flex-1 bg-white/10"></span>
+                                    </div>
+
+                                    <a
+                                        href="mailto:forkanimahdi@gmail.com"
+                                        className="group flex flex-col items-center justify-center gap-1 rounded-lg border border-white/15 px-6 py-4 text-center transition-colors duration-300 hover:border-alpha sm:flex-row sm:gap-3"
+                                    >
+                                        <span className="text-sm text-white/60">Prefer email? Write to me at</span>
+                                        <span className="flex items-center gap-2 font-display text-lg font-bold text-white transition-colors duration-300 group-hover:text-alpha">
+                                            forkanimahdi@gmail.com
+                                            <GoArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                                        </span>
+                                    </a>
+                                </>
+                            )}
                         </form>
                     </div>
                 </motion.div>

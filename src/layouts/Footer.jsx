@@ -19,8 +19,8 @@ export const Footer = () => {
     const navigate = useNavigate();
 
     const goTo = (id) => {
-        if (id === "about") {
-            navigate("/about");
+        if (id === "about" || id === "contact") {
+            navigate(`/${id}`);
         } else if (id === "projects" && location.pathname !== "/") {
             navigate("/projects");
         } else if (location.pathname !== "/") {

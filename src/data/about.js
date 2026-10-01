@@ -71,7 +71,7 @@ export const faqs = [
   {
     question: "Do you work with clients outside Morocco?",
     answer:
-      "Yes, I work remotely with clients all over the world. I'm used to async collaboration, regular demos and clear written updates, and Morocco's time zone (GMT+1) overlaps well with Europe, Africa, the Middle East and the US East Coast.",
+      "Yes, I work remotely with clients all over the world. I'm used to async collaboration, regular demos and clear written updates, and Morocco's time zone overlaps well with Europe, Africa, the Middle East and the US East Coast.",
   },
   {
     question: "What kind of apps do you build?",
