@@ -12,7 +12,7 @@ const template = readFileSync("dist/index.html", "utf-8");
 const url = `${SITE_URL}${aboutSeo.path}`;
 
 const crawlContent = `<div id="seo-crawl">
-      <h1>About Mehdi Forkani — Freelance Web &amp; Mobile App Developer in Casablanca, Morocco</h1>
+      <h1>About Mehdi Forkani — Freelance Web &amp; Mobile App Developer, Casablanca &amp; Worldwide</h1>
       <p>${escape(aboutSeo.description)}</p>
       <h2>My journey</h2>
       ${journey.map((step) => `<h3>${escape(step.title)} (${escape(step.chapter)}, ${escape(step.place)})</h3>\n      <p>${escape(step.text)}</p>`).join("\n      ")}

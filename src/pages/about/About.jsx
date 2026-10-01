@@ -34,8 +34,8 @@ const highlights = [
     },
     {
         icon: <GoLocation />,
-        title: "Casablanca, Morocco",
-        text: "Freelancing for startups, NGOs and institutions across Morocco, Africa and Europe.",
+        title: "Casablanca → Worldwide",
+        text: "Based in Casablanca, freelancing remotely for startups, NGOs and institutions all over the world.",
     },
 ];
 
@@ -76,9 +76,9 @@ export const About = () => {
                             variants={fadeIn("up", 0.3)} initial="hidden" animate="show"
                             className="mt-8 max-w-2xl text-base leading-relaxed text-white/65 lg:text-lg lg:leading-8"
                         >
-                            I&apos;m Mehdi Forkani, a freelance web &amp; mobile app developer in Casablanca, Morocco. I learned to code in the
+                            I&apos;m Mehdi Forkani, a freelance web &amp; mobile app developer based in Casablanca, Morocco. I learned to code in the
                             very first cohort of the LionsGeek Coding School, grew into its Head Coach, and today I build the web platforms
-                            and mobile apps that organizations across Morocco rely on.
+                            and mobile apps that organizations around the world rely on.
                         </motion.p>
 
                         <motion.div
@@ -107,14 +107,14 @@ export const About = () => {
                         className="relative w-full max-w-md lg:col-span-5 lg:max-w-none"
                     >
                         <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
-                            <img className="aspect-[4/5] w-full select-none object-cover object-top" src={me} alt="Mehdi Forkani, freelance web and mobile app developer in Casablanca" />
+                            <img className="aspect-[4/5] w-full select-none object-cover object-top" src={me} alt="Mehdi Forkani, freelance web and mobile app developer based in Casablanca, working worldwide" />
                         </div>
                         <div className="absolute -bottom-5 left-5 flex items-center gap-3 rounded-lg border border-alpha/40 bg-black/90 px-4 py-3 text-sm text-white backdrop-blur-md">
                             <span className="relative flex h-2 w-2">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-alpha opacity-75"></span>
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-alpha"></span>
                             </span>
-                            Casablanca, Morocco
+                            Casablanca · Working worldwide
                         </div>
                     </motion.div>
                 </div>
@@ -233,7 +233,7 @@ export const About = () => {
                             variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
                             className="mt-6 text-base leading-relaxed text-white/50 lg:text-[17px] lg:leading-8"
                         >
-                            Looking for a freelance web or mobile app developer in Casablanca? Here is what people usually want to know.
+                            Looking for a freelance web or mobile app developer, in Casablanca or anywhere in the world? Here is what people usually want to know.
                         </motion.p>
                     </div>
 

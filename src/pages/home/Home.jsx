@@ -28,7 +28,7 @@ export const Home = ({ ready }) => {
         <>
             <Seo
                 title="Mehdi Forkani | Mobile & Web App Developer (Laravel, React, React Native)"
-                description="Mehdi Forkani is a mobile & web app developer based in Casablanca, Morocco. I build production web platforms and mobile apps with Laravel, React, Inertia.js, and React Native for startups, NGOs, and organizations."
+                description="Mehdi Forkani is a freelance mobile & web app developer based in Casablanca, Morocco, working with clients worldwide. I build production web platforms and mobile apps with Laravel, React, Inertia.js, and React Native for startups, NGOs, and organizations."
                 path="/"
             />
             <Hero ready={ready} />

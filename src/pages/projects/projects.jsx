@@ -27,7 +27,7 @@ export const Projects = () => {
         <>
             <Seo
                 title="Projects | Mehdi Forkani — Mobile & Web App Developer"
-                description="Selected web and mobile app projects by Mehdi Forkani: Laravel, React, Inertia.js and React Native platforms, dashboards, and apps built for startups, NGOs, and organizations across Morocco and Africa."
+                description="Selected web and mobile app projects by Mehdi Forkani: Laravel, React, Inertia.js and React Native platforms, dashboards, and apps built for startups, NGOs, and organizations in Morocco and around the world."
                 path="/projects"
             />
 

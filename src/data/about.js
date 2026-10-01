@@ -1,7 +1,7 @@
 export const aboutSeo = {
-  title: "About Mehdi Forkani | Freelance Web & Mobile App Developer in Casablanca",
+  title: "About Mehdi Forkani | Freelance Web & Mobile App Developer, Casablanca & Worldwide",
   description:
-    "Mehdi Forkani is a freelance web and mobile app developer in Casablanca, Morocco. From the first LionsGeek cohort to Head Coach and Project Manager, he builds secure, well-designed Laravel, React and React Native apps for startups, NGOs and institutions.",
+    "Mehdi Forkani is a freelance web and mobile app developer based in Casablanca, Morocco, working with clients worldwide. From the first LionsGeek cohort to Head Coach and Project Manager, he builds secure, well-designed Laravel, React and React Native apps for startups, NGOs and institutions.",
   path: "/about",
 };
 
@@ -51,9 +51,9 @@ export const journey = [
   {
     chapter: "Today",
     title: "Building for you",
-    place: "Freelance · Casablanca, Morocco",
-    tags: ["Web apps", "Mobile apps", "Freelance"],
-    text: "Today I also work as a freelance web and mobile app developer in Casablanca. I help startups, NGOs and institutions turn their ideas into secure, well-designed products, and I stay involved from the first draft to the final delivery.",
+    place: "Freelance · Casablanca → Worldwide",
+    tags: ["Web apps", "Mobile apps", "Freelance", "Remote"],
+    text: "Today I also work as a freelance web and mobile app developer, from Casablanca to clients all over the world. I help startups, NGOs and institutions turn their ideas into secure, well-designed products, and I stay involved from the first draft to the final delivery.",
   },
 ];
 
@@ -61,12 +61,17 @@ export const faqs = [
   {
     question: "Who is Mehdi Forkani?",
     answer:
-      "Mehdi Forkani is a freelance web and mobile app developer based in Casablanca, Morocco. He learned to code in the first cohort of the LionsGeek Coding School, became its Head Coach, and leads digital projects as Project Manager at LionsGeek PRO. His team won the Jury's Coup de Cœur at AVATARS 2026 in Brussels.",
+      "Mehdi Forkani is a freelance web and mobile app developer based in Casablanca, Morocco, working with clients worldwide. He learned to code in the first cohort of the LionsGeek Coding School, became its Head Coach, and leads digital projects as Project Manager at LionsGeek PRO. His team won the Jury's Coup de Cœur at AVATARS 2026 in Brussels.",
   },
   {
-    question: "Are you available as a freelance web and mobile app developer in Casablanca?",
+    question: "Are you available as a freelance web and mobile app developer?",
     answer:
-      "Yes. I take on freelance web and mobile app projects for startups, small businesses, NGOs and institutions in Casablanca, Rabat and across Morocco, and I work remotely with clients in Africa and Europe.",
+      "Yes. I'm based in Casablanca, Morocco, and I take on freelance web and mobile app projects for startups, small businesses, NGOs and institutions worldwide: in Morocco, Europe, Africa, the Middle East, North America and beyond.",
+  },
+  {
+    question: "Do you work with clients outside Morocco?",
+    answer:
+      "Yes, I work remotely with clients all over the world. I'm used to async collaboration, regular demos and clear written updates, and Morocco's time zone (GMT+1) overlaps well with Europe, Africa, the Middle East and the US East Coast.",
   },
   {
     question: "What kind of apps do you build?",
@@ -91,7 +96,7 @@ export const faqs = [
   {
     question: "Do you work in French and Arabic?",
     answer:
-      "Yes, I work in Arabic (Darija), French and English. En français : je suis développeur web et mobile freelance à Casablanca, et je crée des applications web et mobiles sur mesure pour les entreprises, les startups et les associations au Maroc.",
+      "Yes, I work in Arabic (Darija), French and English. En français : je suis développeur web et mobile freelance basé à Casablanca, et je crée des applications web et mobiles sur mesure pour les entreprises, les startups et les associations au Maroc et partout dans le monde.",
   },
   {
     question: "How can I hire you?",
