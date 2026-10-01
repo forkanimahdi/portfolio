@@ -10,7 +10,7 @@ const socials = [
     { icon: <FaLinkedinIn />, name: "LinkedIn", link: "https://www.linkedin.com/in/forkanimahdi/" },
     { icon: <FaInstagram />, name: "Instagram", link: "https://www.instagram.com/forkanimahdi" },
     { icon: <FaXTwitter />, name: "X", link: "https://twitter.com/forkanimahdi" },
-    { icon: <SiGmail />, name: "Email", link: "mailto:forkanimahdi@gmail.com" },
+    { icon: <SiGmail aria-hidden="true" />, name: "Email", link: "mailto:forkanimahdi@gmail.com" },
 ];
 
 const captchaSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || (import.meta.env.DEV ? "1x00000000000000000000AA" : "");
@@ -41,17 +41,30 @@ export const Contact = () => {
             });
         };
 
-        if (window.turnstile) {
-            renderCaptcha();
-        } else {
-            const script = document.createElement("script");
-            script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-            script.async = true;
-            script.onload = renderCaptcha;
-            document.head.appendChild(script);
-        }
+        const loadCaptcha = () => {
+            if (window.turnstile) {
+                renderCaptcha();
+            } else {
+                const script = document.createElement("script");
+                script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+                script.async = true;
+                script.onload = renderCaptcha;
+                document.head.appendChild(script);
+            }
+        };
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting) return;
+                observer.disconnect();
+                loadCaptcha();
+            },
+            { rootMargin: "600px" }
+        );
+        observer.observe(captchaBox.current);
 
         return () => {
+            observer.disconnect();
             if (window.turnstile && captchaId.current !== null) {
                 window.turnstile.remove(captchaId.current);
             }

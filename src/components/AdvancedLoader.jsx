@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import logo from "../assets/images/myLogo.png";
 import blackLogo from "../assets/images/blackLogo.png";
 
-const DURATION_MS = 1400;
+const DURATION_MS = 700;
 const PARTICLES = Array.from({ length: 28 });
 const CORNERS = [
     "left-10 top-10 border-l-2 border-t-2 rounded-tl-lg",
@@ -21,8 +21,8 @@ const AdvancedLoader = ({ onLoadComplete }) => {
     useEffect(() => {
         let frame;
         const ctx = gsap.context(() => {
-            gsap.fromTo("[data-logo]", { scale: 0, rotation: -180, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 1.1, ease: "back.out(1.7)" });
-            gsap.fromTo("[data-text]", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.35, ease: "power3.out" });
+            gsap.fromTo("[data-logo]", { scale: 0, rotation: -180, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.6, ease: "back.out(1.7)" });
+            gsap.fromTo("[data-text]", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, delay: 0.15, ease: "power3.out" });
 
             gsap.utils.toArray("[data-particle]").forEach((particle, i) => {
                 gsap.set(particle, {
@@ -45,18 +45,18 @@ const AdvancedLoader = ({ onLoadComplete }) => {
 
         const exit = () =>
             ctx.add(() => {
-                gsap.timeline({ delay: 0.28, onComplete: () => onCompleteRef.current?.() })
-                    .to("[data-logo]", { scale: 1.15, rotation: 360, duration: 0.4, ease: "power2.out" })
-                    .to("[data-logo]", { scale: 0, opacity: 0, duration: 0.25, ease: "power2.in" }, "-=0.05")
-                    .to("[data-text]", { y: -40, opacity: 0, duration: 0.25, ease: "power2.in" }, "-=0.2")
-                    .to("[data-progress]", { y: 40, opacity: 0, duration: 0.25, ease: "power2.in" }, "-=0.2")
-                    .to("[data-particle]", { scale: 0, opacity: 0, duration: 0.25, stagger: 0.008 }, "<")
-                    .to(rootRef.current, { opacity: 0, duration: 0.35, ease: "power2.inOut" }, "-=0.1");
+                gsap.timeline({ delay: 0.12, onComplete: () => onCompleteRef.current?.() })
+                    .to("[data-logo]", { scale: 1.15, rotation: 360, duration: 0.25, ease: "power2.out" })
+                    .to("[data-logo]", { scale: 0, opacity: 0, duration: 0.15, ease: "power2.in" }, "-=0.03")
+                    .to("[data-text]", { y: -40, opacity: 0, duration: 0.15, ease: "power2.in" }, "-=0.12")
+                    .to("[data-progress]", { y: 40, opacity: 0, duration: 0.15, ease: "power2.in" }, "-=0.12")
+                    .to("[data-particle]", { scale: 0, opacity: 0, duration: 0.15, stagger: 0.004 }, "<")
+                    .to(rootRef.current, { opacity: 0, duration: 0.2, ease: "power2.inOut" }, "-=0.05");
             });
 
         const start = performance.now();
         const tick = (now) => {
-            const t = Math.min(1, (now - start) / DURATION_MS);
+            const t = Math.max(0, Math.min(1, (now - start) / DURATION_MS));
             setProgress(Math.round((1 - Math.pow(1 - t, 3)) * 100));
             if (t < 1) frame = requestAnimationFrame(tick);
             else exit();

@@ -7,7 +7,7 @@ import me from "../../../assets/images/me.jpg";
 const socials = [
     { icon: <FaLinkedinIn />, name: "LinkedIn", link: "https://www.linkedin.com/in/forkanimahdi/" },
     { icon: <FaGithub />, name: "GitHub", link: "https://github.com/forkanimahdi" },
-    { icon: <SiGmail />, name: "Email", link: "mailto:forkanimahdi@gmail.com" },
+    { icon: <SiGmail aria-hidden="true" />, name: "Email", link: "mailto:forkanimahdi@gmail.com" },
     { icon: <FaInstagram />, name: "Instagram", link: "https://www.instagram.com/forkanimahdi" },
 ];
 

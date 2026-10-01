@@ -8,8 +8,8 @@ import { fadeIn } from "../../../utils/motion";
 const techno = [
     { icon: <FaLaravel />, name: "Laravel" },
     { icon: <FaReact />, name: "React" },
-    { icon: <SiExpo />, name: "React Native" },
-    { icon: <SiInertia />, name: "Inertia" },
+    { icon: <SiExpo aria-hidden="true" />, name: "React Native" },
+    { icon: <SiInertia aria-hidden="true" />, name: "Inertia" },
     { icon: <IoLogoJavascript />, name: "JavaScript" },
     { icon: <RiTailwindCssFill />, name: "Tailwind" },
     { icon: <FaGitAlt />, name: "Git" },

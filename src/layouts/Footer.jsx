@@ -11,7 +11,7 @@ const socials = [
     { icon: <FaLinkedinIn />, name: "LinkedIn", link: "https://www.linkedin.com/in/forkanimahdi/" },
     { icon: <FaGithub />, name: "GitHub", link: "https://github.com/forkanimahdi" },
     { icon: <FaInstagram />, name: "Instagram", link: "https://www.instagram.com/forkanimahdi" },
-    { icon: <SiGmail />, name: "Email", link: "mailto:forkanimahdi@gmail.com" },
+    { icon: <SiGmail aria-hidden="true" />, name: "Email", link: "mailto:forkanimahdi@gmail.com" },
 ];
 
 export const Footer = () => {
@@ -63,7 +63,7 @@ export const Footer = () => {
                 </div>
 
                 <div className="md:col-span-3">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-white/40">Pages</h4>
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">Pages</h3>
                     <ul className="mt-5 flex flex-col gap-3">
                         {pages.map((page) => (
                             <li key={page}>
@@ -81,7 +81,7 @@ export const Footer = () => {
                 </div>
 
                 <div className="md:col-span-3">
-                    <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-white/40">Connect</h4>
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">Connect</h3>
                     <ul className="mt-5 flex flex-col gap-3">
                         {socials.map((social) => (
                             <li key={social.name}>
@@ -96,7 +96,7 @@ export const Footer = () => {
 
             <div className="border-t border-white/[0.06]">
                 <div className="container flex flex-col items-center justify-between gap-4 py-6 sm:flex-row">
-                    <p className="text-xs text-white/40">&copy; {new Date().getFullYear()} Mehdi Forkani. All rights reserved.</p>
+                    <p className="text-xs text-white/55">&copy; {new Date().getFullYear()} Mehdi Forkani. All rights reserved.</p>
 
                     <button
                         onClick={scrollToTop}

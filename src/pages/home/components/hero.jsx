@@ -28,8 +28,8 @@ export const Hero = ({ ready = true }) => {
                 transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0 -z-10"
             >
-                <img className="hidden h-full w-full object-cover object-right opacity-60 saturate-[0.8] light:opacity-40 lg:block" src={heroImage} alt="" />
-                <img className="block h-full w-full object-cover opacity-40 lg:hidden" src={heroImageMobile} alt="" />
+                <img className="hidden h-full w-full object-cover object-right opacity-60 saturate-[0.8] light:opacity-40 lg:block" src={heroImage} alt="" loading="lazy" />
+                <img className="block h-full w-full object-cover opacity-40 lg:hidden" src={heroImageMobile} alt="" loading="lazy" />
             </motion.div>
 
             <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-black via-black/75 to-black/10 lg:block"></div>
