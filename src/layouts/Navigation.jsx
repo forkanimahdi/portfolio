@@ -7,7 +7,7 @@ import AnimatedCursor from "react-animated-cursor";
 import logo from "../assets/images/myLogo.png";
 import blackLogo from "../assets/images/blackLogo.png";
 
-const links = ["about", "projects", "clients", "contact"];
+const links = ["about", "projects", "contact"];
 
 const socials = [
     { icon: <FaLinkedinIn />, name: "LinkedIn", link: "https://www.linkedin.com/in/forkanimahdi/" },
@@ -43,10 +43,8 @@ export const Navigation = () => {
 
     const goTo = (id) => {
         setNav(false);
-        if (id === "about" || id === "contact") {
+        if (id === "about" || id === "projects" || id === "contact") {
             navigate(`/${id}`);
-        } else if (id === "projects" && location.pathname !== "/") {
-            navigate("/projects");
         } else if (location.pathname !== "/") {
             navigate(`/#${id}`);
         } else {

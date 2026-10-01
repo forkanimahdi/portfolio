@@ -209,27 +209,6 @@ export const Contact = ({ full = false }) => {
                                 {sending ? "Sending..." : "Send message"}
                                 {!sending && <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />}
                             </button>
-
-                            {full && (
-                                <>
-                                    <div className="flex items-center gap-4 pt-2 text-xs uppercase tracking-[0.3em] text-white/40">
-                                        <span className="h-px flex-1 bg-white/10"></span>
-                                        or
-                                        <span className="h-px flex-1 bg-white/10"></span>
-                                    </div>
-
-                                    <a
-                                        href="mailto:forkanimahdi@gmail.com"
-                                        className="group flex flex-col items-center justify-center gap-1 rounded-lg border border-white/15 px-6 py-4 text-center transition-colors duration-300 hover:border-alpha sm:flex-row sm:gap-3"
-                                    >
-                                        <span className="text-sm text-white/60">Prefer email? Write to me at</span>
-                                        <span className="flex items-center gap-2 font-display text-lg font-bold text-white transition-colors duration-300 group-hover:text-alpha">
-                                            forkanimahdi@gmail.com
-                                            <GoArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                                        </span>
-                                    </a>
-                                </>
-                            )}
                         </form>
                     </div>
                 </motion.div>
