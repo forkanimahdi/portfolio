@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigation } from "./layouts/Navigation";
 import { ScrollBar } from "./layouts/scrollBar";
-import { Error } from "./layouts/Error";
+import { Error } from "./pages/error/Error";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/home/Home";
 import { Projects } from "./pages/projects/projects";

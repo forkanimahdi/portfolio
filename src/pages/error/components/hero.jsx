@@ -1,14 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { GoArrowRight } from "react-icons/go";
-import heroImage from "../assets/images/t.webp";
+import heroImage from "../../../assets/images/t.webp";
 
 const reveal = (delay) => ({
     hidden: { opacity: 0, y: 24, filter: "blur(10px)" },
     show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1.1, delay, ease: [0.22, 1, 0.36, 1] } },
 });
 
-export const Error = ({ ready = true }) => {
+export const Hero = ({ ready = true }) => {
     const location = useLocation();
     const animate = ready ? "show" : "hidden";
 
