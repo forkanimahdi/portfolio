@@ -27,7 +27,7 @@ export const Faq = () => {
                         variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
                         className="mt-6 text-base leading-relaxed text-white/50 lg:text-[17px] lg:leading-8"
                     >
-                        Looking for a freelance web or mobile app developer, in Casablanca or anywhere in the world? Here is what people usually want to know.
+                        Thinking about working together on a web or mobile app? Here is what people usually want to know.
                     </motion.p>
                 </div>
 

@@ -19,7 +19,7 @@ const AppProvider = ({ children }) => {
   );
 };
 
-console.log(
+if (typeof window !== "undefined") console.log(
   `
 ███████╗ ██████╗ ██████╗ ██╗  ██╗ █████╗ ███╗   ██╗██╗
 ██╔════╝██╔═══██╗██╔══██╗██║ ██╔╝██╔══██╗████╗  ██║██║

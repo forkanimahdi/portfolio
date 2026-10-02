@@ -1,38 +1,15 @@
-# robots.txt for Mehdi Forkani — Mobile & Web App Developer
-# Allow all reputable crawlers, including AI answer engines.
+# robots.txt for https://forkanimahdi.com
+# Every crawler may read the whole public portfolio, including search engines and
+# AI assistants/answer engines (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot,
+# Google-Extended, Applebot-Extended...). They all match the "*" group below.
+#
+# To opt out of a specific crawler (e.g. AI model training), add a group such as:
+#   User-agent: GPTBot
+#   Disallow: /
+# Note: robots.txt is a request, not access control, and it cannot make any
+# service index, cite or recommend this site.
 
 User-agent: *
-Allow: /
-
-# Major AI / answer-engine crawlers (explicitly welcomed)
-User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: Bingbot
 Allow: /
 
 Sitemap: https://forkanimahdi.com/sitemap.xml

@@ -44,7 +44,10 @@ export const Clients = () => {
                                 <img
                                     src={client.logo}
                                     alt={`${client.name} logo`}
+                                    width="128"
+                                    height="80"
                                     loading="lazy"
+                                    decoding="async"
                                     className={`h-16 w-full max-w-[8rem] object-contain opacity-80 transition-all duration-300 group-hover:opacity-100 lg:h-20 ${client.size || ""} ${client.preserveColor ? "grayscale group-hover:grayscale-0" : "brightness-0 invert light:invert-0"}`}
                                 />
                                 {client.url && (

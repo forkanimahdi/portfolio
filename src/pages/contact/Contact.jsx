@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { Hero } from "./components/hero";
 import { Steps } from "./components/steps";
 import { Contact as ContactForm } from "../home/components/contact";
-import { contactJsonLd, contactSeo } from "../../data/contact";
 import { Footer } from "../../layouts/Footer";
 import Seo from "../../utils/Seo";
+import { contactSeo } from "../../seo/pages";
 
 export const Contact = ({ ready = true }) => {
     useEffect(() => {
@@ -13,10 +13,12 @@ export const Contact = ({ ready = true }) => {
 
     return (
         <>
-            <Seo title={contactSeo.title} description={contactSeo.description} path={contactSeo.path} jsonLd={contactJsonLd} />
-            <Hero ready={ready} />
-            <ContactForm full />
-            <Steps />
+            <Seo {...contactSeo} />
+            <main id="main">
+                <Hero ready={ready} />
+                <ContactForm full />
+                <Steps />
+            </main>
             <Footer />
         </>
     );

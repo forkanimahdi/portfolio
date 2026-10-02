@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { GoArrowRight } from "react-icons/go";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import { fadeIn } from "../../../utils/motion";
@@ -13,7 +15,8 @@ const socials = [
 
 const facts = [
     { label: "Based in", value: "Casablanca, Morocco" },
-    { label: "Also", value: "Coaching young developers" },
+    { label: "Works in", value: "Arabic, French, English" },
+    { label: "Also", value: "Head Coach, LionsGeek Coding School" },
 ];
 
 export const About = () => {
@@ -43,7 +46,7 @@ export const About = () => {
                     variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
                     className="relative max-w-md overflow-hidden rounded-2xl border border-white/[0.06] lg:col-span-5 lg:max-w-none"
                 >
-                    <img className="aspect-[4/5] w-full select-none object-cover object-top lg:absolute lg:inset-0 lg:aspect-auto lg:h-full" loading="lazy" src={me} alt="Portrait of Mehdi Forkani" />
+                    <img className="aspect-[4/5] w-full select-none object-cover object-top lg:absolute lg:inset-0 lg:aspect-auto lg:h-full" loading="lazy" decoding="async" width="1168" height="880" src={me} alt="Portrait of Mehdi Forkani" />
                 </motion.div>
 
                 <div className="flex flex-col justify-between gap-10 lg:col-span-7">
@@ -52,19 +55,23 @@ export const About = () => {
                         className="space-y-6 text-[15px] leading-7 text-white/65 lg:space-y-7 lg:text-[17px] lg:leading-[2.125rem]"
                     >
                         <p>
-                            Hi, I&apos;m Mehdi, a mobile &amp; web app developer based in Morocco. Most of my work starts with a
-                            simple question: <span className="font-semibold italic text-white">&ldquo;Do you think we can…?&rdquo;</span>
+                            Hi, I&apos;m Mehdi, a freelance mobile &amp; web app developer based in Casablanca, Morocco. Most of my
+                            work starts with a simple question: <span className="font-semibold italic text-white">&ldquo;Do you think we can…?&rdquo;</span>
                         </p>
                         <p>
                             I ship web platforms and mobile apps that are secure, well designed, and ready for real users, from
                             polished React and React Native front-ends to solid Laravel back-ends and admin dashboards. Startups,
                             NGOs, institutions, and leaders{" "}
-                            <button
-                                onClick={() => document.getElementById("clients").scrollIntoView({ behavior: "smooth" })}
+                            <a
+                                href="#clients"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById("clients")?.scrollIntoView({ behavior: "smooth" });
+                                }}
                                 className="font-semibold text-alpha underline decoration-alpha/40 underline-offset-4 transition-colors duration-300 hover:decoration-alpha"
                             >
                                 trusted me
-                            </button>{" "}
+                            </a>{" "}
                             to turn their ideas into products people rely on every day.
                         </p>
                         <p>
@@ -72,6 +79,13 @@ export const About = () => {
                             every project: from the first draft to the final delivery, I stay involved at every step, so what you
                             get is clear, reliable, and built to scale.
                         </p>
+                        <Link
+                            to="/about"
+                            className="group inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors duration-300 hover:text-alpha lg:text-base"
+                        >
+                            Read my story, from the first LionsGeek cohort to Head Coach
+                            <GoArrowRight className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Link>
                     </motion.div>
 
                     <motion.div

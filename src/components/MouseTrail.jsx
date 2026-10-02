@@ -1,16 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { gsap } from 'gsap';
 
 const MouseTrail = () => {
-    const trailRefs = useRef([]);
-    const mousePos = useRef({ x: 0, y: 0 });
-
     useEffect(() => {
         const isMobile = window.innerWidth <= 768;
-        if (isMobile) return;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (isMobile || reducedMotion) return;
 
         const trailCount = 20;
         const trails = [];
+        const movers = [];
 
         for (let i = 0; i < trailCount; i++) {
             const trail = document.createElement('div');
@@ -28,38 +27,29 @@ const MouseTrail = () => {
             `;
             document.body.appendChild(trail);
             trails.push(trail);
+
+            const duration = 0.3 + i * 0.02;
+            movers.push({
+                x: gsap.quickTo(trail, 'x', { duration, ease: 'power2.out' }),
+                y: gsap.quickTo(trail, 'y', { duration, ease: 'power2.out' }),
+            });
         }
 
-        trailRefs.current = trails;
-
         const handleMouseMove = (e) => {
-            mousePos.current = { x: e.clientX, y: e.clientY };
-        };
-
-        const animateTrail = () => {
-            trails.forEach((trail, index) => {
-                const delay = index * 0.02;
-                
-                gsap.to(trail, {
-                    x: mousePos.current.x,
-                    y: mousePos.current.y,
-                    duration: 0.3 + delay,
-                    ease: "power2.out"
-                });
+            movers.forEach((mover) => {
+                mover.x(e.clientX);
+                mover.y(e.clientY);
             });
         };
 
-        const animate = () => {
-            animateTrail();
-            requestAnimationFrame(animate);
-        };
-
         document.addEventListener('mousemove', handleMouseMove);
-        animate();
 
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
-            trails.forEach(trail => trail.remove());
+            trails.forEach((trail) => {
+                gsap.killTweensOf(trail);
+                trail.remove();
+            });
         };
     }, []);
 

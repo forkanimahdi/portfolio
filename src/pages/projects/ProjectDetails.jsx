@@ -1,5 +1,5 @@
-import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import { useParams, Link } from "react-router-dom";
 import { gsap } from "gsap";
 import {
   FiArrowLeft,
@@ -10,31 +10,40 @@ import {
   FiDownload,
 } from "react-icons/fi";
 import { useAppContext } from "../../context/AppContext";
-import Seo, { SITE_ORIGIN } from "../../utils/Seo";
+import Seo from "../../utils/Seo";
+import { projectSeo } from "../../seo/pages";
+import { isHydrated } from "../../utils/hydration";
 import { Footer } from "../../layouts/Footer";
+import { Error } from "../error/Error";
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+const linkLabel = (link) => {
+  const host = new URL(link).hostname.replace(/^www\./, "");
+  if (host === "play.google.com") return "View on Google Play";
+  if (host === "apps.apple.com") return "View on the App Store";
+  return `Visit ${host}`;
+};
 
 const ProjectDetails = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
   const { projects, transition, setTransition } = useAppContext();
 
   const index = projects.findIndex((p) => p.slug === slug);
   const project = index >= 0 ? projects[index] : null;
   const prev = index > 0 ? projects[index - 1] : projects[projects.length - 1];
   const next = index >= 0 && index < projects.length - 1 ? projects[index + 1] : projects[0];
-
-  const isMobileApp = project?.technologies?.includes("React Native");
+  const related = (project?.related || []).map((relatedSlug) => projects.find((p) => p.slug === relatedSlug)).filter(Boolean);
+  const isStoreLink = project ? /play\.google\.com|apps\.apple\.com/.test(project.link) : false;
 
   const containerRef = useRef(null);
   const imageWrapRef = useRef(null);
   const contentRef = useRef(null);
 
-  useEffect(() => {
-    if (!project) navigate("/projects", { replace: true });
-  }, [project, navigate]);
-
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!project) return;
+    // First page load: the prerendered page is already visible, so don't hide and re-animate it.
+    if (!isHydrated()) return;
     window.scrollTo(0, 0);
 
     const wrap = imageWrapRef.current;
@@ -83,47 +92,7 @@ const ProjectDetails = () => {
     };
   }, [slug, project]);
 
-  const jsonLd = useMemo(() => {
-    if (!project) return null;
-    const url = `${SITE_ORIGIN}/projects/${project.slug}`;
-    const image =
-      typeof project.image === "string" && project.image.startsWith("/")
-        ? `${SITE_ORIGIN}${project.image}`
-        : `${SITE_ORIGIN}/og-image.jpg`;
-    return {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "CreativeWork",
-          name: `${project.name} — ${project.category}`,
-          headline: project.name,
-          description: project.description,
-          url,
-          image,
-          inLanguage: "en",
-          dateCreated: project.year,
-          keywords: [project.category, ...(project.technologies || [])].join(", "),
-          creator: {
-            "@type": "Person",
-            name: "Mehdi Forkani",
-            jobTitle: "Mobile & Web App Developer",
-            url: `${SITE_ORIGIN}/`,
-          },
-          about: project.client,
-        },
-        {
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_ORIGIN}/` },
-            { "@type": "ListItem", position: 2, name: "Projects", item: `${SITE_ORIGIN}/projects` },
-            { "@type": "ListItem", position: 3, name: project.name, item: url },
-          ],
-        },
-      ],
-    };
-  }, [project]);
-
-  if (!project) return null;
+  if (!project) return <Error />;
 
   const details = [
     { label: "Role", value: project.role },
@@ -134,16 +103,11 @@ const ProjectDetails = () => {
 
   return (
     <div ref={containerRef} className="relative isolate min-h-screen">
-      <Seo
-        title={`${project.name} — ${project.category} | Mehdi Forkani`}
-        description={`${project.name}: ${project.description}`}
-        path={`/projects/${project.slug}`}
-        jsonLd={jsonLd}
-      />
+      <Seo {...projectSeo(project)} />
 
       <div className="pointer-events-none absolute -left-40 -top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-alpha/25 blur-[100px]"></div>
 
-      <div className="container pb-24 pt-32 lg:pt-36">
+      <main id="main" className="container pb-24 pt-32 lg:pt-36">
         <Link
           to="/projects"
           className="group inline-flex items-center gap-x-3 text-xs uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-white"
@@ -154,7 +118,7 @@ const ProjectDetails = () => {
           All projects
         </Link>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <article className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div ref={contentRef} className="order-2 lg:order-1 lg:col-span-6">
             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
               <span className="h-px w-8 bg-alpha"></span>
@@ -167,29 +131,35 @@ const ProjectDetails = () => {
 
             <p className="mt-6 text-base leading-relaxed text-white/65 lg:text-lg">{project.description}</p>
 
-            <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/[0.06] pt-8">
+            <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/[0.06] pt-8">
               {details.map((detail) => (
                 <div key={detail.label}>
-                  <p className="text-xs uppercase tracking-[0.2em] text-white/40">{detail.label}</p>
-                  <p className="mt-1 text-white/90">{detail.value}</p>
+                  <dt className="text-xs uppercase tracking-[0.2em] text-white/40">{detail.label}</dt>
+                  <dd className="mt-1 text-white/90">{detail.value}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
 
-            <div className="mt-8">
-              <p className="text-xs uppercase tracking-[0.2em] text-white/40">Stack</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {project.technologies.map((tech, i) => (
-                  <span key={i} className="rounded-full border border-alpha/40 bg-alpha/15 px-3 py-1 text-sm tracking-wide text-white/90">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+            {project.audience && (
+              <section className="mt-8">
+                <h2 className="font-display text-xl font-bold tracking-tight text-white">Who it&apos;s for</h2>
+                <p className="mt-3 leading-relaxed text-white/70">{project.audience}</p>
+              </section>
+            )}
+
+            {(project.contribution || project.team) && (
+              <section className="mt-8">
+                <h2 className="font-display text-xl font-bold tracking-tight text-white">My role</h2>
+                {project.contribution && <p className="mt-3 leading-relaxed text-white/70">{project.contribution}</p>}
+                {project.team && <p className="mt-3 text-sm leading-relaxed text-white/50">{project.team}</p>}
+              </section>
+            )}
 
             {project.highlights?.length > 0 && (
-              <div className="mt-8">
-                <h2 className="font-display text-xl font-bold tracking-tight text-white">What I built</h2>
+              <section className="mt-8">
+                <h2 className="font-display text-xl font-bold tracking-tight text-white">
+                  {project.team ? "What we built" : "What I built"}
+                </h2>
                 <ul className="mt-4 flex flex-col gap-y-3">
                   {project.highlights.map((highlight, i) => (
                     <li key={i} className="flex gap-x-3 text-white/70">
@@ -198,8 +168,19 @@ const ProjectDetails = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
             )}
+
+            <section className="mt-8">
+              <h2 className="text-xs uppercase tracking-[0.2em] text-white/40">Stack</h2>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {project.technologies.map((tech, i) => (
+                  <li key={i} className="rounded-full border border-alpha/40 bg-alpha/15 px-3 py-1 text-sm tracking-wide text-white/90">
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </section>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <a
@@ -208,8 +189,8 @@ const ProjectDetails = () => {
                 rel="noreferrer"
                 className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
               >
-                {isMobileApp ? <FiDownload /> : <FiExternalLink />}
-                {isMobileApp ? "Download App" : "Live Website"}
+                {isStoreLink ? <FiDownload /> : <FiExternalLink />}
+                {linkLabel(project.link)}
               </a>
               {project.repo && (
                 <a
@@ -219,7 +200,7 @@ const ProjectDetails = () => {
                   className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:border-white/40 hover:bg-white/[0.04]"
                 >
                   <FiGithub />
-                  GitHub Repo
+                  Source on GitHub
                 </a>
               )}
             </div>
@@ -230,7 +211,10 @@ const ProjectDetails = () => {
               <div ref={imageWrapRef} className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-dark will-change-transform">
                 <img
                   src={project.image}
-                  alt={`${project.name} — ${project.technologies.join(", ")} ${project.category} by Mehdi Forkani`}
+                  alt={`Screenshot of ${project.name}, ${project.category.toLowerCase()} for ${project.client}`}
+                  width="1280"
+                  height="720"
+                  fetchpriority="high"
                   className="aspect-video w-full select-none object-cover"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-pure-black/40 via-transparent to-transparent"></div>
@@ -242,14 +226,50 @@ const ProjectDetails = () => {
                 rel="noreferrer"
                 className="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/60 transition-colors duration-300 hover:text-white"
               >
-                {isMobileApp ? "Open on the store" : "Open the live site"}
+                {linkLabel(project.link)}
                 <FiArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
             </div>
           </div>
-        </div>
+        </article>
 
-        <div className="mt-20 grid gap-4 border-t border-white/[0.06] pt-10 sm:grid-cols-2">
+        {related.length > 0 && (
+          <section className="mt-20 border-t border-white/[0.06] pt-10">
+            <h2 className="font-display text-2xl font-bold tracking-tight text-white">Related projects</h2>
+            <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((item) => (
+                <li key={item.slug}>
+                  <Link
+                    to={`/projects/${item.slug}`}
+                    className="group flex h-full flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-colors duration-300 hover:border-alpha/40 hover:bg-white/[0.05]"
+                  >
+                    <span className="text-xs uppercase tracking-wider text-white/40">{item.category} · {item.year}</span>
+                    <span className="mt-2 font-display text-lg font-bold text-white">{item.name}</span>
+                    <span className="mt-2 text-sm leading-6 text-white/55">{item.summary}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section className="mt-20 flex flex-col items-start justify-between gap-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 sm:flex-row sm:items-center lg:p-10">
+          <div>
+            <h2 className="font-display text-2xl font-bold tracking-tight text-white lg:text-3xl">
+              Planning a {project.platform === "mobile" ? "mobile app" : "web platform"} like this?
+            </h2>
+            <p className="mt-2 text-white/60">Tell me what you&apos;re building. A few lines are enough to start.</p>
+          </div>
+          <Link
+            to="/contact"
+            className="group flex shrink-0 items-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
+          >
+            Start a conversation
+            <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </section>
+
+        <nav aria-label="More projects" className="mt-20 grid gap-4 border-t border-white/[0.06] pt-10 sm:grid-cols-2">
           <Link
             to={`/projects/${prev.slug}`}
             className="group flex items-center gap-x-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-colors duration-300 hover:border-alpha/40 hover:bg-white/[0.05]"
@@ -271,8 +291,8 @@ const ProjectDetails = () => {
               <p className="truncate text-white">{next.name}</p>
             </div>
           </Link>
-        </div>
-      </div>
+        </nav>
+      </main>
 
       <Footer />
     </div>

@@ -1,63 +1,112 @@
-import { readFileSync, writeFileSync } from "node:fs";
-import { aboutJsonLd, aboutSeo, faqs, journey } from "../src/data/about.js";
-import { contactJsonLd, contactSeo, contactSteps } from "../src/data/contact.js";
+// Runs after `vite build` (client, into dist/) and `vite build --ssr` (into dist-ssr/).
+// Writes one static HTML file per route plus sitemap.xml and llms.txt, from the same data the app uses.
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 
-const SITE_URL = "https://forkanimahdi.com";
+const DIST = resolve("dist");
+const SSR_ENTRY = resolve("dist-ssr/entry-server.js");
 
-const escape = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const { render, renderHead, prerenderRoutes, projects, journey, profile, SITE_URL } = await import(pathToFileURL(SSR_ENTRY).href);
 
-const setMeta = (html, attr, name, value) =>
-    html.replace(new RegExp(`(<meta\\s+${attr}="${name}"\\s+content=")[^"]*(")`), `$1${escape(value)}$2`);
+const SEO_BLOCK = /<!-- seo:start -->[\s\S]*?<!-- seo:end -->/;
+const ROOT = '<div id="root"></div>';
 
-const links = `<p>
-        <a href="/">Home</a> · <a href="/about">About</a> · <a href="/projects">Projects</a> · <a href="/contact">Contact</a> ·
-        <a href="mailto:forkanimahdi@gmail.com">forkanimahdi@gmail.com</a> ·
-        <a href="https://www.linkedin.com/in/forkanimahdi/">LinkedIn</a> ·
-        <a href="https://github.com/forkanimahdi">GitHub</a>
-      </p>`;
+const template = readFileSync(join(DIST, "index.html"), "utf-8");
+if (!SEO_BLOCK.test(template) || !template.includes(ROOT)) {
+    throw new Error("index.html is missing the <!-- seo:start/end --> markers or an empty #root");
+}
 
-const pages = [
-    {
-        file: "about.html",
-        seo: aboutSeo,
-        jsonLd: aboutJsonLd,
-        content: `<h1>About Mehdi Forkani — Freelance Web &amp; Mobile App Developer, Casablanca &amp; Worldwide</h1>
-      <p>${escape(aboutSeo.description)}</p>
-      <h2>My journey</h2>
-      ${journey.map((step) => `<h3>${escape(step.title)} (${escape(step.chapter)}, ${escape(step.place)})</h3>\n      <p>${escape(step.text)}</p>`).join("\n      ")}
-      <h2>Frequently asked questions</h2>
-      ${faqs.map((faq) => `<h3>${escape(faq.question)}</h3>\n      <p>${escape(faq.answer)}</p>`).join("\n      ")}`,
-    },
-    {
-        file: "contact.html",
-        seo: contactSeo,
-        jsonLd: contactJsonLd,
-        content: `<h1>Contact Mehdi Forkani — Hire a Freelance Web &amp; Mobile App Developer</h1>
-      <p>${escape(contactSeo.description)}</p>
-      <p>Email: <a href="mailto:forkanimahdi@gmail.com">forkanimahdi@gmail.com</a>. Based in Casablanca, Morocco (Moroccan time), working remotely with clients worldwide, in Arabic, French and English.</p>
-      <h2>What happens next</h2>
-      ${contactSteps.map((step, idx) => `<h3>${idx + 1}. ${escape(step.title)}</h3>\n      <p>${escape(step.text)}</p>`).join("\n      ")}`,
-    },
-];
+const problems = [];
+const routes = prerenderRoutes();
 
-const template = readFileSync("dist/index.html", "utf-8");
+for (const route of routes) {
+    const seo = { ...route.seo };
+    if (seo.image && !existsSync(join(DIST, new URL(seo.image.url).pathname))) {
+        problems.push(`${route.path}: social image ${seo.image.url} not found, using the default card`);
+        delete seo.image;
+    }
 
-for (const page of pages) {
-    const url = `${SITE_URL}${page.seo.path}`;
+    const appHtml = render(route.path);
+    const html = template
+        .replace(SEO_BLOCK, `<!-- seo:start -->\n    ${renderHead(seo)}\n    <!-- seo:end -->`)
+        .replace(ROOT, `<div id="root" data-prerendered="${route.path}">${appHtml}</div>`);
 
-    let html = template
-        .replace(/<title>[\s\S]*?<\/title>/, `<title>${escape(page.seo.title)}</title>`)
-        .replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${url}"`)
-        .replace(/<div id="seo-crawl">[\s\S]*?<\/div>/, `<div id="seo-crawl">\n      ${page.content}\n      ${links}\n    </div>`)
-        .replace("</head>", `  <script type="application/ld+json" id="route-jsonld">${JSON.stringify(page.jsonLd)}</script>\n  </head>`);
+    const h1Count = (appHtml.match(/<h1[\s>]/g) || []).length;
+    if (h1Count !== 1) problems.push(`${route.path}: expected one <h1>, found ${h1Count}`);
+    const jsonLd = html.match(/<script type="application\/ld\+json" id="jsonld">([\s\S]*?)<\/script>/);
+    if (jsonLd) JSON.parse(jsonLd[1]);
 
-    html = setMeta(html, "name", "description", page.seo.description);
-    html = setMeta(html, "property", "og:title", page.seo.title);
-    html = setMeta(html, "property", "og:description", page.seo.description);
-    html = setMeta(html, "property", "og:url", url);
-    html = setMeta(html, "name", "twitter:title", page.seo.title);
-    html = setMeta(html, "name", "twitter:description", page.seo.description);
+    const file = join(DIST, route.file);
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(file, html);
+    console.log(`Prerendered ${route.path} -> dist/${route.file}`);
+}
 
-    writeFileSync(`dist/${page.file}`, html);
-    console.log(`Prerendered dist/${page.file}`);
+const xmlEscape = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const indexable = routes.filter((route) => !route.seo.noindex);
+
+writeFileSync(
+    join(DIST, "sitemap.xml"),
+    `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${indexable.map((route) => `  <url><loc>${xmlEscape(`${SITE_URL}${route.path}`)}</loc></url>`).join("\n")}
+</urlset>
+`
+);
+console.log(`Wrote dist/sitemap.xml (${indexable.length} URLs)`);
+
+const url = (path) => `${SITE_URL}${path}`;
+const llms = `# ${profile.name}
+
+> Freelance mobile and web app developer based in ${profile.city}, ${profile.country}.
+
+${profile.summary}
+
+Core stack: ${profile.stack.join(", ")}. Besides freelance work, he is Head Coach of the LionsGeek Coding School and project manager at LionsGeek PRO in Casablanca; several projects below were delivered with the LionsGeek PRO team, and each project page states his role. He works in ${profile.languages.map((language) => language.name).join(", ")}.
+
+## About
+
+- [About ${profile.name}](${url("/about")}): background, career path and answers to common client questions
+
+## Services
+
+- [Services](${url("/#services")}): mobile apps with React Native; web platforms with Laravel, Inertia.js and React; backends and admin dashboards; e-commerce and business websites
+
+## Projects
+
+${projects
+    .map((project) => `- [${project.name}](${url(`/projects/${project.slug}`)}): ${project.category}, ${project.year}, for ${project.client}. ${project.summary} Role: ${project.role}.`)
+    .join("\n")}
+- [All projects](${url("/projects")})
+
+## Experience
+
+- Freelance mobile and web app developer, based in Casablanca and available for remote projects
+- Project manager at LionsGeek PRO (Casablanca): leads digital projects for LionsGeek and its partners, such as Casatourat for Casamémoire, the YES Africa app and My LionsGeek
+- Head Coach of the LionsGeek Coding School (Casablanca): guides each cohort from their first line of code to full-stack platforms
+- Full-stack developer at LionsGeek, after learning to code in the first cohort of the LionsGeek Coding School
+- Before code: commercial assistant at Banque Populaire and administrative assistant at the CNSS
+- Full career path: [About](${url("/about")})
+- Recognition: Coup de Cœur du Jury, AVATARS competition, [IN]VISIBLE Festival 2026 by XR4Heritage (KBR, Brussels). A team award to LionsGeek for ADA, a conversational XR and AI avatar of Ada Lovelace; ${profile.name} led the team. [Details](${url("/#achievements")})
+
+## Contact
+
+- [Contact page](${url("/contact")}): freelance project inquiries
+- [Email](mailto:${profile.email}): ${profile.email}
+
+## Professional profiles
+
+- [LinkedIn](${profile.socials.linkedin})
+- [GitHub](${profile.socials.github})
+- [Instagram](${profile.socials.instagram})
+- [X](${profile.socials.x})
+`;
+writeFileSync(join(DIST, "llms.txt"), llms);
+console.log("Wrote dist/llms.txt");
+
+rmSync(resolve("dist-ssr"), { recursive: true, force: true });
+
+if (problems.length) {
+    console.warn(`\nPrerender warnings:\n- ${problems.join("\n- ")}`);
 }

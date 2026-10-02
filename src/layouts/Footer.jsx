@@ -1,11 +1,18 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { GoArrowUp } from "react-icons/go";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import logo from "../assets/images/myLogo.png";
 import blackLogo from "../assets/images/blackLogo.png";
 
-const pages = ["home", "about", "projects", "clients", "contact"];
+const pages = [
+    { name: "Home", to: "/" },
+    { name: "About", to: "/about" },
+    { name: "Services", to: "/#services" },
+    { name: "Projects", to: "/projects" },
+    { name: "Clients", to: "/#clients" },
+    { name: "Contact", to: "/contact" },
+];
 
 const socials = [
     { icon: <FaLinkedinIn />, name: "LinkedIn", link: "https://www.linkedin.com/in/forkanimahdi/" },
@@ -16,16 +23,14 @@ const socials = [
 
 export const Footer = () => {
     const location = useLocation();
-    const navigate = useNavigate();
 
-    const goTo = (id) => {
-        if (id === "about" || id === "projects" || id === "contact") {
-            navigate(`/${id}`);
-        } else if (location.pathname !== "/") {
-            navigate(`/#${id}`);
-        } else {
-            document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-        }
+    const scrollToSection = (e, to) => {
+        const [path, id] = to.split("#");
+        if (location.pathname !== path) return;
+        const section = id ? document.getElementById(id) : document.body;
+        if (!section) return;
+        e.preventDefault();
+        section.scrollIntoView({ behavior: "smooth" });
     };
 
     const scrollToTop = () => {
@@ -36,16 +41,16 @@ export const Footer = () => {
         <footer className="border-t border-white/[0.06] bg-black">
             <div className="container grid gap-12 py-16 md:grid-cols-12">
                 <div className="md:col-span-6">
-                    <Link to="/" onClick={scrollToTop} className="inline-flex items-center gap-3">
-                        <img src={logo} alt="Mehdi Forkani logo" className="h-9 w-9 object-contain light:hidden" />
-                        <img src={blackLogo} alt="Mehdi Forkani logo" className="hidden h-9 w-9 object-contain light:block" />
+                    <Link to="/" onClick={scrollToTop} aria-label="Mehdi Forkani, home" className="inline-flex items-center gap-3">
+                        <img src={logo} alt="" width="36" height="30" className="h-9 w-9 object-contain light:hidden" />
+                        <img src={blackLogo} alt="" width="36" height="30" className="hidden h-9 w-9 object-contain light:block" />
                         <span className="font-display text-lg font-bold uppercase tracking-wide">
                             Forkani<span className="text-alpha">.</span>
                         </span>
                     </Link>
 
                     <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
-                        Mobile &amp; web app developer building fast, reliable products from Morocco.
+                        Mehdi Forkani, freelance mobile &amp; web app developer based in Casablanca, Morocco.
                     </p>
 
                     <div className="mt-6 flex gap-2 text-sm">
@@ -68,17 +73,16 @@ export const Footer = () => {
                     <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">Pages</h3>
                     <ul className="mt-5 flex flex-col gap-3">
                         {pages.map((page) => (
-                            <li key={page}>
-                                <button onClick={() => goTo(page)} className="text-sm capitalize text-white/60 transition-colors hover:text-white">
-                                    {page}
-                                </button>
+                            <li key={page.name}>
+                                <Link
+                                    to={page.to}
+                                    onClick={(e) => scrollToSection(e, page.to)}
+                                    className="text-sm text-white/60 transition-colors hover:text-white"
+                                >
+                                    {page.name}
+                                </Link>
                             </li>
                         ))}
-                        <li>
-                            <Link to="/projects" className="text-sm text-white/60 transition-colors hover:text-white">
-                                All projects
-                            </Link>
-                        </li>
                     </ul>
                 </div>
 

@@ -3,9 +3,9 @@ import { Hero } from "./components/hero";
 import { Highlights } from "./components/highlights";
 import { Journey } from "./components/journey";
 import { Faq } from "./components/faq";
-import { aboutJsonLd, aboutSeo } from "../../data/about";
 import { Footer } from "../../layouts/Footer";
 import Seo from "../../utils/Seo";
+import { aboutSeo } from "../../seo/pages";
 
 export const About = () => {
     useEffect(() => {
@@ -14,11 +14,13 @@ export const About = () => {
 
     return (
         <>
-            <Seo title={aboutSeo.title} description={aboutSeo.description} path={aboutSeo.path} jsonLd={aboutJsonLd} />
-            <Hero />
-            <Highlights />
-            <Journey />
-            <Faq />
+            <Seo {...aboutSeo} />
+            <main id="main">
+                <Hero />
+                <Highlights />
+                <Journey />
+                <Faq />
+            </main>
             <Footer />
         </>
     );

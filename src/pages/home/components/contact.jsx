@@ -156,16 +156,17 @@ export const Contact = ({ full = false }) => {
 
                         <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
                             <div className="grid gap-4 sm:grid-cols-2">
-                                <input className={inputClass} placeholder="Name" name="user_name" autoComplete="name" required />
-                                <input className={inputClass} placeholder="Email" name="user_email" type="email" autoComplete="email" required />
+                                <input className={inputClass} placeholder="Name" aria-label="Name" name="user_name" autoComplete="name" required />
+                                <input className={inputClass} placeholder="Email" aria-label="Email" name="user_email" type="email" autoComplete="email" required />
                             </div>
                             <div className="grid gap-4 sm:grid-cols-2">
-                                <input className={inputClass} placeholder="Phone number" name="phone" type="tel" autoComplete="tel" />
-                                <input className={inputClass} placeholder="Subject" name="subject" />
+                                <input className={inputClass} placeholder="Phone number" aria-label="Phone number (optional)" name="phone" type="tel" autoComplete="tel" />
+                                <input className={inputClass} placeholder="Subject" aria-label="Subject" name="subject" />
                             </div>
                             <textarea
                                 className={`${inputClass} min-h-[12rem] flex-1 resize-none`}
                                 placeholder="Tell me about your project"
+                                aria-label="Tell me about your project"
                                 name="message"
                                 required
                             />

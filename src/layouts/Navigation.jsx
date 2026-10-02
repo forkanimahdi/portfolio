@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { RiCloseLine, RiMenu3Line, RiMoonLine, RiSunLine } from "react-icons/ri";
 import { FaInstagram, FaLinkedinIn } from "react-icons/fa6";
@@ -17,9 +17,11 @@ const socials = [
 export const Navigation = () => {
     const [nav, setNav] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
-    const location = useLocation();
-    const navigate = useNavigate();
+    const [theme, setTheme] = useState("dark");
+
+    useEffect(() => {
+        if (document.documentElement.classList.contains("light")) setTheme("light");
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -32,24 +34,11 @@ export const Navigation = () => {
         document.body.style.overflow = nav ? "hidden" : "";
     }, [nav]);
 
-    useEffect(() => {
-        document.documentElement.classList.toggle("light", theme === "light");
-        localStorage.setItem("theme", theme);
-    }, [theme]);
-
     const toggleTheme = () => {
-        setTheme(theme === "light" ? "dark" : "light");
-    };
-
-    const goTo = (id) => {
-        setNav(false);
-        if (id === "about" || id === "projects" || id === "contact") {
-            navigate(`/${id}`);
-        } else if (location.pathname !== "/") {
-            navigate(`/#${id}`);
-        } else {
-            document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-        }
+        const next = theme === "light" ? "dark" : "light";
+        setTheme(next);
+        document.documentElement.classList.toggle("light", next === "light");
+        localStorage.setItem("theme", next);
     };
 
     return (
@@ -77,17 +66,17 @@ export const Navigation = () => {
                 <nav className="container flex h-20 items-center justify-between">
                     <div className="lg:flex-1">
                         <Link to="/" onClick={() => setNav(false)} className="inline-block">
-                            <img src={logo} alt="Mehdi Forkani logo" className="h-[4.5rem] w-[4.5rem] object-contain light:hidden" />
-                            <img src={blackLogo} alt="Mehdi Forkani logo" className="hidden h-[4.5rem] w-[4.5rem] object-contain light:block" />
+                            <img src={logo} alt="Mehdi Forkani, home" width="72" height="60" className="h-[4.5rem] w-[4.5rem] object-contain light:hidden" />
+                            <img src={blackLogo} alt="Mehdi Forkani, home" width="72" height="60" className="hidden h-[4.5rem] w-[4.5rem] object-contain light:block" />
                         </Link>
                     </div>
 
                     <ul className="hidden items-center gap-8 text-sm text-white/60 lg:flex">
                         {links.map((link) => (
                             <li key={link}>
-                                <button onClick={() => goTo(link)} className="capitalize transition-colors hover:text-white">
+                                <Link to={`/${link}`} className="capitalize transition-colors hover:text-white">
                                     {link}
-                                </button>
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -122,7 +111,7 @@ export const Navigation = () => {
                         >
                             {theme === "light" ? <RiMoonLine /> : <RiSunLine />}
                         </button>
-                        <button onClick={() => setNav(!nav)} aria-label="Toggle menu" className="text-2xl text-white">
+                        <button onClick={() => setNav(!nav)} aria-label="Toggle menu" aria-expanded={nav} aria-controls="mobile-menu" className="text-2xl text-white">
                             {nav ? <RiCloseLine /> : <RiMenu3Line />}
                         </button>
                     </div>
@@ -132,6 +121,7 @@ export const Navigation = () => {
             <AnimatePresence>
                 {nav && (
                     <motion.div
+                        id="mobile-menu"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -148,10 +138,10 @@ export const Navigation = () => {
                         >
                             {links.map((link, idx) => (
                                 <li key={link} className="border-b border-white/[0.06]">
-                                    <button onClick={() => goTo(link)} className="flex w-full items-center justify-between py-5 text-left">
+                                    <Link to={`/${link}`} onClick={() => setNav(false)} className="flex w-full items-center justify-between py-5 text-left">
                                         <span className="font-display text-3xl font-bold capitalize tracking-tight text-white">{link}</span>
-                                        <span className="text-xs text-white/30">0{idx + 1}</span>
-                                    </button>
+                                        <span className="text-xs text-white/30" aria-hidden="true">0{idx + 1}</span>
+                                    </Link>
                                 </li>
                             ))}
                         </motion.ul>

@@ -1,7 +1,7 @@
 export const contactSeo = {
-  title: "Contact Mehdi Forkani | Hire a Freelance Web & Mobile App Developer",
+  title: "Contact Mehdi Forkani | Hire a Mobile & Web App Developer",
   description:
-    "Hire Mehdi Forkani, a freelance web and mobile app developer based in Casablanca, Morocco, working with clients worldwide. Tell me about your web platform, SaaS or mobile app project.",
+    "Tell Mehdi Forkani about your web platform or mobile app project. Freelance developer based in Casablanca, Morocco, working in Arabic, French and English.",
   path: "/contact",
 };
 
@@ -23,25 +23,3 @@ export const contactSteps = [
     text: "I design and build in clear steps you can review, launch it, and stay by your side after delivery.",
   },
 ];
-
-export const contactJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "@id": "https://forkanimahdi.com/contact#page",
-  url: "https://forkanimahdi.com/contact",
-  name: contactSeo.title,
-  description: contactSeo.description,
-  inLanguage: "en",
-  isPartOf: { "@id": "https://forkanimahdi.com/#website" },
-  mainEntity: {
-    "@id": "https://forkanimahdi.com/#mehdi",
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      email: "forkanimahdi@gmail.com",
-      url: "https://forkanimahdi.com/contact",
-      areaServed: "Worldwide",
-      availableLanguage: ["Arabic", "French", "English"],
-    },
-  },
-};

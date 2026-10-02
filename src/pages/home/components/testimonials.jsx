@@ -147,7 +147,7 @@ export const Testimonials = () => {
                             <div className="flex items-center justify-between gap-4 border-t border-white/[0.06] pt-6">
                                 <div className="flex items-center gap-4">
                                     {testimonial.image ? (
-                                        <img src={testimonial.image} alt={testimonial.name} className="h-12 w-12 rounded-full border border-alpha object-cover" />
+                                        <img src={testimonial.image} alt="" width="48" height="48" className="h-12 w-12 rounded-full border border-alpha object-cover" />
                                     ) : (
                                         <span className="flex h-12 w-12 items-center justify-center rounded-full bg-alpha font-display text-sm font-bold text-pure-white">
                                             {testimonial.name.charAt(0)}
@@ -193,7 +193,10 @@ export const Testimonials = () => {
                             {person.image ? (
                                 <img
                                     src={person.image}
-                                    alt={person.name}
+                                    alt=""
+                                    width="40"
+                                    height="40"
+                                    loading="lazy"
                                     className={`h-10 w-10 rounded-full border object-cover ${idx === current ? "border-alpha" : "border-white/10"}`}
                                 />
                             ) : (

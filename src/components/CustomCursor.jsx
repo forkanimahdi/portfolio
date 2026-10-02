@@ -94,9 +94,7 @@ const CustomCursor = () => {
         };
     }, []);
 
-    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
-    if (isMobile) return null;
-
+    // Hidden below lg via CSS; no render-time window check so prerendered HTML hydrates cleanly.
     return (
         <>
             <div

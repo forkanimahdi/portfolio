@@ -20,8 +20,8 @@ const highlights = [
     },
     {
         icon: <GoLocation />,
-        title: "Casablanca → Worldwide",
-        text: "Based in Casablanca, freelancing remotely for startups, NGOs and institutions all over the world.",
+        title: "Casablanca & remote",
+        text: "Based in Casablanca, Morocco, and available for remote freelance projects with clients outside Morocco.",
     },
 ];
 
@@ -38,7 +38,7 @@ export const Highlights = () => {
                         <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-alpha transition-colors duration-300 group-hover:border-alpha group-hover:bg-alpha group-hover:text-pure-white">
                             {highlight.icon}
                         </span>
-                        <h3 className="mt-8 font-display text-lg font-bold tracking-tight text-white">{highlight.title}</h3>
+                        <h2 className="mt-8 font-display text-lg font-bold tracking-tight text-white">{highlight.title}</h2>
                         <p className="mt-3 text-sm leading-6 text-white/50">{highlight.text}</p>
                     </motion.div>
                 ))}

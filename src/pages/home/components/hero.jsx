@@ -3,9 +3,11 @@ import { GoArrowRight } from "react-icons/go";
 import heroImage from "../../../assets/images/t.webp";
 import heroImageMobile from "../../../assets/images/heroMobile.webp";
 
-const scrollToSection = (id) => {
+const scrollToSection = (e, id) => {
     const section = document.getElementById(id);
-    if (section) section.scrollIntoView({ behavior: "smooth" });
+    if (!section) return;
+    e.preventDefault();
+    section.scrollIntoView({ behavior: "smooth" });
 };
 
 const reveal = (delay) => ({
@@ -17,19 +19,24 @@ export const Hero = ({ ready = true }) => {
     const animate = ready ? "show" : "hidden";
 
     return (
-        <section id="home" className="relative isolate flex h-svh min-h-[640px] items-center overflow-hidden lg:h-screen">
-            <h1 className="sr-only">
-                Mehdi Forkani — Mobile &amp; Web App Developer in Morocco (Laravel, React, React Native)
-            </h1>
-
+        <section id="home" className="relative isolate flex h-svh min-h-[680px] items-center overflow-hidden lg:h-screen">
             <motion.div
                 initial={{ scale: 1.12, opacity: 0 }}
                 animate={ready ? { scale: 1, opacity: 1 } : { scale: 1.12, opacity: 0 }}
                 transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0 -z-10"
             >
-                <img className="hidden h-full w-full object-cover object-right opacity-60 saturate-[0.8] light:opacity-40 lg:block" src={heroImage} alt="" loading="lazy" />
-                <img className="block h-full w-full object-cover opacity-40 lg:hidden" src={heroImageMobile} alt="" loading="lazy" />
+                <picture>
+                    <source media="(min-width: 1024px)" srcSet={heroImage} width="2400" height="1352" />
+                    <img
+                        className="h-full w-full object-cover opacity-40 lg:object-right lg:opacity-60 lg:saturate-[0.8] lg:light:opacity-40"
+                        src={heroImageMobile}
+                        width="901"
+                        height="1600"
+                        alt=""
+                        fetchpriority="high"
+                    />
+                </picture>
             </motion.div>
 
             <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-black via-black/75 to-black/10 lg:block"></div>
@@ -60,7 +67,7 @@ export const Hero = ({ ready = true }) => {
                     The future? They just see it coming.
                 </motion.p>
 
-                <motion.h2
+                <motion.p
                     variants={reveal(0.5)}
                     initial="hidden"
                     animate={animate}
@@ -71,16 +78,16 @@ export const Hero = ({ ready = true }) => {
                         code
                     </span>{" "}
                     it.
-                </motion.h2>
-
-                <motion.p
-                    variants={reveal(0.7)}
-                    initial="hidden"
-                    animate={animate}
-                    className="mt-8 max-w-md text-base leading-relaxed text-white/60 lg:text-lg"
-                >
-                    I&apos;m Mehdi Forkani, a mobile &amp; web app developer in Morocco turning bold ideas into products people rely on every day.
                 </motion.p>
+
+                <motion.div variants={reveal(0.7)} initial="hidden" animate={animate} className="mt-8 max-w-xl">
+                    <h1 className="font-display text-lg font-semibold leading-snug tracking-tight text-white lg:text-2xl">
+                        Mehdi Forkani, freelance mobile &amp; web app developer in Casablanca, Morocco.
+                    </h1>
+                    <p className="mt-3 max-w-md text-base leading-relaxed text-white/60 lg:text-lg">
+                        I design, build and ship web platforms and mobile apps, with the backends and dashboards behind them, for startups, businesses and organizations.
+                    </p>
+                </motion.div>
 
                 <motion.div
                     variants={reveal(0.9)}
@@ -88,19 +95,21 @@ export const Hero = ({ ready = true }) => {
                     animate={animate}
                     className="mt-10 flex flex-wrap items-center gap-3"
                 >
-                    <button
-                        onClick={() => scrollToSection("projects")}
+                    <a
+                        href="#projects"
+                        onClick={(e) => scrollToSection(e, "projects")}
                         className="group flex h-12 items-center gap-2 rounded-lg bg-alpha px-6 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
                     >
                         Want to bet?
                         <GoArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-                    </button>
-                    <button
-                        onClick={() => scrollToSection("contact")}
+                    </a>
+                    <a
+                        href="#contact"
+                        onClick={(e) => scrollToSection(e, "contact")}
                         className="flex h-12 items-center rounded-lg border border-white/15 bg-white/[0.04] px-6 text-sm font-semibold text-white backdrop-blur-md transition-colors duration-300 hover:border-white/40"
                     >
                         Let&apos;s talk
-                    </button>
+                    </a>
                 </motion.div>
             </div>
 
@@ -109,7 +118,7 @@ export const Hero = ({ ready = true }) => {
                     variants={reveal(1.2)}
                     initial="hidden"
                     animate={animate}
-                    onClick={() => scrollToSection("about")}
+                    onClick={(e) => scrollToSection(e, "about")}
                     aria-label="Scroll to about"
                     className="flex flex-col items-center gap-3"
                 >

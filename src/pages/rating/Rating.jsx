@@ -6,6 +6,7 @@ import { GoAlertFill, GoArrowRight, GoCheckCircleFill } from "react-icons/go";
 import { RiDoubleQuotesL, RiStarFill } from "react-icons/ri";
 import { fadeIn } from "../../utils/motion";
 import Seo from "../../utils/Seo";
+import { ratingSeo } from "../../seo/pages";
 
 const captchaSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || (import.meta.env.DEV ? "1x00000000000000000000AA" : "");
 
@@ -28,10 +29,6 @@ export const Rating = () => {
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
-        const robots = document.querySelector('meta[name="robots"]');
-        const previous = robots?.getAttribute("content");
-        robots?.setAttribute("content", "noindex, nofollow");
-        return () => robots?.setAttribute("content", previous);
     }, []);
 
     useEffect(() => {
@@ -115,9 +112,9 @@ export const Rating = () => {
 
     return (
         <>
-            <Seo title="Rate our work together | Mehdi Forkani" description="Share your experience working with Mehdi Forkani." path="/rating" />
+            <Seo {...ratingSeo} />
 
-            <section className="relative isolate overflow-hidden">
+            <main id="main" className="relative isolate overflow-hidden">
                 <div className="pointer-events-none absolute -left-40 -top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-alpha/25 blur-[100px]"></div>
 
                 <div className="container grid gap-14 pb-24 pt-36 lg:grid-cols-12 lg:gap-16 lg:pb-32 lg:pt-40">
@@ -223,22 +220,23 @@ export const Rating = () => {
                                 </div>
 
                                 <div className="grid gap-4 sm:grid-cols-2">
-                                    <input className={inputClass} placeholder="Full name" name="user_name" value={values.user_name} onChange={handleChange} autoComplete="name" required />
-                                    <input className={inputClass} placeholder="Email" name="user_email" type="email" autoComplete="email" required />
+                                    <input className={inputClass} placeholder="Full name" aria-label="Full name" name="user_name" value={values.user_name} onChange={handleChange} autoComplete="name" required />
+                                    <input className={inputClass} placeholder="Email" aria-label="Email" name="user_email" type="email" autoComplete="email" required />
                                 </div>
                                 <div className="grid gap-4 sm:grid-cols-2">
-                                    <input className={inputClass} placeholder="Job title (e.g. CEO)" name="job_title" value={values.job_title} onChange={handleChange} autoComplete="organization-title" required />
-                                    <input className={inputClass} placeholder="Company or organization" name="company" value={values.company} onChange={handleChange} autoComplete="organization" />
+                                    <input className={inputClass} placeholder="Job title (e.g. CEO)" aria-label="Job title" name="job_title" value={values.job_title} onChange={handleChange} autoComplete="organization-title" required />
+                                    <input className={inputClass} placeholder="Company or organization" aria-label="Company or organization" name="company" value={values.company} onChange={handleChange} autoComplete="organization" />
                                 </div>
                                 <textarea
                                     className={`${inputClass} min-h-[10rem] resize-none`}
+                                    aria-label="Your testimonial"
                                     placeholder="What was it like working with me? What did I build for you?"
                                     name="quote"
                                     value={values.quote}
                                     onChange={handleChange}
                                     required
                                 />
-                                <input className={inputClass} placeholder="LinkedIn or photo link (optional, for your picture)" name="photo_url" type="url" />
+                                <input className={inputClass} placeholder="LinkedIn or photo link (optional, for your picture)" aria-label="LinkedIn or photo link (optional)" name="photo_url" type="url" />
 
                                 <label className="flex cursor-pointer items-start gap-3 text-sm text-white/60">
                                     <input type="checkbox" name="consent" value="Yes" required className="mt-0.5 h-4 w-4 shrink-0 accent-[#800020]" />
@@ -282,7 +280,7 @@ export const Rating = () => {
                         )}
                     </motion.div>
                 </div>
-            </section>
+            </main>
         </>
     );
 };

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Hero } from "./components/hero";
 import { About } from "./components/about";
+import { Services } from "./components/services";
 import { Clients } from "./components/clients";
 import { Achievements } from "./components/achievements";
 import { Projects } from "./components/projects";
@@ -9,6 +10,7 @@ import { Testimonials } from "./components/testimonials";
 import { Contact } from "./components/contact";
 import { Footer } from "../../layouts/Footer";
 import Seo from "../../utils/Seo";
+import { homeSeo } from "../../seo/pages";
 
 export const Home = ({ ready }) => {
     useEffect(() => {
@@ -26,19 +28,18 @@ export const Home = ({ ready }) => {
 
     return (
         <>
-            <Seo
-                title="Mehdi Forkani | Mobile & Web App Developer (Laravel, React, React Native)"
-                description="Mehdi Forkani is a freelance mobile & web app developer based in Casablanca, Morocco, working with clients worldwide. I build production web platforms and mobile apps with Laravel, React, Inertia.js, and React Native for startups, NGOs, and organizations."
-                path="/"
-            />
-            <Hero ready={ready} />
-            <About />
-            <Clients />
-            <Achievements />
-            <Projects />
-            <Technologies />
-            <Testimonials />
-            <Contact />
+            <Seo {...homeSeo} />
+            <main id="main">
+                <Hero ready={ready} />
+                <About />
+                <Services />
+                <Clients />
+                <Achievements />
+                <Projects />
+                <Technologies />
+                <Testimonials />
+                <Contact />
+            </main>
             <Footer />
         </>
     );

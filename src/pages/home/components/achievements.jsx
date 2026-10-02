@@ -8,22 +8,24 @@ const achievements = [
         alt: "LionsGeek team from Morocco receiving the Coup de Cœur du Jury award at [IN]VISIBLE Festival 2026, Brussels, Belgium",
         place: "Royal Library of Belgium · KBR",
         year: "2026",
-        badge: "Jury favorite",
+        badge: "Jury favorite · Team award",
         title: "Coup de",
         highlight: "Cœur",
         description: (
             <>
                 Representing <span className="font-medium text-white">Morocco</span> in{" "}
-                <span className="font-medium text-white">Belgium</span>, I won it on stage with the LionsGeek team for{" "}
-                <span className="text-white">Ada Lovelace</span>, an XR &amp; AI avatar that brought the first
-                programmer&apos;s voice back to life at [IN]VISIBLE Festival through XR4Heritage.
+                <span className="font-medium text-white">Belgium</span>, I led the LionsGeek team behind{" "}
+                <span className="text-white">ADA</span>, a conversational XR &amp; AI avatar that brings the voice of Ada
+                Lovelace, the first programmer, back to life. The jury of the AVATARS competition gave our project its Coup de
+                Cœur at the [IN]VISIBLE Festival 2026 by XR4Heritage.
             </>
         ),
         details: [
             { label: "Award", value: "Coup de Cœur du Jury" },
+            { label: "Team", value: "LionsGeek · I led the team" },
             { label: "Program", value: "Héroïnes de la Science" },
             { label: "Venue", value: "KBR · Brussels" },
-            { label: "Project", value: "Ada Lovelace · Concours AVATARS" },
+            { label: "Project", value: "ADA (Ada Lovelace) · Concours AVATARS" },
         ],
     },
 ];
@@ -67,7 +69,10 @@ export const Achievements = () => {
                                     src={achievement.image}
                                     alt={achievement.alt}
                                     className="aspect-[4/3] w-full select-none object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
+                                    width="1002"
+                                    height="825"
                                     loading="lazy"
+                                    decoding="async"
                                 />
                                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-pure-black/75 via-pure-black/10 to-transparent"></div>
                                 <figcaption className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-3">

@@ -1,15 +1,20 @@
 {
   "name": "Mehdi Forkani — Mobile & Web App Developer",
   "short_name": "Mehdi Forkani",
-  "description": "Mobile & web app developer from Morocco building Laravel, React, and React Native products.",
+  "description": "Freelance mobile and web app developer in Casablanca, Morocco, building with Laravel, React and React Native.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a",
+  "background_color": "#0c0c0c",
+  "theme_color": "#0c0c0c",
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
