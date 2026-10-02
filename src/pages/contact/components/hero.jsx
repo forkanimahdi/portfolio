@@ -20,11 +20,7 @@ export const Hero = ({ ready = true }) => {
     return (
         <section className="relative isolate overflow-hidden">
             <div style={gridStyle} className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[32rem]"></div>
-            <motion.div
-                animate={{ scale: [1, 1.15, 1], opacity: [0.8, 1, 0.8] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="pointer-events-none absolute -left-40 -top-40 -z-10 h-[30rem] w-[30rem] rounded-full bg-alpha/25 blur-[100px]"
-            ></motion.div>
+            <div className="pointer-events-none absolute -left-40 -top-40 -z-10 h-[30rem] w-[30rem] animate-glow rounded-full bg-alpha/25 blur-[100px] will-change-transform motion-reduce:animate-none"></div>
 
             <div className="container pb-16 pt-40">
                 <motion.p

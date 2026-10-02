@@ -33,10 +33,15 @@ export default {
         shimmer: {
           to: { backgroundPosition: "200% center" },
         },
+        glow: {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.8" },
+          "50%": { transform: "scale(1.15)", opacity: "1" },
+        },
       },
       animation: {
         "scroll-hint": "scroll-hint 2s ease-in-out infinite",
         shimmer: "shimmer 6s linear infinite",
+        glow: "glow 8s ease-in-out infinite",
       },
     },
   },

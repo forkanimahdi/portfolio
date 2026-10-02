@@ -53,18 +53,18 @@ export const Contact = ({ full = false }) => {
             }
         };
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (!entry.isIntersecting) return;
-                observer.disconnect();
-                loadCaptcha();
-            },
-            { rootMargin: "600px" }
-        );
-        observer.observe(captchaBox.current);
+        const formEl = form.current;
+        const startCaptcha = () => {
+            formEl.removeEventListener("focusin", startCaptcha);
+            formEl.removeEventListener("pointerdown", startCaptcha);
+            loadCaptcha();
+        };
+        formEl.addEventListener("focusin", startCaptcha);
+        formEl.addEventListener("pointerdown", startCaptcha);
 
         return () => {
-            observer.disconnect();
+            formEl.removeEventListener("focusin", startCaptcha);
+            formEl.removeEventListener("pointerdown", startCaptcha);
             if (window.turnstile && captchaId.current !== null) {
                 window.turnstile.remove(captchaId.current);
             }
