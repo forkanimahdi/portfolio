@@ -32,12 +32,12 @@ export const Home = ({ ready }) => {
             <main id="main">
                 <Hero ready={ready} />
                 <About />
-                <Services />
                 <Clients />
                 <Achievements />
                 <Projects />
                 <Technologies />
                 <Testimonials />
+                <Services />
                 <Contact />
             </main>
             <Footer />
