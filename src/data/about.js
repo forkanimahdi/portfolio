@@ -69,6 +69,11 @@ export const faqs = [
       "Yes. I take on freelance web and mobile app projects for startups, businesses, NGOs and institutions, in Morocco and remotely for clients abroad.",
   },
   {
+    question: "Do you work with clients across Morocco, outside Casablanca?",
+    answer:
+      "Yes. I'm based in Casablanca and work with clients across Morocco. For example, I built the website and management platform of Tihad Azemmour, a women's football club in Azemmour, and platforms for national programs and organizations such as SOREAD-2M's Tilila, the ISRAR coalition and Le Maroc Social 2030.",
+  },
+  {
     question: "Do you work with clients outside Morocco?",
     answer:
       "Yes, remotely. I'm used to async collaboration, regular demos and clear written updates, and Morocco's time zone overlaps well with Europe and Africa, and partly with the Middle East and the US East Coast.",
@@ -101,7 +106,7 @@ export const faqs = [
   {
     question: "Do you work in French and Arabic?",
     answer:
-      "Yes, I work in Arabic (Darija), French and English. En français : je suis développeur web et mobile freelance basé à Casablanca, et je crée des applications web et mobiles sur mesure pour les entreprises, les startups et les associations, au Maroc et à l'international.",
+      "Yes, I work in Arabic (Darija), French and English. En français : je suis développeur web et mobile freelance au Maroc, basé à Casablanca, et je crée des applications web et mobiles sur mesure pour les entreprises, les startups et les associations, au Maroc et à l'international.",
   },
   {
     question: "How can I hire you?",

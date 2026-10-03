@@ -2,6 +2,97 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Arial resized per weight to the Manrope/Syne widths: text painted before the web fonts load keeps its line breaks when they swap in. */
+@font-face {
+    font-family: "Manrope Fallback";
+    font-weight: 400;
+    src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"), local("Roboto"), local("Roboto-Regular");
+    size-adjust: 102.39%;
+    ascent-override: 104.11%;
+    descent-override: 29.30%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "Manrope Fallback";
+    font-weight: 500;
+    src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"), local("Roboto"), local("Roboto-Regular");
+    size-adjust: 104.22%;
+    ascent-override: 102.28%;
+    descent-override: 28.79%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "Manrope Fallback";
+    font-weight: 600;
+    src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Roboto Bold"), local("Roboto-Bold");
+    size-adjust: 98.36%;
+    ascent-override: 108.38%;
+    descent-override: 30.50%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "Manrope Fallback";
+    font-weight: 700;
+    src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Roboto Bold"), local("Roboto-Bold");
+    size-adjust: 100.04%;
+    ascent-override: 106.56%;
+    descent-override: 29.99%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "Syne Fallback";
+    font-weight: 400;
+    src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"), local("Roboto"), local("Roboto-Regular");
+    size-adjust: 98.39%;
+    ascent-override: 94.01%;
+    descent-override: 27.95%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "Syne Fallback";
+    font-weight: 500;
+    src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"), local("Roboto"), local("Roboto-Regular");
+    size-adjust: 105.87%;
+    ascent-override: 87.37%;
+    descent-override: 25.98%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "Syne Fallback";
+    font-weight: 600;
+    src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Roboto Bold"), local("Roboto-Bold");
+    size-adjust: 105.43%;
+    ascent-override: 87.74%;
+    descent-override: 26.08%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "Syne Fallback";
+    font-weight: 700;
+    src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Roboto Bold"), local("Roboto-Bold");
+    size-adjust: 113.68%;
+    ascent-override: 81.37%;
+    descent-override: 24.19%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "Syne Fallback";
+    font-weight: 800;
+    src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("LiberationSans-Bold"), local("Roboto Bold"), local("Roboto-Bold");
+    size-adjust: 142.63%;
+    ascent-override: 64.85%;
+    descent-override: 19.28%;
+    line-gap-override: 0%;
+}
+
 @layer base {
     :root {
         --color-alpha: #800020;
@@ -22,6 +113,12 @@
         scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Home sections below the hero render (and fetch their lazy images) only when scrolled near. */
+    #home ~ section {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 1000px;
     }
 
     @media (prefers-reduced-motion: reduce) {

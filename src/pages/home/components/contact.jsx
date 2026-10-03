@@ -5,6 +5,7 @@ import { GoAlertFill, GoArrowRight, GoArrowUpRight, GoCheckCircleFill } from "re
 import { FaInstagram, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import { fadeIn } from "../../../utils/motion";
+import { projects } from "../../../data/projects";
 
 const socials = [
     { icon: <FaLinkedinIn />, name: "LinkedIn", link: "https://www.linkedin.com/in/forkanimahdi/" },
@@ -25,6 +26,15 @@ export const Contact = ({ full = false }) => {
     const [captchaToken, setCaptchaToken] = useState(null);
     const [sending, setSending] = useState(false);
     const [message, setMessage] = useState({ text: "", error: false });
+
+    useEffect(() => {
+        const slug = new URLSearchParams(window.location.search).get("project");
+        const project = projects.find((p) => p.slug === slug);
+        const subject = form.current?.elements.subject;
+        if (project && subject && !subject.value) {
+            subject.value = `A ${project.platform === "mobile" ? "mobile app" : "web platform"} like ${project.name}`;
+        }
+    }, []);
 
     useEffect(() => {
         if (!captchaSiteKey) return;

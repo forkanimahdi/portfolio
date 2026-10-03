@@ -5,6 +5,7 @@ import App from "./App";
 export { prerenderRoutes } from "./seo/pages";
 export { renderHead } from "./seo/meta";
 export { projects } from "./data/projects";
+export { projectTestimonial } from "./data/testimonials";
 export { journey } from "./data/about";
 export { SITE_URL, profile } from "./data/profile";
 

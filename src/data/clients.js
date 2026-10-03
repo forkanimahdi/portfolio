@@ -1,11 +1,11 @@
-import jadara from "../assets/images/clients/jadara.png";
+import jadara from "../assets/images/clients/jadara.webp";
 import lionsgeek from "../assets/images/clients/lionsgeek.png";
-import casamemoire from "../assets/images/clients/casamemoire.png";
-import mhijir from "../assets/images/clients/mhijir.png";
-import a1 from "../assets/images/clients/a1.png";
-import tihadazemmour from "../assets/images/clients/tihadazemmour.png";
-import tm from "../assets/images/clients/2m.png";
-import israr from "../assets/images/clients/israr.png";
+import casamemoire from "../assets/images/clients/casamemoire.webp";
+import mhijir from "../assets/images/clients/mhijir.webp";
+import a1 from "../assets/images/clients/a1.webp";
+import tihadazemmour from "../assets/images/clients/tihadazemmour.webp";
+import tm from "../assets/images/clients/2m.webp";
+import israr from "../assets/images/clients/israr.webp";
 
 export const clients = [
   { logo: jadara, name: "Jadara Foundation", url: "https://www.jadarafoundation.org/" },

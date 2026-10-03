@@ -50,7 +50,7 @@ export const Footer = () => {
                     </Link>
 
                     <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
-                        Mehdi Forkani, freelance mobile &amp; web app developer based in Casablanca, Morocco.
+                        Mehdi Forkani, freelance mobile &amp; web app developer based in Casablanca, working with clients across Morocco.
                     </p>
 
                     <div className="mt-6 flex gap-2 text-sm">

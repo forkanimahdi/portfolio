@@ -20,7 +20,9 @@ import israr from "../assets/images/projects/israr.webp";
 import ms2030 from "../assets/images/projects/ms2030.webp";
 
 // Original screenshots (PNG/GIF/JPG) are kept next to the .webp files; regenerate with scripts/optimize-images.py.
-// Optional case-study fields: summary (meta description), audience, contribution, team, related (slugs).
+// Every case study needs: summary (meta description), description (overview), challenge, audience and 3-4 features.
+// Optional: location, contribution, team, related (slugs). Client quotes live in data/testimonials.js.
+// Only add verified facts: they are rendered on the page, in JSON-LD and in llms.txt.
 
 const LIONSGEEK_PRO_TEAM = "Delivered with the LionsGeek PRO team, where I work as project manager.";
 
@@ -41,11 +43,15 @@ export const projects = [
     year: "2024",
     role: "Frontend Developer",
     client: "LionsGeek",
+    location: "Casablanca, Morocco",
     audience: "Young people, partners and funders discovering LionsGeek's programs.",
-    highlights: [
-      "Built an animated, story-driven React site presenting LionsGeek's youth-empowerment programs.",
-      "Designed a reusable component system with smooth motion for a strong first impression.",
-      "Optimized performance and responsive layouts across mobile, tablet, and desktop.",
+    challenge:
+      "LionsGeek runs several programs at once (digital upskilling, project incubation and leadership coaching) for young people across Africa. Its website had to explain all of them clearly to young people, partners and funders, and make a strong first impression.",
+    features: [
+      { title: "Story-driven homepage", text: "An animated narrative that walks visitors through LionsGeek's mission." },
+      { title: "Program sections", text: "Digital upskilling, project incubation and leadership coaching, each with its own content." },
+      { title: "Reusable components", text: "A component system with consistent motion, reused across the site." },
+      { title: "Responsive performance", text: "Layouts tuned for mobile, tablet and desktop." },
     ],
     related: ["my-lionsgeek", "lionsgeek-mobile"],
   },
@@ -65,14 +71,18 @@ export const projects = [
     year: "2024",
     role: "Mobile App Developer · Project lead",
     client: "Casamémoire",
+    location: "Casablanca, Morocco",
     audience: "Residents and visitors exploring Casablanca's architectural and cultural heritage.",
     contribution:
       "I led the Casatourat project at LionsGeek PRO and developed the React Native app, which gets its content from the Casatourat Laravel dashboard.",
     team: LIONSGEEK_PRO_TEAM,
-    highlights: [
-      "Developed a React Native app for guided cultural circuits around Casablanca.",
-      "Implemented map-based navigation, heritage building pages, an events feed, user activity tracking and achievements.",
-      "Connected the app to a Laravel content backend for real-time updates.",
+    challenge:
+      "Casamémoire wanted residents and visitors to discover Casablanca's architectural and cultural heritage on their own, through guided circuits around the city. The app had to guide people on a map, present heritage buildings and events, and stay up to date from a content back office.",
+    features: [
+      { title: "Guided circuits on a map", text: "Heritage circuits around Casablanca with map-based navigation." },
+      { title: "Heritage buildings", text: "A page for each building on the circuits." },
+      { title: "Cultural events", text: "An events feed fed live from the Laravel dashboard." },
+      { title: "Activity & achievements", text: "Users track their activity and unlock achievements as they explore." },
     ],
     related: ["casatourat-dashboard"],
   },
@@ -92,11 +102,15 @@ export const projects = [
     year: "2024",
     role: "Full-Stack Developer",
     client: "US Azemmour Féminin",
+    location: "Azemmour, Morocco",
     audience: "Players, families, supporters and partners of a women's football club with Senior, U17 and U15 teams.",
-    highlights: [
-      "Built the official club site plus an admin back office for line-ups, convocations, and finances.",
-      "Delivered an integrated store with order and inventory management.",
-      "Structured content around the club's youth categories and social mission.",
+    challenge:
+      "An amateur women's football club with more than 60 players across Senior, U17 and U15 teams needed one place to present the club publicly and to run its day-to-day work: line-ups, convocations, finances and its store. The tool had to fit how an amateur club really runs and carry the club's identity as the Dragonnes.",
+    features: [
+      { title: "Line-ups & convocations", text: "Staff build line-ups and send team convocations from the back office." },
+      { title: "Club finances", text: "The club's finances are managed in the same admin as the sporting side." },
+      { title: "Online store", text: "Club merchandise with order and inventory management." },
+      { title: "Public club site", text: "The club's sporting, educational and social mission, organized by youth category." },
     ],
   },
   {
@@ -115,11 +129,15 @@ export const projects = [
     year: "2024",
     role: "Full-Stack Developer",
     client: "Atelier A1",
+    location: "Morocco",
     audience: "Clients, partners and the public discovering the agency's architecture and urban design work.",
-    highlights: [
-      "Designed a portfolio-driven site for an architecture & urban-design agency.",
-      "Built a flexible project showcase spanning architecture, urban planning, and landscape.",
-      "Implemented an editable content structure for the agency's evolving work.",
+    challenge:
+      "Atelier A1 works across architecture, urban planning and landscape, at very different scales. The agency needed a site that presents its philosophy and a growing portfolio, with content its team can keep updated.",
+    features: [
+      { title: "Project showcase", text: "Architecture, urban planning and landscape projects in one flexible portfolio." },
+      { title: "Agency philosophy", text: "The agency's approach and multidisciplinary expertise." },
+      { title: "Founders' story", text: "The agency founded by Abderrahim Kassou and Mustapha Chakib." },
+      { title: "Editable content", text: "A content structure the agency updates as its work evolves." },
     ],
   },
   {
@@ -138,11 +156,15 @@ export const projects = [
     year: "2024",
     role: "Full-Stack Developer",
     client: "Écoles Belges au Maroc",
+    location: "Morocco",
     audience: "Families applying to the Belgian schools in Morocco.",
-    highlights: [
-      "Built an online admissions and information platform for Belgian schools in Morocco.",
-      "Implemented a structured, multi-step application workflow for families.",
-      "Presented the academic vision and school information with clear guidance.",
+    challenge:
+      "Families applying to the Belgian schools in Morocco needed clear guidance on the admission process and a way to apply online. The schools needed applications to come in through one structured workflow.",
+    features: [
+      { title: "Online application", text: "A structured, multi-step application form for families." },
+      { title: "Admission guidance", text: "The admission process explained step by step." },
+      { title: "Academic vision", text: "The Fédération Wallonie-Bruxelles programme and the schools' approach." },
+      { title: "School information", text: "Essential information families need before applying." },
     ],
     related: ["clb-klb"],
   },
@@ -162,11 +184,15 @@ export const projects = [
     year: "2024",
     role: "Full-Stack Developer",
     client: "CLB-KLB",
+    location: "Morocco",
     audience: "Graduates of Belgian institutions living in Morocco, and the association's partners.",
-    highlights: [
-      "Delivered the platform connecting graduates of Belgian institutions in Morocco.",
-      "Presented the network's mission, events, and Belgium–Morocco partnerships.",
-      "Built manageable content sections for members and announcements.",
+    challenge:
+      "CLB-KLB connects graduates of Belgian institutions living in Morocco and promotes Belgian higher education there. It needed one platform for its mission, events and Belgium–Morocco partnerships, with content the association can manage itself.",
+    features: [
+      { title: "Network & mission", text: "Who the association brings together and why." },
+      { title: "Events", text: "The network's events, presented for members and partners." },
+      { title: "Belgium–Morocco partnerships", text: "Partnerships and training opportunities between both countries." },
+      { title: "Member announcements", text: "Content sections the association manages itself." },
     ],
     related: ["ecoles-belges-maroc"],
   },
@@ -187,10 +213,13 @@ export const projects = [
     role: "Full-Stack Developer",
     client: "Glovantis Group",
     audience: "Companies and institutions looking for support with international expansion.",
-    highlights: [
-      "Built a corporate site for a cross-border strategic advisory firm.",
-      "Presented market-entry, public affairs, and partnership-structuring expertise.",
-      "Structured content for Europe, Morocco, and Gulf markets.",
+    challenge:
+      "Glovantis Group advises companies on international expansion across Europe, Morocco and the Gulf. Its site had to explain specialized services clearly to decision-makers in several markets.",
+    features: [
+      { title: "Market entry", text: "How the firm helps companies enter new markets." },
+      { title: "Public affairs", text: "Public affairs and institutional relations expertise." },
+      { title: "Partnership structuring", text: "Support for structuring cross-border partnerships." },
+      { title: "Content by region", text: "Content organized for Europe, Morocco and the Gulf." },
     ],
   },
   {
@@ -209,11 +238,15 @@ export const projects = [
     year: "2025",
     role: "Full-Stack Developer",
     client: "Coalition ISRAR",
+    location: "Morocco",
     audience: "Women looking for legal and support services, and the associations in the coalition.",
-    highlights: [
-      "Built a bilingual (French–Arabic) platform for a gender-equality coalition.",
-      "Provided access to legal and support services against violence toward women.",
-      "Implemented RTL-ready, accessible layouts across both languages.",
+    challenge:
+      "The ISRAR coalition brings together Moroccan associations working on gender equality and women's rights. Women looking for legal and support services against violence had to find them easily, in French or in Arabic.",
+    features: [
+      { title: "French & Arabic", text: "The full platform in both languages, with right-to-left Arabic layouts." },
+      { title: "Support services", text: "Access to legal and support services against violence toward women." },
+      { title: "The coalition", text: "The alliance of local associations and its mission." },
+      { title: "Accessible layouts", text: "Readable, accessible pages in both languages." },
     ],
   },
   {
@@ -232,11 +265,15 @@ export const projects = [
     year: "2025",
     role: "Full-Stack Developer",
     client: "The Social Observatory",
+    location: "Morocco",
     audience: "Citizens, experts and working-group members taking part in the Maroc Social 2030 initiative.",
-    highlights: [
-      "Translated a national social vision into an accessible web experience.",
-      "Connected analysis, citizen engagement, and thematic working groups.",
-      "Built a content architecture organized around 2030 social goals.",
+    challenge:
+      "Le Maroc Social 2030 carries a national social vision for 2030. The think-and-do tank needed a platform that makes this vision accessible and connects its analysis, citizen engagement and thematic working groups.",
+    features: [
+      { title: "The 2030 vision", text: "Content organized around cohesion, equity and dignity." },
+      { title: "Analysis", text: "The think tank's analysis, presented for a wide audience." },
+      { title: "Citizen engagement", text: "Ways for citizens to take part in the initiative." },
+      { title: "Working groups", text: "The thematic working groups and their focus." },
     ],
   },
   {
@@ -256,10 +293,13 @@ export const projects = [
     role: "Frontend Developer",
     client: "Jadara Foundation (YES Africa)",
     audience: "Young Africans, partners and sponsors of the Youth Empowerment Summit.",
-    highlights: [
-      "Built the React web presence for the Youth Empowerment Summit.",
-      "Presented the mission, past editions, partners, and calls to action.",
-      "Delivered fast, animated, fully responsive pages.",
+    challenge:
+      "The Youth Empowerment Summit needed a web presence that tells its story across editions, shows its partners and turns visitors into participants and supporters.",
+    features: [
+      { title: "Mission & story", text: "What the summit stands for and who it serves." },
+      { title: "Past editions", text: "A look back at previous summits." },
+      { title: "Partners", text: "The organizations behind the summit." },
+      { title: "Calls to action", text: "Clear paths to join, partner or support." },
     ],
     related: ["yes-mobile", "yes-learning", "yes-mobile-dashboard"],
   },
@@ -280,10 +320,13 @@ export const projects = [
     role: "Full-Stack Developer",
     client: "Bigg Red",
     audience: "Shoppers looking for premium tech and consumer electronics.",
-    highlights: [
-      "Built a premium electronics e-commerce platform end to end.",
-      "Implemented flash sales with countdown timers and curated new arrivals.",
-      "Added accessory personalization and early-access memberships.",
+    challenge:
+      "Bigg Red sells premium tech and consumer electronics. The store needed more than a catalog: time-limited flash sales, curated new arrivals, accessory personalization and early access for members.",
+    features: [
+      { title: "Product catalog", text: "Premium electronics with curated new arrivals." },
+      { title: "Flash sales", text: "Time-limited offers with live countdown timers." },
+      { title: "Accessory personalization", text: "Customers customize accessories before ordering." },
+      { title: "Memberships", text: "Exclusive offers and early access for members." },
     ],
   },
   {
@@ -302,14 +345,18 @@ export const projects = [
     year: "2024",
     role: "Full-Stack Developer · Project lead",
     client: "LionsGeek",
+    location: "Casablanca, Morocco",
     audience: "LionsGeek trainers, learners and administrators.",
     contribution:
       "I led My LionsGeek, LionsGeek's internal management system, as project manager at LionsGeek PRO, and worked on it as a full-stack Laravel developer.",
     team: LIONSGEEK_PRO_TEAM,
-    highlights: [
-      "Built a training-center operations platform for reservations and session planning.",
-      "Streamlined coordination between trainers, learners, and administrators.",
-      "Implemented role-based access control and admin workflows.",
+    challenge:
+      "In a training center, trainers, learners and administrators share rooms, sessions and daily admin work. LionsGeek needed one internal platform to coordinate reservations, session planning and admin tasks, with the right access for each role.",
+    features: [
+      { title: "Reservations", text: "Spaces and resources booked in one place." },
+      { title: "Session planning", text: "Training sessions planned for trainers and learners." },
+      { title: "Admin workflows", text: "Daily administrative tasks handled in the platform." },
+      { title: "Roles & permissions", text: "Each user sees what their role needs." },
     ],
     related: ["lionsgeek-mobile", "lionsgeek"],
   },
@@ -329,13 +376,17 @@ export const projects = [
     year: "2024",
     role: "Full-Stack Developer · Project lead",
     client: "Casamémoire",
+    location: "Casablanca, Morocco",
     audience: "The team that manages Casatourat's circuits, events and content.",
     contribution: "Part of the Casatourat project I led at LionsGeek PRO: the Laravel back office that feeds the mobile app.",
     team: LIONSGEEK_PRO_TEAM,
-    highlights: [
-      "Built the Laravel dashboard powering the Casatourat mobile app.",
-      "Managed cultural circuits, events, and real-time content.",
-      "Provided insight into user behavior and app content.",
+    challenge:
+      "The Casatourat app needed a back office where the team manages circuits, events and content and sees the changes in the app right away, plus insight into how the app is used.",
+    features: [
+      { title: "Circuit management", text: "Cultural circuits created and edited for the app." },
+      { title: "Events", text: "Cultural events published to the app's feed." },
+      { title: "Live app content", text: "Content changes reach the mobile app in real time." },
+      { title: "Usage insights", text: "A view of how people use the app." },
     ],
     related: ["casatourat"],
   },
@@ -359,10 +410,13 @@ export const projects = [
     contribution:
       "I led the YES Africa app at LionsGeek PRO for Jadara Foundation and developed it in React Native, together with its Laravel backend.",
     team: LIONSGEEK_PRO_TEAM,
-    highlights: [
-      "Built the summit app with schedules, speaker info, and event navigation.",
-      "Implemented ticket/QR scanning for fast on-site check-in.",
-      "Focused on performance and accessibility with React Native.",
+    challenge:
+      "Summit participants needed the schedule, speaker information and directions in their pocket, and organizers needed fast check-in at the entrance.",
+    features: [
+      { title: "Schedule", text: "The full summit programme on the participant's phone." },
+      { title: "Speakers", text: "Speaker profiles and session information." },
+      { title: "QR ticket scanning", text: "Fast on-site check-in by scanning tickets." },
+      { title: "Event navigation", text: "Helps participants find their way around the event." },
     ],
     related: ["yes-mobile-dashboard", "yes-learning", "yes-africa"],
   },
@@ -385,10 +439,13 @@ export const projects = [
     audience: "Young Africans building professional and soft skills.",
     contribution: "Led at LionsGeek PRO as part of the YES Africa programme for Jadara Foundation; I worked on it as a full-stack developer.",
     team: LIONSGEEK_PRO_TEAM,
-    highlights: [
-      "Built an e-learning platform with workshops and progress tracking.",
-      "Supported both synchronous and asynchronous learning.",
-      "Targeted professional and soft-skill growth for African youth.",
+    challenge:
+      "YES Africa needed a learning platform for African youth that supports both live workshops and self-paced courses in professional and soft skills, and follows each learner's progress.",
+    features: [
+      { title: "Workshops", text: "Live, synchronous sessions with trainers." },
+      { title: "E-learning content", text: "Self-paced courses learners follow on their own schedule." },
+      { title: "Progress tracking", text: "Each learner's progress followed across courses." },
+      { title: "Skill tracks", text: "Content focused on professional and soft skills." },
     ],
     related: ["yes-mobile", "yes-africa"],
   },
@@ -408,11 +465,15 @@ export const projects = [
     year: "2025",
     role: "Mobile App Developer",
     client: "LionsGeek",
+    location: "Casablanca, Morocco",
     audience: "LionsGeek students, coaches and administrators.",
-    highlights: [
-      "Shipped the LionsGeek companion app to Google Play.",
-      "Built workspace booking and event reservations with capacity checks.",
-      "Added QR and manual check-in for participants.",
+    challenge:
+      "LionsGeek students, coaches and admins needed one app to book workspaces, follow their training, get community updates and reserve event spots, without overbooking events and with quick check-in on site.",
+    features: [
+      { title: "Workspace booking", text: "Students and coaches book workspaces from their phone." },
+      { title: "Event reservations", text: "Reservations with capacity checks, so events never overbook." },
+      { title: "QR & manual check-in", text: "Participants are checked in by QR code or by hand." },
+      { title: "Training & community", text: "Training tracking and community updates in one app." },
     ],
     related: ["my-lionsgeek", "lionsgeek"],
   },
@@ -432,11 +493,15 @@ export const projects = [
     year: "2024",
     role: "Full-Stack Developer",
     client: "Her Day for Her",
+    location: "Morocco",
     audience: "Women attending leadership masterclasses, talks and workshops.",
-    highlights: [
-      "Built a platform showcasing MasterClass events for women's leadership.",
-      "Presented talks, workshops, and networking programs.",
-      "Delivered an engaging, on-brand interactive experience.",
+    challenge:
+      "Her Day for Her runs leadership masterclasses, talks, workshops and networking programs for women. It needed a platform that presents these programs in an engaging way that matches its brand.",
+    features: [
+      { title: "MasterClass events", text: "The masterclass programme for women's leadership." },
+      { title: "Talks & workshops", text: "Leadership talks and hands-on workshops." },
+      { title: "Networking programs", text: "The programs that connect participants." },
+      { title: "Brand-led design", text: "An interactive experience built around the Her Day for Her identity." },
     ],
   },
   {
@@ -455,11 +520,14 @@ export const projects = [
     year: "2025",
     role: "Full-Stack Developer",
     client: "SOREAD-2M",
+    location: "Morocco",
     audience: "Advertisers, agencies and applicants to the Tilila Awards and Tililab.",
-    highlights: [
-      "Built SOREAD-2M's Tilila platform for equity, diversity & inclusion.",
-      "Hosted Tilila Awards applications for inclusive advertising campaigns.",
-      "Powered Tililab, a creative incubator for agencies and advertisers.",
+    challenge:
+      "SOREAD-2M's Tilila program promotes equity, diversity and inclusion in Moroccan advertising and media. It needed one platform for Tilila Awards applications and for Tililab, its creative incubator for agencies and advertisers.",
+    features: [
+      { title: "Tilila Awards applications", text: "Applications for inclusive advertising campaigns." },
+      { title: "Tililab incubator", text: "The creative incubator for agencies and advertisers." },
+      { title: "Equity, diversity & inclusion", text: "The program's mission for more equitable representation in the media." },
     ],
     related: ["tililab-evaluation-platform"],
   },
@@ -479,11 +547,15 @@ export const projects = [
     year: "2025",
     role: "Full-Stack Developer",
     client: "SOREAD-2M / Tilila",
+    location: "Morocco",
     audience: "Tililab jury members and program organizers.",
-    highlights: [
-      "Built a jury evaluation platform for structured candidate assessments.",
-      "Managed judges, candidate registration, scoring, and final decisions.",
-      "Streamlined the end-to-end evaluation workflow.",
+    challenge:
+      "Tililab candidates are assessed by a panel of judges. Organizers needed one structured place to register candidates, let each judge score them and record the panel's final decisions.",
+    features: [
+      { title: "Judge management", text: "Organizers add the judges of each panel." },
+      { title: "Candidate registration", text: "Candidates registered for assessment." },
+      { title: "Scoring", text: "Each judge scores candidates in the platform." },
+      { title: "Final decisions", text: "The panel's final decisions recorded in one place." },
     ],
     related: ["tilila"],
   },
@@ -513,10 +585,13 @@ export const projects = [
     client: "Jadara Foundation (YES Africa)",
     audience: "YES Africa organizers managing the summit app and its participants.",
     team: LIONSGEEK_PRO_TEAM,
-    highlights: [
-      "Built the Laravel backend for the Yes Mobile app.",
-      "Managed users, programs, notifications, and app content.",
-      "Enforced security-first, multi-role admin access.",
+    challenge:
+      "The Yes Mobile app needed a backend to manage its users, programs, notifications and content, with admin access restricted by role.",
+    features: [
+      { title: "Users", text: "Participant accounts managed by organizers." },
+      { title: "Programs", text: "Summit programs published to the app." },
+      { title: "Notifications", text: "Messages pushed to participants." },
+      { title: "Multi-role admin", text: "Security-first access, restricted by role." },
     ],
     related: ["yes-mobile", "yes-africa"],
   },

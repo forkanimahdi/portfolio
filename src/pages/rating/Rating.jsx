@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { GoAlertFill, GoArrowRight, GoCheckCircleFill } from "react-icons/go";
 import { RiDoubleQuotesL, RiStarFill } from "react-icons/ri";
-import { fadeIn } from "../../utils/motion";
 import Seo from "../../utils/Seo";
 import { ratingSeo } from "../../seo/pages";
 
@@ -12,6 +11,8 @@ const captchaSiteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY || (import.meta.e
 
 const inputClass =
     "w-full rounded-lg border border-white/10 bg-white/[0.03] px-5 py-3.5 text-sm text-white placeholder-white/35 outline-none transition-colors duration-300 focus:border-alpha focus:bg-white/[0.05]";
+
+const rise = "motion-safe:animate-rise";
 
 const ratingLabels = ["Tap a star", "Not great", "Okay", "Good", "Great", "Outstanding"];
 
@@ -46,17 +47,30 @@ export const Rating = () => {
             });
         };
 
-        if (window.turnstile) {
-            renderCaptcha();
-        } else {
-            const script = document.createElement("script");
-            script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-            script.async = true;
-            script.onload = renderCaptcha;
-            document.head.appendChild(script);
-        }
+        const loadCaptcha = () => {
+            if (window.turnstile) {
+                renderCaptcha();
+            } else {
+                const script = document.createElement("script");
+                script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+                script.async = true;
+                script.onload = renderCaptcha;
+                document.head.appendChild(script);
+            }
+        };
+
+        const formEl = form.current;
+        const startCaptcha = () => {
+            formEl.removeEventListener("focusin", startCaptcha);
+            formEl.removeEventListener("pointerdown", startCaptcha);
+            loadCaptcha();
+        };
+        formEl.addEventListener("focusin", startCaptcha);
+        formEl.addEventListener("pointerdown", startCaptcha);
 
         return () => {
+            formEl.removeEventListener("focusin", startCaptcha);
+            formEl.removeEventListener("pointerdown", startCaptcha);
             if (window.turnstile && captchaId.current !== null) {
                 window.turnstile.remove(captchaId.current);
             }
@@ -120,31 +134,21 @@ export const Rating = () => {
                 <div className="container grid gap-14 pb-24 pt-36 lg:grid-cols-12 lg:gap-16 lg:pb-32 lg:pt-40">
                     <div className="lg:col-span-5">
                         <div className="lg:sticky lg:top-32">
-                            <motion.p
-                                variants={fadeIn("up", 0.1)} initial="hidden" animate="show"
-                                className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60"
-                            >
+                            <p className={`${rise} [animation-delay:100ms] flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60`}>
                                 <span className="h-px w-8 bg-alpha"></span>
                                 Kind words
-                            </motion.p>
+                            </p>
 
-                            <motion.h1
-                                variants={fadeIn("up", 0.2)} initial="hidden" animate="show"
-                                className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl"
-                            >
+                            <h1 className={`${rise} [animation-delay:200ms] mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl`}>
                                 How was it working <span className="text-alpha">together?</span>
-                            </motion.h1>
+                            </h1>
 
-                            <motion.p
-                                variants={fadeIn("up", 0.3)} initial="hidden" animate="show"
-                                className="mt-5 text-base leading-relaxed text-white/60 lg:text-lg"
-                            >
+                            <p className={`${rise} [animation-delay:300ms] mt-5 text-base leading-relaxed text-white/60 lg:text-lg`}>
                                 Your feedback means a lot. With your permission, I&apos;ll feature it on my portfolio, exactly like the preview below.
-                            </motion.p>
+                            </p>
 
-                            <motion.div
-                                variants={fadeIn("up", 0.4)} initial="hidden" animate="show"
-                                className="relative isolate mt-10 overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8"
+                            <div
+                                className={`${rise} [animation-delay:400ms] relative isolate mt-10 overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8`}
                             >
                                 <div className="pointer-events-none absolute -bottom-32 -right-32 -z-10 h-72 w-72 rounded-full bg-alpha/25 blur-[90px]"></div>
 
@@ -157,7 +161,7 @@ export const Rating = () => {
                                     </div>
                                 </div>
 
-                                <p className={`mt-6 font-display text-lg font-semibold leading-snug tracking-tight ${values.quote ? "text-white" : "text-white/30"}`}>
+                                <p className={`mt-6 font-display text-lg font-semibold leading-snug tracking-tight ${values.quote ? "text-white" : "text-white/50"}`}>
                                     {values.quote || "Your words will appear here as you type…"}
                                 </p>
 
@@ -170,14 +174,11 @@ export const Rating = () => {
                                         <p className="truncate text-sm text-white/50">{role || "Your role, Company"}</p>
                                     </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         </div>
                     </div>
 
-                    <motion.div
-                        variants={fadeIn("up", 0.3)} initial="hidden" animate="show"
-                        className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-10 lg:col-span-7"
-                    >
+                    <div className={`${rise} [animation-delay:300ms] rounded-3xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-10 lg:col-span-7`}>
                         {sent ? (
                             <div className="flex min-h-[28rem] flex-col items-center justify-center text-center">
                                 <GoCheckCircleFill className="text-6xl text-emerald-500" />
@@ -278,7 +279,7 @@ export const Rating = () => {
                                 </button>
                             </form>
                         )}
-                    </motion.div>
+                    </div>
                 </div>
             </main>
         </>

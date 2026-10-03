@@ -7,12 +7,27 @@ import { pathToFileURL } from "node:url";
 const DIST = resolve("dist");
 const SSR_ENTRY = resolve("dist-ssr/entry-server.js");
 
-const { render, renderHead, prerenderRoutes, projects, journey, profile, SITE_URL } = await import(pathToFileURL(SSR_ENTRY).href);
+const { render, renderHead, prerenderRoutes, projects, projectTestimonial, journey, profile, SITE_URL } = await import(pathToFileURL(SSR_ENTRY).href);
 
 const SEO_BLOCK = /<!-- seo:start -->[\s\S]*?<!-- seo:end -->/;
 const ROOT = '<div id="root"></div>';
 
-const template = readFileSync(join(DIST, "index.html"), "utf-8");
+// Inline the stylesheet: one less render-blocking request before first paint (~8 KB gzipped).
+// Start the app bundle once the page has loaded and its main image is painted (or on the first interaction):
+// the prerendered HTML is fully visible before React downloads and hydrates.
+const template = readFileSync(join(DIST, "index.html"), "utf-8")
+    .replace(
+        /<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/g,
+        (_, href) => `<style>${readFileSync(join(DIST, href), "utf-8")}</style>`
+    )
+    .replace(
+        /<script type="module" crossorigin src="(\/assets\/[^"]+\.js)"><\/script>/,
+        (_, src) =>
+            `<script data-app-loader>(function(){var d=0;function go(){if(d)return;d=1;var s=document.createElement("script");s.type="module";s.crossOrigin="";s.src="${src}";document.head.appendChild(s)}function later(){var i=document.querySelector('img[fetchpriority="high"]');(i&&i.decode?i.decode().catch(function(){}):Promise.resolve()).then(function(){requestAnimationFrame(function(){requestAnimationFrame(go)})})}if(document.readyState==="complete")later();else addEventListener("load",later,{once:true});["pointerdown","keydown","touchstart"].forEach(function(e){addEventListener(e,go,{once:true,passive:true})})})()</script>`
+    );
+if (!template.includes("data-app-loader")) {
+    throw new Error("index.html: the module entry script was not found, check the Vite output format");
+}
 if (!SEO_BLOCK.test(template) || !template.includes(ROOT)) {
     throw new Error("index.html is missing the <!-- seo:start/end --> markers or an empty #root");
 }
@@ -57,9 +72,22 @@ ${indexable.map((route) => `  <url><loc>${xmlEscape(`${SITE_URL}${route.path}`)}
 console.log(`Wrote dist/sitemap.xml (${indexable.length} URLs)`);
 
 const url = (path) => `${SITE_URL}${path}`;
+
+const projectLine = (project) => {
+    const parts = [
+        `- [${project.name}](${url(`/projects/${project.slug}`)}): ${project.category}, ${project.year}, for ${project.client}${project.location ? ` (${project.location})` : ""}.`,
+        project.summary,
+        `Role: ${project.role}.`,
+    ];
+    parts.push(`Challenge: ${project.challenge}`);
+    parts.push(`What was built: ${project.features.map((feature) => `${feature.title} (${feature.text.replace(/\.$/, "")})`).join("; ")}.`);
+    const testimonial = projectTestimonial(project.slug);
+    if (testimonial) parts.push(`Client feedback (${testimonial.name}, ${testimonial.role}): "${testimonial.excerpt || testimonial.quote.split("\n\n")[0]}"`);
+    return parts.join(" ");
+};
 const llms = `# ${profile.name}
 
-> Freelance mobile and web app developer based in ${profile.city}, ${profile.country}.
+> Freelance mobile and web app developer based in ${profile.city}, ${profile.country}, working with clients across Morocco and remotely.
 
 ${profile.summary}
 
@@ -75,9 +103,7 @@ Core stack: ${profile.stack.join(", ")}. Besides freelance work, he is Head Coac
 
 ## Projects
 
-${projects
-    .map((project) => `- [${project.name}](${url(`/projects/${project.slug}`)}): ${project.category}, ${project.year}, for ${project.client}. ${project.summary} Role: ${project.role}.`)
-    .join("\n")}
+${projects.map(projectLine).join("\n")}
 - [All projects](${url("/projects")})
 
 ## Experience

@@ -4,12 +4,18 @@ import { gsap } from "gsap";
 import {
   FiArrowLeft,
   FiArrowRight,
-  FiArrowUpRight,
   FiExternalLink,
+  FiFileText,
   FiGithub,
   FiDownload,
+  FiLayers,
+  FiTarget,
+  FiUsers,
 } from "react-icons/fi";
+import { RiDoubleQuotesL } from "react-icons/ri";
 import { useAppContext } from "../../context/AppContext";
+import { projectCover } from "../../data/covers";
+import { projectTestimonial } from "../../data/testimonials";
 import Seo from "../../utils/Seo";
 import { projectSeo } from "../../seo/pages";
 import { isHydrated } from "../../utils/hydration";
@@ -18,12 +24,24 @@ import { Error } from "../error/Error";
 
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
+const cardClass = "rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 lg:p-8";
+const labelClass = "text-xs font-semibold uppercase tracking-[0.2em] text-white/60";
+
 const linkLabel = (link) => {
   const host = new URL(link).hostname.replace(/^www\./, "");
   if (host === "play.google.com") return "View on Google Play";
   if (host === "apps.apple.com") return "View on the App Store";
   return `Visit ${host}`;
 };
+
+const CardTitle = ({ icon, children }) => (
+  <h2 className="flex items-center gap-3 font-display text-xl font-bold tracking-tight text-white lg:text-2xl">
+    <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-alpha text-base text-pure-white">
+      {icon}
+    </span>
+    {children}
+  </h2>
+);
 
 const ProjectDetails = () => {
   const { slug } = useParams();
@@ -94,11 +112,14 @@ const ProjectDetails = () => {
 
   if (!project) return <Error />;
 
+  const testimonial = projectTestimonial(project.slug);
+
   const details = [
-    { label: "Role", value: project.role },
     { label: "Client", value: project.client },
+    { label: "Role", value: project.role },
     { label: "Year", value: project.year },
-    { label: "Category", value: project.category },
+    { label: "Location", value: project.location },
+    { label: "Delivered", value: project.team ? "With the LionsGeek PRO team" : null },
   ].filter((detail) => detail.value);
 
   return (
@@ -118,120 +139,122 @@ const ProjectDetails = () => {
           All projects
         </Link>
 
-        <article className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <div ref={contentRef} className="order-2 lg:order-1 lg:col-span-6">
+        <header ref={contentRef} className="mt-10 grid gap-8 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-8">
             <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
               <span className="h-px w-8 bg-alpha"></span>
-              {project.category} · {project.year}
+              Case study · {project.category}
             </p>
-
-            <h1 className="mt-5 font-display text-4xl font-bold leading-[1.02] tracking-tight text-white lg:text-6xl">
+            <h1 className="mt-5 font-display text-4xl font-bold leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-7xl">
               {project.name}
             </h1>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/70 lg:text-xl">{project.summary}</p>
+          </div>
 
-            <p className="mt-6 text-base leading-relaxed text-white/65 lg:text-lg">{project.description}</p>
+          <div className="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-stretch">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
+            >
+              {isStoreLink ? <FiDownload /> : <FiExternalLink />}
+              {linkLabel(project.link)}
+            </a>
+            {project.repo && (
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:border-white/40 hover:bg-white/[0.04]"
+              >
+                <FiGithub />
+                Source on GitHub
+              </a>
+            )}
+          </div>
+        </header>
 
-            <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/[0.06] pt-8">
+        <div ref={imageWrapRef} className="relative mt-12 overflow-hidden rounded-2xl border border-white/[0.06] bg-dark will-change-transform">
+          <img
+            src={projectCover(project.slug) || project.image}
+            alt={`Screenshot of ${project.name}, ${project.category.toLowerCase()} for ${project.client}`}
+            width="1280"
+            height="720"
+            fetchpriority="high"
+            className="aspect-video w-full select-none object-cover"
+          />
+        </div>
+
+        <div className="mt-4 grid gap-4 lg:grid-cols-3">
+          <section className={`${cardClass} lg:col-span-2`}>
+            <CardTitle icon={<FiFileText />}>Overview</CardTitle>
+            <p className="mt-5 text-base leading-relaxed text-white/75 lg:text-lg">{project.description}</p>
+            {project.contribution && <p className="mt-4 leading-relaxed text-white/75">{project.contribution}</p>}
+            {project.team && <p className="mt-4 text-sm leading-relaxed text-white/60">{project.team}</p>}
+          </section>
+
+          <aside className={cardClass} aria-label="Project details">
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-5 lg:grid-cols-1">
               {details.map((detail) => (
                 <div key={detail.label}>
-                  <dt className="text-xs uppercase tracking-[0.2em] text-white/40">{detail.label}</dt>
+                  <dt className={labelClass}>{detail.label}</dt>
                   <dd className="mt-1 text-white/90">{detail.value}</dd>
                 </div>
               ))}
             </dl>
+            <h2 className={`${labelClass} mt-6 border-t border-white/[0.08] pt-6`}>Stack</h2>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {project.technologies.map((tech) => (
+                <li key={tech} className="rounded-full border border-alpha/40 bg-alpha/15 px-3 py-1 text-sm tracking-wide text-white/90">
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </aside>
 
-            {project.audience && (
-              <section className="mt-8">
-                <h2 className="font-display text-xl font-bold tracking-tight text-white">Who it&apos;s for</h2>
-                <p className="mt-3 leading-relaxed text-white/70">{project.audience}</p>
-              </section>
-            )}
+          <section className={`${cardClass} lg:col-span-2`}>
+            <CardTitle icon={<FiTarget />}>The challenge</CardTitle>
+            <p className="mt-5 text-base leading-relaxed text-white/75 lg:text-lg">{project.challenge}</p>
+          </section>
 
-            {(project.contribution || project.team) && (
-              <section className="mt-8">
-                <h2 className="font-display text-xl font-bold tracking-tight text-white">My role</h2>
-                {project.contribution && <p className="mt-3 leading-relaxed text-white/70">{project.contribution}</p>}
-                {project.team && <p className="mt-3 text-sm leading-relaxed text-white/50">{project.team}</p>}
-              </section>
-            )}
+          <section className={cardClass}>
+            <CardTitle icon={<FiUsers />}>Who it&apos;s for</CardTitle>
+            <p className="mt-5 leading-relaxed text-white/75">{project.audience}</p>
+          </section>
+        </div>
 
-            {project.highlights?.length > 0 && (
-              <section className="mt-8">
-                <h2 className="font-display text-xl font-bold tracking-tight text-white">
-                  {project.team ? "What we built" : "What I built"}
-                </h2>
-                <ul className="mt-4 flex flex-col gap-y-3">
-                  {project.highlights.map((highlight, i) => (
-                    <li key={i} className="flex gap-x-3 text-white/70">
-                      <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-alpha"></span>
-                      <span className="leading-relaxed">{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
+        <section className="mt-16">
+          <CardTitle icon={<FiLayers />}>{project.team ? "What we built" : "What I built"}</CardTitle>
+          <ul className={`mt-6 grid gap-4 sm:grid-cols-2 ${project.features.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
+            {project.features.map((feature, i) => (
+              <li key={feature.title} className={`${cardClass} flex flex-col`}>
+                <span className="text-sm font-semibold tracking-[0.2em] text-white/60">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="mt-4 font-display text-lg font-bold leading-snug text-white">{feature.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-white/70">{feature.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-            <section className="mt-8">
-              <h2 className="text-xs uppercase tracking-[0.2em] text-white/40">Stack</h2>
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {project.technologies.map((tech, i) => (
-                  <li key={i} className="rounded-full border border-alpha/40 bg-alpha/15 px-3 py-1 text-sm tracking-wide text-white/90">
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
-              >
-                {isStoreLink ? <FiDownload /> : <FiExternalLink />}
-                {linkLabel(project.link)}
-              </a>
-              {project.repo && (
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:border-white/40 hover:bg-white/[0.04]"
-                >
-                  <FiGithub />
-                  Source on GitHub
-                </a>
+        {testimonial && (
+          <figure className="relative isolate mt-16 overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-8 lg:p-12">
+            <div className="pointer-events-none absolute -bottom-32 -right-32 -z-10 h-72 w-72 rounded-full bg-alpha/20 blur-[90px]"></div>
+            <RiDoubleQuotesL aria-hidden="true" className="text-4xl text-alpha" />
+            <blockquote className="mt-5 max-w-4xl text-lg leading-relaxed text-white/90 lg:text-2xl lg:leading-relaxed">
+              {testimonial.excerpt || testimonial.quote.split("\n\n")[0]}
+            </blockquote>
+            <figcaption className="mt-8 flex items-center gap-4 border-t border-white/[0.06] pt-6">
+              {testimonial.image && (
+                <img src={testimonial.image} alt="" width="48" height="48" loading="lazy" className="h-12 w-12 rounded-full border border-alpha object-cover" />
               )}
-            </div>
-          </div>
-
-          <div className="order-1 lg:order-2 lg:col-span-6">
-            <div className="lg:sticky lg:top-[16vh]">
-              <div ref={imageWrapRef} className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-dark will-change-transform">
-                <img
-                  src={project.image}
-                  alt={`Screenshot of ${project.name}, ${project.category.toLowerCase()} for ${project.client}`}
-                  width="1280"
-                  height="720"
-                  fetchpriority="high"
-                  className="aspect-video w-full select-none object-cover"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-pure-black/40 via-transparent to-transparent"></div>
+              <div>
+                <p className="font-semibold text-white">{testimonial.name}</p>
+                <p className="text-sm text-white/60">{testimonial.role}</p>
               </div>
-
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-                className="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-white/60 transition-colors duration-300 hover:text-white"
-              >
-                {linkLabel(project.link)}
-                <FiArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </a>
-            </div>
-          </div>
-        </article>
+            </figcaption>
+          </figure>
+        )}
 
         {related.length > 0 && (
           <section className="mt-20 border-t border-white/[0.06] pt-10">
@@ -243,9 +266,9 @@ const ProjectDetails = () => {
                     to={`/projects/${item.slug}`}
                     className="group flex h-full flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-colors duration-300 hover:border-alpha/40 hover:bg-white/[0.05]"
                   >
-                    <span className="text-xs uppercase tracking-wider text-white/40">{item.category} · {item.year}</span>
+                    <span className="text-xs uppercase tracking-wider text-white/60">{item.category} · {item.year}</span>
                     <span className="mt-2 font-display text-lg font-bold text-white">{item.name}</span>
-                    <span className="mt-2 text-sm leading-6 text-white/55">{item.summary}</span>
+                    <span className="mt-2 text-sm leading-6 text-white/65">{item.summary}</span>
                   </Link>
                 </li>
               ))}
@@ -258,10 +281,10 @@ const ProjectDetails = () => {
             <h2 className="font-display text-2xl font-bold tracking-tight text-white lg:text-3xl">
               Planning a {project.platform === "mobile" ? "mobile app" : "web platform"} like this?
             </h2>
-            <p className="mt-2 text-white/60">Tell me what you&apos;re building. A few lines are enough to start.</p>
+            <p className="mt-2 text-white/65">Tell me what you&apos;re building. A few lines are enough to start.</p>
           </div>
           <Link
-            to="/contact"
+            to={`/contact?project=${project.slug}`}
             className="group flex shrink-0 items-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
           >
             Start a conversation
@@ -276,7 +299,7 @@ const ProjectDetails = () => {
           >
             <FiArrowLeft className="shrink-0 text-xl text-white/60 transition-colors group-hover:text-white" />
             <div className="min-w-0 flex-1">
-              <p className="text-xs uppercase tracking-wider text-white/40">Previous</p>
+              <p className="text-xs uppercase tracking-wider text-white/60">Previous</p>
               <p className="truncate text-white">{prev.name}</p>
             </div>
           </Link>
@@ -287,7 +310,7 @@ const ProjectDetails = () => {
           >
             <FiArrowRight className="shrink-0 text-xl text-white/60 transition-colors group-hover:text-white" />
             <div className="min-w-0 flex-1">
-              <p className="text-xs uppercase tracking-wider text-white/40">Next</p>
+              <p className="text-xs uppercase tracking-wider text-white/60">Next</p>
               <p className="truncate text-white">{next.name}</p>
             </div>
           </Link>

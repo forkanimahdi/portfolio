@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
-import { fadeIn } from "../../../utils/motion";
-import me from "../../../assets/images/me.jpg";
+import me from "../../../assets/images/me.webp";
 
 const gridStyle = {
     backgroundImage:
@@ -12,6 +10,8 @@ const gridStyle = {
     WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 30% 20%, black 30%, transparent 100%)",
 };
 
+const rise = "motion-safe:animate-rise";
+
 export const Hero = () => {
     return (
         <section className="relative isolate overflow-hidden">
@@ -20,37 +20,25 @@ export const Hero = () => {
 
             <div className="container grid gap-14 pb-20 pt-40 lg:grid-cols-12 lg:gap-16">
                 <div className="flex flex-col justify-center lg:col-span-7">
-                    <motion.h1
-                        variants={fadeIn("up", 0.1)} initial="hidden" animate="show"
-                        className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60"
-                    >
+                    <h1 className={`${rise} [animation-delay:100ms] flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-white/60`}>
                         <span className="h-px w-8 bg-alpha"></span>
                         About Mehdi Forkani
-                    </motion.h1>
+                    </h1>
 
-                    <motion.p
-                        variants={fadeIn("up", 0.2)} initial="hidden" animate="show"
-                        className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
-                    >
+                    <p className={`${rise} [animation-delay:200ms] mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl`}>
                         From the first cohort to{" "}
                         <span className="bg-[linear-gradient(120deg,var(--color-white)_0%,#d4567a_50%,var(--color-white)_100%)] bg-[length:200%_auto] bg-clip-text text-transparent animate-shimmer">
                             Head Coach.
                         </span>
-                    </motion.p>
+                    </p>
 
-                    <motion.p
-                        variants={fadeIn("up", 0.3)} initial="hidden" animate="show"
-                        className="mt-8 max-w-2xl text-base leading-relaxed text-white/65 lg:text-lg lg:leading-8"
-                    >
+                    <p className={`${rise} [animation-delay:300ms] mt-8 max-w-2xl text-base leading-relaxed text-white/65 lg:text-lg lg:leading-8`}>
                         I&apos;m Mehdi Forkani, a freelance mobile &amp; web app developer based in Casablanca, Morocco. I learned to code in the
                         very first cohort of the LionsGeek Coding School, grew into its Head Coach, and today I build web platforms
                         and mobile apps for startups, businesses, NGOs and institutions.
-                    </motion.p>
+                    </p>
 
-                    <motion.div
-                        variants={fadeIn("up", 0.4)} initial="hidden" animate="show"
-                        className="mt-10 flex flex-wrap gap-3"
-                    >
+                    <div className={`${rise} [animation-delay:400ms] mt-10 flex flex-wrap gap-3`}>
                         <Link
                             to="/contact"
                             className="group flex items-center gap-2 rounded-lg bg-alpha px-6 py-3 text-sm font-semibold text-pure-white transition duration-300 hover:brightness-125"
@@ -65,17 +53,21 @@ export const Hero = () => {
                             See my work
                             <GoArrowUpRight className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                         </Link>
-                    </motion.div>
+                    </div>
                 </div>
 
-                <motion.div
-                    variants={fadeIn("up", 0.3)} initial="hidden" animate="show"
-                    className="relative w-full max-w-md lg:col-span-5 lg:max-w-none"
-                >
+                <div className={`${rise} [animation-delay:300ms] relative w-full max-w-md lg:col-span-5 lg:max-w-none`}>
                     <div className="overflow-hidden rounded-2xl border border-white/[0.06]">
-                        <img className="aspect-[4/5] w-full select-none object-cover object-top" src={me} width="1168" height="880" alt="Portrait of Mehdi Forkani, freelance mobile and web app developer in Casablanca" />
+                        <img
+                            className="aspect-[4/5] w-full select-none object-cover object-top"
+                            src={me}
+                            width="1168"
+                            height="880"
+                            fetchpriority="high"
+                            alt="Portrait of Mehdi Forkani, freelance mobile and web app developer in Casablanca"
+                        />
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

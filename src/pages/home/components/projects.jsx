@@ -4,6 +4,7 @@ import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
 import { fadeIn } from "../../../utils/motion";
 import { useAppContext } from "../../../context/AppContext";
 import { useOpenProject } from "../../../hooks/useOpenProject";
+import { projectCover } from "../../../data/covers";
 
 export const Projects = () => {
     const { projects } = useAppContext();
@@ -56,7 +57,7 @@ export const Projects = () => {
                                 <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-dark">
                                     <img
                                         className="aspect-[16/10] w-full select-none object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                                        src={project.image}
+                                        src={projectCover(project.slug) ?? project.image}
                                         alt={`Screenshot of ${project.name}, ${project.category.toLowerCase()} for ${project.client}`}
                                         width="1280"
                                         height="720"
@@ -76,7 +77,7 @@ export const Projects = () => {
                                             {project.category} · {project.technologies.join(", ")}
                                         </p>
                                     </div>
-                                    <span className="shrink-0 pt-1 text-xs tracking-wider text-white/40">{project.year}</span>
+                                    <span className="shrink-0 pt-1 text-xs tracking-wider text-white/60">{project.year}</span>
                                 </div>
                             </Link>
                         </motion.article>

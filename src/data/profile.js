@@ -12,7 +12,7 @@ export const profile = {
   countryCode: "MA",
   email: "forkanimahdi@gmail.com",
   summary:
-    "Mehdi Forkani is a freelance mobile and web app developer based in Casablanca, Morocco. He designs, builds and ships web platforms and mobile apps, including the backends and admin dashboards behind them, for startups, businesses, NGOs and institutions.",
+    "Mehdi Forkani is a freelance mobile and web app developer based in Casablanca, Morocco, working with clients across Morocco and remotely. He designs, builds and ships web platforms and mobile apps, including the backends and admin dashboards behind them, for startups, businesses, NGOs and institutions.",
   languages: [
     { code: "ar", name: "Arabic" },
     { code: "fr", name: "French" },
@@ -51,6 +51,19 @@ export const personJsonLd = {
     addressCountry: profile.countryCode,
   },
   knowsLanguage: profile.languages.map((language) => language.code),
+  areaServed: [
+    { "@type": "City", name: profile.city },
+    { "@type": "Country", name: profile.country },
+  ],
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Mobile and web app developer",
+    occupationLocation: [
+      { "@type": "City", name: profile.city },
+      { "@type": "Country", name: profile.country },
+    ],
+    skills: profile.stack.filter((tech) => tech !== "Git").join(", "),
+  },
   knowsAbout: [
     "Mobile app development",
     "Web application development",

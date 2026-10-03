@@ -6,7 +6,7 @@ import { Footer } from "../../layouts/Footer";
 import Seo from "../../utils/Seo";
 import { contactSeo } from "../../seo/pages";
 
-export const Contact = ({ ready = true }) => {
+export const Contact = () => {
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
@@ -15,7 +15,7 @@ export const Contact = ({ ready = true }) => {
         <>
             <Seo {...contactSeo} />
             <main id="main">
-                <Hero ready={ready} />
+                <Hero />
                 <ContactForm full />
                 <Steps />
             </main>

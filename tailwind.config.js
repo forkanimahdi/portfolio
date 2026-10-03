@@ -22,8 +22,8 @@ export default {
         "pure-black": "#000000",
       },
       fontFamily: {
-        display: ["Syne", "system-ui", "sans-serif"],
-        sans: ["Manrope", "system-ui", "sans-serif"],
+        display: ["Syne Variable", "Syne Fallback", "system-ui", "sans-serif"],
+        sans: ["Manrope Variable", "Manrope Fallback", "system-ui", "sans-serif"],
       },
       keyframes: {
         "scroll-hint": {
@@ -37,11 +37,28 @@ export default {
           "0%, 100%": { transform: "scale(1)", opacity: "0.8" },
           "50%": { transform: "scale(1.15)", opacity: "1" },
         },
+        // No opacity: text stays painted from the first frame, so it counts for LCP without waiting for JS.
+        rise: {
+          from: { transform: "translateY(24px)", filter: "blur(10px)" },
+        },
+        "hero-zoom": {
+          from: { transform: "scale(1.12)" },
+        },
+        reveal: {
+          from: { transform: "translateY(110%)" },
+        },
+        draw: {
+          from: { transform: "scaleX(0)" },
+        },
       },
       animation: {
         "scroll-hint": "scroll-hint 2s ease-in-out infinite",
         shimmer: "shimmer 6s linear infinite",
         glow: "glow 8s ease-in-out infinite",
+        rise: "rise 1.1s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "hero-zoom": "hero-zoom 2.4s cubic-bezier(0.22, 1, 0.36, 1) both",
+        reveal: "reveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) both",
+        draw: "draw 0.8s cubic-bezier(0.22, 1, 0.36, 1) both",
       },
     },
   },

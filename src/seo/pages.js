@@ -1,5 +1,6 @@
 import { PERSON_ID, SITE_URL, WEBSITE_ID, profile } from "../data/profile";
 import { projects } from "../data/projects";
+import { projectTestimonial } from "../data/testimonials";
 import { aboutSeo as aboutBase, faqs } from "../data/about";
 import { contactSeo as contactBase } from "../data/contact";
 
@@ -31,9 +32,9 @@ const withPage = (seo, type, extra, nodes = []) => ({ ...seo, jsonLd: [webPage(t
 
 export const homeSeo = withPage(
   {
-    title: "Mehdi Forkani | Freelance Mobile & Web App Developer in Casablanca",
+    title: "Mehdi Forkani | Freelance Mobile & Web App Developer in Casablanca, Morocco",
     description:
-      "Freelance mobile and web app developer in Casablanca, Morocco. I build web platforms, mobile apps, backends and dashboards with Laravel, React and React Native.",
+      "Freelance mobile and web app developer in Casablanca, working with clients across Morocco. I build web platforms, mobile apps, backends and dashboards with Laravel, React and React Native.",
     path: "/",
   },
   "ProfilePage",
@@ -97,9 +98,10 @@ export const projectsSeo = withPage(
 export const projectSeo = (project) => {
   const path = `/projects/${project.slug}`;
   const url = absoluteUrl(path);
+  const testimonial = projectTestimonial(project.slug);
   const seo = {
-    title: `${project.name} — ${project.category} | ${profile.name}`,
-    description: project.summary || project.description,
+    title: `${project.name}: ${project.category} case study (${project.technologies.join(", ")}) | ${profile.name}`,
+    description: `${project.summary} Case study by ${profile.name}, developer in ${profile.city}, ${profile.country}.`,
     path,
     type: "article",
     image: {
@@ -125,10 +127,21 @@ export const projectSeo = (project) => {
         ...(typeof project.image === "string" && project.image.startsWith("/assets/") && { image: absoluteUrl(project.image) }),
         genre: project.category,
         dateCreated: project.year,
-        keywords: project.technologies.join(", "),
+        keywords: [...project.technologies, project.category, project.location].filter(Boolean).join(", "),
         inLanguage: "en",
-        contributor: { "@id": PERSON_ID },
+        [project.team ? "contributor" : "creator"]: { "@id": PERSON_ID },
         ...(project.client && { publisher: { "@type": "Organization", name: project.client } }),
+        abstract: project.challenge,
+        hasPart: project.features.map((feature) => ({ "@type": "CreativeWork", name: feature.title, description: feature.text })),
+        ...(project.audience && { audience: { "@type": "Audience", audienceType: project.audience } }),
+        ...(project.location && { locationCreated: { "@type": "Place", name: project.location } }),
+        ...(testimonial && {
+          review: {
+            "@type": "Review",
+            reviewBody: testimonial.excerpt || testimonial.quote,
+            author: { "@type": "Person", name: testimonial.name, jobTitle: testimonial.role },
+          },
+        }),
       },
       breadcrumb(path, [["Home", "/"], ["Projects", "/projects"], [project.name, path]]),
     ]

@@ -6,6 +6,7 @@ One-off image pipeline for the portfolio (not part of `npm run build`).
 - Writes a .webp next to every project screenshot in src/assets/images/projects
   (max 1280px wide; animated GIFs stay animated). Originals are left untouched.
 - Writes 1200x630 social preview images to public/og/ (site card + one per project).
+- Writes static case-study covers to src/assets/images/projects/covers/ (`... covers` runs only this step).
 - Writes square app icons to public/icons/.
 
 Requires Pillow (`pip install pillow`). Re-run after adding or replacing a project image,
@@ -20,6 +21,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PROJECTS = ROOT / "src/assets/images/projects"
 PUBLIC = ROOT / "public"
 MAX_WIDTH = 1280
+COVER_SIZE = (960, 540)
 BG = (12, 12, 12)
 ACCENT = (128, 0, 32)
 
@@ -134,6 +136,18 @@ def project_cards():
         print(f"{out.relative_to(ROOT)}: {out.stat().st_size // 1024} KB")
 
 
+def project_covers():
+    """One static 16:9 first frame per project: the case-study hero (LCP) must stay small on mobile."""
+    out_dir = PROJECTS / "covers"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for slug, filename in OG_SOURCES.items():
+        img = Image.open(PROJECTS / filename)
+        img.seek(0)
+        out = out_dir / f"{slug}.webp"
+        cover(img.convert("RGB"), COVER_SIZE).save(out, quality=74, method=6)
+        print(f"covers/{out.name}: {out.stat().st_size // 1024} KB")
+
+
 def icons():
     out_dir = PUBLIC / "icons"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -150,7 +164,13 @@ def icons():
 
 
 if __name__ == "__main__":
-    optimize_projects()
-    site_card()
-    project_cards()
-    icons()
+    import sys
+
+    if sys.argv[1:] == ["covers"]:
+        project_covers()
+    else:
+        optimize_projects()
+        site_card()
+        project_cards()
+        project_covers()
+        icons()

@@ -4,7 +4,7 @@ import { GoArrowRight } from "react-icons/go";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import { fadeIn } from "../../../utils/motion";
-import me from "../../../assets/images/me.jpg";
+import me from "../../../assets/images/me.webp";
 
 const socials = [
     { icon: <FaLinkedinIn />, name: "LinkedIn", link: "https://www.linkedin.com/in/forkanimahdi/" },

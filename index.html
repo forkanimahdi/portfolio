@@ -12,21 +12,33 @@
 
       gtag('config', 'G-WHDR8PG5F9');
 
-      window.addEventListener('load', function () {
-        setTimeout(function () {
+      // Analytics waits for the first interaction or an idle moment after load, so it never competes with the first paint or hydration.
+      (function () {
+        var loaded = false;
+        var events = ['pointerdown', 'keydown', 'touchstart', 'scroll'];
+        function loadGtag() {
+          if (loaded) return;
+          loaded = true;
+          events.forEach(function (e) { removeEventListener(e, loadGtag); });
           var script = document.createElement('script');
           script.src = 'https://www.googletagmanager.com/gtag/js?id=G-WHDR8PG5F9';
           script.async = true;
           document.head.appendChild(script);
-        }, 1500);
-      });
+        }
+        events.forEach(function (e) { addEventListener(e, loadGtag, { once: true, passive: true }); });
+        addEventListener('load', function () {
+          setTimeout(function () {
+            (window.requestIdleCallback || setTimeout)(loadGtag);
+          }, 3500);
+        });
+      })();
     </script>
 
     <!-- Per-route title, description, canonical, Open Graph, Twitter and JSON-LD.
          Replaced at build time by scripts/prerender.js (data lives in src/seo). -->
     <!-- seo:start -->
-    <title>Mehdi Forkani | Freelance Mobile &amp; Web App Developer in Casablanca</title>
-    <meta name="description" content="Freelance mobile and web app developer in Casablanca, Morocco. I build web platforms, mobile apps, backends and dashboards with Laravel, React and React Native." />
+    <title>Mehdi Forkani | Freelance Mobile &amp; Web App Developer in Casablanca, Morocco</title>
+    <meta name="description" content="Freelance mobile and web app developer in Casablanca, working with clients across Morocco. I build web platforms, mobile apps, backends and dashboards with Laravel, React and React Native." />
     <!-- seo:end -->
     <meta name="author" content="Mehdi Forkani" />
     <meta name="theme-color" content="#0c0c0c" />
@@ -37,20 +49,7 @@
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Performance hints -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
     <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
-      />
       <!-- Without JavaScript, entrance animations never run: show their content as-is. -->
       <style>
         #root [style*="opacity:0"] { opacity: 1 !important; transform: none !important; filter: none !important; }

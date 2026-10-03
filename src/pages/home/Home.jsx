@@ -12,7 +12,7 @@ import { Footer } from "../../layouts/Footer";
 import Seo from "../../utils/Seo";
 import { homeSeo } from "../../seo/pages";
 
-export const Home = ({ ready }) => {
+export const Home = () => {
     useEffect(() => {
         const hash = window.location.hash;
         if (hash) {
@@ -30,7 +30,7 @@ export const Home = ({ ready }) => {
         <>
             <Seo {...homeSeo} />
             <main id="main">
-                <Hero ready={ready} />
+                <Hero />
                 <About />
                 <Clients />
                 <Achievements />
