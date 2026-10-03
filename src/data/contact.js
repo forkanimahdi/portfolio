@@ -20,6 +20,6 @@ export const contactSteps = [
   },
   {
     title: "We build it together",
-    text: "I design and build in clear steps you can review, launch it, and stay by your side after delivery.",
+    text: "I build in milestones with a demo at each one, handle hosting and store publishing, then fix bugs for free after launch and offer monthly maintenance.",
   },
 ];

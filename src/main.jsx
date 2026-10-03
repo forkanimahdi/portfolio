@@ -4,7 +4,6 @@ import '@fontsource-variable/syne'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
-import { notifyVisitSource } from './utils/visitSource'
 
 const container = document.getElementById('root')
 const app = (
@@ -19,5 +18,3 @@ if (container.dataset.prerendered === window.location.pathname) {
 } else {
     createRoot(container).render(app)
 }
-
-notifyVisitSource()

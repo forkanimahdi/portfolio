@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { GoBrowser, GoDatabase, GoDeviceMobile, GoPackage } from "react-icons/go";
+import { GoBrowser, GoCopilot, GoDatabase, GoDeviceMobile, GoPackage, GoSearch } from "react-icons/go";
 import { fadeIn } from "../../../utils/motion";
 import { useAppContext } from "../../../context/AppContext";
 
@@ -33,6 +33,20 @@ const services = [
         text: "Online stores and company websites, with an admin to manage products, orders and content.",
         examples: ["bigg-red", "tihad-azemmour-women", "glovantis-group"],
     },
+    {
+        icon: <GoSearch />,
+        title: "SEO & performance",
+        stack: "Technical SEO · Core Web Vitals",
+        text: "Sites that load fast and rank: clean meta tags, structured data, sitemaps, multilingual SEO and Google Search Console setup.",
+        proof: "This website scores 99+ in every Lighthouse category.",
+    },
+    {
+        icon: <GoCopilot />,
+        title: "GEO: AI search visibility",
+        stack: "Schema.org · llms.txt · IndexNow",
+        text: "Generative Engine Optimization, so ChatGPT, Gemini, Perplexity and Google AI Overviews understand your business and recommend it.",
+        proof: "This website ships structured data, an llms.txt file and IndexNow.",
+    },
 ];
 
 export const Services = () => {
@@ -61,14 +75,14 @@ export const Services = () => {
                     variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
                     className="mt-5 max-w-2xl text-base leading-relaxed text-white/60 lg:text-lg"
                 >
-                    As a freelancer, you work directly with me, from scoping to launch. Each service links to projects where I&apos;ve done that work.
+                    As a freelancer, you work directly with me, from scoping to launch. Each service comes with proof: projects where I&apos;ve done that work, or this website itself.
                 </motion.p>
 
-                <div className="mt-14 grid gap-4 sm:grid-cols-2">
+                <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {services.map((service, idx) => (
                         <motion.article
                             key={service.title}
-                            variants={fadeIn("up", 0.1 * (idx % 2))} initial="hidden" whileInView="show" viewport={{ once: true }}
+                            variants={fadeIn("up", 0.1 * (idx % 3))} initial="hidden" whileInView="show" viewport={{ once: true }}
                             className="group flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-colors duration-300 hover:border-alpha/40 lg:p-8"
                         >
                             <div className="flex items-start justify-between gap-4">
@@ -79,8 +93,8 @@ export const Services = () => {
                             </div>
                             <h3 className="mt-8 font-display text-xl font-bold tracking-tight text-white">{service.title}</h3>
                             <p className="mt-3 text-sm leading-6 text-white/60 lg:text-base lg:leading-7">{service.text}</p>
-                            <p className="mt-6 text-sm text-white/45">
-                                Examples:{" "}
+                            <p className="mt-auto pt-6 text-sm text-white/45">
+                                {service.proof ?? <>Examples:{" "}
                                 {service.examples
                                     .map((slug) => bySlug[slug])
                                     .filter(Boolean)
@@ -94,7 +108,7 @@ export const Services = () => {
                                             </Link>
                                             {i < list.length - 1 ? ", " : ""}
                                         </span>
-                                    ))}
+                                    ))}</>}
                             </p>
                         </motion.article>
                     ))}

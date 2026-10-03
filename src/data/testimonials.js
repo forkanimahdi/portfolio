@@ -2,10 +2,12 @@ import mhijir from "../assets/images/testimonials/mhijir.webp";
 import tihadazemmour from "../assets/images/testimonials/tihadazemmour.webp";
 import bouziane from "../assets/images/testimonials/bouziane.webp";
 
+// `relation` says how the person knows Mehdi (shown next to the role).
 // `project` (slug) shows the quote on that case study; `excerpt` is the short version used there.
 export const testimonials = [
   {
     name: "Mahdi Bouziane",
+    relation: "Client",
     role: "President, Tihad Azemmour",
     project: "tihad-azemmour-women",
     excerpt:
@@ -15,14 +17,16 @@ export const testimonials = [
   },
   {
     name: "Oumaima Mhijir",
+    relation: "Client",
     role: "CEO, Jadara Foundation",
-    quote: "I am really impressed by you, not only by your technical Skills but also by your ability to transform a more or less clear vision into a tangible project  Your reactivity and professionalism just wawed be  Thank you sidi",
+    quote: "I am really impressed by you, not only by your technical skills but also by your ability to transform a more or less clear vision into a tangible project. Your reactivity and professionalism just wowed me. Thank you, sidi.",
     image: mhijir,
   },
   {
     name: "Mahdi Bouziane",
+    relation: "Manager",
     role: "Executive Director, LionsGeek",
-    quote: "I've had the privilege of watching Mahdi grow from a learner in the very first cohort of the LionsGEEK Coding School into its Head Coach, and one of the pillars of our organization.\n\nAs Head Coach, he combines strong full-stack skills with a real gift for teaching. He is demanding, patient and inspiring. He led the team behind ADA, a conversational metahuman of Ada Lovelace that won the Jury's Coup de Cœur at AVATARS 2026 in Brussels.\n\nAs Project Manager at LionsGEEK PRO, he has delivered several digital projects, both for our internal needs and for our partners. He knows how to understand real needs, lead a team and deliver on time.\n\nReliable, curious and deeply committed to social impact, Mahdi is a talent I recommend without reservation.",
+    quote: "I've had the privilege of watching Mahdi grow from a learner in the very first cohort of the LionsGEEK Coding School into its Head Coach, and one of the pillars of our organization.\n\nAs Head Coach, he combines strong full-stack skills with a real gift for teaching. He is demanding, patient and inspiring. He led the team behind ADA, a conversational metahuman of Ada Lovelace that won the Jury's Coup de Cœur at AVATARS 2026 in Brussels.\n\nReliable, curious and deeply committed to social impact, Mahdi is a talent I recommend without reservation.",
     image: bouziane,
   },
 ];

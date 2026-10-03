@@ -69,6 +69,8 @@ export const personJsonLd = {
     "Web application development",
     "Admin dashboards",
     "Backend development",
+    "Search engine optimization",
+    "Generative Engine Optimization",
     ...profile.stack.filter((tech) => tech !== "Git"),
   ],
   worksFor: { "@type": "Organization", name: "LionsGeek", url: "https://lionsgeek.ma/" },

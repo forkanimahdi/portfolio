@@ -54,7 +54,7 @@ export const Testimonials = () => {
                         variants={fadeIn("up", 0.3)} initial="hidden" whileInView="show" viewport={{ once: true }}
                         className="mt-5 text-base leading-relaxed text-white/60 lg:text-lg"
                     >
-                        Real feedback from the people I&apos;ve built with.
+                        Real feedback from clients and from my manager at LionsGeek, with their names and roles.
                     </motion.p>
                 </div>
 
@@ -132,7 +132,7 @@ export const Testimonials = () => {
                                     )}
                                     <div>
                                         <p className="font-semibold text-white">{testimonial.name}</p>
-                                        <p className="text-sm text-white/50">{testimonial.role}</p>
+                                        <p className="text-sm text-white/60">{testimonial.relation} · {testimonial.role}</p>
                                     </div>
                                 </div>
 
@@ -188,7 +188,7 @@ export const Testimonials = () => {
                                 <span className={`block text-sm font-semibold transition-colors duration-300 ${idx === current ? "text-white" : "text-white/50 group-hover:text-white/80"}`}>
                                     {person.name}
                                 </span>
-                                <span className="block text-xs text-white/40">{person.role}</span>
+                                <span className="block text-xs text-white/60">{person.relation} · {person.role}</span>
                             </span>
 
                             <span className={`text-xs ${idx === current ? "text-white" : "text-white/30"}`}>0{idx + 1}</span>

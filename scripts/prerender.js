@@ -91,7 +91,7 @@ const llms = `# ${profile.name}
 
 ${profile.summary}
 
-Core stack: ${profile.stack.join(", ")}. Besides freelance work, he is Head Coach of the LionsGeek Coding School and project manager at LionsGeek PRO in Casablanca; several projects below were delivered with the LionsGeek PRO team, and each project page states his role. He works in ${profile.languages.map((language) => language.name).join(", ")}.
+Core stack: ${profile.stack.join(", ")}. Besides freelance work, he is Head Coach of the LionsGeek Coding School in Casablanca. He works in ${profile.languages.map((language) => language.name).join(", ")}.
 
 ## About
 
@@ -99,7 +99,7 @@ Core stack: ${profile.stack.join(", ")}. Besides freelance work, he is Head Coac
 
 ## Services
 
-- [Services](${url("/#services")}): mobile apps with React Native; web platforms with Laravel, Inertia.js and React; backends and admin dashboards; e-commerce and business websites
+- [Services](${url("/#services")}): mobile apps with React Native; web platforms with Laravel, Inertia.js and React; backends and admin dashboards; e-commerce and business websites; SEO and performance (technical SEO, Core Web Vitals, structured data); GEO, Generative Engine Optimization for visibility in AI assistants such as ChatGPT, Gemini, Perplexity and Google AI Overviews
 
 ## Projects
 
@@ -109,7 +109,6 @@ ${projects.map(projectLine).join("\n")}
 ## Experience
 
 - Freelance mobile and web app developer, based in Casablanca and available for remote projects
-- Project manager at LionsGeek PRO (Casablanca): leads digital projects for LionsGeek and its partners, such as Casatourat for Casamémoire, the YES Africa app and My LionsGeek
 - Head Coach of the LionsGeek Coding School (Casablanca): guides each cohort from their first line of code to full-stack platforms
 - Full-stack developer at LionsGeek, after learning to code in the first cohort of the LionsGeek Coding School
 - Before code: commercial assistant at Banque Populaire and administrative assistant at the CNSS
