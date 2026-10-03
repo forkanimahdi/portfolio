@@ -16,7 +16,7 @@ const socials = [
 const facts = [
     { label: "Based in", value: "Casablanca, Morocco" },
     { label: "Works in", value: "Arabic, French, English" },
-    { label: "Also", value: "Head Coach, LionsGeek Coding School" },
+    { label: "Also", value: "Full-stack web development coach, Head Coach at LionsGeek Coding School" },
 ];
 
 export const About = () => {
@@ -36,7 +36,7 @@ export const About = () => {
                         variants={fadeIn("up", 0.2)} initial="hidden" whileInView="show" viewport={{ once: true }}
                         className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white lg:text-5xl"
                     >
-                        Mobile &amp; Web
+                        Website &amp; Mobile
                         <br />
                         <span className="text-alpha">App Developer.</span>
                     </motion.h2>
@@ -55,7 +55,7 @@ export const About = () => {
                         className="space-y-6 text-[15px] leading-7 text-white/65 lg:space-y-7 lg:text-[17px] lg:leading-[2.125rem]"
                     >
                         <p>
-                            Hi, I&apos;m Mehdi, a freelance mobile &amp; web app developer based in Casablanca, Morocco. Most of my
+                            Hi, I&apos;m Mehdi, a freelance website &amp; mobile app developer based in Casablanca, Morocco. Most of my
                             work starts with a simple question: <span className="font-semibold italic text-white">&ldquo;Do you think we can…?&rdquo;</span>
                         </p>
                         <p>
@@ -75,7 +75,7 @@ export const About = () => {
                             to turn their ideas into products people rely on every day.
                         </p>
                         <p>
-                            Coaching young developers taught me to explain every decision and keep things simple. I bring that to
+                            As a full-stack web development coach, teaching young developers taught me to explain every decision and keep things simple. I bring that to
                             every project: from the first draft to the final delivery, I stay involved at every step, so what you
                             get is clear, reliable, and built to scale.
                         </p>

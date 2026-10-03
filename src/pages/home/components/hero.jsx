@@ -57,10 +57,10 @@ export const Hero = () => {
 
                 <div className={`${rise} [animation-delay:700ms] mt-8 max-w-xl`}>
                     <h1 className="font-display text-lg font-semibold leading-snug tracking-tight text-white lg:text-2xl">
-                        Mehdi Forkani, freelance mobile &amp; web app developer in Casablanca, Morocco.
+                        Mehdi Forkani, freelance website &amp; mobile app developer in Casablanca, Morocco.
                     </h1>
                     <p className="mt-3 max-w-md text-base leading-relaxed text-white/60 lg:text-lg">
-                        I design, build and ship web platforms and mobile apps, with the backends and dashboards behind them, for startups, businesses and organizations across Morocco.
+                        I create websites, web apps and mobile apps, with the backends, SEO and GEO behind them, for businesses and organizations across Morocco.
                     </p>
                 </div>
 

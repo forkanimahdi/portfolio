@@ -1,5 +1,5 @@
 export const contactSeo = {
-  title: "Contact Mehdi Forkani | Hire a Mobile & Web App Developer",
+  title: "Contact Mehdi Forkani | Hire a Website & Mobile App Developer",
   description:
     "Tell Mehdi Forkani about your web platform or mobile app project. Freelance developer based in Casablanca, Morocco, working in Arabic, French and English.",
   path: "/contact",

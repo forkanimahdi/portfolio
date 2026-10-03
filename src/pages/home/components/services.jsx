@@ -14,9 +14,9 @@ const services = [
     },
     {
         icon: <GoBrowser />,
-        title: "Web platforms",
+        title: "Websites & web apps",
         stack: "Laravel · Inertia.js · React",
-        text: "Platforms for organizations: e-learning, online admissions, award programs and bilingual NGO sites.",
+        text: "Websites, custom web apps and platforms for organizations: e-learning, online admissions, award programs and bilingual NGO sites.",
         examples: ["yes-learning", "ecoles-belges-maroc", "israr", "tilila"],
     },
     {

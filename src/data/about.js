@@ -1,5 +1,5 @@
 export const aboutSeo = {
-  title: "About Mehdi Forkani | Mobile & Web App Developer in Casablanca",
+  title: "About Mehdi Forkani | Website & Mobile App Developer in Casablanca",
   description:
     "How Mehdi Forkani went from the first LionsGeek Coding School cohort to Head Coach and project manager, and how he works with clients as a freelance developer.",
   path: "/about",
@@ -61,7 +61,7 @@ export const faqs = [
   {
     question: "Who is Mehdi Forkani?",
     answer:
-      "Mehdi Forkani is a freelance mobile and web app developer based in Casablanca, Morocco. He builds web platforms, mobile apps, backends and admin dashboards with Laravel, Inertia.js, React and React Native. He learned to code in the first cohort of the LionsGeek Coding School, became its Head Coach, and leads digital projects as project manager at LionsGeek PRO.",
+      "Mehdi Forkani is a freelance website and mobile app developer based in Casablanca, Morocco. He creates websites, web apps, platforms and mobile apps, with their backends and admin dashboards, using Laravel, Inertia.js, React and React Native, and he handles SEO and GEO for his clients. He is also a full-stack web development coach. He learned to code in the first cohort of the LionsGeek Coding School, became its Head Coach, and leads digital projects as project manager at LionsGeek PRO.",
   },
   {
     question: "Are you available for freelance projects?",
@@ -77,6 +77,36 @@ export const faqs = [
     question: "Do you work with clients outside Morocco?",
     answer:
       "Yes, remotely. I'm used to async collaboration, regular demos and clear written updates, and Morocco's time zone overlaps well with Europe and Africa, and partly with the Middle East and the US East Coast.",
+  },
+  {
+    question: "Can you create a website for my business in Casablanca or elsewhere in Morocco?",
+    answer:
+      "Yes. I create websites for businesses, associations and institutions across Morocco: company and institutional sites, portfolios, online stores and multilingual sites in French, Arabic and English. I handle the design, development, hosting and launch, with SEO built in so the site can be found on Google, then maintenance after launch.",
+  },
+  {
+    question: "Can you develop a mobile app for iOS and Android?",
+    answer:
+      "Yes. I develop cross-platform mobile apps with React Native, so one app runs on both iOS and Android, together with the backend and admin dashboard behind it. I also publish the app on the App Store and Google Play. Examples include Casatourat, a heritage app for Casablanca, and the YES Africa summit app.",
+  },
+  {
+    question: "Can you build a custom web app or platform?",
+    answer:
+      "Yes. I build custom web apps and platforms with Laravel, Inertia.js and React: e-learning platforms, online admissions, booking and management systems, award and jury platforms, e-commerce and admin dashboards, with roles and permissions for each type of user.",
+  },
+  {
+    question: "How do I get a website or mobile app made for my business?",
+    answer:
+      "Start by writing down who it's for, what it must do, and your deadline and budget. Then find a developer who has shipped similar projects and can show them. With me, the process is simple: we talk it through on a call, I send a scope, timeline and price, I build in milestones with a demo at each one, then I handle the launch, hosting or store publishing, and maintenance.",
+  },
+  {
+    question: "Do you offer SEO and GEO?",
+    answer:
+      "Yes. SEO helps your site rank on Google: fast pages, clean meta tags, structured data, sitemaps, multilingual SEO and Search Console setup. GEO (Generative Engine Optimization) helps AI assistants such as ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews understand your business and recommend it. This website is an example: it scores 99+ in every Lighthouse category and ships structured data, an llms.txt file and IndexNow.",
+  },
+  {
+    question: "Are you also a web development coach?",
+    answer:
+      "Yes. I'm a full-stack web development coach: Head Coach of the LionsGeek Coding School in Casablanca, where I train each cohort from their first line of code (HTML, CSS, JavaScript) to full-stack platforms with React and Laravel. Teaching every day is also why I explain my technical decisions clearly to clients.",
   },
   {
     question: "What kind of apps do you build?",
@@ -106,7 +136,7 @@ export const faqs = [
   {
     question: "Do you work in French and Arabic?",
     answer:
-      "Yes, I work in Arabic (Darija), French and English. En français : je suis développeur web et mobile freelance au Maroc, basé à Casablanca, et je crée des applications web et mobiles sur mesure pour les entreprises, les startups et les associations, au Maroc et à l'international.",
+      "Yes, I work in Arabic (Darija), French and English. En français : je suis développeur web et mobile freelance au Maroc, basé à Casablanca, et je m'occupe de la création de sites web, du développement d'applications web et mobiles (iOS et Android), du SEO et du GEO pour les entreprises, les startups et les associations, au Maroc et à l'international.",
   },
   {
     question: "How can I hire you?",

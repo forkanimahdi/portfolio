@@ -32,9 +32,9 @@ const withPage = (seo, type, extra, nodes = []) => ({ ...seo, jsonLd: [webPage(t
 
 export const homeSeo = withPage(
   {
-    title: "Mehdi Forkani | Freelance Mobile & Web App Developer in Casablanca, Morocco",
+    title: "Mehdi Forkani | Website & Mobile App Developer in Casablanca, Morocco",
     description:
-      "Freelance mobile and web app developer in Casablanca, working with clients across Morocco. I build web platforms, mobile apps, backends and dashboards with Laravel, React and React Native.",
+      "Freelance developer in Casablanca creating websites, web apps and mobile apps for businesses across Morocco, with SEO and GEO built in. Also a full-stack web development coach.",
     path: "/",
   },
   "ProfilePage",
@@ -67,7 +67,7 @@ export const contactSeo = withPage(
 );
 
 const projectsBase = {
-  title: "Projects | Mehdi Forkani, Mobile & Web App Developer",
+  title: "Projects | Mehdi Forkani, Website & Mobile App Developer",
   description:
     "Web platforms, mobile apps and admin dashboards by Mehdi Forkani, built with Laravel, Inertia.js, React and React Native for NGOs, institutions and companies.",
   path: "/projects",
