@@ -3,6 +3,7 @@ import { projects } from "../data/projects";
 import { projectTestimonial } from "../data/testimonials";
 import { aboutSeo as aboutBase, faqs } from "../data/about";
 import { contactSeo as contactBase } from "../data/contact";
+import { servicePages } from "../data/services";
 
 export const absoluteUrl = (path) => `${SITE_URL}${path}`;
 
@@ -17,13 +18,23 @@ const breadcrumb = (path, trail) => ({
   })),
 });
 
+const faqPage = (path, items) => ({
+  "@type": "FAQPage",
+  "@id": `${absoluteUrl(path)}#faq`,
+  mainEntity: items.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+});
+
 const webPage = (type, seo, extra = {}) => ({
   "@type": type,
   "@id": `${absoluteUrl(seo.path)}#webpage`,
   url: absoluteUrl(seo.path),
   name: seo.title,
   description: seo.description,
-  inLanguage: "en",
+  inLanguage: seo.lang ?? "en",
   isPartOf: { "@id": WEBSITE_ID },
   ...extra,
 });
@@ -45,18 +56,7 @@ export const aboutSeo = withPage(
   aboutBase,
   "AboutPage",
   { mainEntity: { "@id": PERSON_ID }, breadcrumb: { "@id": `${absoluteUrl(aboutBase.path)}#breadcrumb` } },
-  [
-    breadcrumb(aboutBase.path, [["Home", "/"], ["About", aboutBase.path]]),
-    {
-      "@type": "FAQPage",
-      "@id": `${absoluteUrl(aboutBase.path)}#faq`,
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    },
-  ]
+  [breadcrumb(aboutBase.path, [["Home", "/"], ["About", aboutBase.path]]), faqPage(aboutBase.path, faqs)]
 );
 
 export const contactSeo = withPage(
@@ -148,6 +148,50 @@ export const projectSeo = (project) => {
   );
 };
 
+export const serviceSeo = (page) => {
+  const url = absoluteUrl(page.path);
+  const seo = {
+    ...page.seo,
+    path: page.path,
+    lang: page.lang,
+    alternates: [
+      { lang: page.lang, path: page.path },
+      { lang: page.lang === "en" ? "fr" : "en", path: page.alternatePath },
+    ],
+  };
+
+  return withPage(
+    seo,
+    "WebPage",
+    { mainEntity: { "@id": `${url}#service` }, breadcrumb: { "@id": `${url}#breadcrumb` } },
+    [
+      {
+        "@type": "Service",
+        "@id": `${url}#service`,
+        name: `${page.title} ${page.highlight.replace(/\.$/, "")}`,
+        serviceType: page.serviceType,
+        description: page.seo.description,
+        url,
+        provider: { "@id": PERSON_ID },
+        areaServed: [
+          { "@type": "City", name: profile.city },
+          { "@type": "Country", name: profile.country },
+        ],
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: page.serviceType,
+          itemListElement: page.offers.map((offer) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: offer.title, description: offer.text },
+          })),
+        },
+      },
+      breadcrumb(page.path, [[page.lang === "fr" ? "Accueil" : "Home", "/"], [page.navLabel, page.path]]),
+      faqPage(page.path, page.faqs),
+    ]
+  );
+};
+
 export const ratingSeo = {
   title: "Rate our work together | Mehdi Forkani",
   description: "Share your experience working with Mehdi Forkani.",
@@ -171,6 +215,11 @@ export const prerenderRoutes = () => [
     path: `/projects/${project.slug}`,
     file: `projects/${project.slug}.html`,
     seo: projectSeo(project),
+  })),
+  ...servicePages.map((page) => ({
+    path: page.path,
+    file: `${page.path.slice(1)}.html`,
+    seo: serviceSeo(page),
   })),
   { path: "/contact", file: "contact.html", seo: contactSeo },
   { path: "/rating", file: "rating.html", seo: ratingSeo },

@@ -2,12 +2,32 @@ import { DEFAULT_SOCIAL_IMAGE, SITE_URL, personJsonLd, profile, websiteJsonLd } 
 
 export const TWITTER_HANDLE = "@forkanimahdi";
 
-export const resolveSeo = ({ title, description, path = "/", image = DEFAULT_SOCIAL_IMAGE, type = "website", noindex = false, jsonLd = [] }) => ({
+const OG_LOCALES = { en: "en_US", fr: "fr_FR" };
+
+export const resolveSeo = ({
+  title,
+  description,
+  path = "/",
+  image = DEFAULT_SOCIAL_IMAGE,
+  type = "website",
+  noindex = false,
+  jsonLd = [],
+  lang = "en",
+  alternates = [],
+}) => ({
   title,
   description,
   url: `${SITE_URL}${path}`,
   type,
   noindex,
+  lang,
+  // hreflang links; x-default points to the English version.
+  alternates: noindex
+    ? []
+    : [
+        ...alternates.map((alternate) => ({ hreflang: alternate.lang, href: `${SITE_URL}${alternate.path}` })),
+        ...alternates.filter((alternate) => alternate.lang === "en").map((alternate) => ({ hreflang: "x-default", href: `${SITE_URL}${alternate.path}` })),
+      ],
   robots: noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1",
   image,
   jsonLd: noindex
@@ -21,7 +41,7 @@ export const metaEntries = (meta) => [
   ["name", "robots", meta.robots],
   ["property", "og:type", meta.type],
   ["property", "og:site_name", profile.name],
-  ["property", "og:locale", "en_US"],
+  ["property", "og:locale", OG_LOCALES[meta.lang] ?? OG_LOCALES.en],
   ["property", "og:title", meta.title],
   ["property", "og:description", meta.description],
   ["property", "og:url", meta.url],
@@ -47,6 +67,7 @@ export const renderHead = (seo) => {
     ...metaEntries(meta).map(([attr, key, value]) => `<meta ${attr}="${key}" content="${escapeHtml(value)}" />`),
   ];
   if (!meta.noindex) lines.push(`<link rel="canonical" href="${escapeHtml(meta.url)}" />`);
+  meta.alternates.forEach(({ hreflang, href }) => lines.push(`<link rel="alternate" hreflang="${hreflang}" href="${escapeHtml(href)}" />`));
   if (meta.jsonLd) lines.push(`<script type="application/ld+json" id="jsonld">${meta.jsonLd}</script>`);
   return lines.join("\n    ");
 };

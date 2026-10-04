@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { GoBrowser, GoCopilot, GoDatabase, GoDeviceMobile, GoPackage, GoSearch } from "react-icons/go";
+import { GoArrowRight, GoBrowser, GoCopilot, GoDatabase, GoDeviceMobile, GoPackage, GoSearch } from "react-icons/go";
 import { fadeIn } from "../../../utils/motion";
 import { useAppContext } from "../../../context/AppContext";
 
@@ -11,6 +11,7 @@ const services = [
         stack: "React Native",
         text: "Cross-platform apps for events, communities and guided tours, connected to their own backend.",
         examples: ["casatourat", "yes-mobile", "lionsgeek-mobile"],
+        page: { to: "/services/mobile-app-development-casablanca", label: "Mobile app development in Casablanca" },
     },
     {
         icon: <GoBrowser />,
@@ -18,6 +19,7 @@ const services = [
         stack: "Laravel · Inertia.js · React",
         text: "Websites, custom web apps and platforms for organizations: e-learning, online admissions, award programs and bilingual NGO sites.",
         examples: ["yes-learning", "ecoles-belges-maroc", "israr", "tilila"],
+        page: { to: "/services/website-creation-casablanca", label: "Website creation in Casablanca" },
     },
     {
         icon: <GoDatabase />,
@@ -110,6 +112,15 @@ export const Services = () => {
                                         </span>
                                     ))}</>}
                             </p>
+                            {service.page && (
+                                <Link
+                                    to={service.page.to}
+                                    className="mt-3 flex items-center gap-2 text-sm font-semibold text-white/80 transition-colors duration-300 hover:text-alpha"
+                                >
+                                    {service.page.label}
+                                    <GoArrowRight aria-hidden="true" />
+                                </Link>
+                            )}
                         </motion.article>
                     ))}
                 </div>

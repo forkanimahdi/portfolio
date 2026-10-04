@@ -4,6 +4,7 @@ import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { SiGmail } from "react-icons/si";
 import logo from "../assets/images/myLogo.png";
 import blackLogo from "../assets/images/blackLogo.png";
+import { servicePages } from "../data/services";
 
 const pages = [
     { name: "Home", to: "/" },
@@ -40,7 +41,7 @@ export const Footer = () => {
     return (
         <footer className="border-t border-white/[0.06] bg-black">
             <div className="container grid gap-12 py-16 md:grid-cols-12">
-                <div className="md:col-span-6">
+                <div className="md:col-span-4">
                     <Link to="/" onClick={scrollToTop} aria-label="Mehdi Forkani, home" className="inline-flex items-center gap-3">
                         <img src={logo} alt="" width="36" height="30" className="h-9 w-9 object-contain light:hidden" />
                         <img src={blackLogo} alt="" width="36" height="30" className="hidden h-9 w-9 object-contain light:block" />
@@ -69,7 +70,7 @@ export const Footer = () => {
                     </div>
                 </div>
 
-                <div className="md:col-span-3">
+                <div className="md:col-span-2">
                     <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">Pages</h3>
                     <ul className="mt-5 flex flex-col gap-3">
                         {pages.map((page) => (
@@ -86,7 +87,25 @@ export const Footer = () => {
                     </ul>
                 </div>
 
-                <div className="md:col-span-3">
+                <div className="md:col-span-4">
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">Services</h3>
+                    <ul className="mt-5 flex flex-col gap-3">
+                        {servicePages.map((page) => (
+                            <li key={page.path}>
+                                <Link
+                                    to={page.path}
+                                    hrefLang={page.lang}
+                                    lang={page.lang}
+                                    className="text-sm text-white/60 transition-colors hover:text-white"
+                                >
+                                    {page.navLabel} {page.lang === "fr" ? "(FR)" : "in Casablanca"}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="md:col-span-2">
                     <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-white/55">Connect</h3>
                     <ul className="mt-5 flex flex-col gap-3">
                         {socials.map((social) => (

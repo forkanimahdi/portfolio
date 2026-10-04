@@ -6,7 +6,7 @@ export { prerenderRoutes } from "./seo/pages";
 export { renderHead } from "./seo/meta";
 export { projects } from "./data/projects";
 export { projectTestimonial } from "./data/testimonials";
-export { journey } from "./data/about";
+export { servicePages } from "./data/services";
 export { SITE_URL, profile } from "./data/profile";
 
 export const render = (url) =>

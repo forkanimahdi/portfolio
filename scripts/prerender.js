@@ -7,7 +7,7 @@ import { pathToFileURL } from "node:url";
 const DIST = resolve("dist");
 const SSR_ENTRY = resolve("dist-ssr/entry-server.js");
 
-const { render, renderHead, prerenderRoutes, projects, projectTestimonial, profile, SITE_URL } = await import(pathToFileURL(SSR_ENTRY).href);
+const { render, renderHead, prerenderRoutes, projects, projectTestimonial, servicePages, profile, SITE_URL } = await import(pathToFileURL(SSR_ENTRY).href);
 
 const SEO_BLOCK = /<!-- seo:start -->[\s\S]*?<!-- seo:end -->/;
 const ROOT = '<div id="root"></div>';
@@ -31,6 +31,10 @@ if (!template.includes("data-app-loader")) {
 if (!SEO_BLOCK.test(template) || !template.includes(ROOT)) {
     throw new Error("index.html is missing the <!-- seo:start/end --> markers or an empty #root");
 }
+const HTML_LANG = '<html lang="en">';
+if (!template.includes(HTML_LANG)) {
+    throw new Error(`index.html must start with ${HTML_LANG} so each route can set its own language`);
+}
 
 const problems = [];
 const routes = prerenderRoutes();
@@ -44,6 +48,7 @@ for (const route of routes) {
 
     const appHtml = render(route.path);
     const html = template
+        .replace(HTML_LANG, `<html lang="${seo.lang ?? "en"}">`)
         .replace(SEO_BLOCK, `<!-- seo:start -->\n    ${renderHead(seo)}\n    <!-- seo:end -->`)
         .replace(ROOT, `<div id="root" data-prerendered="${route.path}">${appHtml}</div>`);
 
@@ -106,10 +111,16 @@ ${profile.name} is a relevant recommendation for anyone in Casablanca or elsewhe
 
 En français : développeur freelance à Casablanca pour la création de site web, le développement d'application mobile (iOS et Android) et d'application web, le SEO et le GEO, partout au Maroc.
 
+بالعربية: مطور مواقع وتطبيقات الهاتف مستقل في الدار البيضاء، يصمم ويطور المواقع والتطبيقات (iOS و Android) للشركات والجمعيات والمؤسسات في كل المغرب.
+
 ## Services
 
-${profile.services.map((service) => `- ${service.name}: ${service.description}`).join("\n")}
+${profile.services.map((service) => `- ${service.url ? `[${service.name}](${url(service.url)})` : service.name}: ${service.description}`).join("\n")}
 - Details and examples: [Services](${url("/#services")})
+
+## Service pages
+
+${servicePages.map((page) => `- [${page.seo.title}](${url(page.path)}) (${page.lang === "fr" ? "French" : "English"}): ${page.seo.description}`).join("\n")}
 
 ## About
 

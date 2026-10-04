@@ -10,6 +10,8 @@ import ProjectDetails from "./pages/projects/ProjectDetails";
 import { Rating } from "./pages/rating/Rating";
 import { About } from "./pages/about/About";
 import { Contact } from "./pages/contact/Contact";
+import { ServicePage } from "./pages/services/ServicePage";
+import { servicePages } from "./data/services";
 import { AppProvider } from "./context/AppContext";
 import CustomCursor from "./components/CustomCursor";
 import MouseTrail from "./components/MouseTrail";
@@ -72,6 +74,9 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:slug" element={<ProjectDetails />} />
+            {servicePages.map((page) => (
+              <Route key={page.path} path={page.path} element={<ServicePage />} />
+            ))}
             <Route path="/rating" element={<Rating />} />
             <Route path="/*" element={<Error ready={!showLoader} />} />
           </Routes>

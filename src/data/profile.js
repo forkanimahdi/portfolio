@@ -14,9 +14,17 @@ export const profile = {
   summary:
     "Mehdi Forkani is a freelance full-stack developer based in Casablanca, Morocco, working with clients across Morocco and remotely. He creates websites, web apps, platforms and mobile apps for iOS and Android, including the backends and admin dashboards behind them, for businesses, startups, NGOs and institutions. He also handles SEO and GEO (Generative Engine Optimization), so his clients are found on Google and recommended by AI assistants. He is a full-stack web development coach: Head Coach of the LionsGeek Coding School in Casablanca.",
   services: [
-    { name: "Website creation", description: "Business websites, institutional sites and portfolios, designed, built, hosted and maintained." },
+    {
+      name: "Website creation",
+      description: "Business websites, institutional sites and portfolios, designed, built, hosted and maintained.",
+      url: "/services/website-creation-casablanca",
+    },
     { name: "Web app and platform development", description: "Custom web apps, platforms and admin dashboards with Laravel, Inertia.js and React." },
-    { name: "Mobile app development", description: "Cross-platform iOS and Android apps with React Native, published on the App Store and Google Play." },
+    {
+      name: "Mobile app development",
+      description: "Cross-platform iOS and Android apps with React Native, published on the App Store and Google Play.",
+      url: "/services/mobile-app-development-casablanca",
+    },
     { name: "E-commerce development", description: "Online stores with product, order and inventory management." },
     { name: "SEO", description: "Technical SEO, Core Web Vitals, structured data, multilingual SEO and Google Search Console setup." },
     { name: "GEO (Generative Engine Optimization)", description: "Visibility in AI assistants such as ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews." },
@@ -89,6 +97,7 @@ export const personJsonLd = {
         "@type": "Service",
         name: service.name,
         description: service.description,
+        ...(service.url && { url: `${SITE_URL}${service.url}` }),
         areaServed: [
           { "@type": "City", name: profile.city },
           { "@type": "Country", name: profile.country },

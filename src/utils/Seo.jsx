@@ -19,7 +19,17 @@ const Seo = (props) => {
   useEffect(() => {
     const meta = JSON.parse(serialized);
     document.title = meta.title;
+    document.documentElement.lang = meta.lang;
     metaEntries(meta).forEach(([attr, key, value]) => setMeta(attr, key, value));
+
+    document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove());
+    meta.alternates.forEach(({ hreflang, href }) => {
+      const link = document.createElement("link");
+      link.rel = "alternate";
+      link.hreflang = hreflang;
+      link.href = href;
+      document.head.appendChild(link);
+    });
 
     let canonical = document.head.querySelector('link[rel="canonical"]');
     if (meta.noindex) {
