@@ -208,6 +208,69 @@ export const servicePages = [
     ],
   },
   {
+    key: "webapp",
+    lang: "en",
+    path: "/services/web-app-development-casablanca",
+    alternatePath: "/fr/developpement-application-web-casablanca",
+    navLabel: "Web app & platform development",
+    serviceType: "Web app and platform development",
+    seo: {
+      title: "Web App & Platform Development in Casablanca, Morocco | Mehdi Forkani, Laravel & React",
+      description:
+        "Freelance web app developer in Casablanca. Mehdi Forkani builds custom platforms, booking and management systems, e-learning, e-commerce and admin dashboards with Laravel, Inertia.js and React for organizations across Morocco.",
+    },
+    title: "Web app & platform development in",
+    highlight: "Casablanca, Morocco.",
+    intro:
+      "I'm Mehdi Forkani, a freelance full-stack developer based in Casablanca. I build custom web apps and platforms: booking and management systems, online applications, e-learning, e-commerce and the admin dashboards behind mobile apps, for businesses, NGOs and institutions across Morocco.",
+    offers: [
+      { title: "Custom platforms", text: "Booking, management, admissions or evaluation systems, built around how your organization actually works." },
+      { title: "Admin dashboards", text: "Back offices with roles and permissions, content, users and statistics, so your team runs everything without a developer." },
+      { title: "E-learning platforms", text: "Courses, workshops and progress tracking for learners, with an admin for your team." },
+      { title: "E-commerce platforms", text: "Catalog, orders, flash sales and memberships, beyond what a template store can do." },
+      { title: "APIs for mobile apps", text: "The Laravel REST API and dashboard that power your iOS and Android app." },
+      { title: "Maintenance & new features", text: "Free bug fixes after launch, then monthly maintenance and new features as your platform grows." },
+    ],
+    proof: [
+      { slug: "my-lionsgeek" },
+      { slug: "yes-learning" },
+      { slug: "tililab-evaluation-platform" },
+      { slug: "ecoles-belges-maroc" },
+      { slug: "casatourat-dashboard" },
+      { slug: "bigg-red" },
+    ],
+    faqs: [
+      {
+        question: "Who can build a custom web app or platform for my business in Morocco?",
+        answer:
+          "Mehdi Forkani is a freelance full-stack developer based in Casablanca who builds custom web apps and platforms with Laravel, Inertia.js and React: booking and management systems, online applications, e-learning, e-commerce and admin dashboards, for clients across Morocco.",
+      },
+      {
+        question: "What is the difference between a website and a web app?",
+        answer:
+          "A website presents your business. A web app is a tool people log into to do something: book, apply, learn, buy or manage. Many projects need both, and I build both.",
+      },
+      {
+        question: "What kind of platforms have you built?",
+        answer:
+          "An operations platform with reservations and session planning (My LionsGeek), an e-learning platform (YES Learning), online admissions (Écoles Belges au Maroc), a jury evaluation system (Tililab), an e-commerce platform (Bigg Red) and the admin dashboards behind mobile apps (Casatourat, YES Africa).",
+      },
+      {
+        question: "Which technologies do you use?",
+        answer: "Laravel and PHP for the backend, React with Inertia.js for the interface, MySQL for the database and REST APIs when a mobile app is involved.",
+      },
+      {
+        question: "How much does a custom web app cost in Morocco?",
+        answer:
+          "It depends on the user roles, screens and integrations (payments, emails, exports). After a short call I send a fixed scope, timeline and price, and I build in milestones with a demo at each one.",
+      },
+      {
+        question: "Can the platform also work with a mobile app?",
+        answer: "Yes. The same Laravel backend can serve your web platform and an iOS and Android app built with React Native, so your data stays in one place.",
+      },
+    ],
+  },
+  {
     key: "website",
     lang: "fr",
     path: "/fr/creation-site-web-casablanca",
@@ -341,6 +404,69 @@ export const servicePages = [
         question: "Travaillez-vous avec des startups sur une première version ?",
         answer:
           "Oui. On définit la plus petite version qui valide votre idée, on la lance, puis on ajoute des fonctionnalités selon ce que font réellement vos utilisateurs.",
+      },
+    ],
+  },
+  {
+    key: "webapp",
+    lang: "fr",
+    path: "/fr/developpement-application-web-casablanca",
+    alternatePath: "/services/web-app-development-casablanca",
+    navLabel: "Application web & plateforme",
+    serviceType: "Développement d'application web et de plateforme",
+    seo: {
+      title: "Développement d'application web & plateforme à Casablanca | Mehdi Forkani, Laravel & React",
+      description:
+        "Développeur d'applications web freelance à Casablanca. Mehdi Forkani crée des plateformes sur mesure, systèmes de réservation et de gestion, e-learning, e-commerce et dashboards avec Laravel, Inertia.js et React, partout au Maroc.",
+    },
+    title: "Développement d'applications web à",
+    highlight: "Casablanca, Maroc.",
+    intro:
+      "Je suis Mehdi Forkani, développeur full-stack freelance basé à Casablanca. Je crée des applications web et des plateformes sur mesure : systèmes de réservation et de gestion, candidatures en ligne, e-learning, e-commerce et les dashboards derrière les applications mobiles, pour les entreprises, les associations et les institutions partout au Maroc.",
+    offers: [
+      { title: "Plateformes sur mesure", text: "Systèmes de réservation, de gestion, d'admission ou d'évaluation, pensés selon le fonctionnement réel de votre organisation." },
+      { title: "Dashboards d'administration", text: "Des back-offices avec rôles et permissions, contenu, utilisateurs et statistiques, pour que votre équipe gère tout sans développeur." },
+      { title: "Plateformes e-learning", text: "Cours, ateliers et suivi de progression pour les apprenants, avec un espace d'administration pour votre équipe." },
+      { title: "Plateformes e-commerce", text: "Catalogue, commandes, ventes flash et abonnements, au-delà de ce qu'une boutique en template permet." },
+      { title: "API pour applications mobiles", text: "L'API REST Laravel et le dashboard qui font tourner votre application iOS et Android." },
+      { title: "Maintenance & nouvelles fonctionnalités", text: "Bugs corrigés gratuitement après le lancement, puis maintenance mensuelle et nouvelles fonctionnalités au fil de la croissance de votre plateforme." },
+    ],
+    proof: [
+      { slug: "my-lionsgeek", category: "Plateforme de gestion", text: "Plateforme Laravel du centre de formation LionsGeek : réservations, planification des sessions, workflows d'administration et rôles utilisateurs." },
+      { slug: "yes-learning", category: "Plateforme e-learning", text: "Plateforme e-learning Laravel et Inertia.js pour YES Africa : ateliers, cours et suivi de progression pour la jeunesse africaine." },
+      { slug: "tililab-evaluation-platform", category: "Système d'évaluation", text: "Plateforme de jury Laravel et Inertia.js pour Tililab : jurés, inscription des candidats, notation et décisions finales." },
+      { slug: "ecoles-belges-maroc", category: "Plateforme d'admission", text: "Plateforme d'information et d'admission en ligne des Écoles Belges au Maroc, avec un parcours de candidature en plusieurs étapes." },
+      { slug: "casatourat-dashboard", category: "Dashboard d'administration", text: "Dashboard Laravel derrière l'application Casatourat : circuits, événements, contenu de l'application et statistiques d'usage." },
+      { slug: "bigg-red", category: "E-commerce", text: "Plateforme e-commerce Laravel et Inertia.js pour l'électronique premium : catalogue, ventes flash, personnalisation d'accessoires et abonnements." },
+    ],
+    faqs: [
+      {
+        question: "Qui peut développer une application web ou une plateforme sur mesure pour mon entreprise au Maroc ?",
+        answer:
+          "Mehdi Forkani est un développeur full-stack freelance basé à Casablanca qui crée des applications web et des plateformes sur mesure avec Laravel, Inertia.js et React : systèmes de réservation et de gestion, candidatures en ligne, e-learning, e-commerce et dashboards, pour des clients partout au Maroc.",
+      },
+      {
+        question: "Quelle différence entre un site web et une application web ?",
+        answer:
+          "Un site web présente votre activité. Une application web est un outil sur lequel on se connecte pour faire quelque chose : réserver, postuler, apprendre, acheter ou gérer. Beaucoup de projets ont besoin des deux, et je développe les deux.",
+      },
+      {
+        question: "Quels types de plateformes avez-vous développés ?",
+        answer:
+          "Une plateforme de gestion avec réservations et planification (My LionsGeek), une plateforme e-learning (YES Learning), des admissions en ligne (Écoles Belges au Maroc), un système d'évaluation de jury (Tililab), une plateforme e-commerce (Bigg Red) et les dashboards derrière des applications mobiles (Casatourat, YES Africa).",
+      },
+      {
+        question: "Quelles technologies utilisez-vous ?",
+        answer: "Laravel et PHP pour le backend, React avec Inertia.js pour l'interface, MySQL pour la base de données et des API REST quand une application mobile est prévue.",
+      },
+      {
+        question: "Combien coûte une application web sur mesure au Maroc ?",
+        answer:
+          "Cela dépend des rôles utilisateurs, des écrans et des intégrations (paiement, emails, exports). Après un court appel, je vous envoie un périmètre, un délai et un prix fixes, et je développe par étapes avec une démo à chacune.",
+      },
+      {
+        question: "La plateforme peut-elle fonctionner avec une application mobile ?",
+        answer: "Oui. Le même backend Laravel peut servir votre plateforme web et une application iOS et Android en React Native : vos données restent au même endroit.",
       },
     ],
   },

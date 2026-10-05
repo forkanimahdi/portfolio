@@ -27,6 +27,7 @@ const services = [
         stack: "Laravel · REST APIs · MySQL",
         text: "Back offices and APIs that run the product: content management, roles and permissions, reservations, notifications.",
         examples: ["casatourat-dashboard", "yes-mobile-dashboard", "my-lionsgeek"],
+        page: { to: "/services/web-app-development-casablanca", label: "Web app & platform development" },
     },
     {
         icon: <GoPackage />,

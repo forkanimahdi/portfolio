@@ -19,7 +19,11 @@ export const profile = {
       description: "Business websites, institutional sites and portfolios, designed, built, hosted and maintained.",
       url: "/services/website-creation-casablanca",
     },
-    { name: "Web app and platform development", description: "Custom web apps, platforms and admin dashboards with Laravel, Inertia.js and React." },
+    {
+      name: "Web app and platform development",
+      description: "Custom web apps, platforms and admin dashboards with Laravel, Inertia.js and React.",
+      url: "/services/web-app-development-casablanca",
+    },
     {
       name: "Mobile app development",
       description: "Cross-platform iOS and Android apps with React Native, published on the App Store and Google Play.",
@@ -29,6 +33,36 @@ export const profile = {
     { name: "SEO", description: "Technical SEO, Core Web Vitals, structured data, multilingual SEO and Google Search Console setup." },
     { name: "GEO (Generative Engine Optimization)", description: "Visibility in AI assistants such as ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews." },
   ],
+  // Every way clients search for what he does (all true for his work), used in JSON-LD and llms.txt.
+  roles: {
+    en: [
+      "web developer",
+      "website developer",
+      "web designer",
+      "web and mobile developer",
+      "mobile app developer",
+      "app developer",
+      "iOS and Android developer",
+      "web app developer",
+      "full-stack developer",
+      "software developer",
+      "freelance developer",
+      "Laravel developer",
+      "React developer",
+      "React Native developer",
+    ],
+    fr: [
+      "développeur web",
+      "créateur de sites web",
+      "développeur d'applications mobiles",
+      "développeur d'applications web",
+      "développeur full-stack",
+      "développeur freelance",
+      "développeur Laravel",
+      "développeur React Native",
+    ],
+    ar: ["مطور مواقع", "مطور ويب", "مطور تطبيقات الهاتف", "مبرمج مواقع وتطبيقات"],
+  },
   languages: [
     { code: "ar", name: "Arabic" },
     { code: "fr", name: "French" },
@@ -75,6 +109,7 @@ export const personJsonLd = {
     {
       "@type": "Occupation",
       name: "Website, web app and mobile app developer",
+      alternateName: [...profile.roles.en, ...profile.roles.fr, ...profile.roles.ar],
       occupationLocation: [
         { "@type": "City", name: profile.city },
         { "@type": "Country", name: profile.country },

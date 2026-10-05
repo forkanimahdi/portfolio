@@ -45,7 +45,7 @@ export const homeSeo = withPage(
   {
     title: "Mehdi Forkani | Website & Mobile App Developer in Casablanca, Morocco",
     description:
-      "Freelance developer in Casablanca creating websites, web apps and mobile apps for businesses across Morocco, with SEO and GEO built in. Also a full-stack web development coach.",
+      "Freelance web developer and mobile app developer in Casablanca: websites, web apps and iOS and Android apps for businesses across Morocco, with SEO and GEO built in. Also a full-stack web development coach.",
     path: "/",
   },
   "ProfilePage",

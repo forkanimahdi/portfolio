@@ -14,6 +14,7 @@ const socials = [
 ];
 
 const facts = [
+    { label: "Roles", value: "Web developer, mobile app developer, full-stack developer" },
     { label: "Based in", value: "Casablanca, Morocco" },
     { label: "Works in", value: "Arabic, French, English" },
     { label: "Also", value: "Full-stack web development coach, Head Coach at LionsGeek Coding School" },
